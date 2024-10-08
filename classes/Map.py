@@ -14,3 +14,16 @@ class Area:
         #print(f'Checking if point ({point_x}, {point_y}) is inside area {self.id}')
         point = np.array([point_x, point_y], dtype=np.float32)
         return cv2.pointPolygonTest(self.points, point, False) >= 0
+
+class Boundary:
+    def __init__(self, points):
+        self.points = np.array(points, dtype=np.int32)
+
+    def touchs(self, point_x, point_y):
+        return False
+    
+    
+class SpawnPoint:
+    def __init__(self, id, points):
+        self.id = id
+        self.coords = np.array(points, dtype=np.int32)

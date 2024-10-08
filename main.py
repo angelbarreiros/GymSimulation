@@ -1,35 +1,32 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from matplotlib.patches import Polygon, Rectangle
+
 import tqdm
 import os 
 import cv2
 import json
-import get_info
 
-import MultiPersonSimulation
-import Boundary
-import SpawnPoint
-import Area
-import PersonMovement
+from classes.MultiPersonSimulation import MultiPersonSimulation
+from classes.Map import Area, Boundary, SpawnPoint
+from classes.PersonMovement import PersonMovement
+from utils.get_info import extract_aforo, extract_aforo_zonas, extract_clases
+
 
 def main():
     
-    with open('./code/engañiza/data2/Zonas.json', 'r') as file:
+    with open('data/Zonas.json', 'r') as file:
         data = json.load(file)
 
     planta2_zones = data["Planta2"]["Zonas"]
     planta2_paredes = data["Planta2"]["Paredes"]
     planta2_spawns = data["Planta2"]["Spawns"]
 
-    aforo_path = 'code/engañiza/data2/aforo.json'
-    aforo_zonas_path = 'code/engañiza/data2/aforo_zonas.json'
-    aforo_clases_path = 'code/engañiza/data2/clases.json'
-    hora, entrada, salida = get_info.extract_aforo(aforo_path)
-    aforo_zonas = get_info.extract_aforo_zonas(aforo_zonas_path)
-    aforo_clases = get_info.extract_clases(aforo_clases_path)
+    aforo_path = 'data/aforo.json'
+    aforo_zonas_path = 'data/aforo_zonas.json'
+    aforo_clases_path = 'data/clases.json'
+    hora, entrada, salida = extract_aforo(aforo_path)
+    aforo_zonas = extract_aforo_zonas(aforo_zonas_path)
+    aforo_clases = extract_clases(aforo_clases_path)
     aforo_dict = {zona['zona']: zona['aforo'] for zona in aforo_zonas}
 
     print(f"aforo_dict: {aforo_dict}")
