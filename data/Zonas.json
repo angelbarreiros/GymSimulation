@@ -1,44 +1,45 @@
 {
   "Planta1":{
     "Zonas":[
-      {
+      {   "Familia": "KIDS",
           "Nombre":"Kids",
           "Cordenadas": [[300,322],[536,322],[536,687],[300,687]]
       },
-      {
+      {   "Familia": "LUDOTECA",
           "Nombre":"Ludoteca",
           "Cordenadas": [[1418,304],[1614,304],[1614,1026],[1418,1026]] 
       },
-      {
-        "Nombre":"XTraining",
+      { "Familia": "X-TRAINING",
+        "Nombre":"X-TRAINING",
         "Cordenadas":[[291,18],[1319,18],[1584,72],[1584,301],[291,301]] 
       },
-      {
+      { "Familia": "NOFUNCIONAL",
         "Nombre":"Entrada",
         "Cordenadas": [[900,965],[1063,965],[1063,1071],[900,1071]]
       },
-      {
+      { "Familia": "NOFUNCIONAL",
         "Nombre": "EscaleraIzq",
         "Cordenadas": [[580,700],[629,700],[629,744],[580,744]]
       },
-      {
+      { "Familia": "NOFUNCIONAL",
         "Nombre":"EscaleraDrch",
         "Cordenadas":[[1321,700],[1377,700],[1377,735],[1321,735]]
         
       },
-      {
+      { "Familia": "NOFUNCIONAL",
         "Nombre":"EscaleraInteriorSubida",
         "Cordenadas":[[889,722],[1084,722],[1084,748],[889,748]] 
         
       },
-      {
+      {"Familia": "NOFUNCIONAL",
        "Nombre":"EscaleraInteriorBajada",
         "Cordenadas": [[1018,772],[1084,772],[1084,801],[1018,801]]
       },
-      {
+      {"Familia": "NOFUNCIONAL",
         "Nombre":"Ascensor Interior",
           "Cordenadas": [[1081,641],[1131,641],[1131,681],[1081,681]]
-      },{
+      },
+      { "Familia": "NOFUNCIONAL",
         "Nombre":"AscensorEsquinaDrch",
         "Cordenadas":[[1566,334],[1594,334],[1594,375],[1556,375]]
       }
@@ -74,99 +75,121 @@
   },
   "Planta2":{
     "Zonas":[
-      {
+      { "Familia": "CIRCUIT",
         "Nombre":"CIRCUIT",
         "Cordenadas":[[474,48],[744,48],[744,300],[474,300]]
       },
-      {
+      { "Familia": "CORE",
         "Nombre":"CORE",
         "Cordenadas": [[759,50],[902,50],[902,263],[759,263]]
       },
       {
-        "Nombre":"Funcional",
+        "Familia": "FUNCIONAL",
+        "Nombre":"FUNCIONAL",
         "Cordenadas":[[922,54],[1128,54],[1128,260],[922,260]]
       },
       {
-        "Nombre":"PesoLibre1",
+        "Familia": "PESO_LIBRE",
+        "Nombre":"PESO_LIBRE1",
         "Cordenadas":[[1176,51],[1297,51],[1297,200],[1176,200]]
       },
       {
-        "Nombre":"PesoLibre2",
+        "Familia": "PESO_LIBRE",
+        "Nombre":"PESO_LIBRE2",
         "Cordenadas":[[1299,53],[1550,53],[1550,133],[1299,133]]
       },
       {
-        "Nombre":"PesoLibre3",
+        "Familia": "PESO_LIBRE",
+        "Nombre":"PESO_LIBRE3",
         "Cordenadas":[[1352,163],[1637,163],[1637,329],[1352,329]]
       },
       {
-        "Nombre":"PesoLibre4",
+        "Familia": "PESO_LIBRE",
+        "Nombre":"PESO_LIBRE4",
         "Cordenadas":[[1403,340],[1620,340],[1620,955],[1403,955]]
       },
       {
-        "Nombre":"PesoLibre5",
+        "Familia": "PESO_LIBRE",
+        "Nombre":"PESO_LIBRE5",
         "Cordenadas":[[1075,721],[1341,721],[1341,1048],[1075,1048]]
       },
       {
-        "Nombre":"Cardio1",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO1",
         "Cordenadas": [[129,26],[471,26],[471,333],[129,333]]
       },
       {
-        "Nombre":"Cardio2",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO2",
         "Cordenadas": [[757,303],[1064,303],[1064,345],[757,345]]
       },
       {
-        "Nombre":"Cardio3",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO3",
         "Cordenadas":[[1193,329],[1258,329],[1258,654],[1193,654]]
       },
       {
-        "Nombre":"Cardio4",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO4",
         "Cordenadas":[[764,632],[1057,632],[1057,675],[764,675]]
       },
       {
-        "Nombre":"Cardio5",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO5",
         "Cordenadas":[[757,727],[1069,727],[1069,873],[757,873]]	
       },
       {
-        "Nombre":"Cardio6",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO6",
         "Cordenadas":[[142,961],[416,961],[416,1040],[142,1040]]
       },
       {
-        "Nombre":"Cardio7",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO7",
         "Cordenadas":[[430,939],[739,939],[739,1042],[430,1042]]
       },
       {
-        "Nombre":"Cardio8",
+        "Familia": "CARDIO",
+        "Nombre":"CARDIO8",
         "Cordenadas":[[1373,954],[1606,954],[1606,1044],[1373,1044]]
       },
       {
-        "Nombre":"Isotonico1",
+        "Familia": "ISOTÓNICO",
+        "Nombre":"ISOTÓNICO1",
         "Cordenadas":[[129,337],[415,337],[415,959],[129,959]]
       },
       {
-        "Nombre":"Isotonico2",
+        "Familia": "ISOTÓNICO",
+        "Nombre":"ISOTÓNICO2",
         "Cordenadas": [[415,684],[730,684],[730,927],[415,927]]
       },
       {
+        "Familia": "NOFUNCIONAL",
         "Nombre":"EscaleraIzq",
         "Cordenadas":[[457,461],[517,461],[517,515],[457,515]]
       },
       {
+        "Familia": "NOFUNCIONAL",
         "Nombre":"EscaleraDrch",
         "Cordenadas":[[1301,473],[1352,473],[1352,523],[1301,523]]
       },
       {
+        "Familia":"NOFUNCIONAL",
         "Nombre":"EscaleraCentroSubida",
         "Cordenadas":[[762,548],[838,548],[838,581],[762,581]]
       },
       {
+        "Familia":"NOFUNCIONAL",
         "Nombre":"EscaleraCentroBajada",
         "Cordenadas": [[735,490],[867,490],[867,526],[735,526]]
       },
       {
+        "Familia":"NOFUNCIONAL",
         "Nombre":"AscensorEsquinaDrch",
         "Cordenadas":[[1575,70],[1593,70],[1593,95],[1575,95]]
       },
       {
+        "Familia":"NOFUNCIONAL",
         "Nombre":"AscensorInterior",
         "Cordenadas": [[1024,399],[1080,399],[1080,449],[1024,449]]
       }
@@ -217,54 +240,55 @@
   "Planta0":{
     "Zonas":[
       {
+        "Familia":"PP",
         "Nombre":"PP",
         "Cordenadas":[[531,137],[698,137],[698,501],[531,501]]
       },
-      {
+      { "Familia":"PG",
         "Nombre":"PG",
         "Cordenadas":[[721,136],[1422,136],[1422,501],[721,501]]
       },
-      {
+      { "Familia":"Hidromasaje",
         "Nombre":"Hidromasaje",
         "Cordenadas":[[1443,137],[1596,137],[1596,494],[1443,494]]
       },
-      {
+      { "Familia":"Descanso",
         "Nombre":"Descanso1",
         "Cordenadas":[[870,14],[1154,14],[1154,93],[870,93]]
       },
-      {
+      { "Familia":"Descanso",
         "Nombre":"Descanso2",
         "Cordenadas":[[533,520],[1601,520],[1601,554],[533,554]]
       },
-      {
-        "Nombre":"Sauna",
+      { "Familia":"SAUNA",
+        "Nombre":"SAUNA",
         "Cordenadas":[[549,13],[662,13],[662,92],[549,92]]
       },
-      {
-        "Nombre":"Vapor",
+      { "Familia":"BAÑO VAPOR",
+        "Nombre":"BAÑO VAPOR",
         "Cordenadas":[[668,14],[772,14],[772,81],[668,81]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"VestuarioMasculino",
         "Cordenadas":[[590,818],[1110,818],[1110,1077],[590,1077]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"VestuarioFemenino",
         "Cordenadas": [[1117,807],[1635,807],[1635,1076],[1117,1076]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"EscaleraCentroSubida",
         "Cordenadas": [[963,661],[996,661],[996,685],[963,685]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"AscensorInterior",
         "Cordenadas":[[1154,582],[1198,582],[1198,630],[1154,630]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"EscaleraIzq",
         "Cordenadas":[[735,650],[788,650],[788,692],[735,692]]
       },
-      {
+      { "Familia":"NOFUNCIONAL",
         "Nombre":"EscaleraDrch",
         "Cordenadas":[[1345,664],[1385,664],[1385,693],[1345,693]]
       }

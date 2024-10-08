@@ -8,13 +8,15 @@ class Area:
         self.actualCapacity = 0
         self.center_x = np.mean(self.points[:, 0])
         self.center_y = np.mean(self.points[:, 1])
-        self.totalCap = totalCapacity
+        self.totalCapacity = totalCapacity
         self.ocuppied_by = None # quitarrrr
         self.targetCapacity = targetCapacity
 
     def contains_point(self, point_x, point_y):
         #print(f'Checking if point ({point_x}, {point_y}) is inside area {self.id}')
         return cv2.pointPolygonTest(self.points, np.array([point_x, point_y], dtype=np.float32), False) >= 0
+    def __str__(self):
+        return f"Area('{self.name}', {self.points}, {self.targetCapacity}, {self.totalCapacity})"
 
 class Boundary:
     def __init__(self, points):
