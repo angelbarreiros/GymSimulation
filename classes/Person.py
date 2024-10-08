@@ -1,7 +1,7 @@
 import numpy as np
 
 class Person:
-    def __init__(self, person_id, start_x, start_y, startFrame, max_step=7):
+    def __init__(self, person_id, start_x, start_y, startFrame, max_step=15):
         self.id = person_id
         self.x = start_x
         self.y = start_y
@@ -14,7 +14,6 @@ class Person:
         self.scapeCnt = 0
         self.startFrame = startFrame
 
-    # TODO Create types of move: move_machines, move_free, move_water
     def move(self, others, boundary, target_areas):
         if self.stay_counter > 0:
             self.stay_counter -= 1
