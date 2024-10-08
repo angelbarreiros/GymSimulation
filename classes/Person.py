@@ -1,6 +1,6 @@
 import numpy as np
 
-class PersonMovement:
+class Person:
     def __init__(self, person_id, start_x, start_y, startFrame, max_step=7):
         self.id = person_id
         self.x = start_x

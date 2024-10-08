@@ -6,9 +6,9 @@ import os
 import cv2
 import json
 
-from classes.MultiPersonSimulation import MultiPersonSimulation
+from classes.Simulation import Simulation
 from classes.Map import Area, Boundary, SpawnPoint
-from classes.PersonMovement import PersonMovement
+from classes.Person import Person
 from utils.get_info import extract_aforo, extract_aforo_zonas, extract_clases
 
 
@@ -60,7 +60,7 @@ def main():
     np.random.seed(123)
     print(f"Number of persons: {npersons}")
     # Create simulation with 10 persons
-    sim = MultiPersonSimulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns)
+    sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns)
     
     # Run simulation for 500 steps
     print('Creating simulation...')

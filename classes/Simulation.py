@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 import os
 import tqdm
-from classes.PersonMovement import PersonMovement
-class MultiPersonSimulation:
+from classes.Person import Person
+class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points):
         self.boundaries = boundary_points
         self.target_areas = target_areas
@@ -38,7 +38,7 @@ class MultiPersonSimulation:
     #     return persons
     def initialize_person(self, num_person, spawn_points, frame):
         spawn_point = np.random.choice(spawn_points)
-        self.persons.append(PersonMovement(num_person, spawn_point.coords[0], spawn_point.coords[1], frame))
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame))
         print(f'Person {num_person} startFrame: {self.persons[-1].startFrame}')
 
     def simulate(self, frames):
