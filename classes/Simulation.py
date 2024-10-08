@@ -61,7 +61,7 @@ class Simulation:
                 data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y})
         self.movement_data = pd.DataFrame(data)
 
-    def animate_cv2(self, output_folder='code/engañiza/data2/animation_frames'):
+    def animate_cv2(self, output_folder='data/animation_frames'):
         # Step 1: Create output folder if it doesn't exist
         os.makedirs(output_folder, exist_ok=True)
 

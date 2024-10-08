@@ -19,26 +19,6 @@ zone_mapping = {
     "X-TRAINING": "XTRAINING"
 }
 
-# List of all standardized zones
-all_zones = {
-    "PP", 
-    "PG",
-    "SAUNA",
-    "VAPOR",
-    "DESCANSO",
-    "HIDROMASAJE",
-    "VESTUARIO FEMENINO",
-    "VESTUARIO MASCULINO",
-    "XTRAINING",
-    "KIDS",
-    "LUDOTECA",
-    "CARDIO",
-    "CIRCUIT",
-    "CORE", 
-    "FUNCIONAL", 
-    "PESO LIBRE",
-    "ISOTONICO",
-}
 
 def extract_aforo(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -92,49 +72,32 @@ def get_data():
     aforo_zonas = extract_aforo_zonas(aforo_zonas_path)
     aforo_clases = extract_clases(aforo_clases_path)
     aforo_dict = {zona['zona']: zona['aforo'] for zona in aforo_zonas}
-
+    totalCapacity = 100 # placeholder
     print(f"aforo_dict: {aforo_dict}")
     areas = []
     paredes = []
     spawns = []
     for zone in planta2_zones:
-        id = zone["Nombre"]
+        name = zone["Nombre"]
         points = zone["Cordenadas"]
-        aforo = aforo_dict.get(id, None)
+        aforo = aforo_dict.get(name, None)
         
         if aforo is not None:
             print(f"Found aforo {aforo} for zone '{id}'")
-            area = Area(id, points, aforo)
+            area = Area(name, points, totalCapacity, aforo)
         else:
             print(f"Warning: No aforo found for zone '{id}'. Using 0 value.")
-            area = Area(id, points, 0)  
+            area = Area(name, points, totalCapacity, 0)  
         areas.append(area)
     
     for pared in planta2_paredes: 
         pared = Boundary(pared)
         paredes.append(pared)
 
-    npersons = entrada -salida
+    npersons = entrada-salida
 
     for spawn in planta2_spawns:
         spawn = SpawnPoint(spawn["Nombre"], spawn["Cordenadas"])
         spawns.append(spawn)
 
     return npersons, areas, paredes, spawns
-
-if __name__ == "__main__":
-    aforo_path = 'code/engañiza/data2/aforo.json'
-    aforo_zonas_path = 'code/engañiza/data2/aforo_zonas.json'
-    aforo_clases_path = 'code/engañiza/data2/clases.json'
-    
-    hora, entrada, salida = extract_aforo(aforo_path)
-    aforo_zonas = extract_aforo_zonas(aforo_zonas_path)
-    aforo_clases = extract_clases(aforo_clases_path)
-    
-    print(f"Hora: {hora}, Entrada: {entrada}, Salida: {salida}")
-    print("Aforo por zonas:")
-    for zona in aforo_zonas:
-        print(f"Zona: {zona['zona']}, Aforo: {zona['aforo']}")
-    print("Aforo por clases:")
-    for clase, info in aforo_clases.items():
-        print(f"Clase: {clase}, Aforo: {info['aforo']}")

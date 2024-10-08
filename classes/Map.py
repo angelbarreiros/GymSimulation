@@ -2,18 +2,18 @@ import numpy as np
 import cv2
 
 class Area:
-    def __init__(self, id, points, aforo):
-        self.id = id
+    def __init__(self, name, points, totalCapacity, targetCapacity):
+        self.name = name
         self.points = np.array(points, dtype=np.int32)  # Ensure points are numpy array
-        self.occupied_by = None
+        self.actualCapacity = 0
         self.center_x = np.mean(self.points[:, 0])
         self.center_y = np.mean(self.points[:, 1])
-        self.aforo = aforo
+        self.totalCap = totalCapacity
+        self.targetCapacity = targetCapacity
 
     def contains_point(self, point_x, point_y):
         #print(f'Checking if point ({point_x}, {point_y}) is inside area {self.id}')
-        point = np.array([point_x, point_y], dtype=np.float32)
-        return cv2.pointPolygonTest(self.points, point, False) >= 0
+        return cv2.pointPolygonTest(self.points, np.array([point_x, point_y], dtype=np.float32), False) >= 0
 
 class Boundary:
     def __init__(self, points):
@@ -24,6 +24,6 @@ class Boundary:
     
     
 class SpawnPoint:
-    def __init__(self, id, points):
-        self.id = id
+    def __init__(self, name, points):
+        self.name = name
         self.coords = np.array(points, dtype=np.int32)

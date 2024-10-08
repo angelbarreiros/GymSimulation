@@ -19,16 +19,11 @@ def main():
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames')
 
-    # Create GIF from frames using ffmpeg
-    output_gif = 'multi_person_movement.gif'
-    os.system(f'ffmpeg -framerate 10 -i data/animation_frames/frame_%04d.png -vf "scale=800:-1" {output_gif}')
-    print(f"Animation saved as '{output_gif}'")
+    os.system(f'ffmpeg -framerate 10 -i data/animation_frames/frame_%04d.png -vf "scale=800:-1" {'multi_person_movement.gif'}')
+    print(f"Animation saved as '{'multi_person_movement.gif'}'")
 
-    # Delete frames after creating the GIF
-    for file_name in os.listdir('data/animation_frames'):
-        file_path = os.path.join('data/animation_frames', file_name)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
+    for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
+        os.remove(file_path)
 
 if __name__ == "__main__":
     main()
