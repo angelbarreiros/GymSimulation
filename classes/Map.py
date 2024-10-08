@@ -9,6 +9,7 @@ class Area:
         self.center_x = np.mean(self.points[:, 0])
         self.center_y = np.mean(self.points[:, 1])
         self.totalCap = totalCapacity
+        self.ocuppied_by = None # quitarrrr
         self.targetCapacity = targetCapacity
 
     def contains_point(self, point_x, point_y):

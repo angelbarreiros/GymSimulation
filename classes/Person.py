@@ -1,7 +1,7 @@
 import numpy as np
 
 class Person:
-    def __init__(self, person_id, start_x, start_y, startFrame, max_step=15):
+    def __init__(self, person_id, start_x, start_y, startFrame, max_step=20):
         self.id = person_id
         self.x = start_x
         self.y = start_y
@@ -136,7 +136,7 @@ class Person:
         # self.last_target_area = None
         
     def choose_new_target(self, target_areas):
-        available_areas = [a for a in target_areas if a.occupied_by is None and a != self.last_target_area]
+        available_areas = [a for a in target_areas if a.ocuppied_by is None and a != self.last_target_area]
         if available_areas:
             self.target_area = np.random.choice(available_areas)
             # self.target_area.occupied_by = self
