@@ -72,7 +72,39 @@
       [[404,955],[404,882]], 
       [[530,996],[550,996],[551,1069],[884,1069]],
       [[1075,1068],[1617,1068],[1620,401],[1587,73],[1352,18],[351,19],[291,38]]
+    ],
+    "Spawns":[
+      {
+        "Name":"EntradaInicial",
+        "Coordinates":[973,1050]
+      },
+      {
+        "Name":"EntradaParking",
+        "Coordinates":[318,1037]
+      },
+      {
+        "Name":"EntradaAscensorDrch",
+        "Coordinates":[1583,270]
+      },
+      {
+        "Name":"EntradaAscensorCentro",
+        "Coordinates":[1144,657]
+      },
+      {
+        "Name":"EscaleraIzq",
+        "Coordinates":[579,793]
+      },
+      {
+        "Name":"EscaleraDrch",
+        "Coordinates":[1333,786]
+      },
+      {
+        "Name":"EscaleraInteriorBajada",
+        "Coordinates":[1162,737]
+      }
+      
     ]
+
   },
   "Planta2":{
     "Size": [1920, 1080],
@@ -317,6 +349,32 @@
         [[774,5],[774,92],[705,92]],
         [[866,5],[866,92],[810,92]],
         [[1184,93],[1434,93]]
+    ],
+    "Spawns":[
+      {
+        "Name":"EntradaParking",
+        "Coordinates":[424,870]
+      },
+      {
+        "Name":"EscaleraInteriorBajada",
+        "Coordinates":[921,672]
+      },
+      {
+        "Name":"EscaleraIzq",
+        "Coordinates":[757,729]
+      },
+      {
+        "Name":"EscaleraDrch",
+        "Coordinates":[1383,729]
+      },
+      {
+        "Name":"AscensorInterior",
+        "Coordinates":[1218,607]
+      },
+      {
+        "Name":"EscaleraAparcamiento",
+        "Coordinates":[550,940]
+      }
     ]
   
   }
