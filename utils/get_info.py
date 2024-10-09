@@ -45,7 +45,7 @@ def extract_clases(aforo_clases_path):
     return aforo_clases
 
 def get_data(floor):
-    with open('data/Zonas.json', 'r') as file:
+    with open('data/zones.json', 'r') as file:
         data = json.load(file)
 
     floorZones = data[floor]["Zones"]

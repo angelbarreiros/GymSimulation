@@ -23,10 +23,10 @@ class Cell:
     # Heuristic cost from this cell to destination
         self.h = 0
 
-def create_matrix_from_json(json_data, floor='Planta2', padding=1):
+def create_matrix_from_json(json_data, floor="Planta2", padding=1):
     # Extract size and walls data
-    size = json_data[floor]["Size"]
-    walls = json_data[floor]["Walls"]
+    size = json_data["Planta2"]["Size"]
+    walls = json_data["Planta2"]["Walls"]
 
     # Ensure size is in the correct order (width, height)
     size = (size[0], size[1])  # This ensures we're using [width, height]
@@ -71,8 +71,7 @@ def calculate_h_value(row, col, dest):
     return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
 
 # Trace the path from source to destination
-def trace_path(cell_details, dest):
-    print("The Path is ")
+def trace_path(cell_details, dest, show=False):
     path = []
     row = dest[0]
     col = dest[1]
@@ -90,13 +89,17 @@ def trace_path(cell_details, dest):
     # Reverse the path to get the path from source to destination
     path.reverse()
 
-    # Print the path
-    for i in path:
-        print("->", i, end=" ")
-    print()
+    if show:
+        # Print the path
+        print("The Path is ")
+        for i in path:
+            print("->", i, end=" ")
+        print()
+    
+    return path
 
 # Implement the A* search algorithm
-def a_star_search_from_grid(grid, src, dest):
+def a_star_search_from_grid(grid, src, dest, debug=False):
     # Check if the source and destination are valid
     if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
         print("Source or destination is invalid")
@@ -157,11 +160,12 @@ def a_star_search_from_grid(grid, src, dest):
                     # Set the parent of the destination cell
                     cell_details[new_i][new_j].parent_i = i
                     cell_details[new_i][new_j].parent_j = j
-                    print("The destination cell is found")
+                    if debug:
+                        print("The destination cell is found")
                     # Trace and print the path from source to destination
-                    trace_path(cell_details, dest)
+                    path = trace_path(cell_details, dest)
                     found_dest = True
-                    return
+                    return path
                 else:
                     # Calculate the new f, g, and h values
                     g_new = cell_details[i][j].g + 1.0
@@ -183,7 +187,7 @@ def a_star_search_from_grid(grid, src, dest):
     if not found_dest:
         print("Failed to find the destination cell")
 
-def a_star_search(src, dest, json_path='data/zonas.json', padding=10, save_matrix_image=False):
+def a_star_search(src, dest, json_path='data/zones.json', padding=10, save_matrix_image=False):
     with open(json_path, 'r') as file:
         json_data = json.load(file)
 
@@ -195,8 +199,9 @@ def a_star_search(src, dest, json_path='data/zonas.json', padding=10, save_matri
         Image.fromarray(matrix * 255).save("floor_plan_matrix_padded.png")
 
     # Run the A* search algorithm
-    a_star_search_from_grid(matrix, src, dest)
+    return a_star_search_from_grid(matrix, src, dest)
 
 if __name__ == "__main__":
-    a_star_search([8,0], [0,0])
+    path = a_star_search((8,0), (0,0))
+    print(path)
 

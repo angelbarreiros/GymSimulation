@@ -16,7 +16,7 @@ class Simulation:
 
     def getTargetArea(self):
         for area in self.target_areas:
-            if area.actualCapacity<area.targetCapacity:
+            if area.actualCapacity < area.targetCapacity:
                 return area
         return None
 
