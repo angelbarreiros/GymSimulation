@@ -51,8 +51,8 @@ def get_data(floor):
     with open('data/Zonas.json', 'r') as file:
         data = json.load(file)
 
-    floorZones = data[floor]["Zonas"]
-    floorWalls = data[floor]["Paredes"]
+    floorZones = data[floor]["Zones"]
+    floorWalls = data[floor]["Walls"]
     floorSpawns = data[floor]["Spawns"]
 
     
@@ -73,10 +73,10 @@ def get_data(floor):
 
     for zone in floorZones:
         
-        familia = zone["Familia"]
-        name = zone["Nombre"]
-        points = zone["Cordenadas"]
-        numberOfSameZones = sum(1 for obj in floorZones if obj['Familia'] ==familia )
+        familia = zone["Type"]
+        name = zone["Name"]
+        points = zone["Coordinates"]
+        numberOfSameZones = sum(1 for obj in floorZones if obj['Type'] == familia )
         
         try:
             totalCapacity = aforo_zonas.get(familia).get('totalCapacity')
@@ -99,7 +99,7 @@ def get_data(floor):
     npersons = entrada-salida
 
     for spawn in floorSpawns:
-        spawn = SpawnPoint(spawn["Nombre"], spawn["Cordenadas"])
+        spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"])
         spawns.append(spawn)
 
     return npersons, areas, paredes, spawns
