@@ -28,16 +28,13 @@ class Simulation:
         spawn_point = np.random.choice(available_spawn_points)
         #target_coords = [self.getTargetArea().center_x, self.getTargetArea().center_y]
 
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame, target_area=self.getTargetArea() ))
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame, target_area=self.getTargetArea(), max_step=15))
         available_spawn_points.remove(spawn_point)
-        print(f'Person {num_person} startFrame: {self.persons[-1].startFrame}')
         return True
 
     def simulate(self, frames, spawn_interval=10, max_spawn=1):
         for frame in tqdm.tqdm(range(frames)):
-            print(f'Frame {frame}')
             if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
-                print(f'Persons: {len(self.persons)}')
                 available_spawn_points = self.spawn_points.copy()
                 spawned_count = 0
                 while spawned_count < max_spawn and len(self.persons) < self.npersons:
@@ -93,7 +90,14 @@ class Simulation:
             text_size = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
             text_x = (width - text_size[0]) // 2
             text_y = text_size[1] + 2
-            cv2.putText(current_frame, text, (text_x, text_y), 
+
+            hours = (frame_num // 600) + 7
+            minutes = (frame_num % 600) // 10
+            time_text = f'Time: {hours:02d}:{minutes:02d}'
+            text_size = cv2.getTextSize(time_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
+            text_x = (width - text_size[0]) // 2
+            text_y = text_size[1] + 2
+            cv2.putText(current_frame, time_text, (text_x, text_y), 
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
             # Plot persons

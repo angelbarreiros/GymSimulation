@@ -20,7 +20,7 @@ class Person:
                 # self.stay_counter = 
                 target_x, target_y = self.target_area.getPointInside()
                 self.target_coords = [target_x, target_y]
-                self.route = a_star_search((self.x, self.y), (target_x, target_y))
+                self.route = a_star_search((int(self.x), int(self.y)), (target_x, target_y), padding=0)
                 
                 self.x, self.y = self.route.pop(0)
                 

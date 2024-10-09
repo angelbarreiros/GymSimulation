@@ -1,10 +1,10 @@
 import numpy as np
-import os 
-
+import subprocess
+import os
 from classes.Simulation import Simulation
 from utils.get_info import get_data
 
-TOTAL_FRAMES = 200
+TOTAL_FRAMES = 600
 def main():
     
     npersons, areas, paredes, spawns = get_data('Planta2')
@@ -14,13 +14,15 @@ def main():
     sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns)
     
     print('Creating simulation...')
-    sim.simulate(TOTAL_FRAMES, spawn_interval=25, max_spawn=4)
+    sim.simulate(TOTAL_FRAMES, spawn_interval=50, max_spawn=5)
     
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames')
 
-    os.system(f'ffmpeg -framerate 10 -i data/animation_frames/frame_%04d.png -vf "scale=800:-1" {'multi_person_movement.gif'}')
-    print(f"Animation saved as '{'multi_person_movement.gif'}'")
+    output_file = 'multi_person_movement.gif'
+    subprocess.run(['ffmpeg', '-framerate', '30', '-i', 'data/animation_frames/frame_%04d.png', 
+                    '-vf', 'scale=800:-1', output_file], check=True)
+    print(f"Animation saved as '{output_file}'")
 
     for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
         os.remove(file_path)

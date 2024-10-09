@@ -73,20 +73,20 @@ def get_data(floor):
         try:
             totalCapacity = aforo_zonas.get(familia).get('totalCapacity')
             targetCapacity =  aforo_zonas.get(familia).get('targetCapacity')
-            area = Area(name, points, targetCapacity, math.floor(totalCapacity/numberOfSameZones))   # ?¿
+            area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), targetCapacity, floor)   # ?¿
             areas.append(area)
         except Exception:
-            area = Area(name, points, 100, 100) 
+            area = Area(name, points, 100, 100, floor) 
             areas.append(area)
     
     for pared in floorWalls: 
-        pared = Boundary(pared)
+        pared = Boundary(pared, floor)
         paredes.append(pared)
 
     npersons = entrada-salida
 
     for spawn in floorSpawns:
-        spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"])
+        spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floor)
         spawns.append(spawn)
 
     return npersons, areas, paredes, spawns

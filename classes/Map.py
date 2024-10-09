@@ -2,12 +2,13 @@ import numpy as np
 import cv2
 
 class Area:
-    def __init__(self, name, points, totalCapacity, targetCapacity):
+    def __init__(self, name, points, totalCapacity, targetCapacity, floor):
         self.name = name
         self.points = np.array(points, dtype=np.int32)  # Ensure points are numpy array
         self.actualCapacity = 0
         self.totalCapacity = totalCapacity
         self.targetCapacity = targetCapacity
+        self.floor = floor
 
     def getPointInside(self):
         x, y, w, h = cv2.boundingRect(self.points)
@@ -17,20 +18,21 @@ class Area:
                 return random_point
     
     def contains_point(self, point_x, point_y):
-        #print(f'Checking if point ({point_x}, {point_y}) is inside area {self.id}')
         return cv2.pointPolygonTest(self.points, np.array([point_x, point_y], dtype=np.float32), False) >= 0
     def __str__(self):
         return f"Area('{self.name}', {self.points}, {self.targetCapacity}, {self.totalCapacity})"
 
 class Boundary:
-    def __init__(self, points):
+    def __init__(self, points, floor):
         self.points = np.array(points, dtype=np.int32)
+        self.floor = floor
 
     def touchs(self, point_x, point_y):
         return False
     
     
 class SpawnPoint:
-    def __init__(self, name, points):
+    def __init__(self, name, points, floor):
         self.name = name
         self.coords = np.array(points, dtype=np.int32)
+        self.floor = floor
