@@ -5,6 +5,7 @@ data/animation_frames
 __pycache__/
 *.py[cod]
 *$py.class
+old.py
 
 # C extensions
 *.so
