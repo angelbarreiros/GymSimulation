@@ -7,11 +7,11 @@ from utils.get_info import get_data
 TOTAL_FRAMES = 600
 def main():
     
-    npersons, areas, paredes, spawns = get_data('Planta2')
+    npersons, areas, paredes, spawns, hora = get_data('Planta2')
     np.random.seed(123)
     print(f"Num persons: {npersons}, Num areas: {len(areas)}, Num walls: {len(paredes)}, Num spawns: {len(spawns)}")
 
-    sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns)
+    sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns, hora=int(hora))
     
     print('Creating simulation...')
     sim.simulate(TOTAL_FRAMES, spawn_interval=50, max_spawn=5)

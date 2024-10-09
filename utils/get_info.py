@@ -54,7 +54,7 @@ def get_data(floor):
 
     
     hora, entrada, salida = extract_aforo(AFORO_PATH)
-
+    print(hora)
     aforo_zonas = extract_aforo_zonas(AFORO_ZONAS_PATH)
 
     aforo_clases = extract_clases(AFORO_CLASES_PATH)
@@ -89,4 +89,4 @@ def get_data(floor):
         spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floor)
         spawns.append(spawn)
 
-    return npersons, areas, paredes, spawns
+    return npersons, areas, paredes, spawns, hora
