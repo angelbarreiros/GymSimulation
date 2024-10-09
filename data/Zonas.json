@@ -2,45 +2,45 @@
   "Planta1":{
     "Size": [1920, 1080],
     "Zones":[
-      {   "Familia": "KIDS",
+      {   "Type": "KIDS",
           "Name":"Kids",
           "Coordinates": [[300,322],[536,322],[536,687],[300,687]]
       },
-      {   "Familia": "LUDOTECA",
+      {   "Type": "LUDOTECA",
           "Name":"Ludoteca",
           "Coordinates": [[1418,304],[1614,304],[1614,1026],[1418,1026]] 
       },
-      { "Familia": "X-TRAINING",
+      { "Type": "X-TRAINING",
         "Name":"X-TRAINING",
         "Coordinates":[[291,18],[1319,18],[1584,72],[1584,301],[291,301]] 
       },
-      { "Familia": "NOFUNCIONAL",
+      { "Type": "NOFUNCIONAL",
         "Name":"Entrada",
         "Coordinates": [[900,965],[1063,965],[1063,1071],[900,1071]]
       },
-      { "Familia": "NOFUNCIONAL",
+      { "Type": "NOFUNCIONAL",
         "Name": "EscaleraIzq",
         "Coordinates": [[580,700],[629,700],[629,744],[580,744]]
       },
-      { "Familia": "NOFUNCIONAL",
+      { "Type": "NOFUNCIONAL",
         "Name":"EscaleraDrch",
         "Coordinates":[[1321,700],[1377,700],[1377,735],[1321,735]]
         
       },
-      { "Familia": "NOFUNCIONAL",
+      { "Type": "NOFUNCIONAL",
         "Name":"EscaleraInteriorSubida",
         "Coordinates":[[889,722],[1084,722],[1084,748],[889,748]] 
         
       },
-      {"Familia": "NOFUNCIONAL",
+      {"Type": "NOFUNCIONAL",
        "Name":"EscaleraInteriorBajada",
         "Coordinates": [[1018,772],[1084,772],[1084,801],[1018,801]]
       },
-      {"Familia": "NOFUNCIONAL",
+      {"Type": "NOFUNCIONAL",
         "Name":"Ascensor Interior",
           "Coordinates": [[1081,641],[1131,641],[1131,681],[1081,681]]
       },
-      { "Familia": "NOFUNCIONAL",
+      { "Type": "NOFUNCIONAL",
         "Name":"AscensorEsquinaDrch",
         "Coordinates":[[1566,334],[1594,334],[1594,375],[1556,375]]
       }
@@ -77,121 +77,121 @@
   "Planta2":{
     "Size": [1920, 1080],
     "Zones":[
-      { "Familia": "CIRCUIT",
+      { "Type": "CIRCUIT",
         "Name":"CIRCUIT",
         "Coordinates":[[474,48],[744,48],[744,300],[474,300]]
       },
-      { "Familia": "CORE",
+      { "Type": "CORE",
         "Name":"CORE",
         "Coordinates": [[759,50],[902,50],[902,263],[759,263]]
       },
       {
-        "Familia": "FUNCIONAL",
+        "Type": "FUNCIONAL",
         "Name":"FUNCIONAL",
         "Coordinates":[[922,54],[1128,54],[1128,260],[922,260]]
       },
       {
-        "Familia": "PESO_LIBRE",
+        "Type": "PESO_LIBRE",
         "Name":"PESO_LIBRE1",
         "Coordinates":[[1176,51],[1297,51],[1297,200],[1176,200]]
       },
       {
-        "Familia": "PESO_LIBRE",
+        "Type": "PESO_LIBRE",
         "Name":"PESO_LIBRE2",
         "Coordinates":[[1299,53],[1550,53],[1550,133],[1299,133]]
       },
       {
-        "Familia": "PESO_LIBRE",
+        "Type": "PESO_LIBRE",
         "Name":"PESO_LIBRE3",
         "Coordinates":[[1352,163],[1637,163],[1637,329],[1352,329]]
       },
       {
-        "Familia": "PESO_LIBRE",
+        "Type": "PESO_LIBRE",
         "Name":"PESO_LIBRE4",
         "Coordinates":[[1403,340],[1620,340],[1620,955],[1403,955]]
       },
       {
-        "Familia": "PESO_LIBRE",
+        "Type": "PESO_LIBRE",
         "Name":"PESO_LIBRE5",
         "Coordinates":[[1075,721],[1341,721],[1341,1048],[1075,1048]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO1",
         "Coordinates": [[129,26],[471,26],[471,333],[129,333]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO2",
         "Coordinates": [[757,303],[1064,303],[1064,345],[757,345]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO3",
         "Coordinates":[[1193,329],[1258,329],[1258,654],[1193,654]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO4",
         "Coordinates":[[764,632],[1057,632],[1057,675],[764,675]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO5",
         "Coordinates":[[757,727],[1069,727],[1069,873],[757,873]]	
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO6",
         "Coordinates":[[142,961],[416,961],[416,1040],[142,1040]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO7",
         "Coordinates":[[430,939],[739,939],[739,1042],[430,1042]]
       },
       {
-        "Familia": "CARDIO",
+        "Type": "CARDIO",
         "Name":"CARDIO8",
         "Coordinates":[[1373,954],[1606,954],[1606,1044],[1373,1044]]
       },
       {
-        "Familia": "ISOTÓNICO",
+        "Type": "ISOTÓNICO",
         "Name":"ISOTÓNICO1",
         "Coordinates":[[129,337],[415,337],[415,959],[129,959]]
       },
       {
-        "Familia": "ISOTÓNICO",
+        "Type": "ISOTÓNICO",
         "Name":"ISOTÓNICO2",
         "Coordinates": [[415,684],[730,684],[730,927],[415,927]]
       },
       {
-        "Familia": "NOFUNCIONAL",
+        "Type": "NOFUNCIONAL",
         "Name":"EscaleraIzq",
         "Coordinates":[[457,461],[517,461],[517,515],[457,515]]
       },
       {
-        "Familia": "NOFUNCIONAL",
+        "Type": "NOFUNCIONAL",
         "Name":"EscaleraDrch",
         "Coordinates":[[1301,473],[1352,473],[1352,523],[1301,523]]
       },
       {
-        "Familia":"NOFUNCIONAL",
+        "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroSubida",
         "Coordinates":[[762,548],[838,548],[838,581],[762,581]]
       },
       {
-        "Familia":"NOFUNCIONAL",
+        "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroBajada",
         "Coordinates": [[735,490],[867,490],[867,526],[735,526]]
       },
       {
-        "Familia":"NOFUNCIONAL",
+        "Type":"NOFUNCIONAL",
         "Name":"AscensorEsquinaDrch",
         "Coordinates":[[1575,70],[1593,70],[1593,95],[1575,95]]
       },
       {
-        "Familia":"NOFUNCIONAL",
+        "Type":"NOFUNCIONAL",
         "Name":"AscensorInterior",
         "Coordinates": [[1024,399],[1080,399],[1080,449],[1024,449]]
       }
@@ -243,51 +243,51 @@
     "Size": [1920, 1080],
     "Zones":[
       {
-        "Familia":"PP",
+        "Type":"PP",
         "Name":"PP",
         "Coordinates":[[531,137],[698,137],[698,501],[531,501]]
       },
-      { "Familia":"PG",
+      { "Type":"PG",
         "Name":"PG",
         "Coordinates":[[721,136],[1422,136],[1422,501],[721,501]]
       },
-      { "Familia":"Hidromasaje",
+      { "Type":"Hidromasaje",
         "Name":"Hidromasaje",
         "Coordinates":[[1443,137],[1596,137],[1596,494],[1443,494]]
       },
-      { "Familia":"Descanso",
+      { "Type":"Descanso",
         "Name":"Descanso1",
         "Coordinates":[[870,14],[1154,14],[1154,93],[870,93]]
       },
-      { "Familia":"Descanso",
+      { "Type":"Descanso",
         "Name":"Descanso2",
         "Coordinates":[[533,520],[1601,520],[1601,554],[533,554]]
       },
-      { "Familia":"SAUNA",
+      { "Type":"SAUNA",
         "Name":"SAUNA",
         "Coordinates":[[549,13],[662,13],[662,92],[549,92]]
       },
-      { "Familia":"BAÑO VAPOR",
+      { "Type":"BAÑO VAPOR",
         "Name":"BAÑO VAPOR",
         "Coordinates":[[668,14],[772,14],[772,81],[668,81]]
       },
-      { "Familia":"NOFUNCIONAL",
+      { "Type":"NOFUNCIONAL",
         "Name":"VestuarioMasculino",
         "Coordinates":[[590,818],[1110,818],[1110,1077],[590,1077]]
       },
-      { "Familia":"NOFUNCIONAL",
+      { "Type":"NOFUNCIONAL",
         "Name":"VestuarioFemenino",
         "Coordinates": [[1117,807],[1635,807],[1635,1076],[1117,1076]]
       },
-      { "Familia":"NOFUNCIONAL",
+      { "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroSubida",
         "Coordinates": [[963,661],[996,661],[996,685],[963,685]]
       },
-      { "Familia":"NOFUNCIONAL",
+      { "Type":"NOFUNCIONAL",
         "Name":"AscensorInterior",
         "Coordinates":[[1154,582],[1198,582],[1198,630],[1154,630]]
       },
-      { "Familia":"NOFUNCIONAL",
+      { "Type":"NOFUNCIONAL",
         "Name":"EscaleraIzq",
         "Coordinates":[[735,650],[788,650],[788,692],[735,692]]
       },
