@@ -4,6 +4,7 @@ import numpy as np
 import os
 import tqdm
 from classes.Person import Person
+
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points):
         self.boundaries = boundary_points
@@ -13,36 +14,21 @@ class Simulation:
         self.npersons = num_persons
         self.movement_data = pd.DataFrame()
 
-    # TODO people can't be generated inside too close to other people
-    # def initialize_persons(self, num_persons):
-    #     persons = []
-    #     max_attempts = 1000  # Prevent infinite loop
+    def getTargetArea(self):
+        for area in self.target_areas:
+            if area.actualCapacity<area.targetCapacity:
+                return area
+        return None
 
-    #     for i in range(num_persons):
-    #         attempts = 0
-    #         while attempts < max_attempts:
-    #             x = np.random.uniform(self.boundary.get_extents().xmin, self.boundary.get_extents().xmax)
-    #             y = np.random.uniform(self.boundary.get_extents().ymin, self.boundary.get_extents().ymax)
-                
-    #             if all(not area.contains_point(x, y) for area in self.target_areas):
-    #                 # Check distance from other persons
-    #                 if all(np.sqrt((x - p.x)**2 + (y - p.y)**2) >= 0.2 for p in persons):
-    #                     persons.append(PersonMovement(i, x, y))
-    #                     break
-                
-    #             attempts += 1
-            
-    #         if attempts == max_attempts:
-    #             print(f"Warning: Could not place person {i} after {max_attempts} attempts.")
-
-    #     return persons
     def initialize_person(self, num_person, available_spawn_points, frame):
         if not available_spawn_points:
             print(f"No available spawn points for person {num_person} in frame {frame}")
             return False
         
         spawn_point = np.random.choice(available_spawn_points)
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame))
+        #target_coords = [self.getTargetArea().center_x, self.getTargetArea().center_y]
+
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame, target_area=self.getTargetArea() ))
         available_spawn_points.remove(spawn_point)
         print(f'Person {num_person} startFrame: {self.persons[-1].startFrame}')
         return True
@@ -61,7 +47,7 @@ class Simulation:
                         break 
 
             for person in self.persons:
-                person.move(self.persons, self.boundaries, self.target_areas)
+                person.move()
 
         # Collect all movement data
         data = []
@@ -79,22 +65,17 @@ class Simulation:
         height, width = frame.shape[:2]
 
         # Step 3: Draw the boundary
-        # boundary_points = np.array(self.boundary.xy, dtype=np.int32)
-
         for boundary in self.boundaries:
             pts = boundary.points.reshape((-1, 1, 2))
             cv2.polylines(frame, [pts], isClosed=False, color=(0, 0, 0), thickness=5)
-
 
         # Step 4: Draw target areas
         for area in self.target_areas:
             pts = area.points.reshape((-1, 1, 2))
             cv2.polylines(frame, [pts], isClosed=True, color=(255, 0, 0), thickness=2)
-            center = (int(area.center_x), int(area.center_y))
-            cv2.circle(frame, center, 5, (0, 0, 0), -1)
+            center = area.points.mean(axis=0).astype(int)
             cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 1)
-            cv2.putText(frame, f"Aforo {area.targetCapacity}", (int(area.center_x), int(area.center_y-20)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
-
+            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
 
         # Step 5: Create color map for persons
         color_map = {}
@@ -130,19 +111,6 @@ class Simulation:
                 x, y = person.history[frame_num-person.startFrame]
                 x, y=int(x), int(y)
                 cv2.circle(current_frame, (x, y), 10, color, -1)
-
-            
-            # for _, row in current_positions.iterrows():
-            #     x, y = int(row['x']), int(row['y'])
-            #     color = color_map[row['person_id']]
-            #     cv2.circle(current_frame, (x, y), 15, color, -1)
-
-            # for area in self.target_areas:
-            #     is_occupied = any(area.contains_point(row['x'], row['y']) for _, row in current_positions.iterrows())
-            #     color = (0, 0, 255) if is_occupied else (255, 0, 0)
-            #     pt1 = (int(area.x), int(area.y))
-            #     pt2 = (int(area.x + area.width), int(area.y + area.height))
-            #     cv2.rectangle(current_frame, pt1, pt2, color, thickness=2)
 
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
