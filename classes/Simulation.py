@@ -59,7 +59,7 @@ class Simulation:
         os.makedirs(output_folder, exist_ok=True)
 
         # Step 2: Set up the initial frame
-        frame = cv2.imread("data/2.png")
+        frame = cv2.imread("data/1.png")
         height, width = frame.shape[:2]
 
         # Step 3: Draw the boundary

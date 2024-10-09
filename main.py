@@ -7,7 +7,7 @@ from utils.get_info import get_data
 TOTAL_FRAMES = 600
 def main():
     
-    npersons, areas, paredes, spawns, hora = get_data('Planta2')
+    npersons, areas, paredes, spawns, hora = get_data('Planta1')
     np.random.seed(123)
     print(f"Num persons: {npersons}, Num areas: {len(areas)}, Num walls: {len(paredes)}, Num spawns: {len(spawns)}")
 
