@@ -6,13 +6,14 @@ import tqdm
 from classes.Person import Person
 
 class Simulation:
-    def __init__(self, num_persons, boundary_points, target_areas, spawn_points):
+    def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
         self.boundaries = boundary_points
         self.target_areas = target_areas
         self.spawn_points = spawn_points
         self.persons = []
         self.npersons = num_persons
         self.movement_data = pd.DataFrame()
+        self.hora = hora
 
     def getTargetArea(self):
         for area in self.target_areas:
@@ -58,7 +59,7 @@ class Simulation:
         os.makedirs(output_folder, exist_ok=True)
 
         # Step 2: Set up the initial frame
-        frame = cv2.imread("data/3.png")
+        frame = cv2.imread("data/2.png")
         height, width = frame.shape[:2]
 
         # Step 3: Draw the boundary
@@ -91,7 +92,7 @@ class Simulation:
             text_x = (width - text_size[0]) // 2
             text_y = text_size[1] + 2
 
-            hours = (frame_num // 600) + 7
+            hours = (frame_num // 600) + self.hora
             minutes = (frame_num % 600) // 10
             time_text = f'Time: {hours:02d}:{minutes:02d}'
             text_size = cv2.getTextSize(time_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
