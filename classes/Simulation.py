@@ -36,23 +36,32 @@ class Simulation:
     #             print(f"Warning: Could not place person {i} after {max_attempts} attempts.")
 
     #     return persons
-    def initialize_person(self, num_person, spawn_points, frame):
-        spawn_point = np.random.choice(spawn_points)
+    def initialize_person(self, num_person, available_spawn_points, frame):
+        if not available_spawn_points:
+            print(f"No available spawn points for person {num_person} in frame {frame}")
+            return False
+        
+        spawn_point = np.random.choice(available_spawn_points)
         self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame))
+        available_spawn_points.remove(spawn_point)
         print(f'Person {num_person} startFrame: {self.persons[-1].startFrame}')
+        return True
 
-    def simulate(self, frames):
+    def simulate(self, frames, spawn_interval=10, max_spawn=1):
         for frame in tqdm.tqdm(range(frames)):
             print(f'Frame {frame}')
-            if frame % 20 == 0 and len(self.persons) < self.npersons:
+            if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
                 print(f'Persons: {len(self.persons)}')
-                self.initialize_person(len(self.persons), self.spawn_points, frame)
+                available_spawn_points = self.spawn_points.copy()
+                spawned_count = 0
+                while spawned_count < max_spawn and len(self.persons) < self.npersons:
+                    if self.initialize_person(len(self.persons), available_spawn_points, frame):
+                        spawned_count += 1
+                    else:
+                        break 
 
             for person in self.persons:
                 person.move(self.persons, self.boundaries, self.target_areas)
-                # for area in self.target_areas:
-                #     if area.occupied_by != None:
-                #         print(area.occupied_by)
 
         # Collect all movement data
         data = []
@@ -61,7 +70,7 @@ class Simulation:
                 data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y})
         self.movement_data = pd.DataFrame(data)
 
-    def animate_cv2(self, output_folder='code/engañiza/data2/animation_frames'):
+    def animate_cv2(self, output_folder='data/animation_frames'):
         # Step 1: Create output folder if it doesn't exist
         os.makedirs(output_folder, exist_ok=True)
 
@@ -83,8 +92,8 @@ class Simulation:
             cv2.polylines(frame, [pts], isClosed=True, color=(255, 0, 0), thickness=2)
             center = (int(area.center_x), int(area.center_y))
             cv2.circle(frame, center, 5, (0, 0, 0), -1)
-            cv2.putText(frame, f"Area {area.id}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 1)
-            cv2.putText(frame, f"Aforo {area.aforo}", (int(area.center_x), int(area.center_y-20)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
+            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 1)
+            cv2.putText(frame, f"Aforo {area.targetCapacity}", (int(area.center_x), int(area.center_y-20)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
 
 
         # Step 5: Create color map for persons
