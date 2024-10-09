@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 .vscode/
 env/
+data/animation_frames
 __pycache__/
 *.py[cod]
 *$py.class
