@@ -1,5 +1,5 @@
 import json
-import numpy as np
+
 def convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_a_convertir):
     # Calcular los factores de escala y traslación en el eje x
     a = (p2_final[0] - p1_final[0]) / (p2_inicial[0] - p1_inicial[0])
@@ -13,26 +13,37 @@ def convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_a_converti
     x_prime = a * punto_a_convertir[0] + b
     y_prime = c * punto_a_convertir[1] + d
 
-    return (x_prime, y_prime)
-def convertir_conjunto_puntos(p1_inicial, p2_inicial, p1_final, p2_final, conjuntos_puntos):
-    puntos_convertidos = []
-    for conjunto in conjuntos_puntos:
-        conjunto_convertido = []
-        for punto in conjunto:
-            punto_convertido = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto)
-            conjunto_convertido.append(punto_convertido)
-        puntos_convertidos.append(conjunto_convertido)
-    return puntos_convertidos
+    return [x_prime, y_prime]
+# Puntos de referencia del plano inicial y final (ajustalos según tu escenario)
+p1_inicial = [413, 334]
+p2_inicial = [555, 646]
+p1_final = [609, 514]
+p2_final = [695, 666]
+punto_1= [1587,128]
+punto_2=[
+                    1334,
+                    627
+                ]
+punto_3 =[
+                    484,
+                    632
+                ]
+punto_4 =[
+                    1104,
+                    418
+                ]
+punto_5=[
+                    704,
+                    543
+                ]
 
-with open('/home/angel/startup/GymSimulation/data/zones.json', 'r') as file:
-        data = json.load(file)
-
-p1_inicial = np.array([413, 334])
-p2_inicial = np.array([555, 646])
-
-# Puntos de referencia del plano final
-p1_final = np.array([609, 514])
-p2_final = np.array([695, 666])
-conjuntos_puntos = data['Planta0']['Walls']
-puntos_convertidos =convertir_conjunto_puntos(p1_inicial, p2_inicial, p1_final, p2_final, conjuntos_puntos)
-print(puntos_convertidos)
+punto_1_transformado = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_1)
+punto_2_transformado = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_2)
+punto_3_transformado = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_3)
+punto_4_transformado = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_4)
+punto_5_transformado = convertir_punto(p1_inicial, p2_inicial, p1_final, p2_final, punto_5)
+print(punto_1_transformado)
+print(punto_2_transformado)
+print(punto_3_transformado)
+print(punto_4_transformado)
+print(punto_5_transformado)
