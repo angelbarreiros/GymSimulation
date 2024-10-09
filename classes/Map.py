@@ -2,13 +2,14 @@ import numpy as np
 import cv2
 
 class Area:
-    def __init__(self, name, points, totalCapacity, targetCapacity, floor):
+    def __init__(self, name, points, totalCapacity, targetCapacity, floor, type):
         self.name = name
         self.points = np.array(points, dtype=np.int32)  # Ensure points are numpy array
         self.actualCapacity = 0
         self.totalCapacity = totalCapacity
         self.targetCapacity = targetCapacity
         self.floor = floor
+        self.type = type
 
     def getPointInside(self):
         x, y, w, h = cv2.boundingRect(self.points)

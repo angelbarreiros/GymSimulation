@@ -44,49 +44,48 @@ def extract_clases(aforo_clases_path):
     
     return aforo_clases
 
-def get_data(floor):
+def get_data():
     with open('data/zones.json', 'r') as file:
         data = json.load(file)
+        all_areas = []
+        all_walls = []
+        all_spawns = []
+        floorNum=0
+        for floor in data:
+            hora, entrada, salida = extract_aforo(AFORO_PATH)
 
-    floorZones = data[floor]["Zones"]
-    floorWalls = data[floor]["Walls"]
-    floorSpawns = data[floor]["Spawns"]
+            aforo_zonas = extract_aforo_zonas(AFORO_ZONAS_PATH)
 
-    
-    hora, entrada, salida = extract_aforo(AFORO_PATH)
-    print(hora)
-    aforo_zonas = extract_aforo_zonas(AFORO_ZONAS_PATH)
+            aforo_clases = extract_clases(AFORO_CLASES_PATH)
+            
+            zones= data[floor]["Zones"]
+            for zone in zones:
+                
+                type = zone["Type"]
+                name = zone["Name"]
+                points = zone["Coordinates"]
+                numberOfSameZones = sum(1 for obj in zones if obj['Type'] == type )
+                print(numberOfSameZones)
+                
+                try:
+                    totalCapacity = aforo_zonas.get(type).get('totalCapacity')
+                    targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
+                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), targetCapacity, floorNum, type)   # ?¿
+                    all_areas.append(area)
+                except Exception:
+                    area = Area(name, points, 2, 2, floorNum, type) 
+                    all_areas.append(area)
+            
+            for pared in data[floor]["Walls"]: 
+                pared = Boundary(pared, floorNum)
+                all_walls.append(pared)
 
-    aforo_clases = extract_clases(AFORO_CLASES_PATH)
-    
-    areas = []
-    paredes = []
-    spawns = []
+            npersons = entrada-salida
 
-    for zone in floorZones:
-        
-        familia = zone["Type"]
-        name = zone["Name"]
-        points = zone["Coordinates"]
-        numberOfSameZones = sum(1 for obj in floorZones if obj['Type'] == familia )
-        
-        try:
-            totalCapacity = aforo_zonas.get(familia).get('totalCapacity')
-            targetCapacity =  aforo_zonas.get(familia).get('targetCapacity')
-            area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), targetCapacity, floor)   # ?¿
-            areas.append(area)
-        except Exception:
-            area = Area(name, points, 100, 100) 
-            areas.append(area)
-    
-    for pared in floorWalls: 
-        pared = Boundary(pared, floor)
-        paredes.append(pared)
+            for spawn in data[floor]["Spawns"]:
+                spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floorNum)
+                all_spawns.append(spawn)
+            floorNum+=1
 
-    npersons = entrada-salida
 
-    for spawn in floorSpawns:
-        spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floor)
-        spawns.append(spawn)
-
-    return npersons, areas, paredes, spawns, hora
+        return npersons, all_areas, all_walls, all_spawns, hora

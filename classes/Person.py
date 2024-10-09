@@ -1,12 +1,13 @@
 import numpy as np
 
 class Person:
-    def __init__(self, person_id, start_x, start_y, startFrame, max_step=20, target_area=None):
+    def __init__(self, person_id, start_x, start_y, startFrame, max_step=20, target_area=None, floor=0):
         self.id = person_id
         self.x = start_x
         self.y = start_y
+        self.current_floor = floor
         self.max_step = max_step
-        self.history = [(start_x, start_y)]
+        self.history = [(start_x, start_y, self.current_floor)]
         self.stay_counter = 0
         self.target_area = target_area
         self.startFrame = startFrame
@@ -28,5 +29,5 @@ class Person:
             if self.target_area.contains_point(self.x, self.y):
                 self.target_area.actualCapacity += 1
                 
-        self.history.append((self.x, self.y))
+        self.history.append((self.x, self.y, self.current_floor))
 
