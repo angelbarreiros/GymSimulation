@@ -33,6 +33,6 @@ p2_inicial = np.array([555, 646])
 # Puntos de referencia del plano final
 p1_final = np.array([609, 514])
 p2_final = np.array([695, 666])
-conjuntos_puntos = data['Planta1']['Walls']
+conjuntos_puntos = data['Planta0']['Walls']
 puntos_convertidos =convertir_conjunto_puntos(p1_inicial, p2_inicial, p1_final, p2_final, conjuntos_puntos)
 print(puntos_convertidos)

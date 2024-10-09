@@ -24,9 +24,10 @@ class Cell:
         self.h = 0
 
 def create_matrix_from_json(json_data, floor='Planta2', padding=1):
+    
     # Extract size and walls data
-    size = json_data[floor]["Size"]
-    walls = json_data[floor]["Walls"]
+    size = json_data['Planta2']["Size"]
+    walls = json_data['Planta2']["Walls"]
 
     # Ensure size is in the correct order (width, height)
     size = (size[0], size[1])  # This ensures we're using [width, height]
@@ -183,7 +184,7 @@ def a_star_search_from_grid(grid, src, dest):
     if not found_dest:
         print("Failed to find the destination cell")
 
-def a_star_search(src, dest, json_path='data/zonas.json', padding=10, save_matrix_image=False):
+def a_star_search(src, dest, json_path='data/zones.json', padding=10, save_matrix_image=False):
     with open(json_path, 'r') as file:
         json_data = json.load(file)
 
@@ -198,5 +199,5 @@ def a_star_search(src, dest, json_path='data/zonas.json', padding=10, save_matri
     a_star_search_from_grid(matrix, src, dest)
 
 if __name__ == "__main__":
-    a_star_search([8,0], [0,0])
+    a_star_search([8,0], [0,0],json_path='/home/angel/startup/GymSimulation/data/zones2.json',save_matrix_image=True)
 
