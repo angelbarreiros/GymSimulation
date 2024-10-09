@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import os
 import tqdm
-from classes.Person import Person
+from classes.person import Person
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points):
         self.boundaries = boundary_points
