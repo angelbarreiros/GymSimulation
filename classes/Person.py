@@ -1,8 +1,8 @@
 import numpy as np
-from utils.shortest_path import a_star_search, create_matrix_from_json, a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid
 
 SCALE_FACTOR = 10
-MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR) for floor in range(3)]
+MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
 
 class Person:
     
