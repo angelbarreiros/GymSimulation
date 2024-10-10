@@ -3,12 +3,12 @@ import numpy as np
 from PIL import Image, ImageDraw
 import math
 import heapq
-
+import os
 
 # Define the size of the grid
-SCALE_FACTOR = 20
+SCALE_FACTOR = 10
 # ROW = 1080 // SCALE_FACTOR
-# COL = 1920 // SCALE_FACTOR
+# max_col = 1920 // SCALE_FACTOR
 COL = 1080 // SCALE_FACTOR
 ROW = 1920 // SCALE_FACTOR
 
@@ -26,10 +26,10 @@ class Cell:
     # Heuristic cost from this cell to destination
         self.h = 0
 
-def create_matrix_from_json(json_data, floor="Planta2", padding=0, scale_factor=SCALE_FACTOR):
+def create_matrix_from_json(json_data, floor="Planta2", padding=2, scale_factor=SCALE_FACTOR):
     # Extract size and walls data
-    original_size = json_data["Planta2"]["Size"]
-    walls = json_data["Planta2"]["Walls"]
+    original_size = json_data[floor]["Size"]
+    walls = json_data[floor]["Walls"]
 
     # Ensure size is in the correct order (width, height)
     size = (original_size[0] // scale_factor, original_size[1] // scale_factor)
@@ -44,22 +44,22 @@ def create_matrix_from_json(json_data, floor="Planta2", padding=0, scale_factor=
         wall_coords = [tuple(map(lambda x: int(x) // scale_factor, point)) for point in wall]
         
         # Draw thick lines for walls
-        draw.line(wall_coords, fill=0, width=1 + 2*padding)
+        draw.line(wall_coords, fill=0, width=1 + 2*padding, joint='bevel')
         
         # Draw circles at vertices for rounded corners
-        # for point in wall_coords:
-        #     x, y = point
-        #     draw.ellipse([x-padding, y-padding, x+padding, y+padding], fill=0)
+        for point in wall_coords:
+            x, y = point
+            draw.ellipse([x-padding, y-padding, x+padding, y+padding], fill=0)
 
     # Convert image to numpy array and flip the values
     wall_array = np.array(img)
     matrix = np.where(wall_array == 0, 0, 1).astype(np.uint8)
 
-    return matrix
+    return matrix.transpose()
 
 # Check if a cell is valid (within the grid)
-def is_valid(row, col):
-    return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
+def is_valid(row, col, max_row, max_col):
+    return (row >= 0) and (row < max_row) and (col >= 0) and (col < max_col)
 
 # Check if a cell is unblocked
 def is_unblocked(grid, row, col):
@@ -102,19 +102,26 @@ def trace_path(cell_details, dest, show=False):
     return path
 
 # Implement the A* search algorithm
-def a_star_search_from_grid(grid, src, dest, debug=False):
+def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     
+    # Scale points
+    src = (src[0]//scale_factor, src[1]//scale_factor)
+    dest = (dest[0]//scale_factor, dest[1]//scale_factor)
+    # size = (size[0]//scale_factor, size[1]//scale_factor)
+    
+    max_row, max_col = grid.shape
     # Check if the source and destination are valid
-    if not is_valid(src[0], src[1]):
+    if not is_valid(src[0], src[1], max_row, max_col):
         if debug:
             print(f"Source is invalid: {src}")
         return
     
-    if not is_valid(dest[0], dest[1]):
+    if not is_valid(dest[0], dest[1], max_row, max_col):
         if debug:
             print(f"Destination is invalid: {dest}")
         return
     
+    # Check if the source and destination are blocked
     if not is_unblocked(grid, src[0], src[1]):
         if debug:
             print(f"Source is blocked: {src}")
@@ -124,16 +131,6 @@ def a_star_search_from_grid(grid, src, dest, debug=False):
         if debug:
             print(f"Destination is blocked: {dest}")
         return
-    
-    # # Check if the source and destination are valid
-    # if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
-    #     print("Source or destination is invalid")
-    #     return
-
-    # # Check if the source and destination are unblocked
-    # if not is_unblocked(grid, src[0], src[1]) or not is_unblocked(grid, dest[0], dest[1]):
-    #     print("Source or the destination is blocked")
-    #     return
 
     # Check if we are already at the destination
     if is_destination(src[0], src[1], dest):
@@ -142,9 +139,9 @@ def a_star_search_from_grid(grid, src, dest, debug=False):
         return
 
     # Initialize the closed list (visited cells)
-    closed_list = [[False for _ in range(COL)] for _ in range(ROW)]
+    closed_list = [[False for _ in range(max_col)] for _ in range(max_row)]
     # Initialize the details of each cell
-    cell_details = [[Cell() for _ in range(COL)] for _ in range(ROW)]
+    cell_details = [[Cell() for _ in range(max_col)] for _ in range(max_row)]
 
     # Initialize the start cell details
     i = src[0]
@@ -180,7 +177,7 @@ def a_star_search_from_grid(grid, src, dest, debug=False):
             new_j = j + dir[1]
 
             # If the successor is valid, unblocked, and not visited
-            if is_valid(new_i, new_j) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
+            if is_valid(new_i, new_j, max_row, max_col) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
                 # If the successor is the destination
                 if is_destination(new_i, new_j, dest):
                     # Set the parent of the destination cell
@@ -213,24 +210,23 @@ def a_star_search_from_grid(grid, src, dest, debug=False):
     if not found_dest:
         print("Failed to find the destination cell")
 
-def a_star_search(src, dest, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False):
-    
-    src_transformed = (src[0]//scale_factor, src[1]//scale_factor)
-    dest_transformed = (dest[0]//scale_factor, dest[1]//scale_factor)
+def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
     
     with open(json_path, 'r') as file:
         json_data = json.load(file)
 
     # Create the matrix with padded walls
-    matrix = create_matrix_from_json(json_data, padding=padding, scale_factor=scale_factor)
-    matrix_transposed = matrix.transpose()
+    matrix = create_matrix_from_json(json_data, floor=floor, padding=padding, scale_factor=scale_factor)
 
     # Save the matrix as an image for visualization
     if save_matrix_image:
-        Image.fromarray(matrix * 255).save("floor_plan_matrix_padded.png")
+        image_name = "floor_plan_matrix_padded.png"
+        if os.path.exists(image_name):
+            os.remove(image_name)
+        Image.fromarray(matrix.transpose() * 255).save(image_name)
 
     # Run the A* search algorithm
-    path_reduced = a_star_search_from_grid(matrix_transposed, src_transformed, dest_transformed)
+    path_reduced = a_star_search_from_grid(matrix, src, dest, scale_factor, debug)
     # print(path_reduced)
     if path_reduced != None:
         path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
@@ -243,12 +239,15 @@ if __name__ == "__main__":
     
     # src_transformed=(24, 32)
     # dest_transformed=(50, 15)
-    src_transformed = (66, 25)
+    src_transformed = (47, 87)
     dest_transformed=(50, 15)
     
-    src = (src_transformed[0]*SCALE_FACTOR, src_transformed[1]*SCALE_FACTOR)
-    dest = (dest_transformed[0]*SCALE_FACTOR, dest_transformed[1]*SCALE_FACTOR)
+    # src = (src_transformed[0]*SCALE_FACTOR, src_transformed[1]*SCALE_FACTOR)
+    # dest = (dest_transformed[0]*SCALE_FACTOR, dest_transformed[1]*SCALE_FACTOR)
     
-    path = a_star_search(src, dest, padding=0, save_matrix_image=True)
+    src = (424, 870)
+    dest = (1154, 582)
+    
+    path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
     print(path)
 

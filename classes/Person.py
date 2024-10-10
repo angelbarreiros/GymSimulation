@@ -17,22 +17,14 @@ class Person:
     def move(self):
         if self.target_area:
             if not self.route:
-                # self.stay_counter = 
                 target_x, target_y = self.target_area.getPointInside()
                 self.target_coords = [target_x, target_y]
-                self.route = a_star_search((int(self.x), int(self.y)), (target_x, target_y), padding=0)
+                self.route = a_star_search((int(self.x), int(self.y)), (target_x, target_y), scale_factor=10, padding=0)
                 
                 self.x, self.y = self.route.pop(0)
-                
-                # dx = target_x - self.x
-                # dy = target_y - self.y
-                # distance = np.sqrt(dx**2 + dy**2)
-
-                # step = min(self.max_step, distance)
-                # self.x = self.x + dx * step / distance
-                # self.y = self.y + dy * step / distance
 
             else:
+                
                 self.x, self.y = self.route.pop(0)
                 
         if self.target_area.contains_point(self.x, self.y):
