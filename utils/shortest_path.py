@@ -26,54 +26,6 @@ class Cell:
         self.h = 0
 
 def create_matrix_from_json(floor_num, scale_factor, padding=0, save_matrix_image=False, json_path='data/zones.json'):
-    
-    with open(json_path, 'r') as file:
-        json_data = json.load(file)
-    
-    floor = f'Planta{floor_num}'
-    # Extract size and walls data
-    original_size = json_data[floor]["Size"]
-    walls = json_data[floor]["Walls"]
-
-    # Ensure size is in the correct order (width, height)
-    size = (original_size[0] // scale_factor, original_size[1] // scale_factor)
-
-    # Create an image to draw the walls
-    img = Image.new('L', size, 255)
-    draw = ImageDraw.Draw(img)
-
-    # Draw walls on the image with padding
-    for wall in walls:
-        # Convert coordinates to tuples and reduced integers
-        wall_coords = [tuple(map(lambda x: int(x) // scale_factor, point)) for point in wall]
-        
-        # Draw thick lines for walls
-        draw.line(wall_coords, fill=0, width=1 + 2*padding, joint='bevel')
-        
-        # Draw circles at vertices for rounded corners
-        for point in wall_coords:
-            x, y = point
-            draw.ellipse([x-padding, y-padding, x+padding, y+padding], fill=0)
-
-    # Convert image to numpy array and flip the values
-    wall_array = np.array(img)
-    matrix = np.where(wall_array == 0, 0, 1).astype(np.uint8)
-    
-    # Save the matrix as an image for visualization
-    if save_matrix_image:
-        image_name = "floor_plan_matrix_padded.png"
-        if os.path.exists(image_name):
-            os.remove(image_name)
-        Image.fromarray(matrix * 255).save(image_name)
-
-    return matrix.transpose()
-
-import json
-import numpy as np
-from PIL import Image, ImageDraw
-import os
-
-def create_matrix_from_json2(floor_num, scale_factor, padding=0, save_matrix_image=False, json_path='data/zones.json'):
     with open(json_path, 'r') as file:
         json_data = json.load(file)
     
