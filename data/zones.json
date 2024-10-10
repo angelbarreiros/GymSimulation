@@ -141,7 +141,7 @@
         "Machines":[[[1060,786]]]
       },
       {"Type": "NOFUNCIONAL",
-        "Name":"Ascensor Interior",
+        "Name":"AscensorInterior",
         "Coordinates": [[1081,641],[1131,641],[1131,681],[1081,681]],
         "Machines":[[[1122,662]]]
       },
