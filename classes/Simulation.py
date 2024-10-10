@@ -9,7 +9,7 @@ COLORS = {
     'Red': (0, 0, 255),
     'Green': (0, 255, 0),
     'Blue': (255, 0, 0),
-    'Yellow': (0, 255, 255),
+    'Yellow': (0, 255, 255),  # Keeping yellow as is (bright yellow)
     'Cyan': (255, 255, 0),
     'Magenta': (255, 0, 255),
     'White': (255, 255, 255),
@@ -17,7 +17,7 @@ COLORS = {
     'Gray': (128, 128, 128),
     'Dark Gray': (64, 64, 64),
     'Light Gray': (192, 192, 192),
-    'Orange': (0, 165, 255),
+    'Orange': (0, 140, 255),  # Modified to a deeper orange
     'Purple': (128, 0, 128),
     'Brown': (42, 42, 165),
     'Pink': (203, 192, 255)
@@ -90,10 +90,10 @@ class Simulation:
 
         def draw_target_area(frame, area, color=(255, 0, 0), thickness=2): 
             pts = area.points.reshape((-1, 1, 2))
-            cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
+            #cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
             center = area.points.mean(axis=0).astype(int)
-            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 1)
-            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
+            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
+            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
             
         def paint_area(frame, area):
             pts = area.points.reshape((-1, 1, 2))
@@ -118,7 +118,7 @@ class Simulation:
                     fill_color = COLORS['Black']  # Black
             overlay = frame.copy()
             cv2.fillPoly(overlay, [pts], fill_color)
-            alpha = 0.2
+            alpha = 0.3
             cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
         def paint_noarea(frame, area, color):
@@ -152,11 +152,11 @@ class Simulation:
         #     draw_boundary(combined_frame[floor_offset:floor_offset+height, 0:width], boundary)
 
         # Step 4: Draw target areas for all floors
-        for area in self.target_areas:
-            if area.type == 'NOFUNCIONAL':
-                continue
-            floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
-            draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
+        # for area in self.target_areas:
+        #     if area.type == 'NOFUNCIONAL':
+        #         continue
+        #     floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
+        #     draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
 
         # Step 5: Create color map for persons
         color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
