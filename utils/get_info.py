@@ -29,7 +29,8 @@ def extract_aforo_zonas(file_path):
     result = {}
     for k, v in aforo_zonas.items():
         result[k]={'targetCapacity':v['ocupancy'],'totalCapacity':v['aforo']}
-    result['NOFUNCIONAL']={'targetCapacity':10,'totalCapacity':10}
+    result['NOFUNCIONAL']={'targetCapacity':0,'totalCapacity':0}
+    result['VESTUARIO']={'targetCapacity':0,'totalCapacity':0}
     return result
 
 def extract_clases(aforo_clases_path):
@@ -69,17 +70,17 @@ def get_data():
                 try:
                     totalCapacity = aforo_zonas.get(type).get('totalCapacity')
                     targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
-                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), targetCapacity, floorNum, type)   # ?¿
+                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type)   # ?¿
                     all_areas.append(area)
                 except Exception:
-                    area = Area(name, points, 2, 2, floorNum, type) 
+                    area = Area(name, points, 0, 0, floorNum, type) 
                     all_areas.append(area)
             
             for pared in data[floor]["Walls"]: 
                 pared = Boundary(pared, floorNum)
                 all_walls.append(pared)
 
-            npersons = entrada-salida
+            npersons = 100#entrada-salida
 
             for spawn in data[floor]["Spawns"]:
                 spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floorNum)

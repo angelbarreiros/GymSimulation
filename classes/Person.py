@@ -8,7 +8,7 @@ class Person:
         self.y = start_y
         self.current_floor = floor
         self.max_step = max_step
-        self.history = [(start_x, start_y, self.current_floor)]
+        self.history = [(start_x, start_y, self.current_floor, None)]
         self.stay_counter = 0
         self.target_area = target_area
         self.startFrame = startFrame
@@ -31,6 +31,7 @@ class Person:
         return route
 
     def move(self):
+        #if np.random.rand() < 0.8: # pasar x los vestuarios
         if self.target_area:
             if not self.route:  # calcular ruta si no tiene
                 if self.state==None:  # primera vez o acaba de llegar al piso destino
@@ -55,10 +56,12 @@ class Person:
                     self.state = None
                 elif self.state == 'moving_target': # if target, finish
                     #self.target_area.actualCapacity += 1 # already on simulation
-                    self.target_area = None
+                    #self.target_area = None
                     self.state = 'reached'
+                elif self.state == 'reached':
+                    self.stay_counter += 1
             else:
                 self.x, self.y = self.route.pop(0)
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
-        self.history.append((self.x, self.y, self.current_floor))
+        self.history.append((self.x, self.y, self.current_floor, self.state))
 
