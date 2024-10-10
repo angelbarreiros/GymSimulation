@@ -65,7 +65,6 @@ def get_data():
                 name = zone["Name"]
                 points = zone["Coordinates"]
                 numberOfSameZones = sum(1 for obj in zones if obj['Type'] == type )
-                print(numberOfSameZones)
                 
                 try:
                     totalCapacity = aforo_zonas.get(type).get('totalCapacity')

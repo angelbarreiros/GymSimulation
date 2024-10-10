@@ -14,7 +14,7 @@ def main():
     sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns, hora=int(hora))
     
     print('Creating simulation...')
-    sim.simulate(TOTAL_FRAMES, spawn_interval=1, max_spawn=1)
+    sim.simulate(TOTAL_FRAMES, spawn_interval=10, max_spawn=2)
     
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES)

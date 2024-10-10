@@ -22,8 +22,15 @@ class Simulation:
                 area.actualCapacity += 1
                 print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
-        
         return None
+
+    def getStairs(self):
+        stairs = []
+        for floor in self.floors:
+            floor_stairs = [area for area in self.target_areas if area.type == 'NOFUNCIONAL' and area.floor == floor]
+            if floor_stairs:
+                stairs.append(np.random.choice(floor_stairs))
+        return stairs
 
     def initialize_person(self, num_person, available_spawn_points, frame):
         if not available_spawn_points:
@@ -33,7 +40,7 @@ class Simulation:
         spawn_point = np.random.choice(available_spawn_points)
         #target_coords = [self.getTargetArea().center_x, self.getTargetArea().center_y]
     
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame, target_area=self.getTargetArea(), max_step=15, floor=np.random.randint(0, 1)))
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(), target_area=self.getTargetArea(), max_step=15, floor=spawn_point.floor))
         available_spawn_points.remove(spawn_point)
         return True
 
@@ -59,7 +66,7 @@ class Simulation:
         self.movement_data = pd.DataFrame(data)
 
     def animate_cv2(self, output_folder='data/animation_frames', total_frames=600):
-        def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=5):
+        def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=10):
             pts = boundary.points.reshape((-1, 1, 2))
             cv2.polylines(frame, [pts], isClosed=False, color=color, thickness=thickness)
 

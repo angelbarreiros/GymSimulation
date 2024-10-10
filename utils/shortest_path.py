@@ -28,8 +28,8 @@ class Cell:
 
 def create_matrix_from_json(json_data, floor="Planta2", padding=0, scale_factor=SCALE_FACTOR):
     # Extract size and walls data
-    original_size = json_data["Planta2"]["Size"]
-    walls = json_data["Planta2"]["Walls"]
+    original_size = json_data[floor]["Size"]
+    walls = json_data[floor]["Walls"]
 
     # Ensure size is in the correct order (width, height)
     size = (original_size[0] // scale_factor, original_size[1] // scale_factor)
@@ -213,7 +213,7 @@ def a_star_search_from_grid(grid, src, dest, debug=False):
     if not found_dest:
         print("Failed to find the destination cell")
 
-def a_star_search(src, dest, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False):
+def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False):
     
     src_transformed = (src[0]//scale_factor, src[1]//scale_factor)
     dest_transformed = (dest[0]//scale_factor, dest[1]//scale_factor)
@@ -222,7 +222,7 @@ def a_star_search(src, dest, json_path='data/zones.json', padding=0, scale_facto
         json_data = json.load(file)
 
     # Create the matrix with padded walls
-    matrix = create_matrix_from_json(json_data, padding=padding, scale_factor=scale_factor)
+    matrix = create_matrix_from_json(json_data, floor=floor, padding=padding, scale_factor=scale_factor)
     matrix_transposed = matrix.transpose()
 
     # Save the matrix as an image for visualization
