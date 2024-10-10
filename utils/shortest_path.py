@@ -30,6 +30,8 @@ def create_matrix_from_json(json_data, floor="Planta2", padding=2, scale_factor=
     # Extract size and walls data
     original_size = json_data[floor]["Size"]
     walls = json_data[floor]["Walls"]
+    original_size = json_data[floor]["Size"]
+    walls = json_data[floor]["Walls"]
 
     # Ensure size is in the correct order (width, height)
     size = (original_size[0] // scale_factor, original_size[1] // scale_factor)
