@@ -5,6 +5,24 @@ import os
 import tqdm
 from classes.Person import Person
 
+COLORS = {
+    'Red': (0, 0, 255),
+    'Green': (0, 255, 0),
+    'Blue': (255, 0, 0),
+    'Yellow': (0, 255, 255),  # Keeping yellow as is (bright yellow)
+    'Cyan': (255, 255, 0),
+    'Magenta': (255, 0, 255),
+    'White': (255, 255, 255),
+    'Black': (0, 0, 0),
+    'Gray': (128, 128, 128),
+    'Dark Gray': (64, 64, 64),
+    'Light Gray': (192, 192, 192),
+    'Orange': (0, 140, 255),  # Modified to a deeper orange
+    'Purple': (128, 0, 128),
+    'Brown': (42, 42, 165),
+    'Pink': (203, 192, 255)
+}
+
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
         self.boundaries = boundary_points
@@ -20,7 +38,7 @@ class Simulation:
         for area in self.target_areas:
             if area.actualCapacity<area.targetCapacity and area.type!='NOFUNCIONAL':
                 area.actualCapacity += 1
-                print(f'Area {area.name} has {area.actualCapacity} persons')
+                #print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
         return None
 
@@ -61,8 +79,8 @@ class Simulation:
         # Collect all movement data
         data = []
         for person in self.persons:
-            for step, (x, y, floor) in enumerate(person.history):
-                data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y, 'floor': floor})
+            for step, (x, y, floor, state) in enumerate(person.history):
+                data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y, 'floor': floor, 'state': state})
         self.movement_data = pd.DataFrame(data)
 
     def animate_cv2(self, output_folder='data/animation_frames', total_frames=600):
@@ -70,12 +88,45 @@ class Simulation:
             pts = boundary.points.reshape((-1, 1, 2))
             cv2.polylines(frame, [pts], isClosed=False, color=color, thickness=thickness)
 
-        def draw_target_area(frame, area, color=(255, 0, 0), thickness=2):
+        def draw_target_area(frame, area, color=(255, 0, 0), thickness=2): 
             pts = area.points.reshape((-1, 1, 2))
-            cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
+            #cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
             center = area.points.mean(axis=0).astype(int)
-            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 1)
-            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 0), 2)
+            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
+            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
+            
+        def paint_area(frame, area):
+            pts = area.points.reshape((-1, 1, 2))
+
+            if area.totalCapacity == 0:
+                fill_color = (0, 0, 255)  # Red
+            else:
+                n = sum(1 for person in self.persons 
+                        if person.target_area == area 
+                        and person.startFrame <= frame_num < person.startFrame + len(person.history)
+                        and person.history[frame_num - person.startFrame][3] == 'reached')
+                occupancy_percent = ( n/ area.totalCapacity) * 100
+                if 0 <= occupancy_percent < 20:
+                    fill_color = COLORS['Red']  # Red
+                elif 20 <= occupancy_percent < 40:
+                    fill_color = COLORS['Orange']  # Orange
+                elif 40 <= occupancy_percent < 60:
+                    fill_color = COLORS['Yellow']  # Yellow
+                elif 60 <= occupancy_percent < 80:
+                    fill_color = COLORS['Green']  # Green
+                else:
+                    fill_color = COLORS['Black']  # Black
+            overlay = frame.copy()
+            cv2.fillPoly(overlay, [pts], fill_color)
+            alpha = 0.3
+            cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
+
+        def paint_noarea(frame, area, color):
+            overlay = frame.copy()
+            pts = area.points.reshape((-1, 1, 2))
+            cv2.fillPoly(overlay, [pts], color)
+            alpha = 0.5
+            cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
         def draw_person(frame, x, y, color):
             cv2.circle(frame, (int(x), int(y)), 10, color, -1)
@@ -96,14 +147,16 @@ class Simulation:
             combined_frame[i*height:(i+1)*height, 0:width] = frame
 
         # Step 3: Draw the boundaries for all floors
-        for boundary in self.boundaries:
-            floor_offset = (len(self.floors) - 1 - boundary.floor) * height  # Reverse floor order
-            draw_boundary(combined_frame[floor_offset:floor_offset+height, 0:width], boundary)
+        # for boundary in self.boundaries:
+        #     floor_offset = (len(self.floors) - 1 - boundary.floor) * height  # Reverse floor order
+        #     draw_boundary(combined_frame[floor_offset:floor_offset+height, 0:width], boundary)
 
         # Step 4: Draw target areas for all floors
-        for area in self.target_areas:
-            floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
-            draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
+        # for area in self.target_areas:
+        #     if area.type == 'NOFUNCIONAL':
+        #         continue
+        #     floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
+        #     draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
 
         # Step 5: Create color map for persons
         color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
@@ -126,11 +179,21 @@ class Simulation:
             # Plot persons
             for person in self.persons:
                 if person.startFrame <= frame_num < person.startFrame + len(person.history):
-                    x, y, floor = person.history[frame_num - person.startFrame]
+                    x, y, floor, state = person.history[frame_num - person.startFrame]
                     floor_offset = (len(self.floors) - 1 - floor) * height  # Reverse floor order
                     draw_person(current_frame[floor_offset:floor_offset+height, 0:width], 
                                 x, y, color_map[person.id])
-
+            # paint area occupation
+            for area in self.target_areas:
+                if area.totalCapacity != 0:
+                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
+                if area.type=='NOFUNCIONAL':
+                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
+                if area.type=='VESTUARIO':
+                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
