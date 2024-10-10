@@ -2,7 +2,7 @@ import numpy as np
 from utils.shortest_path import a_star_search, create_matrix_from_json, a_star_search_from_grid
 
 SCALE_FACTOR = 10
-matrix_floor_lst = [create_matrix_from_json(floor, SCALE_FACTOR) for floor in range(3)]
+MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR) for floor in range(3)]
 
 class Person:
     
@@ -37,6 +37,7 @@ class Person:
 
     def move(self):
         #if np.random.rand() < 0.8: # pasar x los vestuarios
+        #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
         if self.target_area:
             if not self.route:  # calcular ruta si no tiene
                 if self.state==None:  # primera vez o acaba de llegar al piso destino
@@ -51,7 +52,7 @@ class Person:
                     # print(self.x, self.y, self.target_coords)
                     # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
                     # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
-                    self.route = a_star_search_from_grid(grid=matrix_floor_lst[self.current_floor], 
+                    self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
                                                          src=(int(self.x), int(self.y)), dest=self.target_coords,
                                                          scale_factor=SCALE_FACTOR, debug=True)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case

@@ -5,6 +5,24 @@ import os
 import tqdm
 from classes.Person import Person
 
+COLORS = {
+    'Red': (0, 0, 255),
+    'Green': (0, 255, 0),
+    'Blue': (255, 0, 0),
+    'Yellow': (0, 255, 255),
+    'Cyan': (255, 255, 0),
+    'Magenta': (255, 0, 255),
+    'White': (255, 255, 255),
+    'Black': (0, 0, 0),
+    'Gray': (128, 128, 128),
+    'Dark Gray': (64, 64, 64),
+    'Light Gray': (192, 192, 192),
+    'Orange': (0, 165, 255),
+    'Purple': (128, 0, 128),
+    'Brown': (42, 42, 165),
+    'Pink': (203, 192, 255)
+}
+
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
         self.boundaries = boundary_points
@@ -83,18 +101,21 @@ class Simulation:
             if area.totalCapacity == 0:
                 fill_color = (0, 0, 255)  # Red
             else:
-                n = sum(1 for person in self.persons if person.target_area == area and any(state == 'reached' for _, _, _, state in person.history[:frame_num - person.startFrame])) #
+                n = sum(1 for person in self.persons 
+                        if person.target_area == area 
+                        and person.startFrame <= frame_num < person.startFrame + len(person.history)
+                        and person.history[frame_num - person.startFrame][3] == 'reached')
                 occupancy_percent = ( n/ area.totalCapacity) * 100
                 if 0 <= occupancy_percent < 20:
-                    fill_color = (0, 0, 255)  # Red
+                    fill_color = COLORS['Red']  # Red
                 elif 20 <= occupancy_percent < 40:
-                    fill_color = (0, 165, 255)  # Orange
+                    fill_color = COLORS['Orange']  # Orange
                 elif 40 <= occupancy_percent < 60:
-                    fill_color = (0, 255, 255)  # Yellow
+                    fill_color = COLORS['Yellow']  # Yellow
                 elif 60 <= occupancy_percent < 80:
-                    fill_color = (0, 255, 0)  # Green
+                    fill_color = COLORS['Green']  # Green
                 else:
-                    fill_color = (0, 0, 0)  # Black
+                    fill_color = COLORS['Black']  # Black
             overlay = frame.copy()
             cv2.fillPoly(overlay, [pts], fill_color)
             alpha = 0.2
@@ -169,10 +190,10 @@ class Simulation:
                     paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
                 if area.type=='NOFUNCIONAL':
                     floor_offset = (len(self.floors) - 1 - area.floor) * height
-                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, (135, 206, 235))
+                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
                 if area.type=='VESTUARIO':
                     floor_offset = (len(self.floors) - 1 - area.floor) * height
-                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, (138, 43, 226))
+                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)

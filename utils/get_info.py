@@ -80,7 +80,9 @@ def get_data():
                 pared = Boundary(pared, floorNum)
                 all_walls.append(pared)
 
-            npersons = 100#entrada-salida
+            npersons = sum(area.targetCapacity for area in all_areas)
+            
+            #entrada-salida
 
             for spawn in data[floor]["Spawns"]:
                 spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floorNum)
