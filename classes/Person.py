@@ -1,5 +1,5 @@
 import numpy as np
-from utils.shortest_path import a_star_search, create_matrix_from_json, a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid
 
 SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
@@ -42,12 +42,10 @@ class Person:
             if not self.route:  # calcular ruta si no tiene
                 if self.state==None:  # primera vez o acaba de llegar al piso destino
                     if self.target_area.floor != self.current_floor:  # target is not in this floor -> go to stairs
-                        target_x, target_y = self.stairs[self.current_floor].getPointInside()
-                        self.target_coords = (target_x, target_y)
+                        self.target_coords = self.stairs[self.current_floor].getPointInside()
                         self.state = 'moving_stairs'
                     else:  # target on this floor -> go to it
-                        target_x, target_y = self.target_area.getPointInside()
-                        self.target_coords = (target_x, target_y)
+                        self.target_coords = self.target_area.getPointInside()
                         self.state = 'moving_target'
                     # print(self.x, self.y, self.target_coords)
                     # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)

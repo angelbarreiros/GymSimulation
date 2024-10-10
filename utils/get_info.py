@@ -65,15 +65,16 @@ def get_data():
                 type = zone["Type"]
                 name = zone["Name"]
                 points = zone["Coordinates"]
+                machines = zone["Machines"]
                 numberOfSameZones = sum(1 for obj in zones if obj['Type'] == type )
                 
                 try:
                     totalCapacity = aforo_zonas.get(type).get('totalCapacity')
                     targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
-                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type)   # ?¿
+                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type, machines)   # ?¿
                     all_areas.append(area)
                 except Exception:
-                    area = Area(name, points, 0, 0, floorNum, type) 
+                    area = Area(name, points, 0, 0, floorNum, type, machines) 
                     all_areas.append(area)
             
             for pared in data[floor]["Walls"]: 

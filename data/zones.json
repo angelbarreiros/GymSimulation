@@ -40,28 +40,34 @@
       },
       { "Type":"VESTUARIO",
         "Name":"VestuarioMasculino",
-        "Coordinates":[[590,818],[1110,818],[1110,1077],[590,1077]]
+        "Coordinates":[[590,818],[1110,818],[1110,1077],[590,1077]],
+        "Machines":[]
       },
       { "Type":"VESTUARIO",
         "Name":"VestuarioFemenino",
-        "Coordinates": [[1117,807],[1635,807],[1635,1076],[1117,1076]]
+        "Coordinates": [[1117,807],[1635,807],[1635,1076],[1117,1076]],
+        "Machines": []
       },
       { "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroSubida",
-        "Coordinates": [[963,661],[996,661],[996,685],[963,685]]
+        "Coordinates": [[963,661],[996,661],[996,685],[963,685]],
+        "Machines":[[[967,673]]]
       },
       { "Type":"NOFUNCIONAL",
         "Name":"AscensorInterior",
-        "Coordinates":[[1154,582],[1198,582],[1198,630],[1154,630]]
+        "Coordinates":[[1154,582],[1198,582],[1198,630],[1154,630]],
+        "Machines":[[[1188,608]]]
       },
       { "Type":"NOFUNCIONAL",
         "Name":"EscaleraIzq",
-        "Coordinates":[[735,650],[788,650],[788,692],[735,692]]
+        "Coordinates":[[735,650],[788,650],[788,692],[735,692]],
+        "Machines":[[[765,683]]]
       },
       {
         "Type":"NOFUNCIONAL",
         "Name":"EscaleraDrch",
-        "Coordinates":[[1345,664],[1385,664],[1385,693],[1345,693]]
+        "Coordinates":[[1345,664],[1385,664],[1385,693],[1345,693]],
+        "Machines":[[[1352,684]]]
       }
     ],
     "Walls":[
@@ -113,34 +119,36 @@
         "Machines":[]
       },
       { "Type": "NOFUNCIONAL",
-        "Name":"Entrada",
-        "Coordinates": [[900,965],[1063,965],[1063,1071],[900,1071]]
-      },
-      { "Type": "NOFUNCIONAL",
         "Name": "EscaleraIzq",
-        "Coordinates": [[580,700],[629,700],[629,744],[580,744]]
+        "Coordinates": [[580,700],[629,700],[629,744],[580,744]],
+        "Machines":[[[604,734]]]
       },
       { "Type": "NOFUNCIONAL",
         "Name":"EscaleraDrch",
-        "Coordinates":[[1321,700],[1377,700],[1377,735],[1321,735]]
+        "Coordinates":[[1321,700],[1377,700],[1377,735],[1321,735]],
+        "Machines":[[[1351,731]]]
         
       },
       { "Type": "NOFUNCIONAL",
         "Name":"EscaleraInteriorSubida",
-        "Coordinates":[[889,722],[1084,722],[1084,748],[889,748]] 
+        "Coordinates":[[889,722],[1084,722],[1084,748],[889,748]],
+        "Machines":[[[945,731]]]
         
       },
       {"Type": "NOFUNCIONAL",
        "Name":"EscaleraInteriorBajada",
-        "Coordinates": [[1018,772],[1084,772],[1084,801],[1018,801]]
+        "Coordinates": [[1018,772],[1084,772],[1084,801],[1018,801]],
+        "Machines":[[[1060,786]]]
       },
       {"Type": "NOFUNCIONAL",
-        "Name":"Ascensor Interior",
-          "Coordinates": [[1081,641],[1131,641],[1131,681],[1081,681]]
+        "Name":"AscensorInterior",
+        "Coordinates": [[1081,641],[1131,641],[1131,681],[1081,681]],
+        "Machines":[[[1122,662]]]
       },
       { "Type": "NOFUNCIONAL",
         "Name":"AscensorEsquinaDrch",
-        "Coordinates":[[1566,334],[1594,334],[1594,375],[1556,375]]
+        "Coordinates":[[1566,334],[1594,334],[1594,375],[1556,375]],
+        "Machines":[[[1572,356]]]
       }
       
     
@@ -281,32 +289,38 @@
       {
         "Type": "NOFUNCIONAL",
         "Name":"EscaleraIzq",
-        "Coordinates":[[457,461],[517,461],[517,515],[457,515]]
+        "Coordinates":[[457,461],[517,461],[517,515],[457,515]],
+        "Machines": [[[482,486]]]
       },
       {
         "Type": "NOFUNCIONAL",
         "Name":"EscaleraDrch",
-        "Coordinates":[[1301,473],[1352,473],[1352,523],[1301,523]]
+        "Coordinates":[[1301,473],[1352,473],[1352,523],[1301,523]],
+        "Machines":[[[1324,486]]]
       },
       {
         "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroSubida",
-        "Coordinates":[[762,548],[838,548],[838,581],[762,581]]
+        "Coordinates":[[762,548],[838,548],[838,581],[762,581]],
+        "Machines":[[[787,565]]]
       },
       {
         "Type":"NOFUNCIONAL",
         "Name":"EscaleraCentroBajada",
-        "Coordinates": [[735,490],[867,490],[867,526],[735,526]]
+        "Coordinates": [[735,490],[867,490],[867,526],[735,526]],
+        "Machines": [[[775,509]]]
       },
       {
         "Type":"NOFUNCIONAL",
         "Name":"AscensorEsquinaDrch",
-        "Coordinates":[[1575,70],[1593,70],[1593,95],[1575,95]]
+        "Coordinates":[[1575,70],[1593,70],[1593,95],[1575,95]],
+        "Machines":[[[1575,91]]]
       },
       {
         "Type":"NOFUNCIONAL",
         "Name":"AscensorInterior",
-        "Coordinates": [[1024,399],[1080,399],[1080,449],[1024,449]]
+        "Coordinates": [[1024,399],[1080,399],[1080,449],[1024,449]],
+        "Machines": [[[1065,421]]]
       }
     ],
     "Walls":[
@@ -320,7 +334,8 @@
       [[1261,718],[1400,718]],
       [[722,481],[722,353],[1094,353],[1095,381]],
 		[[1094,463],[1094,628],[722,627],[722,592]],
-    [[1018,385],[1093,385],[1093,463],[1018,463]]
+    [[1018,385],[1093,385],[1093,463],[1018,463]],
+    [[417,621],[417,621],[417,573],[417,573]]
   ]
     ,
     "Spawns":[

@@ -285,5 +285,5 @@ if __name__ == "__main__":
     # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
     # print(path)
     
-    create_matrix_from_json2(1, 10, 0, True)
+    create_matrix_from_json(1, 10, 0, True)
 

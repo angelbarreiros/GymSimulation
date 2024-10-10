@@ -134,17 +134,20 @@ class Simulation:
         # Step 1: Create output folder if it doesn't exist
         os.makedirs(output_folder, exist_ok=True)
 
-        # Step 2: Set up the initial frame for all floors
+        # Step 2: Set up
         floor_frames = [cv2.imread(f"data/Planta{i}.png") for i in range(len(self.floors))]
         floor_frames.reverse() 
+        nfloors = len(self.floors)
         height, width = floor_frames[0].shape[:2]
+        header_height = 100 
+        color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
 
         # Combine the floors into one image
-        combined_height = height * len(self.floors)
-        combined_frame = np.zeros((combined_height, width, 3), dtype=np.uint8)
-
+        combined_height = (height * nfloors) + header_height
+        combined_frame = np.full((combined_height, width, 3), 255, dtype=np.uint8)
+        # Copy floor frames to the combined frame
         for i, frame in enumerate(floor_frames):
-            combined_frame[i*height:(i+1)*height, 0:width] = frame
+            combined_frame[header_height + i*height:header_height + (i+1)*height, 0:width] = frame
 
         # Step 3: Draw the boundaries for all floors
         # for boundary in self.boundaries:
@@ -158,41 +161,38 @@ class Simulation:
         #     floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
         #     draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
 
-        # Step 5: Create color map for persons
-        color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
-
         # Step 6: Generate and save frames with progress bar
         #total_frames = max(person.history[-1][0] for person in self.persons)
+
         for frame_num in tqdm.tqdm(range(total_frames), desc="Generating frames", unit="frame"):
             current_frame = combined_frame.copy()
 
-            # Update time
-            hours = (frame_num // 600) + self.hora
-            minutes = (frame_num % 600) // 10
-            time_text = f'Time: {hours:02d}:{minutes:02d}'
-            text_size = cv2.getTextSize(time_text, cv2.FONT_HERSHEY_SIMPLEX, 1, 2)[0]
-            text_x = (width - text_size[0]) // 2
-            text_y = text_size[1] + 10
-            cv2.putText(current_frame, time_text, (text_x, text_y), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+            # Change 'frame' to 'current_frame' in these lines
+            time_str = f"Time: {self.hora}:{frame_num // 600:02d}"
+            cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
+
+            current_persons = sum(1 for person in self.persons 
+                                if person.startFrame <= frame_num < person.startFrame + len(person.history))
+            person_count_str = f"Persons: {current_persons}"
+            cv2.putText(current_frame, person_count_str, (width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             # Plot persons
             for person in self.persons:
                 if person.startFrame <= frame_num < person.startFrame + len(person.history):
                     x, y, floor, state = person.history[frame_num - person.startFrame]
-                    floor_offset = (len(self.floors) - 1 - floor) * height  # Reverse floor order
+                    floor_offset = header_height + (len(self.floors) - 1 - floor) * height  # Reverse floor order
                     draw_person(current_frame[floor_offset:floor_offset+height, 0:width], 
                                 x, y, color_map[person.id])
             # paint area occupation
             for area in self.target_areas:
                 if area.totalCapacity != 0:
-                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
                 if area.type=='NOFUNCIONAL':
-                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
                 if area.type=='VESTUARIO':
-                    floor_offset = (len(self.floors) - 1 - area.floor) * height
+                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
