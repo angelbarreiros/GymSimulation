@@ -22,6 +22,7 @@ COLORS = {
     'Brown': (42, 42, 165),
     'Pink': (203, 192, 255)
 }
+TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
@@ -43,11 +44,12 @@ class Simulation:
         return None
 
     def getStairs(self):
+        id = np.random.choice(TPLIST)
         stairs = []
-        for floor in self.floors:
-            floor_stairs = [area for area in self.target_areas if area.type == 'NOFUNCIONAL' and area.floor == floor]
-            if floor_stairs:
-                stairs.append(np.random.choice(floor_stairs))
+        for area in self.target_areas:
+            if area.type == 'NOFUNCIONAL' and area.name==id:
+                stairs.append(area)
+        #print(f"Stairs: {stairs}")
         return stairs
 
     def initialize_person(self, num_person, available_spawn_points, frame):
@@ -194,6 +196,10 @@ class Simulation:
                 if area.type=='VESTUARIO':
                     floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
+
+            # for spawn in self.spawn_points:
+            #     floor_offset = header_height + (len(self.floors) - 1 - spawn.floor) * height
+            #     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], spawn, COLORS['Green'])
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)

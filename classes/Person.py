@@ -5,8 +5,6 @@ SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
 
 class Person:
-    
-    
     def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0):
         self.id = person_id
         self.x = start_x
