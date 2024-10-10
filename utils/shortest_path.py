@@ -1,7 +1,6 @@
 import json
 import numpy as np
 from PIL import Image, ImageDraw
-import math
 import heapq
 import os
 
@@ -26,15 +25,13 @@ class Cell:
     # Heuristic cost from this cell to destination
         self.h = 0
 
-def create_matrix_from_json(floor_num, scale_factor, json_path='data/zones.json', padding=0):
+def create_matrix_from_json(floor_num, scale_factor, padding=0, save_matrix_image=False, json_path='data/zones.json'):
     
     with open(json_path, 'r') as file:
         json_data = json.load(file)
     
     floor = f'Planta{floor_num}'
     # Extract size and walls data
-    original_size = json_data[floor]["Size"]
-    walls = json_data[floor]["Walls"]
     original_size = json_data[floor]["Size"]
     walls = json_data[floor]["Walls"]
 
@@ -61,6 +58,82 @@ def create_matrix_from_json(floor_num, scale_factor, json_path='data/zones.json'
     # Convert image to numpy array and flip the values
     wall_array = np.array(img)
     matrix = np.where(wall_array == 0, 0, 1).astype(np.uint8)
+    
+    # Save the matrix as an image for visualization
+    if save_matrix_image:
+        image_name = "floor_plan_matrix_padded.png"
+        if os.path.exists(image_name):
+            os.remove(image_name)
+        Image.fromarray(matrix * 255).save(image_name)
+
+    return matrix.transpose()
+
+import json
+import numpy as np
+from PIL import Image, ImageDraw
+import os
+
+def create_matrix_from_json2(floor_num, scale_factor, padding=0, save_matrix_image=False, json_path='data/zones.json'):
+    with open(json_path, 'r') as file:
+        json_data = json.load(file)
+    
+    floor = f'Planta{floor_num}'
+    # Extract size and walls data
+    original_size = json_data[floor]["Size"]
+    walls = json_data[floor]["Walls"]
+
+    # Ensure size is in the correct order (width, height)
+    size = (original_size[0] // scale_factor, original_size[1] // scale_factor)
+
+    # Create an image to draw the walls
+    img = Image.new('L', size, 255)
+    draw = ImageDraw.Draw(img)
+
+    def draw_thickened_line(start, end, width):
+        """Draw a line with thickened midpoints"""
+        x0, y0 = start
+        x1, y1 = end
+        dx = x1 - x0
+        dy = y1 - y0
+        distance = max(abs(dx), abs(dy))
+        
+        if distance == 0:
+            draw.point([x0, y0], fill=0)
+        else:
+            for i in range(distance + 1):
+                t = i / distance
+                x = int(x0 + t * dx)
+                y = int(y0 + t * dy)
+                
+                # Thicken all points except the start and end
+                if 0 < i < distance:
+                    for ox in range(-width, width + 1):
+                        for oy in range(-width, width + 1):
+                            draw.point([x + ox, y + oy], fill=0)
+                else:
+                    draw.point([x, y], fill=0)
+
+    # Draw walls on the image
+    for wall in walls:
+        # Convert coordinates to tuples and reduced integers
+        wall_coords = [tuple(map(lambda x: int(x) // scale_factor, point)) for point in wall]
+        
+        # Draw lines for walls
+        for i in range(len(wall_coords) - 1):
+            start = wall_coords[i]
+            end = wall_coords[i + 1]
+            draw_thickened_line(start, end, padding)
+
+    # Convert image to numpy array and flip the values
+    wall_array = np.array(img)
+    matrix = np.where(wall_array == 0, 0, 1).astype(np.uint8)
+    
+    # Save the matrix as an image for visualization
+    if save_matrix_image:
+        image_name = f"floor_{floor_num}_p{padding}_matrix.png"
+        if os.path.exists(image_name):
+            os.remove(image_name)
+        Image.fromarray(matrix * 255).save(image_name)
 
     return matrix.transpose()
 
@@ -257,6 +330,8 @@ if __name__ == "__main__":
     src = (424, 870)
     dest = (1154, 582)
     
-    path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
-    print(path)
+    # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
+    # print(path)
+    
+    create_matrix_from_json2(1, 10, 0, True)
 
