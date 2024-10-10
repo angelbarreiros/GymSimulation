@@ -1,7 +1,12 @@
 import numpy as np
-from utils.shortest_path import a_star_search
+from utils.shortest_path import a_star_search, create_matrix_from_json, a_star_search_from_grid
+
+SCALE_FACTOR = 10
+matrix_floor_lst = [create_matrix_from_json(floor, SCALE_FACTOR) for floor in range(3)]
 
 class Person:
+    
+    
     def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0):
         self.id = person_id
         self.x = start_x
@@ -38,15 +43,17 @@ class Person:
                     if self.target_area.floor != self.current_floor:  # target is not in this floor -> go to stairs
                         target_x, target_y = self.stairs[self.current_floor].getPointInside()
                         self.target_coords = (target_x, target_y)
-                        #self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
-                        self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
                         self.state = 'moving_stairs'
                     else:  # target on this floor -> go to it
                         target_x, target_y = self.target_area.getPointInside()
                         self.target_coords = (target_x, target_y)
-                        #self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
-                        self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
                         self.state = 'moving_target'
+                    # print(self.x, self.y, self.target_coords)
+                    # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
+                    # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
+                    self.route = a_star_search_from_grid(grid=matrix_floor_lst[self.current_floor], 
+                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
+                                                         scale_factor=SCALE_FACTOR, debug=True)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                 elif self.state == 'moving_stairs': # if stairs, go to destination floor
