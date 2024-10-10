@@ -51,6 +51,7 @@ class Person:
                 elif self.state == 'moving_stairs': # if stairs, go to destination floor
                     self.current_floor = self.target_area.floor
                     # change to spawn on that floor
+                    self.x, self.y = self.stairs[self.current_floor].getPointInside()
                     self.state = None
                 elif self.state == 'moving_target': # if target, finish
                     #self.target_area.actualCapacity += 1 # already on simulation
