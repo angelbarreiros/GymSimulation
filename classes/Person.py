@@ -1,4 +1,5 @@
 import numpy as np
+from utils.shortest_path import a_star_search
 
 class Person:
     def __init__(self, person_id, start_x, start_y, startFrame, max_step=20, target_area=None, floor=0):
@@ -12,22 +13,31 @@ class Person:
         self.target_area = target_area
         self.startFrame = startFrame
         self.target_coords = None
+        self.route = []
 
     def move(self):
         if self.target_area:
-
-            target_x, target_y = self.target_area.getPointInside()
-            self.target_coords = [target_x, target_y]
-            dx = target_x - self.x
-            dy = target_y - self.y
-            distance = np.sqrt(dx**2 + dy**2)
-
-            step = min(self.max_step, distance)
-            self.x = self.x + dx * step / distance
-            self.y = self.y + dy * step / distance
-
-            if self.target_area.contains_point(self.x, self.y):
-                self.target_area.actualCapacity += 1
+            if not self.route:
+                # self.stay_counter = 
+                target_x, target_y = self.target_area.getPointInside()
+                self.target_coords = [target_x, target_y]
+                self.route = a_star_search((int(self.x), int(self.y)), (target_x, target_y), padding=0)
                 
+                self.x, self.y = self.route.pop(0)
+                
+                # dx = target_x - self.x
+                # dy = target_y - self.y
+                # distance = np.sqrt(dx**2 + dy**2)
+
+                # step = min(self.max_step, distance)
+                # self.x = self.x + dx * step / distance
+                # self.y = self.y + dy * step / distance
+
+            else:
+                self.x, self.y = self.route.pop(0)
+                
+        if self.target_area.contains_point(self.x, self.y):
+            self.target_area.actualCapacity += 1
+            
         self.history.append((self.x, self.y, self.current_floor))
 
