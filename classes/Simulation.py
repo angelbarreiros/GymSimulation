@@ -168,7 +168,7 @@ class Simulation:
             current_frame = combined_frame.copy()
 
             # Change 'frame' to 'current_frame' in these lines
-            time_str = f"Time: {frame_num // 30:02d}:{frame_num % 30:02d}"
+            time_str = f"Time: {self.hora}:{frame_num // 600:02d}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             current_persons = sum(1 for person in self.persons 

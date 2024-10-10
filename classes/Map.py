@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 class Area:
-    def __init__(self, name, points, totalCapacity, targetCapacity, floor, type):
+    def __init__(self, name, points, totalCapacity, targetCapacity, floor, type, machines):
         self.name = name
         self.points = np.array(points, dtype=np.int32)  # Ensure points are numpy array
         self.actualCapacity = 0
@@ -10,13 +10,18 @@ class Area:
         self.targetCapacity = targetCapacity
         self.floor = floor
         self.type = type
+        self.machines = machines
 
     def getPointInside(self):
-        x, y, w, h = cv2.boundingRect(self.points)
-        while True:
-            random_point = (np.random.randint(x, x + w), np.random.randint(y, y + h))
-            if cv2.pointPolygonTest(self.points, random_point, False) >= 0:
-                return random_point
+        # random point
+        # x, y, w, h = cv2.boundingRect(self.points)
+        # while True:
+        #     random_point = (np.random.randint(x, x + w), np.random.randint(y, y + h))
+        #     if cv2.pointPolygonTest(self.points, random_point, False) >= 0:
+        #         return random_point
+        #random machine point  
+        return np.random.choice(self.machines)
+
     
     def contains_point(self, point_x, point_y):
         return cv2.pointPolygonTest(self.points, np.array([point_x, point_y], dtype=np.float32), False) >= 0
