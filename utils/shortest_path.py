@@ -26,7 +26,12 @@ class Cell:
     # Heuristic cost from this cell to destination
         self.h = 0
 
-def create_matrix_from_json(json_data, floor="Planta2", padding=2, scale_factor=SCALE_FACTOR):
+def create_matrix_from_json(floor_num, scale_factor, json_path='data/zones.json', padding=0):
+    
+    with open(json_path, 'r') as file:
+        json_data = json.load(file)
+    
+    floor = f'Planta{floor_num}'
     # Extract size and walls data
     original_size = json_data[floor]["Size"]
     walls = json_data[floor]["Walls"]
@@ -107,38 +112,42 @@ def trace_path(cell_details, dest, show=False):
 def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     
     # Scale points
-    src = (src[0]//scale_factor, src[1]//scale_factor)
-    dest = (dest[0]//scale_factor, dest[1]//scale_factor)
+    src_scaled = (src[0]//scale_factor, src[1]//scale_factor)
+    dest_scaled = (dest[0]//scale_factor, dest[1]//scale_factor)
     # size = (size[0]//scale_factor, size[1]//scale_factor)
-    
+    # if path_reduced != None:
+    #     path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
+    # else:
+    #     path = [src]
+    # return path
     max_row, max_col = grid.shape
     # Check if the source and destination are valid
-    if not is_valid(src[0], src[1], max_row, max_col):
+    if not is_valid(src_scaled[0], src_scaled[1], max_row, max_col):
         if debug:
             print(f"Source is invalid: {src}")
-        return
+        return [src]
     
-    if not is_valid(dest[0], dest[1], max_row, max_col):
+    if not is_valid(dest_scaled[0], dest_scaled[1], max_row, max_col):
         if debug:
-            print(f"Destination is invalid: {dest}")
-        return
+            print(f"Destination is invalid: {dest_scaled}")
+        return [src]
     
     # Check if the source and destination are blocked
-    if not is_unblocked(grid, src[0], src[1]):
+    if not is_unblocked(grid, src_scaled[0], src_scaled[1]):
         if debug:
             print(f"Source is blocked: {src}")
-        return
+        return [src]
     
-    if not is_unblocked(grid, dest[0], dest[1]):
+    if not is_unblocked(grid, dest_scaled[0], dest_scaled[1]):
         if debug:
-            print(f"Destination is blocked: {dest}")
-        return
+            print(f"Destination is blocked: {dest_scaled}")
+        return [src]
 
     # Check if we are already at the destination
-    if is_destination(src[0], src[1], dest):
+    if is_destination(src_scaled[0], src_scaled[1], dest_scaled):
         # if debug:
         #     print("We are already at the destination")
-        return
+        return [src]
 
     # Initialize the closed list (visited cells)
     closed_list = [[False for _ in range(max_col)] for _ in range(max_row)]
@@ -146,8 +155,8 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     cell_details = [[Cell() for _ in range(max_col)] for _ in range(max_row)]
 
     # Initialize the start cell details
-    i = src[0]
-    j = src[1]
+    i = src_scaled[0]
+    j = src_scaled[1]
     cell_details[i][j].f = 0
     cell_details[i][j].g = 0
     cell_details[i][j].h = 0
@@ -181,20 +190,21 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
             # If the successor is valid, unblocked, and not visited
             if is_valid(new_i, new_j, max_row, max_col) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
                 # If the successor is the destination
-                if is_destination(new_i, new_j, dest):
+                if is_destination(new_i, new_j, dest_scaled):
                     # Set the parent of the destination cell
                     cell_details[new_i][new_j].parent_i = i
                     cell_details[new_i][new_j].parent_j = j
                     # if debug:
                     #     print("The destination cell is found")
                     # Trace and print the path from source to destination
-                    path = trace_path(cell_details, dest)
                     found_dest = True
+                    path_reduced = trace_path(cell_details, dest_scaled)
+                    path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
                     return path
                 else:
                     # Calculate the new f, g, and h values
                     g_new = cell_details[i][j].g + 1.0
-                    h_new = calculate_h_value(new_i, new_j, dest)
+                    h_new = calculate_h_value(new_i, new_j, dest_scaled)
                     f_new = g_new + h_new
 
                     # If the cell is not in the open list or the new f value is smaller
@@ -213,12 +223,9 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
         print("Failed to find the destination cell")
 
 def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
-    
-    with open(json_path, 'r') as file:
-        json_data = json.load(file)
 
     # Create the matrix with padded walls
-    matrix = create_matrix_from_json(json_data, floor=floor, padding=padding, scale_factor=scale_factor)
+    matrix = create_matrix_from_json(json_path, floor=floor, padding=padding, scale_factor=scale_factor)
 
     # Save the matrix as an image for visualization
     if save_matrix_image:
