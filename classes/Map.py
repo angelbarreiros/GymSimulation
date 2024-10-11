@@ -15,12 +15,15 @@ class Area:
 
     def getPointInside(self):
         if self.machines:  # If area has machines, choose a random machine that isn't occupied
-            available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if not occupied]
-            if available_machines:
-                chosen_machine = np.random.choice(available_machines)
-                self.ocuppiedMachines[chosen_machine] = True
-                #print(f"Area {self.name} has {self.machines[chosen_machine]}")
-                return tuple(self.machines[chosen_machine][0]) 
+            if self.type == 'PG':
+                return self.machines[np.random.randint(6)][0]
+            else:
+                available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if not occupied]
+                if available_machines:
+                    chosen_machine = np.random.choice(available_machines)
+                    self.ocuppiedMachines[chosen_machine] = True
+                    #print(f"Area {self.name} has {self.machines[chosen_machine]}")
+                    return tuple(self.machines[chosen_machine][0]) 
 
         x, y, w, h = cv2.boundingRect(self.points)
         while True:
