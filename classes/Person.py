@@ -50,7 +50,7 @@ class Person:
                     # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
                     self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
                                                          src=(int(self.x), int(self.y)), dest=self.target_coords,
-                                                         scale_factor=SCALE_FACTOR, debug=True)
+                                                         scale_factor=SCALE_FACTOR, debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                 elif self.state == 'moving_stairs': # if stairs, go to destination floor
