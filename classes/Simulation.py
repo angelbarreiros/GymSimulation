@@ -96,10 +96,10 @@ class Simulation:
             cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
             cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
         def draw_spawn_point(frame, spawn_point, color=(0, 255, 0), thickness=2):
-            top_left = (spawn_point.coords[0] - 5, spawn_point.coords[1] - 5)
-            bottom_right = (spawn_point.coords[0] + 5, spawn_point.coords[1] + 5)
             top_left = (spawn_point.coords[0] - 10, spawn_point.coords[1] - 10)
             bottom_right = (spawn_point.coords[0] + 10, spawn_point.coords[1] + 10)
+            top_left = (spawn_point.coords[0] - 20, spawn_point.coords[1] - 20)
+            bottom_right = (spawn_point.coords[0] + 20, spawn_point.coords[1] + 20)
             cv2.rectangle(frame, top_left, bottom_right, color, thickness)
             cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
@@ -193,15 +193,16 @@ class Simulation:
                                 x, y, color_map[person.id])
             # paint area occupation
             for area in self.target_areas:
-                if area.totalCapacity != 0:
-                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
-                    paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
                 if area.type=='NOFUNCIONAL':
                     floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
-                if area.type=='VESTUARIO':
+                elif area.type=='VESTUARIO':
                     floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
+                else:
+                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
+                    paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
+
 
             for spawn in self.spawn_points:
                 floor_offset = header_height + (len(self.floors) - 1 - spawn.floor) * height

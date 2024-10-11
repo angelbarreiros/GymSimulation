@@ -3,7 +3,7 @@ import math
 from classes.Map import Area, Boundary, SpawnPoint
 AFORO_PATH = 'data/entradas_7am.json'    
 #AFORO_ZONAS_PATH = 'data/aforo_zonas_7am.json'
-AFORO_ZONAS_PATH = 'data/aforo-x-horas/MIERCOLES_18.json'
+AFORO_ZONAS_PATH = 'data/aforo-x-horas/VIERNES_18.json'
 AFORO_CLASES_PATH = 'data/clases_7am.json'
 
 def extract_aforo(file_path):
