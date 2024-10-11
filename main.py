@@ -37,8 +37,8 @@ def main():
 
     print(f"Animation saved as '{output_file}'")
 
-    for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
-        os.remove(file_path)
+    # for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
+    #     os.remove(file_path)
 
 if __name__ == "__main__":
     main()

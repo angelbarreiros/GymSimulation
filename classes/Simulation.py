@@ -22,6 +22,7 @@ COLORS = {
     'Brown': (42, 42, 165),
     'Pink': (203, 192, 255)
 }
+TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
@@ -43,11 +44,12 @@ class Simulation:
         return None
 
     def getStairs(self):
+        id = np.random.choice(TPLIST)
         stairs = []
-        for floor in self.floors:
-            floor_stairs = [area for area in self.target_areas if area.type == 'NOFUNCIONAL' and area.floor == floor]
-            if floor_stairs:
-                stairs.append(np.random.choice(floor_stairs))
+        for area in self.target_areas:
+            if area.type == 'NOFUNCIONAL' and area.name==id:
+                stairs.append(area)
+        #print(f"Stairs: {stairs}")
         return stairs
 
     def initialize_person(self, num_person, available_spawn_points, frame):
@@ -87,14 +89,20 @@ class Simulation:
         def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=10):
             pts = boundary.points.reshape((-1, 1, 2))
             cv2.polylines(frame, [pts], isClosed=False, color=color, thickness=thickness)
-
         def draw_target_area(frame, area, color=(255, 0, 0), thickness=2): 
             pts = area.points.reshape((-1, 1, 2))
-            #cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
+            cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
             center = area.points.mean(axis=0).astype(int)
             cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
             cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
-            
+        def draw_spawn_point(frame, spawn_point, color=(0, 255, 0), thickness=2):
+            top_left = (spawn_point.coords[0] - 5, spawn_point.coords[1] - 5)
+            bottom_right = (spawn_point.coords[0] + 5, spawn_point.coords[1] + 5)
+            top_left = (spawn_point.coords[0] - 10, spawn_point.coords[1] - 10)
+            bottom_right = (spawn_point.coords[0] + 10, spawn_point.coords[1] + 10)
+            cv2.rectangle(frame, top_left, bottom_right, color, thickness)
+            cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+
         def paint_area(frame, area):
             pts = area.points.reshape((-1, 1, 2))
 
@@ -168,7 +176,7 @@ class Simulation:
             current_frame = combined_frame.copy()
 
             # Change 'frame' to 'current_frame' in these lines
-            time_str = f"Time: {self.hora}:{frame_num // 600:02d}"
+            time_str = f"Time: {self.hora}:{str(int(frame_num / 10)).zfill(2)[:2]}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             current_persons = sum(1 for person in self.persons 
@@ -194,6 +202,10 @@ class Simulation:
                 if area.type=='VESTUARIO':
                     floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
                     paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
+
+            for spawn in self.spawn_points:
+                floor_offset = header_height + (len(self.floors) - 1 - spawn.floor) * height
+                draw_spawn_point(current_frame[floor_offset:floor_offset+height, 0:width], spawn, COLORS['Green'])
             # Save the frame
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)

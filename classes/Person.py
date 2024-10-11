@@ -5,8 +5,6 @@ SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
 
 class Person:
-    
-    
     def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0):
         self.id = person_id
         self.x = start_x
@@ -52,7 +50,7 @@ class Person:
                     # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
                     self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
                                                          src=(int(self.x), int(self.y)), dest=self.target_coords,
-                                                         scale_factor=SCALE_FACTOR, debug=True)
+                                                         scale_factor=SCALE_FACTOR, debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                 elif self.state == 'moving_stairs': # if stairs, go to destination floor
