@@ -1,0 +1,28 @@
+[
+    {
+        "id": "/enjoy/class_events/15088391",
+        "studio": "Sala Fitness",
+        "activity": "FUNCIONAL 360",
+        "colorHex": "#fcc400",
+        "isBookable": true,
+        "isViewable": true,
+        "coach": "Sofia Barkhioua Alvarez",
+        "attendingLimit": 12,
+        "bookedAttendees": 7,
+        "startedAt": "2024-08-05T07:00:00",
+        "endedAt": "2024-08-05T07:30:00"
+    },
+    {
+        "id": "/enjoy/class_events/15089060",
+        "studio": "Studio 2",
+        "activity": "BODY PUMP VIRTUAL",
+        "colorHex": "#ea474a",
+        "isBookable": true,
+        "isViewable": true,
+        "coach": "",
+        "attendingLimit": 36,
+        "bookedAttendees": 0,
+        "startedAt": "2024-08-05T07:15:00",
+        "endedAt": "2024-08-05T08:00:00"
+    }
+]

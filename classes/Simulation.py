@@ -143,7 +143,7 @@ class Simulation:
         os.makedirs(output_folder, exist_ok=True)
 
         # Step 2: Set up
-        floor_frames = [cv2.imread(f"data/Planta{i}.png") for i in range(len(self.floors))]
+        floor_frames = [cv2.imread(f"data/images/Planta{i}.png") for i in range(len(self.floors))]
         floor_frames.reverse() 
         nfloors = len(self.floors)
         height, width = floor_frames[0].shape[:2]

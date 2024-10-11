@@ -1,0 +1,86 @@
+[
+  {
+    "zona": "BAÑO VAPOR",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "PP EXT.",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "SOLARIUM",
+    "porcentage_ocupación": "0",
+    "aforo": 30,
+    "oc.prom": 0
+  },
+  {
+    "zona": "DESCANSO",
+    "porcentage_ocupación": "0",
+    "aforo": 25,
+    "oc.prom": 0
+  },
+  {
+    "zona": "PP",
+    "porcentage_ocupación": "8",
+    "aforo": 25,
+    "oc.prom": 2
+  },
+  {
+    "zona": "PG",
+    "porcentage_ocupación": "7",
+    "aforo": 42,
+    "oc.prom": 3
+  },
+  {
+    "zona": "SAUNA",
+    "porcentage_ocupación": "7",
+    "aforo": 15,
+    "oc.prom": 1
+  },
+  {
+    "zona": "BAÑO VAPOR",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "PP EXT.",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "SOLARIUM",
+    "porcentage_ocupación": "3",
+    "aforo": 30,
+    "oc.prom": 1
+  },
+  {
+    "zona": "DESCANSO",
+    "porcentage_ocupación": "0",
+    "aforo": 25,
+    "oc.prom": 0
+  },
+  {
+    "zona": "LUDOTECA",
+    "porcentage_ocupación": "8",
+    "aforo": 50,
+    "oc.prom": 4
+  },
+  {
+    "zona": "CARDIO",
+    "porcentage_ocupación": "16",
+    "aforo": 70,
+    "oc.prom": 11
+  },
+  {
+    "zona": "CIRCUIT",
+    "porcentage_ocupación": "20",
+    "aforo": 10,
+    "oc.prom": 2
+  }
+]
