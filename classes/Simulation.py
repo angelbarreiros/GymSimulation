@@ -16,6 +16,7 @@ TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentro
 class Simulation:
     def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
         self.boundaries = boundary_points
+        # random.shuffle(target_areas)
         self.target_areas = target_areas
         self.spawn_points = spawn_points
         self.persons = []
@@ -25,13 +26,13 @@ class Simulation:
         self.floors = np.unique([area.floor for area in self.target_areas])
 
     def getTargetArea(self):
-        # if random.random() < locker_room_prob:
+        # if random.random() < LOCKER_ROOM_PROB:
         #     locker_room_lst = []
         #     for area in self.target_areas:
         #         if area.type == 'VESTUARIO':
         #             locker_room_lst.append(area)
         #     return random.choice(locker_room_lst)
-        random.shuffle(self.target_areas)
+        # random.shuffle(self.target_areas)
         for area in self.target_areas:
             if area.actualCapacity<area.targetCapacity and area.type!='NOFUNCIONAL':
                 area.actualCapacity += 1
@@ -48,7 +49,7 @@ class Simulation:
         #print(f"Stairs: {stairs}")
         return stairs
 
-    def initialize_person(self, num_person, available_spawn_points, frame):
+    def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.8):
         if not available_spawn_points:
             print(f"No available spawn points for person {num_person} in frame {frame}")
             return False
@@ -57,7 +58,7 @@ class Simulation:
         #target_coords = [self.getTargetArea().center_x, self.getTargetArea().center_y]
         
         locker_room = None
-        if random.random() < .8:
+        if random.random() < locker_room_prob:
             locker_room_lst = []
             for area in self.target_areas:
                 if area.type == 'VESTUARIO':

@@ -2,7 +2,7 @@ import numpy as np
 from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid
 
 SCALE_FACTOR = 10
-MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
+MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(4)]
 
 class Person:
     def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0, locker_room=None):
@@ -42,8 +42,8 @@ class Person:
             if not self.route:  # calcular ruta si no tiene
                 if self.state == None:  # primera vez o acaba de llegar al piso destino
                     if self.locker_room!=None and self.locker_room.floor==self.current_floor:
-                            self.target_coords = self.locker_room.getPointInside()
-                            self.state = 'moving_lockers'
+                        self.target_coords = self.locker_room.getPointInside()
+                        self.state = 'moving_lockers'
                     elif (self.target_area.floor != self.current_floor) or (self.locker_room!=None and self.locker_room.floor!=self.current_floor):  # target is not in this floor -> go to stairs
                         self.target_coords = self.stairs[self.current_floor].getPointInside()
                         self.state = 'moving_stairs'

@@ -275,7 +275,9 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
 
     # If the destination is not found after visiting all cells
     if not found_dest:
-        print("Failed to find the destination cell")
+        # if debug:
+        print(f"Failed to find the destination cell: {src, dest}")
+        # return [src]
 
 def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
 
