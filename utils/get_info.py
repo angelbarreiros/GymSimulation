@@ -2,7 +2,6 @@ import json
 import math
 from classes.Map import Area, Boundary, SpawnPoint, Activity
 from utils.get_zones_json import get_day_name
-
 AFORO_PATH = 'data/clases_2024-08-05.json'    
 #AFORO_ZONAS_PATH = 'data/aforo_zonas_7am.json'
 AFORO_ZONAS_PATH = 'data/aforo-x-horas/LUNES_07.json'
@@ -37,6 +36,8 @@ def extract_aforo_zonas(file_path):
     result['NOFUNCIONAL']={'targetCapacity':0,'totalCapacity':0}
     result['VESTUARIO']={'targetCapacity':0,'totalCapacity':0}
     result['CLASE']={'targetCapacity':0,'totalCapacity':0}
+    result['CLASE']={'targetCapacity':0,'totalCapacity':0}
+    
     return result
 
 
@@ -57,9 +58,11 @@ def get_data(dia, hora):
 
     with open('data/zones.json', 'r') as file:
         data = json.load(file)
+        
         all_areas = []
         all_walls = []
         all_spawns = []
+        all_classes = []
         all_classes = []
         floorNum=0
         for floor in data:
@@ -77,7 +80,14 @@ def get_data(dia, hora):
                     targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
                     area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type, machines)   # ?¿
                     all_areas.append(area)
+                    if type == 'CLASE':
+                        result = extract_clases(AFORO_CLASES_PATH, area)
+                        if result is not None:
+                            all_classes.append(result)
+                    
+                        
                 except Exception:
+                    
                     area = Area(name, points, 0, 0, floorNum, type, machines) 
                     all_areas.append(area)
                     if type == 'CLASE':
@@ -93,8 +103,7 @@ def get_data(dia, hora):
                 spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floorNum)
                 all_spawns.append(spawn)
             floorNum+=1
-            
-
+                    
         npersons = sum(area.targetCapacity for area in all_areas)
         print(f"Num persons: {npersons}, Entradas: {entrada}, Salidas: {salida}")
         return npersons, all_areas, all_walls, all_spawns, hora
