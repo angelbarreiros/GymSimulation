@@ -1,6 +1,6 @@
 import json
 import math
-from classes.Map import Area, Boundary, SpawnPoint
+from classes.Map import Area, Boundary, SpawnPoint, Activity
 AFORO_PATH = 'data/entradas_7am.json'    
 #AFORO_ZONAS_PATH = 'data/aforo_zonas_7am.json'
 AFORO_ZONAS_PATH = 'data/aforo-x-horas/VIERNES_18.json'
@@ -32,34 +32,35 @@ def extract_aforo_zonas(file_path):
         result[k]={'targetCapacity':v['ocupancy'],'totalCapacity':v['aforo']}
     result['NOFUNCIONAL']={'targetCapacity':0,'totalCapacity':0}
     result['VESTUARIO']={'targetCapacity':0,'totalCapacity':0}
+    result['CLASE']={'targetCapacity':0,'totalCapacity':0}
+    
     return result
 
-def extract_clases(aforo_clases_path):
+def extract_clases(aforo_clases_path,zone):
     with open(aforo_clases_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     
-    aforo_clases = {}
     for clase in data:
-        aforo_clases[clase['studio']] = {
-            'aforo': clase['bookedAttendees'],
-        }
-    
-    return aforo_clases
+        if clase['studio']==zone.name:
+            targetClassArea=Area(zone.name,zone.points,clase['attendingLimit'],clase['bookedAttendees'],3,zone.type,zone.machines)
+            newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=targetClassArea)  
+            return newClass
+
 
 def get_data():
     with open('data/zones.json', 'r') as file:
         data = json.load(file)
+        
         all_areas = []
         all_walls = []
         all_spawns = []
+        all_classes = []
         floorNum=0
         for floor in data:
             hora, entrada, salida = extract_aforo(AFORO_PATH)
 
             aforo_zonas = extract_aforo_zonas(AFORO_ZONAS_PATH)
 
-            aforo_clases = extract_clases(AFORO_CLASES_PATH)
-            
             zones= data[floor]["Zones"]
             for zone in zones:
                 
@@ -74,7 +75,14 @@ def get_data():
                     targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
                     area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type, machines)   # ?¿
                     all_areas.append(area)
+                    if type == 'CLASE':
+                        result = extract_clases(AFORO_CLASES_PATH, area)
+                        if result is not None:
+                            all_classes.append(result)
+                    
+                        
                 except Exception:
+                    
                     area = Area(name, points, 0, 0, floorNum, type, machines) 
                     all_areas.append(area)
             
@@ -90,6 +98,5 @@ def get_data():
                 spawn = SpawnPoint(spawn["Name"], spawn["Coordinates"], floorNum)
                 all_spawns.append(spawn)
             floorNum+=1
-
-
+        
         return npersons, all_areas, all_walls, all_spawns, hora
