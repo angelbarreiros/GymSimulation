@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 import cv2
 import numpy as np
@@ -9,19 +10,21 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from utils.draw import *
 import math
+from utils.get_info import get_data
+
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
 class Simulation:
-    def __init__(self, num_persons, boundary_points, target_areas, spawn_points, hora):
-        self.boundaries = boundary_points
-        self.target_areas = target_areas
-        self.spawn_points = spawn_points
+    def __init__(self):
+        self.boundaries = None
+        self.target_areas = None
+        self.spawn_points = None
         self.persons = []
-        self.npersons = num_persons
-        self.movement_data = pd.DataFrame()
-        self.hora = hora
-        self.floors = np.unique([area.floor for area in self.target_areas])
+        self.npersons = None
+        #self.movement_data = pd.DataFrame()
+        self.hora = None
+        self.floors = None
 
     def getTargetArea(self):
         for area in self.target_areas:
@@ -40,6 +43,25 @@ class Simulation:
         #print(f"Stairs: {stairs}")
         return stairs
 
+    def load_data(self, filename):
+        with open(filename, 'rb') as f:
+            state = pickle.load(f)
+            self.persons = state['persons']
+            self.target_areas = state['areas']
+        print(f"Loaded {len(self.persons)} persons and {len(self.target_areas)} areas")
+
+    def get_data_hour(self, dia, hora):
+        npersons, areas, paredes, spawns, hora = get_data(dia, hora)
+        print(f"Num areas: {len(areas)}, Num walls: {len(paredes)}, Num spawns: {len(spawns)}")
+        self.boundaries = paredes
+        self.target_areas = areas
+        self.spawn_points = spawns
+        self.hora = hora
+        self.npersons = npersons
+        self.floors = np.unique([area.floor for area in self.target_areas])
+
+        return npersons, areas, paredes, spawns, hora
+
     def initialize_person(self, num_person, available_spawn_points, frame):
         if not available_spawn_points:
             print(f"No available spawn points for person {num_person} in frame {frame}")
@@ -52,28 +74,38 @@ class Simulation:
         available_spawn_points.remove(spawn_point)
         return True
 
-    def simulate(self, frames, spawn_interval=10, max_spawn=1):
-        for frame in tqdm.tqdm(range(frames)):
-            if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
-                available_spawn_points = self.spawn_points.copy()
-                spawned_count = 0
-                while spawned_count < max_spawn and len(self.persons) < self.npersons:
-                    if self.initialize_person(len(self.persons), available_spawn_points, frame):
-                        spawned_count += 1
-                    else:
-                        break 
+    def simulate(self, frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+        for hora in hours:
+            self.get_data_hour(dia, hora)
+            for frame in tqdm.tqdm(range(frames)):
+                if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
+                    available_spawn_points = self.spawn_points.copy()
+                    spawned_count = 0
+                    while spawned_count < max_spawn and len(self.persons) < self.npersons:
+                        if self.initialize_person(len(self.persons), available_spawn_points, frame):
+                            spawned_count += 1
+                        else:
+                            break 
 
-            for person in self.persons:
-                person.move()
+                for person in self.persons:
+                    person.move()
+        # Save the state of the simulation
+        # state = {
+        #     'persons': [person for person in self.persons],
+        #     'areas': [area for area in self.target_areas],
+        #     'hora': self.hora
+        # }
+        # with open(f'data/sim_states/simulation_{self.hora}.pkl', 'wb') as f:
+        #     pickle.dump(state, f)
 
         # Collect all movement data
-        data = []
-        for person in self.persons:
-            for step, (x, y, floor, state) in enumerate(person.history):
-                data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y, 'floor': floor, 'state': state})
-        self.movement_data = pd.DataFrame(data)
+        # data = []
+        # for person in self.persons:
+        #     for step, (x, y, floor, state) in enumerate(person.history):
+        #         data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y, 'floor': floor, 'state': state})
+        # self.movement_data = pd.DataFrame(data)
 
-    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600):
+    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8]):
         start_time = time.time()    
         os.makedirs(output_folder, exist_ok=True)
 
@@ -98,8 +130,11 @@ class Simulation:
 
         def process_frame(frame_num):
             current_frame = combined_frame.copy()
+            minutes = int(frame_num / 10)  # Assuming each frame represents 0.1 seconds
+            hours = self.hora + minutes // 60
+            minutes = minutes % 60
 
-            time_str = f"Time: {self.hora}:{str(int(frame_num / 10)).zfill(2)[:2]}"
+            time_str = f"Time: {hours:02d}:{minutes:02d}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             current_persons = sum(1 for person in self.persons 
@@ -145,11 +180,10 @@ class Simulation:
 
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
-
         with ThreadPoolExecutor() as executor:
-            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames)]
+            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
             
-            for _ in tqdm.tqdm(as_completed(futures), total=total_frames, desc="Generating frames", unit="frame"):
+            for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
                 pass
 
         end_time = time.time()

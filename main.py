@@ -2,22 +2,21 @@ import numpy as np
 import subprocess
 import os
 from classes.Simulation import Simulation
-from utils.get_info import get_data
 
 TOTAL_FRAMES = 600
 def main():
     
-    npersons, areas, paredes, spawns, hora = get_data()
     np.random.seed(123)
-    print(f"Num persons: {npersons}, Num areas: {len(areas)}, Num walls: {len(paredes)}, Num spawns: {len(spawns)}")
 
-    sim = Simulation(num_persons=npersons, boundary_points=paredes, target_areas=areas, spawn_points=spawns, hora=int(hora))
+    sim = Simulation()
     
+    #sim.load_data('data/sim_states/simulation_7.pkl')
+
     print('Creating simulation...')
-    sim.simulate(TOTAL_FRAMES, spawn_interval=5, max_spawn=2)
+    sim.simulate(TOTAL_FRAMES, hours=[7, 8], spawn_interval=5, max_spawn=2)
     
     print('Creating animation...')
-    anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES)
+    anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=[7, 8])
 
     #output_file = 'multi_person_movement.gif'
     output_file = 'multi_person_movement.mp4'

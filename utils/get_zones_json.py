@@ -66,6 +66,12 @@ def write_json(data, hour, first_line):
     print(f"Data has been processed and written to {output_file}")
     print(f"Number of records processed: {len(data)}")
 
-# Usage
-input_file = 'paste.txt'  # Replace with your input file name
-process_data(input_file)
+def get_day_name(date_str):
+    date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+    days_in_spanish = ["LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"]
+    return days_in_spanish[date_obj.weekday()]
+
+if __name__ == "__main__":
+    # Usage
+    input_file = 'paste.txt'  # Replace with your input file name
+    process_data(input_file)

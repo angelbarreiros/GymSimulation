@@ -50,3 +50,10 @@ class SpawnPoint:
         self.name = name
         self.coords = np.array(points, dtype=np.int32)
         self.floor = floor
+
+class Activity:
+    def __init__(self,name,startDate,endDate,Area):
+        self.name = name
+        self.startDate = startDate
+        self.endDate = endDate
+        self.Area = Area
