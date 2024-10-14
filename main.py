@@ -22,16 +22,22 @@ def main():
     #output_file = 'multi_person_movement.gif'
     output_file = 'multi_person_movement.mp4'
     #subprocess.run(['ffmpeg', '-framerate', '30', '-i', 'data/animation_frames/frame_%04d.png', '-vf', 'scale=800:-1', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', output_file], check=True)
-    
+                
     subprocess.run([
         'ffmpeg',
         '-framerate', '30',
         '-i', 'data/animation_frames/frame_%04d.png',
         '-c:v', 'libx264',
         '-preset', 'veryslow',
-        '-crf', '12',
-        '-vf', 'scale=800:-1:flags=lanczos',
+        '-crf', '17',
+        '-vf', 'scale=1920:-2:flags=lanczos,fps=60',
         '-pix_fmt', 'yuv420p',
+        '-b:v', '10M',
+        '-maxrate', '15M',
+        '-bufsize', '20M',
+        '-movflags', '+faststart',
+        '-profile:v', 'high',
+        '-level', '4.2',
         output_file
     ], check=True)
 

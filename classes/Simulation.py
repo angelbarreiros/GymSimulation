@@ -8,6 +8,7 @@ from multiprocessing import Pool, cpu_count
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from utils.draw import *
+import math
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
@@ -73,61 +74,84 @@ class Simulation:
         self.movement_data = pd.DataFrame(data)
 
     def animate_cv2(self, output_folder='data/animation_frames', total_frames=600):
-            start_time = time.time()    
-            os.makedirs(output_folder, exist_ok=True)
+        start_time = time.time()    
+        os.makedirs(output_folder, exist_ok=True)
 
-            floor_frames = [cv2.imread(f"data/images/Planta{i}.png") for i in range(len(self.floors))]
-            floor_frames.reverse() 
-            nfloors = len(self.floors)
-            height, width = floor_frames[0].shape[:2] 
-            header_height = 100 
-            color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
+        floor_frames = [cv2.imread(f"data/images/Planta{i}.png") for i in range(len(self.floors))]
+        nfloors = len(self.floors)
+        height, width = floor_frames[0].shape[:2] 
+        header_height = 100 
+        color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
 
-            combined_height = (height * nfloors) + header_height
-            combined_frame = np.full((combined_height, width, 3), 255, dtype=np.uint8)
-            for i, frame in enumerate(floor_frames):
-                combined_frame[header_height + i*height:header_height + (i+1)*height, 0:width] = frame
+        # Calculate the dimensions for the square layout
+        grid_size = math.ceil(math.sqrt(nfloors))
+        combined_width = width * grid_size 
+        combined_height = (height * grid_size) + header_height
+        print(f"Combined width: {combined_width}, Combined height: {combined_height}")
+        combined_frame = np.full((combined_height, combined_width, 3), 255, dtype=np.uint8)
+        for i, frame in enumerate(floor_frames):
+            row = i // grid_size
+            col = i % grid_size
+            y_start = header_height + row * height
+            x_start = col * width
+            combined_frame[y_start:y_start+height, x_start:x_start+width] = frame
 
-            def process_frame(frame_num):
-                current_frame = combined_frame.copy()
+        def process_frame(frame_num):
+            current_frame = combined_frame.copy()
 
-                time_str = f"Time: {self.hora}:{str(int(frame_num / 10)).zfill(2)[:2]}"
-                cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
+            time_str = f"Time: {self.hora}:{str(int(frame_num / 10)).zfill(2)[:2]}"
+            cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
-                current_persons = sum(1 for person in self.persons 
-                                    if person.startFrame <= frame_num < person.startFrame + len(person.history))
-                person_count_str = f"Persons: {current_persons}"
-                cv2.putText(current_frame, person_count_str, (width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
+            current_persons = sum(1 for person in self.persons 
+                                if person.startFrame <= frame_num < person.startFrame + len(person.history))
+            person_count_str = f"Persons: {current_persons}"
+            cv2.putText(current_frame, person_count_str, (combined_width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
-                for person in self.persons:
-                    if person.startFrame <= frame_num < person.startFrame + len(person.history):
-                        x, y, floor, state = person.history[frame_num - person.startFrame]
-                        floor_offset = header_height + (len(self.floors) - 1 - floor) * height
-                        draw_person(current_frame[floor_offset:floor_offset+height, 0:width], 
-                                    x, y, color_map[person.id])
+            for person in self.persons:
+                if person.startFrame <= frame_num < person.startFrame + len(person.history):
+                    x, y, floor, state = person.history[frame_num - person.startFrame]
+                    row = floor // grid_size
+                    col = floor % grid_size
+                    floor_offset_y = header_height + row * height
+                    floor_offset_x = col * width
+                    draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
+                                x, y, color_map[person.id])
 
-                for area in self.target_areas:
-                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
-                    if area.type == 'NOFUNCIONAL':
-                        paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
-                    elif area.type == 'VESTUARIO':
-                        paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
-                    else:
-                        paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area, self.persons, frame_num)
+            # for wall in self.boundaries:
+            #     row = wall.floor // grid_size
+            #     col = wall.floor % grid_size
+            #     floor_offset_y = header_height + row * height
+            #     floor_offset_x = col * width
+            #     draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
 
-                for spawn in self.spawn_points:
-                    floor_offset = header_height + (len(self.floors) - 1 - spawn.floor) * height
-                    draw_spawn_point(current_frame[floor_offset:floor_offset+height, 0:width], spawn, COLORS['Green'])
+            for area in self.target_areas:
+                row = area.floor // grid_size
+                col = area.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                if area.type == 'NOFUNCIONAL':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, COLORS['Blue'])
+                elif area.type == 'VESTUARIO':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, COLORS['Purple'])
+                else:
+                    paint_area(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
 
-                frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
-                cv2.imwrite(frame_filename, current_frame)
+            for spawn in self.spawn_points:
+                row = spawn.floor // grid_size
+                col = spawn.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                draw_spawn_point(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
 
-            with ThreadPoolExecutor() as executor:
-                futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames)]
-                
-                for _ in tqdm.tqdm(as_completed(futures), total=total_frames, desc="Generating frames", unit="frame"):
-                    pass
+            frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
+            cv2.imwrite(frame_filename, current_frame)
 
-            end_time = time.time()
-            total_time = end_time - start_time
-            print(f"Total time taken: {total_time:.2f} seconds")
+        with ThreadPoolExecutor() as executor:
+            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames)]
+            
+            for _ in tqdm.tqdm(as_completed(futures), total=total_frames, desc="Generating frames", unit="frame"):
+                pass
+
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(f"Total time taken: {total_time:.2f} seconds")
