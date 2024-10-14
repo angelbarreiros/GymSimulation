@@ -1,0 +1,86 @@
+[
+  {
+    "zona": "CIRCUIT",
+    "porcentage_ocupación": "40",
+    "aforo": 10,
+    "oc.prom": 4
+  },
+  {
+    "zona": "ISOTÓNICO",
+    "porcentage_ocupación": "147",
+    "aforo": 32,
+    "oc.prom": 47
+  },
+  {
+    "zona": "FUNCIONAL",
+    "porcentage_ocupación": "50",
+    "aforo": 12,
+    "oc.prom": 6
+  },
+  {
+    "zona": "PESO LIBRE",
+    "porcentage_ocupación": "116",
+    "aforo": 50,
+    "oc.prom": 58
+  },
+  {
+    "zona": "CORE",
+    "porcentage_ocupación": "50",
+    "aforo": 20,
+    "oc.prom": 10
+  },
+  {
+    "zona": "LUDOTECA",
+    "porcentage_ocupación": "56",
+    "aforo": 50,
+    "oc.prom": 28
+  },
+  {
+    "zona": "X-TRAINING",
+    "porcentage_ocupación": "62",
+    "aforo": 24,
+    "oc.prom": 15
+  },
+  {
+    "zona": "PP",
+    "porcentage_ocupación": "28",
+    "aforo": 25,
+    "oc.prom": 7
+  },
+  {
+    "zona": "PG",
+    "porcentage_ocupación": "12",
+    "aforo": 42,
+    "oc.prom": 5
+  },
+  {
+    "zona": "SAUNA",
+    "porcentage_ocupación": "27",
+    "aforo": 15,
+    "oc.prom": 4
+  },
+  {
+    "zona": "BAÑO VAPOR",
+    "porcentage_ocupación": "20",
+    "aforo": 15,
+    "oc.prom": 3
+  },
+  {
+    "zona": "SOLARIUM",
+    "porcentage_ocupación": "0",
+    "aforo": 30,
+    "oc.prom": 0
+  },
+  {
+    "zona": "DESCANSO",
+    "porcentage_ocupación": "16",
+    "aforo": 25,
+    "oc.prom": 4
+  },
+  {
+    "zona": "LUDOTECA",
+    "porcentage_ocupación": "24",
+    "aforo": 50,
+    "oc.prom": 12
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "zona": "SOLARIUM",
+    "porcentage_ocupación": "0",
+    "aforo": 30,
+    "oc.prom": 0
+  },
+  {
+    "zona": "DESCANSO",
+    "porcentage_ocupación": "8",
+    "aforo": 25,
+    "oc.prom": 2
+  },
+  {
+    "zona": "CARDIO",
+    "porcentage_ocupación": "37",
+    "aforo": 70,
+    "oc.prom": 26
+  },
+  {
+    "zona": "CIRCUIT",
+    "porcentage_ocupación": "50",
+    "aforo": 10,
+    "oc.prom": 5
+  },
+  {
+    "zona": "ISOTÓNICO",
+    "porcentage_ocupación": "100",
+    "aforo": 32,
+    "oc.prom": 32
+  },
+  {
+    "zona": "FUNCIONAL",
+    "porcentage_ocupación": "25",
+    "aforo": 12,
+    "oc.prom": 3
+  },
+  {
+    "zona": "PESO LIBRE",
+    "porcentage_ocupación": "84",
+    "aforo": 50,
+    "oc.prom": 42
+  },
+  {
+    "zona": "CORE",
+    "porcentage_ocupación": "35",
+    "aforo": 20,
+    "oc.prom": 7
+  },
+  {
+    "zona": "X-TRAINING",
+    "porcentage_ocupación": "25",
+    "aforo": 24,
+    "oc.prom": 6
+  },
+  {
+    "zona": "PP",
+    "porcentage_ocupación": "0",
+    "aforo": 25,
+    "oc.prom": 0
+  },
+  {
+    "zona": "PG",
+    "porcentage_ocupación": "7",
+    "aforo": 42,
+    "oc.prom": 3
+  },
+  {
+    "zona": "SAUNA",
+    "porcentage_ocupación": "20",
+    "aforo": 15,
+    "oc.prom": 3
+  },
+  {
+    "zona": "BAÑO VAPOR",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "PP EXT.",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  }
+]

@@ -1,0 +1,19 @@
+{
+    "dia": "2024-08-05",
+    "hora": "07",
+    "total_entrada": 54,
+    "total_salida": 11,
+    "entrada": 50,
+    "salida": 11,
+    "menores-entrada": 0,
+    "menores-salida": 0,
+    "error-entrada": [],
+    "error-salida": [],
+    "duplicados-entrada": {
+        "10615667": 2,
+        "10625548": 2,
+        "10631183": 2,
+        "10635639": 2
+    },
+    "duplicados-salida": []
+}

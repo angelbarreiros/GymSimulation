@@ -1,0 +1,86 @@
+[
+  {
+    "zona": "ISOTÓNICO",
+    "porcentage_ocupación": "100",
+    "aforo": 32,
+    "oc.prom": 32
+  },
+  {
+    "zona": "FUNCIONAL",
+    "porcentage_ocupación": "42",
+    "aforo": 12,
+    "oc.prom": 5
+  },
+  {
+    "zona": "PESO LIBRE",
+    "porcentage_ocupación": "72",
+    "aforo": 50,
+    "oc.prom": 36
+  },
+  {
+    "zona": "CORE",
+    "porcentage_ocupación": "40",
+    "aforo": 20,
+    "oc.prom": 8
+  },
+  {
+    "zona": "X-TRAINING",
+    "porcentage_ocupación": "25",
+    "aforo": 24,
+    "oc.prom": 6
+  },
+  {
+    "zona": "PP EXT.",
+    "porcentage_ocupación": "0",
+    "aforo": 15,
+    "oc.prom": 0
+  },
+  {
+    "zona": "SOLARIUM",
+    "porcentage_ocupación": "3",
+    "aforo": 30,
+    "oc.prom": 1
+  },
+  {
+    "zona": "LUDOTECA",
+    "porcentage_ocupación": "38",
+    "aforo": 50,
+    "oc.prom": 19
+  },
+  {
+    "zona": "PP",
+    "porcentage_ocupación": "4",
+    "aforo": 25,
+    "oc.prom": 1
+  },
+  {
+    "zona": "PG",
+    "porcentage_ocupación": "10",
+    "aforo": 42,
+    "oc.prom": 4
+  },
+  {
+    "zona": "SAUNA",
+    "porcentage_ocupación": "20",
+    "aforo": 15,
+    "oc.prom": 3
+  },
+  {
+    "zona": "BAÑO VAPOR",
+    "porcentage_ocupación": "13",
+    "aforo": 15,
+    "oc.prom": 2
+  },
+  {
+    "zona": "DESCANSO",
+    "porcentage_ocupación": "4",
+    "aforo": 25,
+    "oc.prom": 1
+  },
+  {
+    "zona": "CIRCUIT",
+    "porcentage_ocupación": "30",
+    "aforo": 10,
+    "oc.prom": 3
+  }
+]

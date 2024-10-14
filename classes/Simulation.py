@@ -5,24 +5,12 @@ import os
 import tqdm
 import random
 from classes.Person import Person
+from multiprocessing import Pool, cpu_count
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+from utils.draw import *
+import math
 
-COLORS = {
-    'Red': (0, 0, 255),
-    'Green': (0, 255, 0),
-    'Blue': (255, 0, 0),
-    'Yellow': (0, 255, 255),  # Keeping yellow as is (bright yellow)
-    'Cyan': (255, 255, 0),
-    'Magenta': (255, 0, 255),
-    'White': (255, 255, 255),
-    'Black': (0, 0, 0),
-    'Gray': (128, 128, 128),
-    'Dark Gray': (64, 64, 64),
-    'Light Gray': (192, 192, 192),
-    'Orange': (0, 140, 255),  # Modified to a deeper orange
-    'Purple': (128, 0, 128),
-    'Brown': (42, 42, 165),
-    'Pink': (203, 192, 255)
-}
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
 class Simulation:
@@ -102,126 +90,84 @@ class Simulation:
         self.movement_data = pd.DataFrame(data)
 
     def animate_cv2(self, output_folder='data/animation_frames', total_frames=600):
-        def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=10):
-            pts = boundary.points.reshape((-1, 1, 2))
-            cv2.polylines(frame, [pts], isClosed=False, color=color, thickness=thickness)
-        def draw_target_area(frame, area, color=(255, 0, 0), thickness=2): 
-            pts = area.points.reshape((-1, 1, 2))
-            cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=thickness)
-            center = area.points.mean(axis=0).astype(int)
-            cv2.putText(frame, f"Area {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
-            cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
-        def draw_spawn_point(frame, spawn_point, color=(0, 255, 0), thickness=2):
-            top_left = (spawn_point.coords[0] - 5, spawn_point.coords[1] - 5)
-            bottom_right = (spawn_point.coords[0] + 5, spawn_point.coords[1] + 5)
-            top_left = (spawn_point.coords[0] - 10, spawn_point.coords[1] - 10)
-            bottom_right = (spawn_point.coords[0] + 10, spawn_point.coords[1] + 10)
-            cv2.rectangle(frame, top_left, bottom_right, color, thickness)
-            cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-
-        def paint_area(frame, area):
-            pts = area.points.reshape((-1, 1, 2))
-
-            if area.totalCapacity == 0:
-                fill_color = (0, 0, 255)  # Red
-            else:
-                n = sum(1 for person in self.persons 
-                        if person.target_area == area 
-                        and person.startFrame <= frame_num < person.startFrame + len(person.history)
-                        and person.history[frame_num - person.startFrame][3] == 'reached')
-                occupancy_percent = ( n/ area.totalCapacity) * 100
-                if 0 <= occupancy_percent < 20:
-                    fill_color = COLORS['Red']  # Red
-                elif 20 <= occupancy_percent < 40:
-                    fill_color = COLORS['Orange']  # Orange
-                elif 40 <= occupancy_percent < 60:
-                    fill_color = COLORS['Yellow']  # Yellow
-                elif 60 <= occupancy_percent < 80:
-                    fill_color = COLORS['Green']  # Green
-                else:
-                    fill_color = COLORS['Black']  # Black
-            overlay = frame.copy()
-            cv2.fillPoly(overlay, [pts], fill_color)
-            alpha = 0.3
-            cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
-
-        def paint_noarea(frame, area, color):
-            overlay = frame.copy()
-            pts = area.points.reshape((-1, 1, 2))
-            cv2.fillPoly(overlay, [pts], color)
-            alpha = 0.5
-            cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
-
-        def draw_person(frame, x, y, color):
-            cv2.circle(frame, (int(x), int(y)), 10, color, -1)
-
-        # Step 1: Create output folder if it doesn't exist
+        start_time = time.time()    
         os.makedirs(output_folder, exist_ok=True)
 
-        # Step 2: Set up
-        floor_frames = [cv2.imread(f"data/Planta{i}.png") for i in range(len(self.floors))]
-        floor_frames.reverse() 
+        floor_frames = [cv2.imread(f"data/images/Planta{i}.png") for i in range(len(self.floors))]
         nfloors = len(self.floors)
-        height, width = floor_frames[0].shape[:2]
+        height, width = floor_frames[0].shape[:2] 
         header_height = 100 
         color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
 
-        # Combine the floors into one image
-        combined_height = (height * nfloors) + header_height
-        combined_frame = np.full((combined_height, width, 3), 255, dtype=np.uint8)
-        # Copy floor frames to the combined frame
+        # Calculate the dimensions for the square layout
+        grid_size = math.ceil(math.sqrt(nfloors))
+        combined_width = width * grid_size 
+        combined_height = (height * grid_size) + header_height
+        print(f"Combined width: {combined_width}, Combined height: {combined_height}")
+        combined_frame = np.full((combined_height, combined_width, 3), 255, dtype=np.uint8)
         for i, frame in enumerate(floor_frames):
-            combined_frame[header_height + i*height:header_height + (i+1)*height, 0:width] = frame
+            row = i // grid_size
+            col = i % grid_size
+            y_start = header_height + row * height
+            x_start = col * width
+            combined_frame[y_start:y_start+height, x_start:x_start+width] = frame
 
-        # Step 3: Draw the boundaries for all floors
-        # for boundary in self.boundaries:
-        #     floor_offset = (len(self.floors) - 1 - boundary.floor) * height  # Reverse floor order
-        #     draw_boundary(combined_frame[floor_offset:floor_offset+height, 0:width], boundary)
-
-        # Step 4: Draw target areas for all floors
-        # for area in self.target_areas:
-        #     if area.type == 'NOFUNCIONAL':
-        #         continue
-        #     floor_offset = (len(self.floors) - 1 - area.floor) * height  # Reverse floor order
-        #     draw_target_area(combined_frame[floor_offset:floor_offset+height, 0:width], area)
-
-        # Step 6: Generate and save frames with progress bar
-        #total_frames = max(person.history[-1][0] for person in self.persons)
-
-        for frame_num in tqdm.tqdm(range(total_frames), desc="Generating frames", unit="frame"):
+        def process_frame(frame_num):
             current_frame = combined_frame.copy()
 
-            # Change 'frame' to 'current_frame' in these lines
             time_str = f"Time: {self.hora}:{str(int(frame_num / 10)).zfill(2)[:2]}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             current_persons = sum(1 for person in self.persons 
                                 if person.startFrame <= frame_num < person.startFrame + len(person.history))
             person_count_str = f"Persons: {current_persons}"
-            cv2.putText(current_frame, person_count_str, (width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
+            cv2.putText(current_frame, person_count_str, (combined_width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
-            # Plot persons
             for person in self.persons:
                 if person.startFrame <= frame_num < person.startFrame + len(person.history):
                     x, y, floor, state = person.history[frame_num - person.startFrame]
-                    floor_offset = header_height + (len(self.floors) - 1 - floor) * height  # Reverse floor order
-                    draw_person(current_frame[floor_offset:floor_offset+height, 0:width], 
+                    row = floor // grid_size
+                    col = floor % grid_size
+                    floor_offset_y = header_height + row * height
+                    floor_offset_x = col * width
+                    draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
                                 x, y, color_map[person.id])
-            # paint area occupation
+
+            # for wall in self.boundaries:
+            #     row = wall.floor // grid_size
+            #     col = wall.floor % grid_size
+            #     floor_offset_y = header_height + row * height
+            #     floor_offset_x = col * width
+            #     draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
+
             for area in self.target_areas:
-                if area.totalCapacity != 0:
-                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
-                    paint_area(current_frame[floor_offset:floor_offset+height, 0:width], area)
-                if area.type=='NOFUNCIONAL':
-                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
-                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Blue'])
-                if area.type=='VESTUARIO':
-                    floor_offset = header_height + (len(self.floors) - 1 - area.floor) * height
-                    paint_noarea(current_frame[floor_offset:floor_offset+height, 0:width], area, COLORS['Purple'])
+                row = area.floor // grid_size
+                col = area.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                if area.type == 'NOFUNCIONAL':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, COLORS['Blue'])
+                elif area.type == 'VESTUARIO':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, COLORS['Purple'])
+                else:
+                    paint_area(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
 
             for spawn in self.spawn_points:
-                floor_offset = header_height + (len(self.floors) - 1 - spawn.floor) * height
-                draw_spawn_point(current_frame[floor_offset:floor_offset+height, 0:width], spawn, COLORS['Green'])
-            # Save the frame
+                row = spawn.floor // grid_size
+                col = spawn.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                draw_spawn_point(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
+
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
+
+        with ThreadPoolExecutor() as executor:
+            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames)]
+            
+            for _ in tqdm.tqdm(as_completed(futures), total=total_frames, desc="Generating frames", unit="frame"):
+                pass
+
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(f"Total time taken: {total_time:.2f} seconds")
