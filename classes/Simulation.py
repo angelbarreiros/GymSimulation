@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 import tqdm
+import random
 from classes.Person import Person
 
 COLORS = {
@@ -36,6 +37,13 @@ class Simulation:
         self.floors = np.unique([area.floor for area in self.target_areas])
 
     def getTargetArea(self):
+        # if random.random() < locker_room_prob:
+        #     locker_room_lst = []
+        #     for area in self.target_areas:
+        #         if area.type == 'VESTUARIO':
+        #             locker_room_lst.append(area)
+        #     return random.choice(locker_room_lst)
+        random.shuffle(self.target_areas)
         for area in self.target_areas:
             if area.actualCapacity<area.targetCapacity and area.type!='NOFUNCIONAL':
                 area.actualCapacity += 1
@@ -59,8 +67,16 @@ class Simulation:
         
         spawn_point = np.random.choice(available_spawn_points)
         #target_coords = [self.getTargetArea().center_x, self.getTargetArea().center_y]
-    
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(), target_area=self.getTargetArea(), max_step=15, floor=spawn_point.floor))
+        
+        locker_room = None
+        if random.random() < .8:
+            locker_room_lst = []
+            for area in self.target_areas:
+                if area.type == 'VESTUARIO':
+                    locker_room_lst.append(area)
+            locker_room = random.choice(locker_room_lst)
+        
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(), target_area=self.getTargetArea(), max_step=15, floor=spawn_point.floor, locker_room=locker_room))
         available_spawn_points.remove(spawn_point)
         return True
 

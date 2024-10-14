@@ -13,11 +13,11 @@ class Area:
         self.machines = machines
         self.ocuppiedMachines = [False] * len(machines)
 
-    def getPointInside(self):
+    def getPointInside(self, guided_route_idx = 0, person_id = None):
         if self.machines:  # If area has machines, choose a random machine that isn't occupied
-            if self.type == 'PG':
-                return self.machines[np.random.randint(6)][0]
-            else:
+            # if self.type == 'PG': # If not on the pool yet, choose 1 of the 6 lanes. If on the pool, return the next point of the lane.
+            #     return self.machines[person_id%6][guided_route_idx]
+            # else:
                 available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if not occupied]
                 if available_machines:
                     chosen_machine = np.random.choice(available_machines)

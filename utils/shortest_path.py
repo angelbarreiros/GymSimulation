@@ -89,6 +89,30 @@ def create_matrix_from_json(floor_num, scale_factor, padding=0, save_matrix_imag
 
     return matrix.transpose()
 
+# def fill_rectangle_with_zeros(matrix, top_left, bottom_right):
+#     """
+#     Fill a rectangular area in a NumPy matrix with zeros.
+    
+#     Args:
+#     matrix (np.array): The input NumPy matrix
+#     top_left (tuple): (row, col) of the top-left corner of the rectangle
+#     bottom_right (tuple): (row, col) of the bottom-right corner of the rectangle
+    
+#     Returns:
+#     np.array: The modified matrix
+#     """
+#     row1, col1 = top_left
+#     row2, col2 = bottom_right
+    
+#     # Ensure row1 <= row2 and col1 <= col2
+#     row1, row2 = min(row1, row2), max(row1, row2)
+#     col1, col2 = min(col1, col2), max(col1, col2)
+    
+#     # Fill the rectangular area with zeros
+#     matrix[row1:row2+1, col1:col2+1] = 0
+    
+#     return matrix
+
 # Check if a cell is valid (within the grid)
 def is_valid(row, col, max_row, max_col):
     return (row >= 0) and (row < max_row) and (col >= 0) and (col < max_col)
@@ -139,6 +163,12 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     # Scale points
     src_scaled = (src[0]//scale_factor, src[1]//scale_factor)
     dest_scaled = (dest[0]//scale_factor, dest[1]//scale_factor)
+    
+    # if banned_areas_corners:
+    #     for points in banned_areas_corners:
+    #         top_left, bottom_right = points[0], points[2]
+    #         grid = fill_rectangle_with_zeros(grid, top_left, bottom_right)
+            
     # size = (size[0]//scale_factor, size[1]//scale_factor)
     # if path_reduced != None:
     #     path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
@@ -284,6 +314,6 @@ if __name__ == "__main__":
     
     # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
     # print(path)
-    
-    create_matrix_from_json(1, 10, 0, True)
+
+    matrix = create_matrix_from_json(1, 10, 0, True)
 

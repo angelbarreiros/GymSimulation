@@ -5,12 +5,13 @@ SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(3)]
 
 class Person:
-    def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0):
+    def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0, locker_room=None):
         self.id = person_id
         self.x = start_x
         self.y = start_y
         self.current_floor = floor
         self.max_step = max_step
+        self.locker_room = locker_room
         self.history = [(start_x, start_y, self.current_floor, None)]
         self.stay_counter = 0
         self.target_area = target_area
@@ -19,6 +20,7 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs'
+        self.guided_route_idx = 0 # e.g. pool        
 
     def getEasyRoute(self, start, end, step=10):
         x0, y0 = start
@@ -38,25 +40,40 @@ class Person:
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
         if self.target_area:
             if not self.route:  # calcular ruta si no tiene
-                if self.state==None:  # primera vez o acaba de llegar al piso destino
-                    if self.target_area.floor != self.current_floor:  # target is not in this floor -> go to stairs
+                if self.state == None:  # primera vez o acaba de llegar al piso destino
+                    if self.locker_room!=None and self.locker_room.floor==self.current_floor:
+                            self.target_coords = self.locker_room.getPointInside()
+                            self.state = 'moving_lockers'
+                    elif (self.target_area.floor != self.current_floor) or (self.locker_room!=None and self.locker_room.floor!=self.current_floor):  # target is not in this floor -> go to stairs
                         self.target_coords = self.stairs[self.current_floor].getPointInside()
                         self.state = 'moving_stairs'
                     else:  # target on this floor -> go to it
+                        # if self.target_area == 'PG':
+                        #     self.target_coords = self.target_area.getPointInside(self.guided_route_idx, self.id)
+                        #     self.guided_route_idx = (self.guided_route_idx+1)%4
+                        # else:
                         self.target_coords = self.target_area.getPointInside()
                         self.state = 'moving_target'
                     # print(self.x, self.y, self.target_coords)
                     # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
                     # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
+                                
                     self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
                                                          src=(int(self.x), int(self.y)), dest=self.target_coords,
-                                                         scale_factor=SCALE_FACTOR, debug=False)
+                                                         scale_factor=SCALE_FACTOR,
+                                                         debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                 elif self.state == 'moving_stairs': # if stairs, go to destination floor
-                    self.current_floor = self.target_area.floor
+                    if self.locker_room != None:
+                        self.current_floor = self.locker_room.floor
+                    else:
+                        self.current_floor = self.target_area.floor
                     # change to spawn on that floor
                     self.x, self.y = self.stairs[self.current_floor].getPointInside()
+                    self.state = None
+                elif self.state == 'moving_lockers':
+                    self.locker_room = None
                     self.state = None
                 elif self.state == 'moving_target': # if target, finish
                     #self.target_area.actualCapacity += 1 # already on simulation
