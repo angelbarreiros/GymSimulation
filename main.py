@@ -13,7 +13,7 @@ def main():
     #sim.load_data('data/sim_states/simulation_7.pkl')
 
     print('Creating simulation...')
-    sim.simulate(TOTAL_FRAMES, hours=[7, 8], spawn_interval=5, max_spawn=2)
+    sim.simulate(TOTAL_FRAMES, hours=[7,8], spawn_interval=5, max_spawn=2)
     
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=[7, 8])

@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from utils.draw import *
 import math
-from utils.get_info import get_data
+from utils.get_info import get_data, get_data_initial
 
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
@@ -26,6 +26,8 @@ class Simulation:
         self.npersons = None
         #self.movement_data = pd.DataFrame()
         self.hora = None
+        self.entradas = None
+        self.salidas = None
         self.floors = None
 
     def getTargetArea(self):
@@ -59,17 +61,13 @@ class Simulation:
             self.target_areas = state['areas']
         print(f"Loaded {len(self.persons)} persons and {len(self.target_areas)} areas")
 
-    def get_data_hour(self, dia, hora):
-        npersons, areas, paredes, spawns, hora = get_data(dia, hora)
-        print(f"Num areas: {len(areas)}, Num walls: {len(paredes)}, Num spawns: {len(spawns)}")
-        self.boundaries = paredes
-        self.target_areas = areas
-        self.spawn_points = spawns
+    def get_data_hour(self, dia, hora, areas):
+        self.npersons, self.entradas, self.salidas, self.target_areas, self.classes = get_data(dia, hora, areas)
         self.hora = hora
-        self.npersons = npersons
         self.floors = np.unique([area.floor for area in self.target_areas])
+        print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}")
 
-        return npersons, areas, paredes, spawns, hora
+
 
     def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.8):
         if not available_spawn_points:
@@ -92,9 +90,10 @@ class Simulation:
         return True
 
     def simulate(self, frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+        self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         for hora in hours:
-            self.get_data_hour(dia, hora)
-            for frame in tqdm.tqdm(range(frames)):
+            self.get_data_hour(dia, hora, self.target_areas)
+            for frame in tqdm.tqdm(range(frames)):  
                 if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
                     available_spawn_points = self.spawn_points.copy()
                     spawned_count = 0
@@ -106,6 +105,10 @@ class Simulation:
 
                 for person in self.persons:
                     person.move()
+        
+        # hacer que salgan tantas personas como en self.salidas, segun el stay counter que tengan, (>0)
+
+
         # Save the state of the simulation
         # state = {
         #     'persons': [person for person in self.persons],
@@ -169,12 +172,12 @@ class Simulation:
                     draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
                                 x, y, color_map[person.id])
 
-            # for wall in self.boundaries:
-            #     row = wall.floor // grid_size
-            #     col = wall.floor % grid_size
-            #     floor_offset_y = header_height + row * height
-            #     floor_offset_x = col * width
-            #     draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
+            for wall in self.boundaries:
+                row = wall.floor // grid_size
+                col = wall.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
 
             for area in self.target_areas:
                 row = area.floor // grid_size

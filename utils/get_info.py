@@ -41,33 +41,27 @@ def extract_aforo_zonas(file_path):
     return result
 
 
-def extract_clases(aforo_clases_path,zone):
+def extract_clases(aforo_clases_path,zone,hora):
     with open(aforo_clases_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     
     for clase in data:
         if clase['studio']==zone.name:
+
             targetClassArea=Area(zone.name,zone.points,clase['attendingLimit'],clase['bookedAttendees'],3,zone.type,zone.machines)
             newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=targetClassArea)  
             return newClass
 
-def get_data(dia, hora):
-    AFORO_PATH = f'data/entradas_{dia}.json'
-    AFORO_ZONAS_PATH = f'data/aforo-x-horas/{get_day_name(dia)}_{ str(hora).zfill(2) }.json'
-    entrada, salida = extract_aforo(AFORO_PATH,  str(hora).zfill(2))
 
-    with open('data/zones.json', 'r') as file:
+def get_data_initial(path):
+    with open(path, 'r') as file:
         data = json.load(file)
-        
+   
         all_areas = []
         all_walls = []
         all_spawns = []
-        all_classes = []
-        all_classes = []
         floorNum=0
         for floor in data:
-            aforo_zonas = extract_aforo_zonas(AFORO_ZONAS_PATH)
-
             zones= data[floor]["Zones"]
             for zone in zones:
                 type = zone["Type"]
@@ -75,25 +69,8 @@ def get_data(dia, hora):
                 points = zone["Coordinates"]
                 machines = zone["Machines"]
                 numberOfSameZones = sum(1 for obj in zones if obj['Type'] == type )
-                try:
-                    totalCapacity = aforo_zonas.get(type).get('totalCapacity')
-                    targetCapacity =  aforo_zonas.get(type).get('targetCapacity')
-                    area = Area(name, points, math.floor(totalCapacity/numberOfSameZones), math.floor(targetCapacity/numberOfSameZones), floorNum, type, machines)   # ?¿
-                    all_areas.append(area)
-                    if type == 'CLASE':
-                        result = extract_clases(AFORO_CLASES_PATH, area)
-                        if result is not None:
-                            all_classes.append(result)
-                    
-                        
-                except Exception:
-                    
-                    area = Area(name, points, 0, 0, floorNum, type, machines) 
-                    all_areas.append(area)
-                    if type == 'CLASE':
-                        result = extract_clases(AFORO_CLASES_PATH, area)
-                        if result is not None:
-                            all_classes.append(result)
+                area = Area(name, points,0, 0, floorNum, type, machines)   # ?¿
+                all_areas.append(area)
             
             for pared in data[floor]["Walls"]: 
                 pared = Boundary(pared, floorNum)
@@ -104,6 +81,47 @@ def get_data(dia, hora):
                 all_spawns.append(spawn)
             floorNum+=1
                     
-        npersons = sum(area.targetCapacity for area in all_areas)
-        print(f"Num persons: {npersons}, Entradas: {entrada}, Salidas: {salida}")
-        return npersons, all_areas, all_walls, all_spawns, hora
+        return all_areas, all_walls, all_spawns
+
+def get_data(dia, hora, areas):
+    path = f'data/aforo-x-horas/{dia}_{str(hora).zfill(2)}.json'
+    print(f"Processing data from {path}")
+    
+    with open(path, 'r') as file:
+        data = json.load(file)
+        npersons = 0
+        entradas = 0
+        salidas = 0
+        classes = []
+        
+        if 'aforoZonas' in data:
+            for zone in data['aforoZonas']:
+                zone_name = zone['name']
+                matching_area = next((area for area in areas if area.name == zone_name), None)
+                if matching_area and matching_area.type != 'NOFUNCIONAL' and matching_area.type != 'VESTUARIO' and matching_area.type != 'CLASE':
+                    if matching_area.type != matching_area.name:
+                        nareas = sum(1 for obj in areas if obj.type == matching_area.type)
+                    else:
+                        nareas = 1
+                    print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type}")
+                    matching_area.targetCapacity = int(zone['targetCapacity']/nareas)
+                    matching_area.totalCapacity = int(zone['totalCapacity']/nareas)
+                    npersons += int(zone['targetCapacity'])
+
+
+        if 'classes' in data:
+            for clase in data['classes']:
+                zone_name = clase['studio']
+                matching_area = next((area for area in areas if area.name == zone_name), None)
+                if matching_area: # if matching_area.type == 'CLASE':
+                    newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=matching_area)  
+                    classes.append(newClass)
+                    matching_area.targetCapacity = clase['bookedAttendees']
+                    matching_area.totalCapacity = clase['attendingLimit']
+                    npersons += clase['bookedAttendees']
+
+        if 'entradas' in data:
+            entradas = data['entradas']['entredas']
+            salidas = data['entradas']['salidas']
+
+    return npersons, entradas, salidas, areas, classes

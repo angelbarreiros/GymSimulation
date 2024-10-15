@@ -19,7 +19,7 @@ class Person:
         self.target_coords = None
         self.route = []
         self.stairs = stairs
-        self.state = None # 'moving_target', 'reached', 'moving_stairs'
+        self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
         self.guided_route_idx = 0 # e.g. pool        
 
     def getEasyRoute(self, start, end, step=10):

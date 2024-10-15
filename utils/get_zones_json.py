@@ -71,7 +71,17 @@ def get_day_name(date_str):
     days_in_spanish = ["LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"]
     return days_in_spanish[date_obj.weekday()]
 
+def clean_classes_json(input_file):
+    with open(input_file) as f:
+        data = json.load(f)
+    cleaned_data = [event for event in data if "VIRTUAL" not in event["activity"]]
+    
+    with open(input_file, 'w', encoding='utf-8') as f:
+        json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
+    
+    print(f"Cleaned data has been written back to {input_file}")
+
 if __name__ == "__main__":
     # Usage
-    input_file = 'paste.txt'  # Replace with your input file name
+    input_file = '/home/mateo/projects/gym/GymSimulation/data/clases_7am.json'  # Replace with your input file name
     process_data(input_file)

@@ -44,7 +44,6 @@ class Boundary:
     def touchs(self, point_x, point_y):
         return False
     
-    
 class SpawnPoint:
     def __init__(self, name, points, floor):
         self.name = name
