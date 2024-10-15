@@ -94,20 +94,20 @@ def get_data(dia, hora, areas):
         salidas = 0
         classes = []
         
-        if 'aforoZonas' in data:
-            for zone in data['aforoZonas']:
-                zone_name = zone['name']
-                matching_area = next((area for area in areas if area.name == zone_name), None)
+        if 'aforo_zonas' in data:
+            for zone in data['aforo_zonas']:
+                # zone_name = zone['name']
+                zone_name = zone['zona']
+                matching_area = next((area for area in areas if (area.name == zone_name or area.type == zone_name)), None)
                 if matching_area and matching_area.type != 'NOFUNCIONAL' and matching_area.type != 'VESTUARIO' and matching_area.type != 'CLASE':
                     if matching_area.type != matching_area.name:
                         nareas = sum(1 for obj in areas if obj.type == matching_area.type)
                     else:
                         nareas = 1
                     print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type}")
-                    matching_area.targetCapacity = int(zone['targetCapacity']/nareas)
-                    matching_area.totalCapacity = int(zone['totalCapacity']/nareas)
-                    npersons += int(zone['targetCapacity'])
-
+                    matching_area.targetCapacity = int(zone['oc.prom']/nareas)
+                    matching_area.totalCapacity = int(zone['aforo']/nareas)
+                    npersons += int(zone['oc.prom'])
 
         if 'classes' in data:
             for clase in data['classes']:

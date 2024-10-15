@@ -93,6 +93,7 @@ class Simulation:
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         for hora in hours:
             self.get_data_hour(dia, hora, self.target_areas)
+            print(self.npersons)
             for frame in tqdm.tqdm(range(frames)):  
                 if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
                     available_spawn_points = self.spawn_points.copy()
@@ -105,6 +106,17 @@ class Simulation:
 
                 for person in self.persons:
                     person.move()
+
+                self.persons.reverse()
+                for person in self.persons:
+                    if person.stay_counter > 10:
+                        spawn_point = np.random.choice( self.spawn_points.copy())
+                        self.state = None
+                        self.target_area = spawn_point
+                self.persons.reverse()
+
+                        #print(f'Area {person.target_area.name} has {person.target_area.actualCapacity} persons')
+                    
         
         # hacer que salgan tantas personas como en self.salidas, segun el stay counter que tengan, (>0)
 

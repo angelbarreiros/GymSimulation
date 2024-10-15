@@ -99,9 +99,11 @@ class Person:
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                     self.stay_counter += 1
-                    self.wait_time = random.randint(10, 30)
+                    self.wait_time = random.randint(25, 50)                  
             else:
                 self.x, self.y = self.route.pop(0)
+
+        
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
         self.history.append((self.x, self.y, self.current_floor, self.state))
 

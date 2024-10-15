@@ -35,9 +35,9 @@ def join_coordinates(coordinates, max_step=10):
 
     return result
 
-
-# Example usage
-coords = [(0, 0), (5, 0), (5, 5), (0, 5)]
-max_step_size = 2
-route = join_coordinates(coords, max_step_size)
-print(route)
+if __name__ == "__main__":
+    # Example usage
+    coords = [(0, 0), (5, 0), (5, 5), (0, 5)]
+    max_step_size = 2
+    route = join_coordinates(coords, max_step_size)
+    print(route)

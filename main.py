@@ -38,7 +38,7 @@ def main():
         '-profile:v', 'high',
         '-level', '4.2',
         output_file
-    ], check=True)
+    ], check=False)
 
     print(f"Animation saved as '{output_file}'")
 
