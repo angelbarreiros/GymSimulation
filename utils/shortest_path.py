@@ -82,7 +82,7 @@ def create_matrix_from_json(floor_num, scale_factor, padding=0, save_matrix_imag
     
     # Save the matrix as an image for visualization
     if save_matrix_image:
-        image_name = f"floor_{floor_num}_p{padding}_matrix.png"
+        image_name = f"data/images/matrix/floor_{floor_num}_p{padding}_matrix.png"
         if os.path.exists(image_name):
             os.remove(image_name)
         Image.fromarray(matrix * 255).save(image_name)
@@ -200,8 +200,8 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
 
     # Check if we are already at the destination
     if is_destination(src_scaled[0], src_scaled[1], dest_scaled):
-        # if debug:
-        #     print("We are already at the destination")
+        if debug:
+            print("We are already at the destination")
         return [src]
 
     # Initialize the closed list (visited cells)
@@ -275,9 +275,9 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
 
     # If the destination is not found after visiting all cells
     if not found_dest:
-        # if debug:
-        print(f"Failed to find the destination cell: {src, dest}")
-        # return [src]
+        if debug:
+            print(f"Failed to find the destination cell: {src_scaled, dest_scaled}")
+        return [src] 
 
 def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
 
@@ -317,5 +317,6 @@ if __name__ == "__main__":
     # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
     # print(path)
 
-    matrix = create_matrix_from_json(1, 10, 0, True)
+    for floor in range(4):
+        create_matrix_from_json(floor, 10, 1, True)
 

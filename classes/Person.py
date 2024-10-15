@@ -1,8 +1,14 @@
 import numpy as np
 from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid
+from utils.fixed_route import join_coordinates
+import random
 
 SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(4)]
+
+LANE_POINTS = [[[753, 440],[753,470],[1386,470],[1386,440]],[[753, 388],[753,418],[1386,418],[1386,388]],[[753, 336],[753,366],[1386,366],[1386,336]],[[753, 284],[753,314],[1386,314],[1386,284]],[[753, 232],[753,262],[1386,262],[1386,232]], [[753, 180],[753,210],[1386,210],[1386,180]]]
+POOL_LANES = [join_coordinates(LANE_POINTS[i], max_step=(i)*3+1) for i in range(len(LANE_POINTS))]
+
 
 class Person:
     def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0, locker_room=None):
@@ -14,6 +20,7 @@ class Person:
         self.locker_room = locker_room
         self.history = [(start_x, start_y, self.current_floor, None)]
         self.stay_counter = 0
+        self.wait_time = 0
         self.target_area = target_area
         self.startFrame = startFrame
         self.target_coords = None
@@ -39,7 +46,10 @@ class Person:
         #if np.random.rand() < 0.8: # pasar x los vestuarios
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
         if self.target_area:
-            if not self.route:  # calcular ruta si no tiene
+            if self.wait_time > 0:
+                self.wait_time -= 1
+                self.stay_counter += 1
+            elif not self.route:  # calcular ruta si no tiene
                 if self.state == None:  # primera vez o acaba de llegar al piso destino
                     if self.locker_room!=None and self.locker_room.floor==self.current_floor:
                         self.target_coords = self.locker_room.getPointInside()
@@ -49,10 +59,9 @@ class Person:
                         self.state = 'moving_stairs'
                     else:  # target on this floor -> go to it
                         # if self.target_area == 'PG':
-                        #     self.target_coords = self.target_area.getPointInside(self.guided_route_idx, self.id)
-                        #     self.guided_route_idx = (self.guided_route_idx+1)%4
+                        self.target_coords = self.target_area.getPointInside(self.id%6)
                         # else:
-                        self.target_coords = self.target_area.getPointInside()
+                        #     self.target_coords = self.target_area.getPointInside()
                         self.state = 'moving_target'
                     # print(self.x, self.y, self.target_coords)
                     # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
@@ -64,7 +73,7 @@ class Person:
                                                          debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
-                elif self.state == 'moving_stairs': # if stairs, go to destination floor
+                elif self.state == 'moving_stairs': # if stairs, go to lockers or destination floor
                     if self.locker_room != None:
                         self.current_floor = self.locker_room.floor
                     else:
@@ -76,11 +85,21 @@ class Person:
                     self.locker_room = None
                     self.state = None
                 elif self.state == 'moving_target': # if target, finish
-                    #self.target_area.actualCapacity += 1 # already on simulation
-                    #self.target_area = None
                     self.state = 'reached'
                 elif self.state == 'reached':
+                    
+                    if self.target_area.type == 'PG':
+                        self.route = POOL_LANES[self.id%6].copy()
+                    else:
+                        self.target_coords = self.target_area.getPointInside()
+                        self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
+                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
+                                                         scale_factor=SCALE_FACTOR,
+                                                         debug=False)
+                    self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
+
                     self.stay_counter += 1
+                    self.wait_time = random.randint(10, 30)
             else:
                 self.x, self.y = self.route.pop(0)
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
