@@ -16,7 +16,7 @@ def main():
     sim.simulate(TOTAL_FRAMES, hours=[7,8], spawn_interval=5, max_spawn=2)
     
     print('Creating animation...')
-    anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=[7, 8])
+    anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=[8])
 
     #output_file = 'multi_person_movement.gif'
     output_file = 'multi_person_movement.mp4'
