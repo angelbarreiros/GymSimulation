@@ -21,10 +21,9 @@ def group_events_by_weekday_hour(events):
         start_time = datetime.strptime(modified_event['startedAt'], "%Y-%m-%dT%H:%M:%S")
         weekday = start_time.isoweekday()  # 1 para lunes, 7 para domingo
         hour = start_time.strftime("%H")
-        key = f"{weekday}_{hour}:00"
+        key = f"{weekday}_{hour}"
         grouped[key].append(modified_event)
     return grouped
-
 
 def transform_json(input_file):
     with open(input_file, 'r') as f:
@@ -40,23 +39,21 @@ def transform_json(input_file):
     # Añadir cada grupo al archivo JSON correspondiente
     for key, events in grouped_events.items():
         filename = f"{key}.json"
+        file_path = "/home/angel/startup/GymSimulation/data/formated_data/zones/" + filename
         
         try:
-            with open("/home/angel/startup/GymSimulation/data/formated_data/zones/"+filename, 'r') as f:
+            with open(file_path, 'r') as f:
                 existing_data = json.load(f)
         except FileNotFoundError:
-            existing_data = []
+            existing_data = {}  # Cambiado de [] a {} ya que parece que quieres un diccionario
         
         # Añadir eventos al diccionario existente
         existing_data["classes"] = events
         
-        # Convertir el objeto Python a un string JSON con formato indentado
-        updated_json = json.dumps(existing_data, indent=4)
-        
-        # Guardar los eventos en el archivo JSON
-        with open("/home/angel/startup/GymSimulation/data/formated_data/zones/"+filename, 'w') as f:
-            json.dump(updated_json, f, indent=4)
-        
+        # Guardar los eventos directamente en el archivo JSON
+        with open(file_path, 'w') as f:
+            json.dump(existing_data, f, indent=4)
+            
         print(f"Eventos añadidos al archivo: {filename}")
 
 if __name__ == "__main__":
