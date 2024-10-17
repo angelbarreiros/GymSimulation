@@ -111,9 +111,9 @@ def excel_to_json(file_path):
             rowend+=sumatorio
             rowStart+=sumatorio
             value = HourData(zones_data)
-            serialize_to_json(value,"/home/angel/startup/GymSimulation/data/formated_data/zones/"+str(day)+"_"+hour[:-3]+".json")
+            serialize_to_json(value,"data/formated_data/zones/"+str(day)+"_"+hour[:-3]+".json")
         day=day+1
         
 
 if __name__ == "__main__":
-    excel_to_json("/home/angel/startup/GymSimulation/data/excel/zonas-sept-zgz.xlsx")
+    excel_to_json("data/excel/zonas-sept-zgz.xlsx")

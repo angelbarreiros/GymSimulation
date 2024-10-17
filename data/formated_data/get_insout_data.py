@@ -17,7 +17,7 @@ def process_json_file(input_file):
         
         # Create filename in the format weekday_hour:00.json
         filename = f"{weekday}_{hour}.json"
-        file_path = f"/home/angel/startup/GymSimulation/data/formated_data/zones/{filename}"
+        file_path = f"data/formated_data/zones/{filename}"
         
         try:
             # Try to read existing file
@@ -47,5 +47,5 @@ def process_json_file(input_file):
         print(f"Processed and saved: {filename}")
 
 if __name__ == "__main__":
-    input_file = "/home/angel/startup/GymSimulation/data/excel/entradas_2024-08-05.json"
+    input_file = "data/excel/entradas_2024-08-05.json"
     process_json_file(input_file)
