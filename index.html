@@ -3,78 +3,479 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider</title>
+    <title>Time Lapse Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
-            padding: 20px;
-            box-sizing: border-box;
         }
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 800px;
+        .main-wrapper {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 60px; /* Changed from padding-top to margin-top */
         }
-        #imageDisplay {
-        width: 58%; /* Adjust the width as needed */
-        height: auto; /* Maintain aspect ratio */
-
-        }   
-        .slider-container {
+        .switch-container {
+            position: fixed; /* Changed from absolute to fixed */
+            top: 160px; /* Changed from -50px to 10px */
+            right: 12%; /* Added to align with the right edge of the main wrapper */
             display: flex;
             align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 20px;
+            height: 40px;
+            width: 200px;
+            justify-content: space-between;
+            z-index: 1000; /* Added to ensure it stays on top */
+        }
+        .container {
+            width: 100%;
+            position: relative;
+        }
+        .image-container, .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #ddd;
+            display: flex;
             justify-content: center;
-            width: 100%;
-            margin-top: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
         }
-        #slider {
-            width: 100%;
-            height: 30px;
-            margin: 0 10px;
+        .image-container img, .video-container video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
-        .time-label {
+        .frame-counter {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
             font-size: 14px;
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        .slider {
+            width: 100%;
+            height: 100%;
+            -webkit-appearance: none;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            border-radius: 25px;
+        }
+        .slider:hover {
+            opacity: 1;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 35px;
+            height: 35px;
+            background: #4CAF50;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-top: -15px;
+        }
+        .slider::-moz-range-thumb {
+            width: 35px;
+            height: 35px;
+            background: #4CAF50;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-top: -15px;
+        }
+        .arrow-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 36px;
+            cursor: pointer;
+            padding: 0 10px;
             color: #333;
+            transition: color 0.2s;
+        }
+        .arrow-button:hover {
+            color: #4CAF50;
+        }
+        .arrow-button:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .arrow-button.left {
+            left: -50px;
+        }
+        .arrow-button.right {
+            right: -50px;
+        }
+        .control-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .control-button:hover {
+            background-color: #45a049;
+        }
+        .control-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .keyboard-controls {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .keyboard-icon {
+            display: inline-block;
+            padding: 2px 8px;
+            margin: 0 2px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .speed-button {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .speed-button:hover {
+            background-color: #007B9A;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin: 0 5px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider-switch {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+        .slider-switch:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider-switch {
+            background-color: #2196F3;
+        }
+        input:checked + .slider-switch:before {
+            transform: translateX(26px);
+        }
+        .switch-label {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        @media (max-width: 1100px) {
+            .switch-container {
+                right: 10px; /* Adjust for smaller screens */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img id="imageDisplay" src="data/animation_frames/frame_0001.png" alt="Selected image">
-        <div class="slider-container">
-            <span class="time-label">7 AM</span>
-            <input type="range" id="slider" min="1" max="600" value="1">
-            <span class="time-label">8 PM</span>
+    <div class="main-wrapper">
+        <div class="switch-container">
+            <span class="switch-label">Simulation</span>
+            <label class="switch">
+                <input type="checkbox" id="viewSwitch">
+                <span class="slider-switch"></span>
+            </label>
+            <span class="switch-label">Video</span>
+        </div>
+        <div class="container">
+            <div id="timelapseContainer">
+                <div class="image-container">
+                    <img id="timelapseImage" src="data/animation_frames/frame_0000.png" alt="Time Lapse Frame">
+                    <div class="frame-counter">Frame: <span id="frameCounter">1</span> / 1200</div>
+                </div>
+                <div class="slider-container">
+                    <button id="prevButton" class="arrow-button left" disabled>←</button>
+                    <input type="range" min="0" max="1199" value="0" class="slider" id="frameSlider">
+                    <button id="nextButton" class="arrow-button right">→</button>
+                </div>
+                <div style="text-align: center;">
+                    <button id="startButton" class="control-button">Start Animation</button>
+                    <button id="stopButton" class="control-button" disabled>Stop Animation</button>
+                    <button id="speedButton" class="speed-button">Speed: Normal</button>
+                </div>
+                <div class="keyboard-controls">
+                    Use keyboard arrows to navigate: 
+                    <span class="keyboard-icon">←</span> Previous Frame 
+                    <span class="keyboard-icon">→</span> Next Frame
+                    <span class="keyboard-icon">↑</span> Next Hour
+                    <span class="keyboard-icon">↓</span> Previous Hour
+                </div>
+            </div>
+            <div id="videoContainer" style="display: none;">
+                <div class="video-container">
+                    <video id="multiPersonVideo" controls>
+                        <source src="multi_person_movement.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const imageDisplay = document.getElementById('imageDisplay');
-        const slider = document.getElementById('slider');
-        const imagePath = 'data/animation_frames/';
+        const slider = document.getElementById('frameSlider');
+        const image = document.getElementById('timelapseImage');
+        const frameCounter = document.getElementById('frameCounter');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const speedButton = document.getElementById('speedButton');
+        const viewSwitch = document.getElementById('viewSwitch');
+        const timelapseContainer = document.getElementById('timelapseContainer');
+        const videoContainer = document.getElementById('videoContainer');
+        const multiPersonVideo = document.getElementById('multiPersonVideo');
+        const totalFrames = 1200;
+        let animationId;
+        let animationSpeed = 5; // Frames per second
+        let currentFrame = 0;
+        let targetFrame = 0;
+        let lastTimestamp = 0;
+        const frameCache = new Map();
+        const preloadAmount = 10;
 
-        function padFrameNumber(num, size) {
-            return String(num).padStart(size, '0');
+        function padFrameNumber(number) {
+            return number.toString().padStart(4, '0');
         }
 
-        slider.addEventListener('input', function() {
-            const frameNumber = padFrameNumber(this.value, 4);
-            const imageSrc = `${imagePath}frame_${frameNumber}.png`;
-            imageDisplay.src = imageSrc;
+        function preloadImage(frameNumber) {
+            return new Promise((resolve, reject) => {
+                const paddedFrame = padFrameNumber(frameNumber);
+                const img = new Image();
+                img.onload = () => {
+                    frameCache.set(frameNumber, img);
+                    resolve();
+                };
+                img.onerror = reject;
+                img.src = `data/animation_frames/frame_${paddedFrame}.png`;
+            });
+        }
+
+        function preloadFrames(startFrame) {
+            for (let i = 0; i < preloadAmount; i++) {
+                const frameToPreload = (startFrame + i) % totalFrames;
+                if (!frameCache.has(frameToPreload)) {
+                    preloadImage(frameToPreload);
+                }
+            }
+        }
+
+        function updateImage(frame) {
+            const roundedFrame = Math.round(frame);
+            const paddedFrame = padFrameNumber(roundedFrame);
+            
+            if (frameCache.has(roundedFrame)) {
+                image.src = frameCache.get(roundedFrame).src;
+            } else {
+                image.src = `data/animation_frames/frame_${paddedFrame}.png`;
+            }
+            
+            frameCounter.textContent = roundedFrame + 1;
+            slider.value = roundedFrame;
+            prevButton.disabled = roundedFrame <= 0;
+            nextButton.disabled = roundedFrame >= totalFrames - 1;
+
+            preloadFrames(roundedFrame);
+        }
+
+        function lerp(start, end, t) {
+            return start * (1 - t) + end * t;
+        }
+
+        function animate(timestamp) {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const elapsed = timestamp - lastTimestamp;
+            
+            if (elapsed > (1000 / 60)) { // Cap at 60 FPS
+                lastTimestamp = timestamp;
+                const frameStep = animationSpeed / 60;
+                
+                if (Math.abs(targetFrame - currentFrame) < frameStep) {
+                    currentFrame = targetFrame;
+                    targetFrame = (targetFrame + 1) % totalFrames;
+                } else {
+                    currentFrame = lerp(currentFrame, targetFrame, 0.1);
+                }
+                
+                updateImage(currentFrame);
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            slider.disabled = true;
+            prevButton.disabled = true;
+            nextButton.disabled = true;
+
+            currentFrame = parseInt(slider.value);
+            targetFrame = currentFrame;
+            lastTimestamp = 0;
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function stopAnimation() {
+            cancelAnimationFrame(animationId);
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            slider.disabled = false;
+            prevButton.disabled = parseInt(slider.value) === 0;
+            nextButton.disabled = parseInt(slider.value) === totalFrames - 1;
+        }
+
+        function changeSpeed() {
+            if (animationSpeed === 5) {
+                animationSpeed = 1;
+                speedButton.textContent = "Speed: Slow";
+            } else if (animationSpeed === 1) {
+                animationSpeed = 30;
+                speedButton.textContent = "Speed: Fast";
+            } else {
+                animationSpeed = 5;
+                speedButton.textContent = "Speed: Normal";
+            }
+        }
+
+        function nextFrame() {
+            currentFrame = Math.min(totalFrames - 1, currentFrame + 1);
+            updateImage(currentFrame);
+        }
+
+        function prevFrame() {
+            currentFrame = Math.max(0, currentFrame - 1);
+            updateImage(currentFrame);
+        }
+
+        function nextHour() {
+            currentFrame = Math.min(totalFrames - 1, currentFrame + 60);
+            updateImage(currentFrame);
+        }
+
+        function prevHour() {
+            currentFrame = Math.max(0, currentFrame - 60);
+            updateImage(currentFrame);
+        }
+
+        slider.addEventListener('input', () => {
+            currentFrame = parseInt(slider.value);
+            updateImage(currentFrame);
         });
 
-        const imageCount = 600;
-        slider.max = imageCount;
+        prevButton.addEventListener('click', () => {
+            currentFrame = Math.max(0, currentFrame - 600);
+            updateImage(currentFrame);
+        });
 
-        // Initialize time display
-        updateTimeDisplay(1);
+        nextButton.addEventListener('click', () => {
+            currentFrame = Math.min(totalFrames - 1, currentFrame + 600);
+            updateImage(currentFrame);
+        });
+
+        startButton.addEventListener('click', startAnimation);
+        stopButton.addEventListener('click', stopAnimation);
+        speedButton.addEventListener('click', changeSpeed);
+
+        // Keyboard controls
+        document.addEventListener('keydown', (event) => {
+            if (!slider.disabled) {
+                switch(event.key) {
+                    case 'ArrowRight':
+                        nextFrame();
+                        break;
+                    case 'ArrowLeft':
+                        prevFrame();
+                        break;
+                    case 'ArrowUp':
+                        nextHour();
+                        break;
+                    case 'ArrowDown':
+                        prevHour();
+                        break;
+                }
+            }
+        });
+
+        // View switch  functionality
+        viewSwitch.addEventListener('change', () => {
+            if (viewSwitch.checked) {
+                timelapseContainer.style.display = 'none';
+                videoContainer.style.display = 'block';
+                stopAnimation();
+            } else {
+                timelapseContainer.style.display = 'block';
+                videoContainer.style.display = 'none';
+                multiPersonVideo.pause();
+            }
+        });
+
+        // Initialize with the first frame and preload initial frames
+        updateImage(0);
+        preloadFrames(0);
     </script>
 </body>
 </html>

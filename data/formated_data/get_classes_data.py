@@ -25,7 +25,6 @@ def group_events_by_weekday_hour(events):
         grouped[key].append(modified_event)
     return grouped
 
-
 def transform_json(input_file):
     with open(input_file, 'r') as f:
         data = json.load(f)
@@ -40,24 +39,22 @@ def transform_json(input_file):
     # Añadir cada grupo al archivo JSON correspondiente
     for key, events in grouped_events.items():
         filename = f"{key}.json"
+        file_path = "data/formated_data/zones/" + filename
         
         try:
-            with open("data/formated_data/zones/"+filename, 'r') as f:
+            with open(file_path, 'r') as f:
                 existing_data = json.load(f)
         except FileNotFoundError:
-            existing_data = []
+            existing_data = {}  # Cambiado de [] a {} ya que parece que quieres un diccionario
         
         # Añadir eventos al diccionario existente
         existing_data["classes"] = events
         
-        # Convertir el objeto Python a un string JSON con formato indentado
-        updated_json = json.dumps(existing_data, indent=4)
-        
-        # Guardar los eventos en el archivo JSON
-        with open("data/formated_data/zones/"+filename, 'w') as f:
-            json.dump(updated_json, f, indent=4)
-        
+        # Guardar los eventos directamente en el archivo JSON
+        with open(file_path, 'w') as f:
+            json.dump(existing_data, f, indent=4)
+            
         print(f"Eventos añadidos al archivo: {filename}")
 
 if __name__ == "__main__":
-    transform_json("data/excel/clases_2024-08-05.json")
+    transform_json("data/excel/clases_total.json")

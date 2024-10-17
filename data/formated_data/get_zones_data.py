@@ -111,8 +111,7 @@ def excel_to_json(file_path):
             rowend+=sumatorio
             rowStart+=sumatorio
             value = HourData(zones_data)
-            hour = hour[:-3]
-            serialize_to_json(value,"data/formated_data/zones/"+str(day)+"_"+hour+".json")
+            serialize_to_json(value,"data/formated_data/zones/"+str(day)+"_"+hour[:-3]+".json")
         day=day+1
         
 
