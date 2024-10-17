@@ -1,1 +1,167 @@
-"{\n    \"aforo_zonas\": [\n        {\n            \"name\": \"LUDOTECA\",\n            \"targetCapacity\": 33,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CARDIO\",\n            \"targetCapacity\": 44,\n            \"totalCapacity\": 70\n        },\n        {\n            \"name\": \"CIRCUIT\",\n            \"targetCapacity\": 8,\n            \"totalCapacity\": 10\n        },\n        {\n            \"name\": \"ISOTONICO\",\n            \"targetCapacity\": 37,\n            \"totalCapacity\": 32\n        },\n        {\n            \"name\": \"FUNCIONAL\",\n            \"targetCapacity\": 8,\n            \"totalCapacity\": 12\n        },\n        {\n            \"name\": \"PESO LIBRE\",\n            \"targetCapacity\": 55,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CORE\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 20\n        },\n        {\n            \"name\": \"X-TRAINING\",\n            \"targetCapacity\": 9,\n            \"totalCapacity\": 24\n        },\n        {\n            \"name\": \"PP\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"PG\",\n            \"targetCapacity\": 10,\n            \"totalCapacity\": 42\n        },\n        {\n            \"name\": \"SAUNA\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"BANO VAPOR\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"PP EXT.\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"SOLARIUM\",\n            \"targetCapacity\": 1,\n            \"totalCapacity\": 30\n        }\n    ],\n    \"classes\": [\n        {\n            \"id\": \"/enjoy/class_events/15101137\",\n            \"studio\": \"Studio 2\",\n            \"activity\": \"X-TRAINING\",\n            \"colorHex\": \"#fcc400\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 9,\n            \"startedAt\": \"2024-08-05T18:00:00\",\n            \"endedAt\": \"2024-08-05T19:00:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15101663\",\n            \"studio\": \"FUNCIONAL\",\n            \"activity\": \"FUNCIONAL\",\n            \"colorHex\": \"#fcc400\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Irene Benedicto Ortiz\",\n            \"attendingLimit\": 12,\n            \"bookedAttendees\": 10,\n            \"startedAt\": \"2024-08-05T18:30:00\",\n            \"endedAt\": \"2024-08-05T19:00:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15102514\",\n            \"studio\": \"Studio 1\",\n            \"activity\": \"BODY COMBAT\",\n            \"colorHex\": \"#e2703e\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Laris Lopez Jurado\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 17,\n            \"startedAt\": \"2024-08-05T18:30:00\",\n            \"endedAt\": \"2024-08-05T19:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15102742\",\n            \"studio\": \"Studio 4\",\n            \"activity\": \"BODY BALANCE\",\n            \"colorHex\": \"#3bcfc3\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 15,\n            \"bookedAttendees\": 9,\n            \"startedAt\": \"2024-08-05T18:30:00\",\n            \"endedAt\": \"2024-08-05T19:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15102953\",\n            \"studio\": \"Studio Kids\",\n            \"activity\": \"X-TRAINING KIDS\",\n            \"colorHex\": \"#5a53e0\",\n            \"isBookable\": false,\n            \"isViewable\": true,\n            \"coach\": \"Ana Dominguez Roncero\",\n            \"attendingLimit\": 18,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T18:30:00\",\n            \"endedAt\": \"2024-08-05T19:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15177664\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T18:00:00\",\n            \"endedAt\": \"2024-08-05T18:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15177789\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 1,\n            \"startedAt\": \"2024-08-05T18:15:00\",\n            \"endedAt\": \"2024-08-05T18:30:00\"\n        }\n    ],\n    \"entradas\": [\n        {\n            \"dia\": \"2024-08-05\",\n            \"hora\": \"18\",\n            \"total_entrada\": 277,\n            \"total_salida\": 120,\n            \"entrada\": 187,\n            \"salida\": 97,\n            \"menores-entrada\": 62,\n            \"menores-salida\": 19,\n            \"error-entrada\": [],\n            \"error-salida\": [],\n            \"duplicados-entrada\": {\n                \"10644704\": 2,\n                \"10644705\": 5,\n                \"10646522\": 2,\n                \"10633665\": 2,\n                \"10628176\": 3,\n                \"10637599\": 3,\n                \"10615921\": 2,\n                \"10643384\": 2,\n                \"10634861\": 2,\n                \"10615487\": 2,\n                \"10621364\": 4,\n                \"11018091\": 2,\n                \"11009060\": 4,\n                \"10644350\": 2,\n                \"10632119\": 2,\n                \"10641506\": 3,\n                \"10635452\": 2,\n                \"10617832\": 2\n            },\n            \"duplicados-salida\": {\n                \"10644705\": 2,\n                \"10760421\": 2,\n                \"10631910\": 2,\n                \"10625493\": 2\n            }\n        }\n    ]\n}"
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 44,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 37,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 8,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 55,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 7,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 9,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 10,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 1,
+            "totalCapacity": 30
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15101137",
+            "studio": "Studio 2",
+            "activity": "X-TRAINING",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 9,
+            "startedAt": "2024-08-05T18:00:00",
+            "endedAt": "2024-08-05T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15101663",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 12,
+            "bookedAttendees": 10,
+            "startedAt": "2024-08-05T18:30:00",
+            "endedAt": "2024-08-05T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15102514",
+            "studio": "Studio 1",
+            "activity": "BODY COMBAT",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Laris Lopez Jurado",
+            "attendingLimit": 36,
+            "bookedAttendees": 17,
+            "startedAt": "2024-08-05T18:30:00",
+            "endedAt": "2024-08-05T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15102742",
+            "studio": "Studio 4",
+            "activity": "BODY BALANCE",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 15,
+            "bookedAttendees": 9,
+            "startedAt": "2024-08-05T18:30:00",
+            "endedAt": "2024-08-05T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15102953",
+            "studio": "Studio Kids",
+            "activity": "X-TRAINING KIDS",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Ana Dominguez Roncero",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T18:30:00",
+            "endedAt": "2024-08-05T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15177664",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T18:00:00",
+            "endedAt": "2024-08-05T18:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15177789",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-05T18:15:00",
+            "endedAt": "2024-08-05T18:30:00"
+        }
+    ]
+}

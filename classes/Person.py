@@ -17,7 +17,7 @@ class Person:
         self.current_floor = floor
         self.max_step = max_step
         self.locker_room = locker_room
-        self.history = [(start_x, start_y, self.current_floor, None)]
+        self.history = [(start_x, start_y, self.current_floor, None, None)]
         self.stay_counter = 0
         self.wait_time = 0
         self.target_area = target_area
@@ -26,7 +26,7 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
-        self.speed = random.randint(6, 12)
+        self.speed = random.randint(10, 20)
         self.lifetime = 0
         self.max_lifetime = max_lifetime
 
@@ -119,21 +119,21 @@ class Person:
                         self.wait_time = random.randint(40, 100)                  
                         self.target_coords = self.target_area.getPointInside()
                         # TODO only pass grid of the specific area, or put get easy route
-                        self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),
-                                                       end = self.target_coords,
-                                                       step=SCALE_FACTOR)
-                        # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                        #                                  src=(int(self.x), int(self.y)), dest=self.target_coords,
-                        #                                  scale_factor=SCALE_FACTOR,
-                        #                                  debug=False)
+                        # self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),
+                        #                                end = self.target_coords,
+                        #                                step=SCALE_FACTOR)
+                        self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
+                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
+                                                         scale_factor=SCALE_FACTOR,
+                                                         debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
                     self.stay_counter += 1
             else:
                 self.x, self.y = self.route.pop(0)
         if self.state=='left':
             self.current_floor = 0
-            self.x, self.y = 1750, 165 + self.id*5
+            self.x, self.y = 1750, 165 + self.id*10
         
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
-        self.history.append((self.x, self.y, self.current_floor, self.state))
+        self.history.append((self.x, self.y, self.current_floor, self.state, self.target_area.name))
 

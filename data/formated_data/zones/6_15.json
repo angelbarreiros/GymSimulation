@@ -70,5 +70,59 @@
             "targetCapacity": 0,
             "totalCapacity": 25
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15208086",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-10T15:00:00",
+            "endedAt": "2024-08-10T15:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15208199",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-10T15:15:00",
+            "endedAt": "2024-08-10T15:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15208281",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-10T15:30:00",
+            "endedAt": "2024-08-10T15:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15208409",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-10T15:45:00",
+            "endedAt": "2024-08-10T16:00:00"
+        }
     ]
 }

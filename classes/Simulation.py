@@ -82,7 +82,7 @@ class Simulation:
             locker_room = random.choice(locker_room_lst)
         target=self.getTargetArea()
         if target==None:
-            print(f"No available target areas for person {num_person} in frame {frame}")
+            #print(f"No available target areas for person {num_person} in frame {frame}")
             return False
         self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime= np.random.choice([1, 2, 3])))
         
@@ -110,8 +110,12 @@ class Simulation:
             exceeded_lifetime_count = sum(1 for person in self.persons if person.lifetime >= person.max_lifetime)
             for person in self.persons:
                 if person.lifetime >= person.max_lifetime:
-                    person.state = 'left'
                     person.target_area.actualCapacity -= 1
+                    # person.targeArea = self.spawn_points[np.random.choice(len(self.spawn_points))]
+                    # person.state = None
+                    # person.route = None
+                    person.state = 'left'
+
 
             self.get_data_hour(dia, hora, self.target_areas)
             self.distribute_targets()
@@ -201,7 +205,7 @@ class Simulation:
 
             for person in self.persons:
                 if (person.startFrame <= frame_num < person.startFrame + len(person.history)):
-                    x, y, floor, state = person.history[frame_num - person.startFrame]
+                    x, y, floor, state, target = person.history[frame_num - person.startFrame]
                     # if state == 'left':
                     #     continue
                     row = floor // grid_size
@@ -230,12 +234,12 @@ class Simulation:
                 else:
                     paint_area(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
 
-            # for classe in self.classes:
-            #     row = classe.floor // grid_size
-            #     col = classe.floor % grid_size
-            #     floor_offset_y = header_height + row * height
-            #     floor_offset_x = col * width
-            #     draw_class(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], classe, COLORS['Red'])
+            for classe in self.classes:
+                row = classe.Area.floor // grid_size
+                col = classe.Area.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                draw_class(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], classe, COLORS['White'])
             
             for spawn in self.spawn_points:
                 row = spawn.floor // grid_size
@@ -247,12 +251,14 @@ class Simulation:
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
             # print(f"Frame {frame_num} saved to {frame_filename}")
-        with ThreadPoolExecutor() as executor:
-            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
-            
-            for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
-                pass
+        for frame_num in tqdm.tqdm(range(total_frames * len(hours)), desc="Generating frames", unit="frame"):
+            process_frame(frame_num)
 
+        # with ThreadPoolExecutor() as executor:
+        #     futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
+            
+        #     for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
+        #         pass
         end_time = time.time()
         total_time = end_time - start_time
         print(f"Total time taken: {total_time:.2f} seconds")

@@ -70,5 +70,46 @@
             "targetCapacity": 8,
             "totalCapacity": 20
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15107433",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T21:00:00",
+            "endedAt": "2024-08-06T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15184078",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T21:30:00",
+            "endedAt": "2024-08-06T21:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15184176",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T21:45:00",
+            "endedAt": "2024-08-06T22:00:00"
+        }
     ]
 }

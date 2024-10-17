@@ -70,5 +70,72 @@
             "targetCapacity": 2,
             "totalCapacity": 25
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15100590",
+            "studio": "Studio Kids",
+            "activity": "DEPORTE I (3-7)",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Pedro Ramiro Ramiro",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T17:30:00",
+            "endedAt": "2024-08-07T18:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189128",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T17:00:00",
+            "endedAt": "2024-08-07T17:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189223",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T17:15:00",
+            "endedAt": "2024-08-07T17:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189352",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T17:30:00",
+            "endedAt": "2024-08-07T17:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189437",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T17:45:00",
+            "endedAt": "2024-08-07T18:00:00"
+        }
     ]
 }

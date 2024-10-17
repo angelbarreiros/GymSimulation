@@ -70,5 +70,72 @@
             "targetCapacity": 12,
             "totalCapacity": 20
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15101741",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 5,
+            "startedAt": "2024-08-06T18:30:00",
+            "endedAt": "2024-08-06T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15103058",
+            "studio": "Studio Kids",
+            "activity": "DEPORTE II (8 -13)",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T18:30:00",
+            "endedAt": "2024-08-06T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15182939",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T18:00:00",
+            "endedAt": "2024-08-06T18:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15183061",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-06T18:15:00",
+            "endedAt": "2024-08-06T18:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15562444",
+            "studio": "Studio 1",
+            "activity": "GAP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 29,
+            "startedAt": "2024-08-06T18:30:00",
+            "endedAt": "2024-08-06T19:30:00"
+        }
     ]
 }

@@ -70,5 +70,111 @@
             "targetCapacity": 8,
             "totalCapacity": 20
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15103890",
+            "studio": "Studio 2",
+            "activity": "ZUMBA",
+            "colorHex": "#ff4c67",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 36,
+            "bookedAttendees": 19,
+            "startedAt": "2024-08-07T19:00:00",
+            "endedAt": "2024-08-07T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15104667",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 32,
+            "bookedAttendees": 17,
+            "startedAt": "2024-08-07T19:00:00",
+            "endedAt": "2024-08-07T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105487",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Victor Perez Diaz ",
+            "attendingLimit": 36,
+            "bookedAttendees": 26,
+            "startedAt": "2024-08-07T19:30:00",
+            "endedAt": "2024-08-07T20:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105730",
+            "studio": "Studio 4",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 15,
+            "bookedAttendees": 9,
+            "startedAt": "2024-08-07T19:30:00",
+            "endedAt": "2024-08-07T20:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189773",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T19:00:00",
+            "endedAt": "2024-08-07T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189854",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T19:15:00",
+            "endedAt": "2024-08-07T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189983",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T19:30:00",
+            "endedAt": "2024-08-07T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190088",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T19:45:00",
+            "endedAt": "2024-08-07T20:00:00"
+        }
     ]
 }

@@ -43,9 +43,11 @@ def paint_area(frame, area, persons, frame_num):
         fill_color = (0, 0, 255)  # Red
     else:
         n = sum(1 for person in persons 
-                if person.target_area == area 
-                and person.startFrame <= frame_num < person.startFrame + len(person.history)
-                and person.history[frame_num - person.startFrame][3] == 'reached')
+                if person.startFrame <= frame_num
+                and frame_num < person.startFrame + len(person.history)
+                and person.history[frame_num - person.startFrame][3] == 'reached'
+                and person.history[frame_num - person.startFrame][4] == area.name)
+        # print(f"Area {area.name} has {n} persons, actually has {area.actualCapacity}")
         occupancy_percent = (n / area.totalCapacity) * 100
         if 0 <= occupancy_percent < 20:
             fill_color = COLORS['Red']
@@ -70,11 +72,10 @@ def paint_noarea(frame, area, color):
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
 def draw_person(frame, x, y, color):
-    cv2.circle(frame, (int(x), int(y)), 10, color, -1)
+    cv2.circle(frame, (int(x), int(y)), 15, color, -1)
 
 def draw_class(frame, area, color):
-    pts = area.points.reshape((-1, 1, 2))
+    pts = area.Area.points.reshape((-1, 1, 2))
     cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=2)
-    center = area.points.mean(axis=0).astype(int)
+    center = area.Area.points.mean(axis=0).astype(int)
     cv2.putText(frame, f"Class {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
-    cv2.putText(frame, f"Capacity {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)

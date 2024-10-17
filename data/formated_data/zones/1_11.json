@@ -1,1 +1,167 @@
-"{\n    \"aforo_zonas\": [\n        {\n            \"name\": \"LUDOTECA\",\n            \"targetCapacity\": 22,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"PP\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"PG\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 42\n        },\n        {\n            \"name\": \"SAUNA\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"BANO VAPOR\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"PP EXT.\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"SOLARIUM\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 30\n        },\n        {\n            \"name\": \"DESCANSO\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"CARDIO\",\n            \"targetCapacity\": 25,\n            \"totalCapacity\": 70\n        },\n        {\n            \"name\": \"CIRCUIT\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 10\n        },\n        {\n            \"name\": \"ISOTONICO\",\n            \"targetCapacity\": 24,\n            \"totalCapacity\": 32\n        },\n        {\n            \"name\": \"FUNCIONAL\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 12\n        },\n        {\n            \"name\": \"PESO LIBRE\",\n            \"targetCapacity\": 33,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CORE\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 20\n        }\n    ],\n    \"classes\": [\n        {\n            \"id\": \"/enjoy/class_events/15093183\",\n            \"studio\": \"Studio 2\",\n            \"activity\": \"BODY PUMP VIRTUAL\",\n            \"colorHex\": \"#ea474a\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 1,\n            \"startedAt\": \"2024-08-05T11:00:00\",\n            \"endedAt\": \"2024-08-05T11:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15094045\",\n            \"studio\": \"Studio 1\",\n            \"activity\": \"BODY COMBAT\",\n            \"colorHex\": \"#e2703e\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Antonio Moran Fernandez\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 9,\n            \"startedAt\": \"2024-08-05T11:30:00\",\n            \"endedAt\": \"2024-08-05T12:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15094466\",\n            \"studio\": \"Studio 4\",\n            \"activity\": \"SUELO P\\u00c9LVICO\",\n            \"colorHex\": \"#3bcfc3\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Sofia Barkhioua Alvarez\",\n            \"attendingLimit\": 15,\n            \"bookedAttendees\": 4,\n            \"startedAt\": \"2024-08-05T11:30:00\",\n            \"endedAt\": \"2024-08-05T12:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15175361\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T11:00:00\",\n            \"endedAt\": \"2024-08-05T11:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15175433\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T11:15:00\",\n            \"endedAt\": \"2024-08-05T11:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15175536\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T11:30:00\",\n            \"endedAt\": \"2024-08-05T11:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15175684\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T11:45:00\",\n            \"endedAt\": \"2024-08-05T12:00:00\"\n        }\n    ],\n    \"entradas\": [\n        {\n            \"dia\": \"2024-08-05\",\n            \"hora\": \"11\",\n            \"total_entrada\": 120,\n            \"total_salida\": 67,\n            \"entrada\": 86,\n            \"salida\": 65,\n            \"menores-entrada\": 21,\n            \"menores-salida\": 1,\n            \"error-entrada\": [],\n            \"error-salida\": [],\n            \"duplicados-entrada\": {\n                \"11096029\": 2,\n                \"10615561\": 4,\n                \"10617208\": 2,\n                \"10644132\": 2,\n                \"10645038\": 2,\n                \"11182210\": 2,\n                \"11073602\": 2,\n                \"10645171\": 2,\n                \"10618363\": 4\n            },\n            \"duplicados-salida\": {\n                \"10630543\": 2\n            }\n        }\n    ]\n}"
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 22,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 5,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 2,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 25,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 5,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 24,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 2,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 5,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15093183",
+            "studio": "Studio 2",
+            "activity": "BODY PUMP VIRTUAL",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-05T11:00:00",
+            "endedAt": "2024-08-05T11:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15094045",
+            "studio": "Studio 1",
+            "activity": "BODY COMBAT",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Antonio Moran Fernandez",
+            "attendingLimit": 36,
+            "bookedAttendees": 9,
+            "startedAt": "2024-08-05T11:30:00",
+            "endedAt": "2024-08-05T12:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15094466",
+            "studio": "Studio 4",
+            "activity": "SUELO P\u00c9LVICO",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sofia Barkhioua Alvarez",
+            "attendingLimit": 15,
+            "bookedAttendees": 4,
+            "startedAt": "2024-08-05T11:30:00",
+            "endedAt": "2024-08-05T12:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175361",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T11:00:00",
+            "endedAt": "2024-08-05T11:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175433",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T11:15:00",
+            "endedAt": "2024-08-05T11:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175536",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T11:30:00",
+            "endedAt": "2024-08-05T11:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175684",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T11:45:00",
+            "endedAt": "2024-08-05T12:00:00"
+        }
+    ]
+}

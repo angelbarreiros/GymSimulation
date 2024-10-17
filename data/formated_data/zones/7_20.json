@@ -70,5 +70,20 @@
             "targetCapacity": 3,
             "totalCapacity": 24
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15105939",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sara Fernandez Cano",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-11T20:00:00",
+            "endedAt": "2024-08-11T20:30:00"
+        }
     ]
 }

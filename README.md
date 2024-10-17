@@ -1,9 +1,22 @@
 # GymSimulation
 
+## TODO
+
 zigbee sensors, hardware...
 
-area-target_capacity maybe not right? sometime neg...!!!!
+salida bien -> esta todo comentaooo, deberia ir, cambiar nombre de "left" por uno mas accurate
 
-señalizar cuando empiezan clases, also no duran 1 hora exacto
+pintar clases mejor -> colores que vienen del jsonn, al rededor
+
+añadir leyenda para ocupacion y colores clase, spawns
 
 sola cambiar de target las imprescindibles
+
+señalizar cuando empiezan clases, also no duran 1 hora exacto
+    tambien el lifetime, que no sea por horass...(info incorrecta¿) -> cuando vayas no disminuye hasta reset?
+
+entradas/salidas json no entrar..
+
+optimizar, rutas y pintar...
+
+cambios dinamicos entre targets de personas

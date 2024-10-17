@@ -70,5 +70,85 @@
             "targetCapacity": 0,
             "totalCapacity": 30
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15103582",
+            "studio": "Studio 2",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 36,
+            "bookedAttendees": 7,
+            "startedAt": "2024-08-08T19:00:00",
+            "endedAt": "2024-08-08T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105417",
+            "studio": "Studio 1",
+            "activity": "BODY COMBAT",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 7,
+            "startedAt": "2024-08-08T19:30:00",
+            "endedAt": "2024-08-08T20:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15196232",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T19:00:00",
+            "endedAt": "2024-08-08T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15196337",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T19:15:00",
+            "endedAt": "2024-08-08T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15196442",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T19:30:00",
+            "endedAt": "2024-08-08T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15196528",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T19:45:00",
+            "endedAt": "2024-08-08T20:00:00"
+        }
     ]
 }

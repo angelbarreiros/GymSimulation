@@ -1,1 +1,141 @@
-"{\n    \"aforo_zonas\": [\n        {\n            \"name\": \"PG\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 42\n        },\n        {\n            \"name\": \"DESCANSO\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"BANO VAPOR\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"SAUNA\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"CARDIO\",\n            \"targetCapacity\": 11,\n            \"totalCapacity\": 70\n        },\n        {\n            \"name\": \"CIRCUIT\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 10\n        },\n        {\n            \"name\": \"ISOTONICO\",\n            \"targetCapacity\": 16,\n            \"totalCapacity\": 32\n        },\n        {\n            \"name\": \"FUNCIONAL\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 12\n        },\n        {\n            \"name\": \"PESO LIBRE\",\n            \"targetCapacity\": 25,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CORE\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 20\n        },\n        {\n            \"name\": \"X-TRAINING\",\n            \"targetCapacity\": 1,\n            \"totalCapacity\": 24\n        },\n        {\n            \"name\": \"PP\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"PP EXT.\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"SOLARIUM\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 30\n        }\n    ],\n    \"classes\": [\n        {\n            \"id\": \"/enjoy/class_events/15097068\",\n            \"studio\": \"Studio 1\",\n            \"activity\": \"CICLO INDOOR\",\n            \"colorHex\": \"#e2703e\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Sofia Barkhioua Alvarez\",\n            \"attendingLimit\": 32,\n            \"bookedAttendees\": 4,\n            \"startedAt\": \"2024-08-05T14:30:00\",\n            \"endedAt\": \"2024-08-05T15:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15176209\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T14:00:00\",\n            \"endedAt\": \"2024-08-05T14:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15176315\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T14:15:00\",\n            \"endedAt\": \"2024-08-05T14:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15176407\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T14:30:00\",\n            \"endedAt\": \"2024-08-05T14:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15176513\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T14:45:00\",\n            \"endedAt\": \"2024-08-05T15:00:00\"\n        }\n    ],\n    \"entradas\": [\n        {\n            \"dia\": \"2024-08-05\",\n            \"hora\": \"14\",\n            \"total_entrada\": 58,\n            \"total_salida\": 80,\n            \"entrada\": 42,\n            \"salida\": 59,\n            \"menores-entrada\": 10,\n            \"menores-salida\": 21,\n            \"error-entrada\": [],\n            \"error-salida\": [],\n            \"duplicados-entrada\": {\n                \"10623967\": 7\n            },\n            \"duplicados-salida\": []\n        }\n    ]\n}"
+{
+    "aforo_zonas": [
+        {
+            "name": "PG",
+            "targetCapacity": 7,
+            "totalCapacity": 42
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 11,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 2,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 16,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 3,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 25,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 5,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 1,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15097068",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sofia Barkhioua Alvarez",
+            "attendingLimit": 32,
+            "bookedAttendees": 4,
+            "startedAt": "2024-08-05T14:30:00",
+            "endedAt": "2024-08-05T15:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15176209",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T14:00:00",
+            "endedAt": "2024-08-05T14:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15176315",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T14:15:00",
+            "endedAt": "2024-08-05T14:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15176407",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T14:30:00",
+            "endedAt": "2024-08-05T14:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15176513",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T14:45:00",
+            "endedAt": "2024-08-05T15:00:00"
+        }
+    ]
+}

@@ -1,1 +1,115 @@
-"{\n    \"aforo_zonas\": [\n        {\n            \"name\": \"LUDOTECA\",\n            \"targetCapacity\": 3,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"PP\",\n            \"targetCapacity\": 4,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"PG\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 42\n        },\n        {\n            \"name\": \"SAUNA\",\n            \"targetCapacity\": 4,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"BANO VAPOR\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"DESCANSO\",\n            \"targetCapacity\": 2,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"CARDIO\",\n            \"targetCapacity\": 24,\n            \"totalCapacity\": 70\n        },\n        {\n            \"name\": \"CIRCUIT\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 10\n        },\n        {\n            \"name\": \"ISOTONICO\",\n            \"targetCapacity\": 34,\n            \"totalCapacity\": 32\n        },\n        {\n            \"name\": \"FUNCIONAL\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 12\n        },\n        {\n            \"name\": \"PESO LIBRE\",\n            \"targetCapacity\": 43,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CORE\",\n            \"targetCapacity\": 7,\n            \"totalCapacity\": 20\n        },\n        {\n            \"name\": \"X-TRAINING\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 24\n        },\n        {\n            \"name\": \"PP EXT.\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        }\n    ],\n    \"classes\": [\n        {\n            \"id\": \"/enjoy/class_events/15107327\",\n            \"studio\": \"FUNCIONAL\",\n            \"activity\": \"FUNCIONAL\",\n            \"colorHex\": \"#fcc400\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Nerea Navarro Barroso\",\n            \"attendingLimit\": 12,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T21:00:00\",\n            \"endedAt\": \"2024-08-05T21:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15178735\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T21:30:00\",\n            \"endedAt\": \"2024-08-05T21:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15178840\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T21:45:00\",\n            \"endedAt\": \"2024-08-05T22:00:00\"\n        }\n    ],\n    \"entradas\": [\n        {\n            \"dia\": \"2024-08-05\",\n            \"hora\": \"21\",\n            \"total_entrada\": 35,\n            \"total_salida\": 80,\n            \"entrada\": 30,\n            \"salida\": 67,\n            \"menores-entrada\": 4,\n            \"menores-salida\": 12,\n            \"error-entrada\": [],\n            \"error-salida\": [],\n            \"duplicados-entrada\": {\n                \"10644369\": 2\n            },\n            \"duplicados-salida\": {\n                \"10618792\": 2\n            }\n        }\n    ]\n}"
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 3,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 4,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 7,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 4,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 24,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 7,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 34,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 7,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 43,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 7,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 5,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15107327",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T21:00:00",
+            "endedAt": "2024-08-05T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15178735",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T21:30:00",
+            "endedAt": "2024-08-05T21:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15178840",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T21:45:00",
+            "endedAt": "2024-08-05T22:00:00"
+        }
+    ]
+}

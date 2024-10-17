@@ -70,5 +70,33 @@
             "targetCapacity": 3,
             "totalCapacity": 20
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15090742",
+            "studio": "Studio 2",
+            "activity": "BODY PUMP VIRTUAL",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-10T09:00:00",
+            "endedAt": "2024-08-10T09:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15091162",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Miguel Castro Garcia-Fraile",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-10T09:30:00",
+            "endedAt": "2024-08-10T10:00:00"
+        }
     ]
 }

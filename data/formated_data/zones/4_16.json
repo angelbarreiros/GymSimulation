@@ -70,5 +70,72 @@
             "targetCapacity": 7,
             "totalCapacity": 24
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15099021",
+            "studio": "Studio 2",
+            "activity": "BODY PUMP VIRTUAL",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-08T16:30:00",
+            "endedAt": "2024-08-08T17:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15194914",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T16:00:00",
+            "endedAt": "2024-08-08T16:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15195070",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T16:15:00",
+            "endedAt": "2024-08-08T16:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15195207",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T16:30:00",
+            "endedAt": "2024-08-08T16:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15195291",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-08T16:45:00",
+            "endedAt": "2024-08-08T17:00:00"
+        }
     ]
 }

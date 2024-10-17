@@ -1,1 +1,180 @@
-"{\n    \"aforo_zonas\": [\n        {\n            \"name\": \"LUDOTECA\",\n            \"targetCapacity\": 36,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CARDIO\",\n            \"targetCapacity\": 49,\n            \"totalCapacity\": 70\n        },\n        {\n            \"name\": \"CIRCUIT\",\n            \"targetCapacity\": 6,\n            \"totalCapacity\": 10\n        },\n        {\n            \"name\": \"ISOTONICO\",\n            \"targetCapacity\": 46,\n            \"totalCapacity\": 32\n        },\n        {\n            \"name\": \"FUNCIONAL\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 12\n        },\n        {\n            \"name\": \"PESO LIBRE\",\n            \"targetCapacity\": 52,\n            \"totalCapacity\": 50\n        },\n        {\n            \"name\": \"CORE\",\n            \"targetCapacity\": 11,\n            \"totalCapacity\": 20\n        },\n        {\n            \"name\": \"X-TRAINING\",\n            \"targetCapacity\": 9,\n            \"totalCapacity\": 24\n        },\n        {\n            \"name\": \"PP\",\n            \"targetCapacity\": 4,\n            \"totalCapacity\": 25\n        },\n        {\n            \"name\": \"PG\",\n            \"targetCapacity\": 9,\n            \"totalCapacity\": 42\n        },\n        {\n            \"name\": \"SAUNA\",\n            \"targetCapacity\": 5,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"BANO VAPOR\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"PP EXT.\",\n            \"targetCapacity\": 0,\n            \"totalCapacity\": 15\n        },\n        {\n            \"name\": \"SOLARIUM\",\n            \"targetCapacity\": 1,\n            \"totalCapacity\": 30\n        }\n    ],\n    \"classes\": [\n        {\n            \"id\": \"/enjoy/class_events/15103793\",\n            \"studio\": \"Studio 2\",\n            \"activity\": \"ZUMBA\",\n            \"colorHex\": \"#ff4c67\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 19,\n            \"startedAt\": \"2024-08-05T19:00:00\",\n            \"endedAt\": \"2024-08-05T20:00:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15104212\",\n            \"studio\": \"Studio 1\",\n            \"activity\": \"CICLO INDOOR\",\n            \"colorHex\": \"#e2703e\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Daniel Llorente Lorenzo\",\n            \"attendingLimit\": 32,\n            \"bookedAttendees\": 29,\n            \"startedAt\": \"2024-08-05T19:00:00\",\n            \"endedAt\": \"2024-08-05T19:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15105207\",\n            \"studio\": \"Studio 1\",\n            \"activity\": \"BODY PUMP\",\n            \"colorHex\": \"#ea474a\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Nerea Navarro Barroso\",\n            \"attendingLimit\": 36,\n            \"bookedAttendees\": 32,\n            \"startedAt\": \"2024-08-05T19:30:00\",\n            \"endedAt\": \"2024-08-05T20:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15105642\",\n            \"studio\": \"Studio 4\",\n            \"activity\": \"PILATES\",\n            \"colorHex\": \"#3bcfc3\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"Laris Lopez Jurado\",\n            \"attendingLimit\": 15,\n            \"bookedAttendees\": 13,\n            \"startedAt\": \"2024-08-05T19:30:00\",\n            \"endedAt\": \"2024-08-05T20:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15177895\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 1,\n            \"startedAt\": \"2024-08-05T19:00:00\",\n            \"endedAt\": \"2024-08-05T19:15:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15178000\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 1,\n            \"startedAt\": \"2024-08-05T19:15:00\",\n            \"endedAt\": \"2024-08-05T19:30:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15178105\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T19:30:00\",\n            \"endedAt\": \"2024-08-05T19:45:00\"\n        },\n        {\n            \"id\": \"/enjoy/class_events/15178210\",\n            \"studio\": \"Valoraci\\u00f3n Inicial\",\n            \"activity\": \"CITA ENTRENADOR 1\",\n            \"colorHex\": \"#000000\",\n            \"isBookable\": true,\n            \"isViewable\": true,\n            \"coach\": \"\",\n            \"attendingLimit\": 1,\n            \"bookedAttendees\": 0,\n            \"startedAt\": \"2024-08-05T19:45:00\",\n            \"endedAt\": \"2024-08-05T20:00:00\"\n        }\n    ],\n    \"entradas\": [\n        {\n            \"dia\": \"2024-08-05\",\n            \"hora\": \"19\",\n            \"total_entrada\": 209,\n            \"total_salida\": 215,\n            \"entrada\": 152,\n            \"salida\": 176,\n            \"menores-entrada\": 41,\n            \"menores-salida\": 34,\n            \"error-entrada\": [],\n            \"error-salida\": [],\n            \"duplicados-entrada\": {\n                \"10645536\": 3,\n                \"10619360\": 2,\n                \"11227333\": 2,\n                \"10635149\": 4,\n                \"10616626\": 2,\n                \"10635492\": 2,\n                \"10625399\": 2,\n                \"11192711\": 2,\n                \"11227167\": 2,\n                \"10642314\": 2,\n                \"10619599\": 3,\n                \"10621562\": 2\n            },\n            \"duplicados-salida\": {\n                \"10647269\": 2,\n                \"10620008\": 2,\n                \"10635149\": 2,\n                \"10647049\": 2,\n                \"10644221\": 2\n            }\n        }\n    ]\n}"
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 36,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 49,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 46,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 52,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 11,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 9,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 4,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 1,
+            "totalCapacity": 30
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15103793",
+            "studio": "Studio 2",
+            "activity": "ZUMBA",
+            "colorHex": "#ff4c67",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 19,
+            "startedAt": "2024-08-05T19:00:00",
+            "endedAt": "2024-08-05T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15104212",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 32,
+            "bookedAttendees": 29,
+            "startedAt": "2024-08-05T19:00:00",
+            "endedAt": "2024-08-05T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105207",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 36,
+            "bookedAttendees": 32,
+            "startedAt": "2024-08-05T19:30:00",
+            "endedAt": "2024-08-05T20:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105642",
+            "studio": "Studio 4",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Laris Lopez Jurado",
+            "attendingLimit": 15,
+            "bookedAttendees": 13,
+            "startedAt": "2024-08-05T19:30:00",
+            "endedAt": "2024-08-05T20:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15177895",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-05T19:00:00",
+            "endedAt": "2024-08-05T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15178000",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-05T19:15:00",
+            "endedAt": "2024-08-05T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15178105",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T19:30:00",
+            "endedAt": "2024-08-05T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15178210",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-05T19:45:00",
+            "endedAt": "2024-08-05T20:00:00"
+        }
+    ]
+}

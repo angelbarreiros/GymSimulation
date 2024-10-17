@@ -70,5 +70,72 @@
             "targetCapacity": 2,
             "totalCapacity": 25
         }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15090532",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Victor Perez Diaz ",
+            "attendingLimit": 36,
+            "bookedAttendees": 8,
+            "startedAt": "2024-08-07T09:30:00",
+            "endedAt": "2024-08-07T10:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15185526",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T09:00:00",
+            "endedAt": "2024-08-07T09:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15185716",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T09:15:00",
+            "endedAt": "2024-08-07T09:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15185873",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-08-07T09:30:00",
+            "endedAt": "2024-08-07T09:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15185953",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-08-07T09:45:00",
+            "endedAt": "2024-08-07T10:00:00"
+        }
     ]
 }

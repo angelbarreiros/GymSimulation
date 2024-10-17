@@ -84,7 +84,7 @@ def get_data(dia, hora, areas):
     
     with open(path, 'r') as file:
         data = json.load(file)
-        data = json.loads(data)
+        #data = json.loads(data)
         npersons = 0
         entradas = 0
         salidas = 0
