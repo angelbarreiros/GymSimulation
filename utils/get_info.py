@@ -1,11 +1,6 @@
 import json
 import math
 from classes.Map import Area, Boundary, SpawnPoint, Activity
-from utils.get_zones_json import get_day_name
-AFORO_PATH = 'data/clases_2024-08-05.json'    
-#AFORO_ZONAS_PATH = 'data/aforo_zonas_7am.json'
-AFORO_ZONAS_PATH = 'data/aforo-x-horas/LUNES_07.json'
-AFORO_CLASES_PATH = 'data/clases_7am.json'
 
 def extract_aforo(file_path, hour):
     hour_str = str(hour).zfill(2)  # Ensure hour is a two-digit string
@@ -84,30 +79,40 @@ def get_data_initial(path):
         return all_areas, all_walls, all_spawns
 
 def get_data(dia, hora, areas):
-    path = f'data/aforo-x-horas/{dia}_{str(hora).zfill(2)}.json'
+    path = f'data/formated_data/zones/1_{str(hora).zfill(2)}.json'
     print(f"Processing data from {path}")
     
     with open(path, 'r') as file:
         data = json.load(file)
+        data = json.loads(data)
         npersons = 0
         entradas = 0
         salidas = 0
         classes = []
-        
+            
         if 'aforo_zonas' in data:
             for zone in data['aforo_zonas']:
                 # zone_name = zone['name']
-                zone_name = zone['zona']
-                matching_area = next((area for area in areas if (area.name == zone_name or area.type == zone_name)), None)
-                if matching_area and matching_area.type != 'NOFUNCIONAL' and matching_area.type != 'VESTUARIO' and matching_area.type != 'CLASE':
-                    if matching_area.type != matching_area.name:
-                        nareas = sum(1 for obj in areas if obj.type == matching_area.type)
-                    else:
-                        nareas = 1
-                    print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type}")
-                    matching_area.targetCapacity = int(zone['oc.prom']/nareas)
-                    matching_area.totalCapacity = int(zone['aforo']/nareas)
-                    npersons += int(zone['oc.prom'])
+                zone_name = zone['name']
+                matching_areas = [area for area in areas if area.type == zone_name]
+                if matching_areas and zone_name not in ['NOFUNCIONAL', 'VESTUARIO', 'CLASE']:
+                    nareas = len(matching_areas)
+                    total_target_capacity = zone['targetCapacity']
+                    total_capacity = zone['totalCapacity']
+                    base_target_capacity = total_target_capacity // nareas
+                    base_total_capacity = total_capacity // nareas
+                    remainder_target_capacity = total_target_capacity % nareas
+                    remainder_total_capacity = total_capacity % nareas
+
+                    for i, matching_area in enumerate(matching_areas):
+                        matching_area.targetCapacity = base_target_capacity
+                        matching_area.totalCapacity = base_total_capacity
+                        if i < remainder_target_capacity:
+                            matching_area.targetCapacity += 1
+                        if i < remainder_total_capacity:
+                            matching_area.totalCapacity += 1
+                        print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type} and {matching_area.targetCapacity} target capacity")
+                        npersons += matching_area.targetCapacity
 
         if 'classes' in data:
             for clase in data['classes']:
@@ -116,12 +121,15 @@ def get_data(dia, hora, areas):
                 if matching_area: # if matching_area.type == 'CLASE':
                     newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=matching_area)  
                     classes.append(newClass)
+                    npersons -= matching_area.targetCapacity
                     matching_area.targetCapacity = clase['bookedAttendees']
                     matching_area.totalCapacity = clase['attendingLimit']
                     npersons += clase['bookedAttendees']
+                    print(f"Matching area {matching_area.name} with class {clase['activity']} with {clase['bookedAttendees']} attendees")
 
-        if 'entradas' in data:
-            entradas = data['entradas']['entredas']
-            salidas = data['entradas']['salidas']
+        if 'entradas' in data:  # NOT WORKING
+            for dt in data['entradas']:
+                entradas = dt['total_entrada']
+                salidas = dt['total_salida']
 
     return npersons, entradas, salidas, areas, classes

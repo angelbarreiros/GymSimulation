@@ -71,3 +71,10 @@ def paint_noarea(frame, area, color):
 
 def draw_person(frame, x, y, color):
     cv2.circle(frame, (int(x), int(y)), 10, color, -1)
+
+def draw_class(frame, area, color):
+    pts = area.points.reshape((-1, 1, 2))
+    cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=2)
+    center = area.points.mean(axis=0).astype(int)
+    cv2.putText(frame, f"Class {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
+    cv2.putText(frame, f"Capacity {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)

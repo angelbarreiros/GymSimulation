@@ -6,13 +6,11 @@ import os
 import tqdm
 import random
 from classes.Person import Person
-from multiprocessing import Pool, cpu_count
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
-
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
@@ -41,7 +39,7 @@ class Simulation:
         for area in self.target_areas:
             if area.actualCapacity<area.targetCapacity and area.type!='NOFUNCIONAL':
                 area.actualCapacity += 1
-                #print(f'Area {area.name} has {area.actualCapacity} persons')
+                print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
         return None
 
@@ -65,9 +63,7 @@ class Simulation:
         self.npersons, self.entradas, self.salidas, self.target_areas, self.classes = get_data(dia, hora, areas)
         self.hora = hora
         self.floors = np.unique([area.floor for area in self.target_areas])
-        print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}")
-
-
+        print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}, npersons: {self.npersons}, entradas: {self.entradas}, salidas: {self.salidas}")
 
     def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.8):
         if not available_spawn_points:
@@ -84,39 +80,70 @@ class Simulation:
                 if area.type == 'VESTUARIO':
                     locker_room_lst.append(area)
             locker_room = random.choice(locker_room_lst)
+        target=self.getTargetArea()
+        if target==None:
+            print(f"No available target areas for person {num_person} in frame {frame}")
+            return False
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime= np.random.choice([1, 2, 3])))
         
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(), target_area=self.getTargetArea(), max_step=15, floor=spawn_point.floor, locker_room=locker_room))
         available_spawn_points.remove(spawn_point)
         return True
+    
+    def distribute_targets(self):
+        for person in self.persons:
+            if person.state!= 'left':
+                next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
+                person.target_area = self.getTargetArea()
+                person.state = None
+                person.stay_counter = 0
+                person.wait_time = 0
+                person.target_coords = None
+                person.route = []
+                print(f'Person {person.id} got new area: {person.target_area.name}')
 
-    def simulate(self, frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+
+    def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
+        i=-1
         for hora in hours:
+            i+=1
+            exceeded_lifetime_count = sum(1 for person in self.persons if person.lifetime >= person.max_lifetime)
+            for person in self.persons:
+                if person.lifetime >= person.max_lifetime:
+                    person.state = 'left'
+                    person.target_area.actualCapacity -= 1
+
             self.get_data_hour(dia, hora, self.target_areas)
-            print(self.npersons)
-            for frame in tqdm.tqdm(range(frames)):  
-                if frame % spawn_interval == 0 and len(self.persons) < self.npersons:
+            self.distribute_targets()
+            nactual_persons = len(self.persons) - exceeded_lifetime_count
+            print(f"Hour {hora}: {exceeded_lifetime_count} persons have exceeded their max lifetime")
+            
+            for frame in tqdm.tqdm(range(total_frames)):  
+                if frame % spawn_interval == 0 and nactual_persons <= self.npersons:
                     available_spawn_points = self.spawn_points.copy()
                     spawned_count = 0
-                    while spawned_count < max_spawn and len(self.persons) < self.npersons:
-                        if self.initialize_person(len(self.persons), available_spawn_points, frame):
+                    while spawned_count < max_spawn:
+                        if self.initialize_person(len(self.persons), available_spawn_points, (i*total_frames)+frame):
                             spawned_count += 1
+                            nactual_persons = len(self.persons) - exceeded_lifetime_count
+                            print(f"Hour {hora}:Frame {frame}: {nactual_persons} persons are currently in the building, nperdsons::{self.npersons}")
                         else:
                             break 
-
-                for person in self.persons:
+                for person in self.persons :
                     person.move()
 
-                self.persons.reverse()
-                for person in self.persons:
-                    if person.stay_counter > 10:
-                        spawn_point = np.random.choice( self.spawn_points.copy())
-                        self.state = None
-                        self.target_area = spawn_point
-                self.persons.reverse()
-
+                # if frame % spawn_interval == 0: #and frame > (frames / len(hours)) / 2:
+                #     leaving_persons = [person for person in self.persons if person.lifetime > person.max_lifetime]
+                #     for person in leaving_persons:
+                #         spawn_point = np.random.choice(self.spawn_points.copy())
+                #         person.target_area = spawn_point
+                #         person.state = None
+                #         self.salidas -= 1
+                #         print(f'Person {person.id} is leaving the building')
                         #print(f'Area {person.target_area.name} has {person.target_area.actualCapacity} persons')
-                    
+            for person in self.persons:
+                person.lifetime+=1       
+            
         
         # hacer que salgan tantas personas como en self.salidas, segun el stay counter que tengan, (>0)
 
@@ -140,7 +167,6 @@ class Simulation:
     def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8]):
         start_time = time.time()    
         os.makedirs(output_folder, exist_ok=True)
-
         floor_frames = [cv2.imread(f"data/images/Planta{i}.png") for i in range(len(self.floors))]
         nfloors = len(self.floors)
         height, width = floor_frames[0].shape[:2] 
@@ -163,10 +189,9 @@ class Simulation:
         def process_frame(frame_num):
             current_frame = combined_frame.copy()
             minutes = int(frame_num / 10)  # Assuming each frame represents 0.1 seconds
-            hours = self.hora + minutes // 60
+            hours_good = (self.hora + minutes // 60 ) - len(hours) +1# carefulllllll rompe el escribir las imagenes
             minutes = minutes % 60
-
-            time_str = f"Time: {hours:02d}:{minutes:02d}"
+            time_str = f"Time: {hours_good:02d}:{minutes:02d}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             current_persons = sum(1 for person in self.persons 
@@ -175,8 +200,10 @@ class Simulation:
             cv2.putText(current_frame, person_count_str, (combined_width - 600, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
 
             for person in self.persons:
-                if person.startFrame <= frame_num < person.startFrame + len(person.history):
+                if (person.startFrame <= frame_num < person.startFrame + len(person.history)):
                     x, y, floor, state = person.history[frame_num - person.startFrame]
+                    # if state == 'left':
+                    #     continue
                     row = floor // grid_size
                     col = floor % grid_size
                     floor_offset_y = header_height + row * height
@@ -203,6 +230,13 @@ class Simulation:
                 else:
                     paint_area(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
 
+            # for classe in self.classes:
+            #     row = classe.floor // grid_size
+            #     col = classe.floor % grid_size
+            #     floor_offset_y = header_height + row * height
+            #     floor_offset_x = col * width
+            #     draw_class(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], classe, COLORS['Red'])
+            
             for spawn in self.spawn_points:
                 row = spawn.floor // grid_size
                 col = spawn.floor % grid_size
@@ -212,6 +246,7 @@ class Simulation:
 
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
+            # print(f"Frame {frame_num} saved to {frame_filename}")
         with ThreadPoolExecutor() as executor:
             futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
             

@@ -9,9 +9,8 @@ MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in ran
 LANE_POINTS = [[[753, 440],[753,470],[1386,470],[1386,440]],[[753, 388],[753,418],[1386,418],[1386,388]],[[753, 336],[753,366],[1386,366],[1386,336]],[[753, 284],[753,314],[1386,314],[1386,284]],[[753, 232],[753,262],[1386,262],[1386,232]], [[753, 180],[753,210],[1386,210],[1386,180]]]
 POOL_LANES = [join_coordinates(LANE_POINTS[i], max_step=(i)*3+1) for i in range(len(LANE_POINTS))]
 
-
 class Person:
-    def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0, locker_room=None):
+    def __init__(self, person_id, start_x, start_y, startFrame, stairs, max_step=20, target_area=None, floor=0, locker_room=None, max_lifetime=1000):
         self.id = person_id
         self.x = start_x
         self.y = start_y
@@ -27,7 +26,8 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
-        self.guided_route_idx = 0 # e.g. pool        
+        self.lifetime = 0
+        self.max_lifetime = max_lifetime
 
     def getEasyRoute(self, start, end, step=10):
         x0, y0 = start
@@ -45,7 +45,8 @@ class Person:
     def move(self):
         #if np.random.rand() < 0.8: # pasar x los vestuarios
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
-        if self.target_area:
+
+        if self.target_area and self.state!= 'left':
             if self.wait_time > 0:
                 self.wait_time -= 1
                 self.stay_counter += 1
@@ -87,9 +88,13 @@ class Person:
                 elif self.state == 'moving_target': # if target, finish
                     self.state = 'reached'
                 elif self.state == 'reached':
-                    
                     if self.target_area.type == 'PG':
                         self.route = POOL_LANES[self.id%6].copy()
+                    # elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaParking':
+                    #     self.state = 'left'
+                    #     self.target_area = None
+                    #     self.x, self.y = -0, -0
+                    #     return
                     else:
                         self.target_coords = self.target_area.getPointInside()
                         self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
@@ -97,12 +102,13 @@ class Person:
                                                          scale_factor=SCALE_FACTOR,
                                                          debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
-
                     self.stay_counter += 1
-                    self.wait_time = random.randint(25, 50)                  
+                    self.wait_time = random.randint(50, 100)                  
             else:
                 self.x, self.y = self.route.pop(0)
-
+        if self.state=='left':
+            self.current_floor = 0
+            self.x, self.y = 1750, 165 + self.id*5
         
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
         self.history.append((self.x, self.y, self.current_floor, self.state))

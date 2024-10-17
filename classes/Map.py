@@ -49,8 +49,9 @@ class SpawnPoint:
         self.name = name
         self.coords = np.array(points, dtype=np.int32)
         self.floor = floor
-    def getPointInside(self):
-        return tuple(self.coords[0])
+        self.type = 'SpawnPoint'
+    def getPointInside(self, id=None):
+        return self.coords
 
 class Activity:
     def __init__(self,name,startDate,endDate,Area):

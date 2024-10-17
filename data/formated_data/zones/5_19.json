@@ -1,0 +1,74 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 47,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 8,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 8,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 4,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 34,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 32,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 36,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 8,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 6,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        }
+    ]
+}

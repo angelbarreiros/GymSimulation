@@ -21,7 +21,7 @@ def group_events_by_weekday_hour(events):
         start_time = datetime.strptime(modified_event['startedAt'], "%Y-%m-%dT%H:%M:%S")
         weekday = start_time.isoweekday()  # 1 para lunes, 7 para domingo
         hour = start_time.strftime("%H")
-        key = f"{weekday}_{hour}:00"
+        key = f"{weekday}_{hour}"
         grouped[key].append(modified_event)
     return grouped
 
@@ -42,7 +42,7 @@ def transform_json(input_file):
         filename = f"{key}.json"
         
         try:
-            with open("/home/angel/startup/GymSimulation/data/formated_data/zones/"+filename, 'r') as f:
+            with open("data/formated_data/zones/"+filename, 'r') as f:
                 existing_data = json.load(f)
         except FileNotFoundError:
             existing_data = []
@@ -54,10 +54,10 @@ def transform_json(input_file):
         updated_json = json.dumps(existing_data, indent=4)
         
         # Guardar los eventos en el archivo JSON
-        with open("/home/angel/startup/GymSimulation/data/formated_data/zones/"+filename, 'w') as f:
+        with open("data/formated_data/zones/"+filename, 'w') as f:
             json.dump(updated_json, f, indent=4)
         
         print(f"Eventos añadidos al archivo: {filename}")
 
 if __name__ == "__main__":
-    transform_json("/home/angel/startup/GymSimulation/data/excel/clases_2024-08-05.json")
+    transform_json("data/excel/clases_2024-08-05.json")
