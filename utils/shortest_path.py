@@ -3,7 +3,8 @@ import numpy as np
 from PIL import Image, ImageDraw
 import heapq
 import os
-
+import random
+import math
 # Define the size of the grid
 SCALE_FACTOR = 10
 # ROW = 1080 // SCALE_FACTOR
@@ -179,23 +180,23 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     # Check if the source and destination are valid
     if not is_valid(src_scaled[0], src_scaled[1], max_row, max_col):
         if debug:
-            print(f"Source is invalid: {src}")
+            print(f"Source is invalid: {src}->{dest}, {src_scaled}->{dest_scaled}")
         return [src]
     
     if not is_valid(dest_scaled[0], dest_scaled[1], max_row, max_col):
         if debug:
-            print(f"Destination is invalid: {dest_scaled}")
+            print(f"Destination is invalid: {src}->{dest}, {src_scaled}->{dest_scaled}")
         return [src]
     
     # Check if the source and destination are blocked
     if not is_unblocked(grid, src_scaled[0], src_scaled[1]):
         if debug:
-            print(f"Source is blocked: {src}")
+            print(f"Source is blocked: {src}->{dest}, {src_scaled}->{dest_scaled}")
         return [src]
     
     if not is_unblocked(grid, dest_scaled[0], dest_scaled[1]):
         if debug:
-            print(f"Destination is blocked: {dest_scaled}")
+            print(f"Destination is blocked: {src}->{dest}, {src_scaled}->{dest_scaled}")
         return [src]
 
     # Check if we are already at the destination
@@ -276,7 +277,7 @@ def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
     # If the destination is not found after visiting all cells
     if not found_dest:
         if debug:
-            print(f"Failed to find the destination cell: {src_scaled, dest_scaled}")
+            print(f"Failed to find the destination cell: {src, dest}, {src_scaled, dest_scaled}")
         return [src] 
 
 def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
@@ -301,22 +302,160 @@ def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scal
     return path
     # return a_star_search_from_grid(matrix, src, dest)
 
+def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=False, noise_factor=0.1, heuristic_type='euclidean', max_step_size=3, speed=5):
+    start_scaled = (start[0] // scale_factor, start[1] // scale_factor)
+    goal_scaled = (goal[0] // scale_factor, goal[1] // scale_factor)
+
+    def euclidean_heuristic(a, b):
+        return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
+
+    def manhattan_heuristic(a, b):
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+    def diagonal_heuristic(a, b):
+        dx, dy = abs(a[0] - b[0]), abs(a[1] - b[1])
+        return (dx + dy) + (math.sqrt(2) - 2) * min(dx, dy)
+
+    heuristics = {
+        'euclidean': euclidean_heuristic,
+        'manhattan': manhattan_heuristic,
+        'diagonal': diagonal_heuristic
+    }
+
+    heuristic = heuristics.get(heuristic_type, euclidean_heuristic)
+
+    def is_valid(x, y):
+        return 0 <= x < len(matrix) and 0 <= y < len(matrix[0]) and matrix[x][y] == 1
+
+    def get_neighbors(node):
+        base_directions = [
+            (0, 1), (1, 0), (0, -1), (-1, 0),
+            (1, 1), (1, -1), (-1, 1), (-1, -1)
+        ]
+        random.shuffle(base_directions)
+        result = []
+        if debug:
+            print(f"Checking neighbors for node {node}")
+        for dx, dy in base_directions:
+            for step in range(max_step_size, 0, -1):
+                nx, ny = node[0] + dx * step, node[1] + dy * step
+                if is_valid(nx, ny):
+                    # Check if the path to this neighbor is clear
+                    if all(is_valid(node[0] + i * dx, node[1] + i * dy) for i in range(1, step + 1)):
+                        if debug:
+                            print(f"  Neighbor ({nx}, {ny}): valid (step size: {step})")
+                        result.append((nx, ny))
+                        break  # Found a valid step size, move to next direction
+                elif debug:
+                    print(f"  Neighbor ({nx}, {ny}): invalid (step size: {step})")
+        if debug:
+            print(f"Valid neighbors: {result}")
+        return result
+
+    def add_noise(value):
+        return value * (1 + random.uniform(-noise_factor, noise_factor))
+
+    open_set = []
+    heapq.heappush(open_set, (0, start_scaled))
+    came_from = {}
+    g_score = {start_scaled: 0}
+    f_score = {start_scaled: add_noise(heuristic(start_scaled, goal_scaled))}
+
+    if debug:
+        print(f"Start: {start} (scaled: {start_scaled})")
+        print(f"Goal: {goal} (scaled: {goal_scaled})")
+        print(f"Matrix shape: {len(matrix)}x{len(matrix[0])}")
+
+    iterations = 0
+    max_iterations = len(matrix) * len(matrix[0]) * 2  # Increased max iterations
+
+    while open_set and iterations < max_iterations:
+        iterations += 1
+        current = heapq.heappop(open_set)[1]
+
+        if debug and iterations % 1000 == 0:
+            print(f"Iteration {iterations}, Current: {current}, Open set size: {len(open_set)}")
+
+        if current == goal_scaled:
+            path = []
+            while current in came_from:
+                path.append(current)
+                current = came_from[current]
+            path.append(start_scaled)
+            if debug:
+                print(f"Path found in {iterations} iterations")
+            path = [(x * scale_factor, y * scale_factor) for x, y in reversed(path)]
+            return interpolate_path(path, speed)
+            
+        neighbors = get_neighbors(current)
+        if debug and not neighbors:
+            print(f"No valid neighbors for {current}")
+
+        for neighbor in neighbors:
+            tentative_g_score = g_score[current] + euclidean_heuristic(current, neighbor)
+
+            if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g_score
+                f_score[neighbor] = g_score[neighbor] + add_noise(heuristic(neighbor, goal_scaled))
+                heapq.heappush(open_set, (f_score[neighbor], neighbor))
+
+    if debug:
+        print(f"No path found after {iterations} iterations")
+    return None
+
+def interpolate_path(original_path, step_size):
+    """
+    Interpolate additional points between each pair of points in the original path,
+    using a fixed step size.
+    
+    :param original_path: List of tuples representing the original path coordinates
+    :param step_size: The size of each step in the interpolated path
+    :return: A new path with interpolated points
+    """
+    interpolated_path = []
+    for i in range(len(original_path) - 1):
+        start = original_path[i]
+        end = original_path[i + 1]
+        
+        interpolated_path.append(start)
+        
+        dx = end[0] - start[0]
+        dy = end[1] - start[1]
+        distance = math.sqrt(dx**2 + dy**2)
+        
+        if distance <= step_size:
+            continue  # No need to interpolate if points are already close enough
+        
+        steps = int(distance / step_size)
+        
+        for step in range(1, steps):
+            t = step * step_size / distance
+            x = start[0] + t * dx
+            y = start[1] + t * dy
+            interpolated_path.append((round(x), round(y)))
+    
+    interpolated_path.append(original_path[-1])  # Add the final point
+    return interpolated_path
+
 if __name__ == "__main__":
     
-    # src_transformed=(24, 32)
-    # dest_transformed=(50, 15)
-    src_transformed = (47, 87)
-    dest_transformed=(50, 15)
+    start = (510, 862)
+    goal = (1500, 660)
+    scale_factor = SCALE_FACTOR
     
-    # src = (src_transformed[0]*SCALE_FACTOR, src_transformed[1]*SCALE_FACTOR)
-    # dest = (dest_transformed[0]*SCALE_FACTOR, dest_transformed[1]*SCALE_FACTOR)
+    # start_scaled = (start[0] // scale_factor, start[1] // scale_factor)
+    # goal_scaled = (goal[0] // scale_factor, goal[1] // scale_factor)
     
-    src = (424, 870)
-    dest = (1154, 582)
-    
+    matrix = create_matrix_from_json(1, 10, 1, False)
+    # path = random_walk_pathfinder(matrix, start_scaled, goal_scaled, 2, 10000)
+    path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
     # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
     # print(path)
+    print(path)
+    # path = smooth_path(path, matrix, 10)
+    # print(path)
+    # print_matrix_neighborhood(matrix, src)
 
-    for floor in range(4):
-        create_matrix_from_json(floor, 10, 1, True)
-
+    # for floor in range(4):
+    #     create_matrix_from_json(floor, 10, 1, True)

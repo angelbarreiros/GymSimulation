@@ -1,12 +1,12 @@
 import numpy as np
-from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid, variable_a_star_search_from_grid
 from utils.fixed_route import join_coordinates
 import random
 
 SCALE_FACTOR = 10
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(4)]
 
-LANE_POINTS = [[[753, 440],[753,470],[1386,470],[1386,440]],[[753, 388],[753,418],[1386,418],[1386,388]],[[753, 336],[753,366],[1386,366],[1386,336]],[[753, 284],[753,314],[1386,314],[1386,284]],[[753, 232],[753,262],[1386,262],[1386,232]], [[753, 180],[753,210],[1386,210],[1386,180]]]
+LANE_POINTS = [[[1386,440],[753, 440],[753,470],[1386,470]],[[1386,388],[753, 388],[753,418],[1386,418]],[[1386,336],[753, 336],[753,366],[1386,366]],[[1386,284],[753, 284],[753,314],[1386,314]],[[1386,232],[753, 232],[753,262],[1386,262]], [[1386,180],[753, 180],[753,210],[1386,210]]]
 POOL_LANES = [join_coordinates(LANE_POINTS[i], max_step=(i)*3+1) for i in range(len(LANE_POINTS))]
 
 
@@ -27,7 +27,8 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
-        self.guided_route_idx = 0 # e.g. pool        
+        self.speed = random.randint(6, 12)
+             
 
     def getEasyRoute(self, start, end, step=10):
         x0, y0 = start
@@ -67,11 +68,29 @@ class Person:
                     # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
                     # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
                                 
-                    self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
+                    # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
+                    #                                      src=(int(self.x), int(self.y)), dest=self.target_coords,
+                    #                                      scale_factor=SCALE_FACTOR,
+                    #                                      debug=True)
+                                
+                    self.route = variable_a_star_search_from_grid(MATRIX_FLOOR[self.current_floor], 
+                                                         start=(int(self.x), int(self.y)), goal=self.target_coords,
                                                          scale_factor=SCALE_FACTOR,
-                                                         debug=False)
-                    self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
+                                                         debug=False, speed=self.speed, noise_factor=.2)
+                    
+                    # start = (int(self.x//SCALE_FACTOR), int(self.y//SCALE_FACTOR))
+                    # goal = (self.target_coords[0]//SCALE_FACTOR, self.target_coords[1]//SCALE_FACTOR)
+                    # self.route = random_walk_pathfinder(MATRIX_FLOOR[self.current_floor],
+                    #                                     start=start,
+                    #                                     goal=goal,
+                    #                                     max_step=2)
+                    # self.route = [(x * SCALE_FACTOR, y * SCALE_FACTOR) for x, y in self.route]
+                    
+                    # self.route = smooth_path(self.route, MATRIX_FLOOR[self.current_floor], SCALE_FACTOR)
+                    if self.route == None:
+                        self.state = None
+                    else:
+                        self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                 elif self.state == 'moving_stairs': # if stairs, go to lockers or destination floor
                     if self.locker_room != None:
@@ -89,17 +108,22 @@ class Person:
                 elif self.state == 'reached':
                     
                     if self.target_area.type == 'PG':
+                        self.wait_time = 10
                         self.route = POOL_LANES[self.id%6].copy()
                     else:
+                        self.wait_time = random.randint(40, 100)                  
                         self.target_coords = self.target_area.getPointInside()
-                        self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
-                                                         scale_factor=SCALE_FACTOR,
-                                                         debug=False)
+                        # TODO only pass grid of the specific area, or put get easy route
+                        self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),
+                                                       end = self.target_coords,
+                                                       step=SCALE_FACTOR)
+                        # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
+                        #                                  src=(int(self.x), int(self.y)), dest=self.target_coords,
+                        #                                  scale_factor=SCALE_FACTOR,
+                        #                                  debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
 
                     self.stay_counter += 1
-                    self.wait_time = random.randint(25, 50)                  
             else:
                 self.x, self.y = self.route.pop(0)
 
