@@ -110,11 +110,12 @@ class Person:
                     if self.target_area.type == 'PG':
                         self.wait_time = 10
                         self.route = POOL_LANES[self.id%6].copy()
-                    # elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaParking':
-                    #     self.state = 'left'
-                    #     self.target_area = None
-                    #     self.x, self.y = -0, -0
-                    #     return
+                    elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaParking':
+                        self.state = 'left'
+                        self.target_area = None
+                        self.current_floor = 0
+                        self.x, self.y = 1750, 165 + self.id*10
+                        return
                     else:
                         self.wait_time = random.randint(40, 100)                  
                         self.target_coords = self.target_area.getPointInside()
@@ -130,10 +131,9 @@ class Person:
                     self.stay_counter += 1
             else:
                 self.x, self.y = self.route.pop(0)
-        if self.state=='left':
-            self.current_floor = 0
-            self.x, self.y = 1750, 165 + self.id*10
+        # if self.state=='left':
+        #     
         
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
-        self.history.append((self.x, self.y, self.current_floor, self.state, self.target_area.name))
+        self.history.append((self.x, self.y, self.current_floor, self.state, self.target_area.name if self.target_area else None))
 

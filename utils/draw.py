@@ -76,6 +76,6 @@ def draw_person(frame, x, y, color):
 
 def draw_class(frame, area, color):
     pts = area.Area.points.reshape((-1, 1, 2))
-    cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=2)
+    cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=10)
     center = area.Area.points.mean(axis=0).astype(int)
-    cv2.putText(frame, f"Class {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
+    #cv2.putText(frame, f"Class {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)

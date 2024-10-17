@@ -9,6 +9,7 @@ salida bien -> esta todo comentaooo, deberia ir, cambiar nombre de "left" por un
 pintar clases mejor -> colores que vienen del jsonn, al rededor
 
 añadir leyenda para ocupacion y colores clase, spawns
+    sin mapa de fondo y solo con o q pintamos?
 
 sola cambiar de target las imprescindibles
 

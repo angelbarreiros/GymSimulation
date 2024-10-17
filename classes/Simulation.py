@@ -91,30 +91,34 @@ class Simulation:
     
     def distribute_targets(self):
         for person in self.persons:
-            if person.state!= 'left':
-                next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
+            if person.state!= 'left' and person.lifetime < person.max_lifetime:
+                if hasattr(person.target_area, 'actualCapacity'):
+                    next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
                 person.target_area = self.getTargetArea()
                 person.state = None
                 person.stay_counter = 0
                 person.wait_time = 0
                 person.target_coords = None
                 person.route = []
-                print(f'Person {person.id} got new area: {person.target_area.name}')
 
 
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
+        for spawn in self.spawn_points:
+            print(f"Spawn {spawn.name} at {spawn.coords}")
         for hora in hours:
             i+=1
             exceeded_lifetime_count = sum(1 for person in self.persons if person.lifetime >= person.max_lifetime)
             for person in self.persons:
                 if person.lifetime >= person.max_lifetime:
                     person.target_area.actualCapacity -= 1
-                    # person.targeArea = self.spawn_points[np.random.choice(len(self.spawn_points))]
-                    # person.state = None
-                    # person.route = None
-                    person.state = 'left'
+                    person.target_area = self.spawn_points[0]
+                    person.state = None
+                    person.route = None
+                    person.locker_room = None
+                    print(f'Person {person.id} has exceeded, going to {person.target_area.name}')
+                    #person.state = 'left'
 
 
             self.get_data_hour(dia, hora, self.target_areas)
@@ -215,12 +219,12 @@ class Simulation:
                     draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
                                 x, y, color_map[person.id])
 
-            for wall in self.boundaries:
-                row = wall.floor // grid_size
-                col = wall.floor % grid_size
-                floor_offset_y = header_height + row * height
-                floor_offset_x = col * width
-                draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
+            # for wall in self.boundaries:
+            #     row = wall.floor // grid_size
+            #     col = wall.floor % grid_size
+            #     floor_offset_y = header_height + row * height
+            #     floor_offset_x = col * width
+            #     draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
 
             for area in self.target_areas:
                 row = area.floor // grid_size
@@ -239,7 +243,7 @@ class Simulation:
                 col = classe.Area.floor % grid_size
                 floor_offset_y = header_height + row * height
                 floor_offset_x = col * width
-                draw_class(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], classe, COLORS['White'])
+                draw_class(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], classe, COLORS['Black'])
             
             for spawn in self.spawn_points:
                 row = spawn.floor // grid_size
