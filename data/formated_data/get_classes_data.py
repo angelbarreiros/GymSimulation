@@ -57,4 +57,4 @@ def transform_json(input_file):
         print(f"Eventos añadidos al archivo: {filename}")
 
 if __name__ == "__main__":
-    transform_json("data/excel/clases_2024-08-05.json")
+    transform_json("data/excel/clases_total.json")

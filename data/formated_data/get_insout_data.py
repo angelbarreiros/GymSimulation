@@ -47,5 +47,5 @@ def process_json_file(input_file):
         print(f"Processed and saved: {filename}")
 
 if __name__ == "__main__":
-    input_file = "data/excel/entradas_2024-08-05.json"
+    input_file = "data/excel/entradas_total.json"
     process_json_file(input_file)

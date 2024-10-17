@@ -767,5 +767,386 @@
         "duplicados-salida": {
             "10628655": 2
         }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "07",
+        "total_entrada": 43,
+        "total_salida": 13,
+        "entrada": 42,
+        "salida": 13,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10618483": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "08",
+        "total_entrada": 27,
+        "total_salida": 26,
+        "entrada": 22,
+        "salida": 26,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10638595": 3,
+            "10641326": 2,
+            "10618650": 2,
+            "10626968": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "09",
+        "total_entrada": 50,
+        "total_salida": 19,
+        "entrada": 46,
+        "salida": 19,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10617033": 2,
+            "10630831": 2,
+            "10624897": 2,
+            "10616732": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "10",
+        "total_entrada": 61,
+        "total_salida": 38,
+        "entrada": 57,
+        "salida": 38,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10618998": 2,
+            "10619908": 2,
+            "10790279": 3
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "11",
+        "total_entrada": 131,
+        "total_salida": 65,
+        "entrada": 89,
+        "salida": 62,
+        "menores-entrada": 29,
+        "menores-salida": 2,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10624857": 2,
+            "10634525": 2,
+            "10645630": 3,
+            "10643504": 2,
+            "10647159": 2,
+            "10645038": 2,
+            "10646998": 4,
+            "11166412": 3,
+            "10641013": 2
+        },
+        "duplicados-salida": {
+            "10616215": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "12",
+        "total_entrada": 85,
+        "total_salida": 61,
+        "entrada": 60,
+        "salida": 49,
+        "menores-entrada": 13,
+        "menores-salida": 12,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10623329": 2,
+            "10776803": 2,
+            "10646301": 4,
+            "10630636": 2,
+            "10640659": 2,
+            "10621623": 2,
+            "10623613": 3,
+            "10622574": 2,
+            "10645814": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "13",
+        "total_entrada": 60,
+        "total_salida": 95,
+        "entrada": 40,
+        "salida": 73,
+        "menores-entrada": 17,
+        "menores-salida": 18,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10615325": 2,
+            "10617662": 2,
+            "10623173": 2
+        },
+        "duplicados-salida": {
+            "10633283": 2,
+            "10616086": 2,
+            "10631920": 2,
+            "10617250": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "14",
+        "total_entrada": 36,
+        "total_salida": 81,
+        "entrada": 29,
+        "salida": 64,
+        "menores-entrada": 3,
+        "menores-salida": 15,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10640720": 2,
+            "10643838": 2,
+            "10989565": 2,
+            "10618984": 2
+        },
+        "duplicados-salida": {
+            "10630828": 2,
+            "10641349": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "15",
+        "total_entrada": 35,
+        "total_salida": 28,
+        "entrada": 26,
+        "salida": 25,
+        "menores-entrada": 6,
+        "menores-salida": 3,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10617633": 3,
+            "10618256": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "16",
+        "total_entrada": 88,
+        "total_salida": 29,
+        "entrada": 64,
+        "salida": 23,
+        "menores-entrada": 22,
+        "menores-salida": 6,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10642335": 2,
+            "10627991": 2
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "17",
+        "total_entrada": 146,
+        "total_salida": 41,
+        "entrada": 92,
+        "salida": 38,
+        "menores-entrada": 40,
+        "menores-salida": 3,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10646579": 3,
+            "10635813": 2,
+            "10626478": 2,
+            "10622002": 2,
+            "10645745": 2,
+            "10640458": 2,
+            "10630694": 2,
+            "10626382": 3,
+            "11240035": 5
+        },
+        "duplicados-salida": []
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "18",
+        "total_entrada": 253,
+        "total_salida": 72,
+        "entrada": 166,
+        "salida": 61,
+        "menores-entrada": 71,
+        "menores-salida": 9,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10642745": 2,
+            "10615894": 2,
+            "10637702": 2,
+            "10621364": 2,
+            "10642707": 2,
+            "11238684": 4,
+            "10645502": 2,
+            "10618223": 2,
+            "10644871": 2,
+            "10617129": 2,
+            "10640990": 2,
+            "10633451": 2,
+            "10631538": 2,
+            "10639679": 2
+        },
+        "duplicados-salida": {
+            "10644871": 2,
+            "10640990": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "19",
+        "total_entrada": 178,
+        "total_salida": 140,
+        "entrada": 119,
+        "salida": 116,
+        "menores-entrada": 46,
+        "menores-salida": 18,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10627833": 2,
+            "10623977": 2,
+            "10627211": 2,
+            "10641458": 2,
+            "10618763": 2,
+            "10617355": 2,
+            "10631531": 2,
+            "10620847": 2,
+            "10632064": 2,
+            "10615341": 2,
+            "10639406": 2,
+            "10615538": 2,
+            "10615201": 2
+        },
+        "duplicados-salida": {
+            "10632465": 2,
+            "10615746": 2,
+            "11238684": 2,
+            "10623283": 2,
+            "10638169": 2,
+            "10627226": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "20",
+        "total_entrada": 63,
+        "total_salida": 286,
+        "entrada": 46,
+        "salida": 200,
+        "menores-entrada": 6,
+        "menores-salida": 77,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10630500": 2,
+            "11244846": 3,
+            "10647236": 3,
+            "10642405": 2,
+            "10628056": 2,
+            "10708178": 2,
+            "10625973": 2,
+            "11222241": 3
+        },
+        "duplicados-salida": {
+            "10638377": 2,
+            "10639216": 3,
+            "10631531": 2,
+            "10708178": 2,
+            "10642707": 2,
+            "10636908": 2,
+            "10617298": 3
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "21",
+        "total_entrada": 43,
+        "total_salida": 85,
+        "entrada": 36,
+        "salida": 63,
+        "menores-entrada": 0,
+        "menores-salida": 16,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "10629462": 2,
+            "10628832": 2,
+            "10640460": 3,
+            "10633067": 2,
+            "10625042": 3
+        },
+        "duplicados-salida": {
+            "10628832": 2,
+            "10628831": 3,
+            "10626229": 2,
+            "10755157": 2,
+            "10647236": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "22",
+        "total_entrada": 4,
+        "total_salida": 35,
+        "entrada": 3,
+        "salida": 34,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": {
+            "11239645": 2
+        },
+        "duplicados-salida": {
+            "11239645": 2
+        }
+    },
+    {
+        "dia": "2024-08-07",
+        "hora": "23",
+        "total_entrada": 0,
+        "total_salida": 1,
+        "entrada": 0,
+        "salida": 1,
+        "menores-entrada": 0,
+        "menores-salida": 0,
+        "error-entrada": [],
+        "error-salida": [],
+        "duplicados-entrada": [],
+        "duplicados-salida": []
     }
 ]
