@@ -6,7 +6,6 @@ import os
 import tqdm
 import random
 from classes.Person import Person
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 from utils.draw import *
 import math
@@ -27,6 +26,7 @@ class Simulation:
         self.entradas = None
         self.salidas = None
         self.floors = None
+        self.classes = []
 
     def getTargetArea(self):
         # if random.random() < LOCKER_ROOM_PROB:
@@ -60,7 +60,8 @@ class Simulation:
         print(f"Loaded {len(self.persons)} persons and {len(self.target_areas)} areas")
 
     def get_data_hour(self, dia, hora, areas):
-        self.npersons, self.entradas, self.salidas, self.target_areas, self.classes = get_data(dia, hora, areas)
+        self.npersons, self.entradas, self.salidas, self.target_areas, classes = get_data(dia, hora, areas)
+        self.classes.append(classes)
         self.hora = hora
         self.floors = np.unique([area.floor for area in self.target_areas])
         print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}, npersons: {self.npersons}, entradas: {self.entradas}, salidas: {self.salidas}")
@@ -111,6 +112,8 @@ class Simulation:
             i+=1
             exceeded_lifetime_count = sum(1 for person in self.persons if person.lifetime >= person.max_lifetime)
             for person in self.persons:
+                if not hasattr(person.target_area, 'actualCapacity'):
+                    continue
                 if person.lifetime >= person.max_lifetime:
                     person.target_area.actualCapacity -= 1
                     person.target_area = self.spawn_points[0]
@@ -194,6 +197,8 @@ class Simulation:
             x_start = col * width
             combined_frame[y_start:y_start+height, x_start:x_start+width] = frame
 
+        draw_colorLegend(combined_frame)
+
         def process_frame(frame_num):
             current_frame = combined_frame.copy()
             minutes = int(frame_num / 10)  # Assuming each frame represents 0.1 seconds
@@ -219,12 +224,12 @@ class Simulation:
                     draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
                                 x, y, color_map[person.id])
 
-            # for wall in self.boundaries:
-            #     row = wall.floor // grid_size
-            #     col = wall.floor % grid_size
-            #     floor_offset_y = header_height + row * height
-            #     floor_offset_x = col * width
-            #     draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
+            for wall in self.boundaries:
+                row = wall.floor // grid_size
+                col = wall.floor % grid_size
+                floor_offset_y = header_height + row * height
+                floor_offset_x = col * width
+                draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], wall)
 
             for area in self.target_areas:
                 row = area.floor // grid_size
@@ -238,7 +243,7 @@ class Simulation:
                 else:
                     paint_area(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
 
-            for classe in self.classes:
+            for classe in self.classes[frame_num//total_frames]:
                 row = classe.Area.floor // grid_size
                 col = classe.Area.floor % grid_size
                 floor_offset_y = header_height + row * height
@@ -252,17 +257,40 @@ class Simulation:
                 floor_offset_x = col * width
                 draw_spawn_point(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
 
+            draw_legend(current_frame, self.target_areas, self.persons, frame_num)
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
             # print(f"Frame {frame_num} saved to {frame_filename}")
+            # Force garbage collection
+            import gc
+            gc.collect()
+
+        
         for frame_num in tqdm.tqdm(range(total_frames * len(hours)), desc="Generating frames", unit="frame"):
             process_frame(frame_num)
 
-        # with ThreadPoolExecutor() as executor:
+
+        # from concurrent.futures import ThreadPoolExecutor, as_completed
+        # with ThreadPoolExecutor(max_workers=8) as executor:
         #     futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
             
         #     for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
         #         pass
+
+        # import multiprocessing
+        # # with Pool() as pool:
+        # #     results = list(tqdm.tqdm(
+        # #         pool.imap(process_frame, range(total_frames * len(hours))),
+        # #         total=total_frames * len(hours),
+        # #         desc="Generating frames",
+        # #         unit="frame"
+        # #     ))
+        # print(multiprocessing.cpu_count())
+        # with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+        #     with tqdm(total=total_frames * len(hours), desc="Generating frames", unit="frame") as pbar:
+        #         for _ in pool.imap_unordered(process_frame, range(total_frames * len(hours))):
+        #             pbar.update()
+
         end_time = time.time()
         total_time = end_time - start_time
         print(f"Total time taken: {total_time:.2f} seconds")

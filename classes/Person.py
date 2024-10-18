@@ -110,14 +110,14 @@ class Person:
                     if self.target_area.type == 'PG':
                         self.wait_time = 10
                         self.route = POOL_LANES[self.id%6].copy()
-                    elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaParking':
+                    elif self.target_area.name == 'EntradaParking':
                         self.state = 'left'
                         self.target_area = None
                         self.current_floor = 0
                         self.x, self.y = 1750, 165 + self.id*10
                         return
                     else:
-                        self.wait_time = random.randint(40, 100)                  
+                        self.wait_time = random.randint(100, 200)                  
                         self.target_coords = self.target_area.getPointInside()
                         # TODO only pass grid of the specific area, or put get easy route
                         # self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),

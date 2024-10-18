@@ -118,7 +118,7 @@ def get_data(dia, hora, areas):
             for clase in data['classes']:
                 zone_name = clase['studio']
                 matching_area = next((area for area in areas if area.name == zone_name), None)
-                if matching_area: # if matching_area.type == 'CLASE':
+                if matching_area and clase['bookedAttendees']>1: # if matching_area.type == 'CLASE':
                     newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=matching_area)  
                     classes.append(newClass)
                     npersons -= matching_area.targetCapacity

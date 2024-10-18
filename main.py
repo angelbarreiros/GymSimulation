@@ -4,7 +4,7 @@ import os
 from classes.Simulation import Simulation
 
 TOTAL_FRAMES = 600
-HOURS = [7, 8]#, 9]
+HOURS = [7, 8, 9]
 def main():
     np.random.seed(123)
     sim = Simulation()

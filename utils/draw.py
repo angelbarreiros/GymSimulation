@@ -19,7 +19,7 @@ COLORS = {
     'Pink': (203, 192, 255)
 }
 
-def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=10):
+def draw_boundary(frame, boundary, color=(0, 0, 0), thickness=2):
     pts = boundary.points.reshape((-1, 1, 2))
     cv2.polylines(frame, [pts], isClosed=False, color=color, thickness=thickness)
 
@@ -78,4 +78,35 @@ def draw_class(frame, area, color):
     pts = area.Area.points.reshape((-1, 1, 2))
     cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=10)
     center = area.Area.points.mean(axis=0).astype(int)
-    #cv2.putText(frame, f"Class {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 1)
+    cv2.putText(frame, f"Class", center, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+
+def draw_colorLegend(frame):
+    height, width, _ = frame.shape
+    legend_width = 300
+    legend_height = 50 * len(COLORS)
+    start_x = (width - legend_width) // 2
+    start_y = 10
+    occupancy_rates = [0, 20, 40, 60, 80, 100]
+    colors = [COLORS['Red'], COLORS['Orange'], COLORS['Yellow'], COLORS['Green'], COLORS['Black']]
+    for i in range(len(colors)):
+        y = start_y + 50 * i
+        cv2.putText(frame, f"Del {occupancy_rates[i]}% al {occupancy_rates[i+1]}%", (start_x + 40, y + 35), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+        cv2.rectangle(frame, (start_x, y), (start_x + 30, y + 30), colors[i], -1)
+
+def draw_legend(frame, areas, persons, frame_num):
+    height, width, _ = frame.shape
+    legend_width = 300
+    filtered_areas = [area for area in areas if area.type != 'NOFUNCIONAL']
+    legend_height = 50 * len(filtered_areas)
+    start_x = (width - legend_width) // 2 - 50
+    start_y = 10 + 50 * 5 + 20  # Adjust start_y to be below the color legend
+    for i, area in enumerate(filtered_areas):
+        n = sum(1 for person in persons 
+        if person.startFrame <= frame_num
+        and frame_num < person.startFrame + len(person.history)
+        and person.history[frame_num - person.startFrame][3] == 'reached'
+        and person.history[frame_num - person.startFrame][4] == area.name)
+        # print(f"Area {area.name} has {n} persons, actually has {area.actualCapacity}")
+
+        y = start_y + 50 * i
+        cv2.putText(frame, f"{area.name}: {n}/{area.totalCapacity} ", (start_x + 40, y + 35), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
