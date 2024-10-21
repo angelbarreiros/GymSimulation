@@ -36,6 +36,13 @@ def draw_spawn_point(frame, spawn_point, color=(0, 255, 0), thickness=2):
     cv2.rectangle(frame, top_left, bottom_right, color, thickness)
     cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
+def draw_class(frame, area, color):
+    pts = area.Area.points.reshape((-1, 1, 2))
+    cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=10)
+    center = area.Area.points.mean(axis=0).astype(int)
+    center[0] -= 100  # Move 100 px to the left
+    cv2.putText(frame, f"Class: {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+
 def paint_area(frame, area, persons, frame_num):
     pts = area.points.reshape((-1, 1, 2))
 
@@ -64,21 +71,29 @@ def paint_area(frame, area, persons, frame_num):
     alpha = 0.3
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
-def paint_noarea(frame, area, color):
+def paint_noarea_old(frame, area, color):
     overlay = frame.copy()
     pts = area.points.reshape((-1, 1, 2))
     cv2.fillPoly(overlay, [pts], color)
     alpha = 0.5
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
 
+def paint_noarea(frame, area, color):
+    mask = np.zeros(frame.shape[:2], dtype=np.uint8)
+    pts = area.points.reshape((-1, 1, 2))
+    cv2.fillPoly(mask, [pts], 255)
+
+    color_overlay = np.full(frame.shape, color, dtype=np.uint8)
+
+    masked_overlay = cv2.bitwise_and(color_overlay, color_overlay, mask=mask)
+
+    alpha = 0.5
+    frame[:] = cv2.addWeighted(frame, 1, masked_overlay, alpha, 0)
+
+    return frame
+
 def draw_person(frame, x, y, color):
     cv2.circle(frame, (int(x), int(y)), 15, color, -1)
-
-def draw_class(frame, area, color):
-    pts = area.Area.points.reshape((-1, 1, 2))
-    cv2.polylines(frame, [pts], isClosed=True, color=color, thickness=10)
-    center = area.Area.points.mean(axis=0).astype(int)
-    cv2.putText(frame, f"Class", center, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
 def draw_colorLegend(frame):
     height, width, _ = frame.shape

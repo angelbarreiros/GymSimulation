@@ -102,7 +102,6 @@ class Simulation:
                 person.target_coords = None
                 person.route = []
 
-
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
@@ -202,7 +201,7 @@ class Simulation:
         def process_frame(frame_num):
             current_frame = combined_frame.copy()
             minutes = int(frame_num / 10)  # Assuming each frame represents 0.1 seconds
-            hours_good = (self.hora + minutes // 60 ) - len(hours) +1# carefulllllll rompe el escribir las imagenes
+            hours_good = (self.hora + minutes // 60 ) - len(hours) +1# carefulllllll
             minutes = minutes % 60
             time_str = f"Time: {hours_good:02d}:{minutes:02d}"
             cv2.putText(current_frame, time_str, (100, 75), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), 2)
@@ -261,9 +260,6 @@ class Simulation:
             frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.png')
             cv2.imwrite(frame_filename, current_frame)
             # print(f"Frame {frame_num} saved to {frame_filename}")
-            # Force garbage collection
-            import gc
-            gc.collect()
 
         
         for frame_num in tqdm.tqdm(range(total_frames * len(hours)), desc="Generating frames", unit="frame"):

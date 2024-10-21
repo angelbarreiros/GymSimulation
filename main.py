@@ -1,6 +1,6 @@
 import numpy as np
 import subprocess
-import os
+import cProfile
 from classes.Simulation import Simulation
 
 TOTAL_FRAMES = 600
@@ -46,6 +46,6 @@ def main():
     #     os.remove(file_path)
 
 if __name__ == "__main__":
-    main()
+    cProfile.run('main()')
     
     
