@@ -181,7 +181,6 @@ class Simulation:
         nfloors = len(self.floors)
         height, width = floor_frames[0].shape[:2] 
         header_height = 100 
-        color_map = {person.id: tuple(np.random.randint(0, 255, 3).tolist()) for person in self.persons}
 
         # Calculate the dimensions for the square layout
         grid_size = math.ceil(math.sqrt(nfloors))
@@ -220,8 +219,7 @@ class Simulation:
                     col = floor % grid_size
                     floor_offset_y = header_height + row * height
                     floor_offset_x = col * width
-                    draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], 
-                                x, y, color_map[person.id])
+                    draw_person(current_frame[floor_offset_y:floor_offset_y+height, floor_offset_x:floor_offset_x+width], x, y, COLORS['Black'])
 
             for wall in self.boundaries:
                 row = wall.floor // grid_size
@@ -262,16 +260,16 @@ class Simulation:
             # print(f"Frame {frame_num} saved to {frame_filename}")
 
         
-        for frame_num in tqdm.tqdm(range(total_frames * len(hours)), desc="Generating frames", unit="frame"):
-            process_frame(frame_num)
+        # for frame_num in tqdm.tqdm(range(total_frames * len(hours)), desc="Generating frames", unit="frame"):
+        #     process_frame(frame_num)
 
 
-        # from concurrent.futures import ThreadPoolExecutor, as_completed
-        # with ThreadPoolExecutor(max_workers=8) as executor:
-        #     futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(process_frame, frame_num) for frame_num in range(total_frames*len(hours))]
             
-        #     for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
-        #         pass
+            for _ in tqdm.tqdm(as_completed(futures), total=total_frames*len(hours), desc="Generating frames", unit="frame"):
+                pass
 
         # import multiprocessing
         # # with Pool() as pool:

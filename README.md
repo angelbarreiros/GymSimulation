@@ -3,6 +3,12 @@
 ## TODO
 
 zigbee sensors, hardware...
+    sensores puertas
+    para areas:
+        de presion
+        camara
+        <https://flameanalytics.com/en/hypersensor/>
+        ...
 
 salida bien -> esta todo comentaooo, deberia ir, cambiar nombre de "left" por uno mas accurate
 

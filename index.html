@@ -68,18 +68,19 @@
         .slider-container {
             position: relative;
             width: 100%;
-            height: 50px;
+            height: 20px;
             margin-bottom: 20px;
         }
+
         .slider {
             width: 100%;
-            height: 100%;
+            height: 10px; /* Reduced height */
             -webkit-appearance: none;
             background: #d3d3d3;
             outline: none;
             opacity: 0.7;
             transition: opacity 0.2s;
-            border-radius: 25px;
+            border-radius: 5px; /* Adjusted for smaller height */
         }
         .slider:hover {
             opacity: 1;
@@ -87,20 +88,19 @@
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 35px;
-            height: 35px;
+            width: 20px; /* Reduced width */
+            height: 20px; /* Reduced height */
             background: #4CAF50;
             cursor: pointer;
             border-radius: 50%;
-            margin-top: -15px;
+            margin-top: -5px; /* Adjusted for new thumb size */
         }
         .slider::-moz-range-thumb {
-            width: 35px;
-            height: 35px;
+            width: 20px; /* Reduced width */
+            height: 20px; /* Reduced height */
             background: #4CAF50;
             cursor: pointer;
             border-radius: 50%;
-            margin-top: -15px;
         }
         .arrow-button {
             position: absolute;
@@ -213,7 +213,7 @@
             transition: .4s;
             border-radius: 50%;
         }
-        input:checked + .slider-switch {
+        input:checked  .slider-switch {
             background-color: #2196F3;
         }
         input:checked + .slider-switch:before {
@@ -244,11 +244,11 @@
             <div id="timelapseContainer">
                 <div class="image-container">
                     <img id="timelapseImage" src="data/animation_frames/frame_0000.png" alt="Time Lapse Frame">
-                    <div class="frame-counter">Frame: <span id="frameCounter">1</span> / 1200</div>
+                    <div class="frame-counter">Frame: <span id="frameCounter">1</span> / 2400</div>  
                 </div>
                 <div class="slider-container">
                     <button id="prevButton" class="arrow-button left" disabled>←</button>
-                    <input type="range" min="0" max="1199" value="0" class="slider" id="frameSlider">
+                    <input type="range" min="0" max="2399" value="0" class="slider" id="frameSlider">
                     <button id="nextButton" class="arrow-button right">→</button>
                 </div>
                 <div style="text-align: center;">
@@ -288,7 +288,7 @@
         const timelapseContainer = document.getElementById('timelapseContainer');
         const videoContainer = document.getElementById('videoContainer');
         const multiPersonVideo = document.getElementById('multiPersonVideo');
-        const totalFrames = 1200;
+        const totalFrames = 2400;
         let animationId;
         let animationSpeed = 5; // Frames per second
         let currentFrame = 0;
