@@ -1,0 +1,167 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "CARDIO",
+            "targetCapacity": 32,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 7,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 26,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 32,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 5,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 3,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 8,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 1,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15091273",
+            "studio": "Studio 2",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sofia Barkhioua Alvarez",
+            "attendingLimit": 36,
+            "bookedAttendees": 25,
+            "startedAt": "2024-09-16T10:00:00",
+            "endedAt": "2024-09-16T11:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15092026",
+            "studio": "Studio 4",
+            "activity": "DANCE",
+            "colorHex": "#ff4c67",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Fatima Moreno Hernando",
+            "attendingLimit": 15,
+            "bookedAttendees": 6,
+            "startedAt": "2024-09-16T10:00:00",
+            "endedAt": "2024-09-16T10:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15092237",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 32,
+            "bookedAttendees": 18,
+            "startedAt": "2024-09-16T10:30:00",
+            "endedAt": "2024-09-16T11:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15174942",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-16T10:00:00",
+            "endedAt": "2024-09-16T10:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175037",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-16T10:15:00",
+            "endedAt": "2024-09-16T10:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175133",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-16T10:30:00",
+            "endedAt": "2024-09-16T10:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15175258",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-16T10:45:00",
+            "endedAt": "2024-09-16T11:00:00"
+        }
+    ]
+}

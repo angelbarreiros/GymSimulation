@@ -110,7 +110,7 @@ class Person:
                     if self.target_area.type == 'PG':
                         self.wait_time = 10
                         self.route = POOL_LANES[self.id%6].copy()
-                    elif self.target_area.name == 'EntradaParking':
+                    elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaInicial':
                         self.state = 'left'
                         self.target_area = None
                         self.current_floor = 0

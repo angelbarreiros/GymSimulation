@@ -1,0 +1,115 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "CARDIO",
+            "targetCapacity": 11,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 3,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 18,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 3,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 17,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 5,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 3,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/16746079",
+            "studio": "FUNCIONAL",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Antonio Moran Fernandez",
+            "attendingLimit": 3,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-12T09:15:00",
+            "endedAt": "2024-09-12T09:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/16746080",
+            "studio": "FUNCIONAL",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Antonio Moran Fernandez",
+            "attendingLimit": 3,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-12T09:30:00",
+            "endedAt": "2024-09-12T09:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/16746090",
+            "studio": "FUNCIONAL",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Antonio Moran Fernandez",
+            "attendingLimit": 3,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-12T09:45:00",
+            "endedAt": "2024-09-12T10:00:00"
+        }
+    ]
+}

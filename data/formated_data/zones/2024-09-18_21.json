@@ -1,0 +1,141 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 5,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 11,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 31,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 28,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 35,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 7,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15107544",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 2,
+            "startedAt": "2024-09-18T21:00:00",
+            "endedAt": "2024-09-18T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190646",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T21:30:00",
+            "endedAt": "2024-09-18T21:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190760",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T21:45:00",
+            "endedAt": "2024-09-18T22:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15931547",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 4,
+            "startedAt": "2024-09-18T21:00:00",
+            "endedAt": "2024-09-18T22:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16337290",
+            "studio": "Studio 2",
+            "activity": "GAP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 4,
+            "startedAt": "2024-09-18T21:00:00",
+            "endedAt": "2024-09-18T22:00:00"
+        }
+    ]
+}

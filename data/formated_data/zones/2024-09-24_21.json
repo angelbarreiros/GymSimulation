@@ -1,0 +1,128 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 3,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 4,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 20,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 4,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 22,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 35,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 7,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15107440",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T21:00:00",
+            "endedAt": "2024-09-24T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15184085",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-24T21:30:00",
+            "endedAt": "2024-09-24T21:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15184190",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T21:45:00",
+            "endedAt": "2024-09-24T22:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15931606",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T21:00:00",
+            "endedAt": "2024-09-24T22:00:00"
+        }
+    ]
+}

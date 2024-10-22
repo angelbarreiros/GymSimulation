@@ -1,0 +1,141 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 2,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 26,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 5,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 39,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 2,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 51,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 9,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 7,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 15,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15107545",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-25T21:00:00",
+            "endedAt": "2024-09-25T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190647",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-25T21:30:00",
+            "endedAt": "2024-09-25T21:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190761",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-25T21:45:00",
+            "endedAt": "2024-09-25T22:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15931700",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 4,
+            "startedAt": "2024-09-25T21:00:00",
+            "endedAt": "2024-09-25T22:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16337291",
+            "studio": "Studio 2",
+            "activity": "GAP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 2,
+            "startedAt": "2024-09-25T21:00:00",
+            "endedAt": "2024-09-25T22:00:00"
+        }
+    ]
+}
