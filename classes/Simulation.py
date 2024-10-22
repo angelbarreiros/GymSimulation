@@ -15,7 +15,7 @@ from utils.get_info import get_data, get_data_initial
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
 class Simulation:
-    def __init__(self):
+    def __init__(self, hours):
         self.boundaries = None
         # random.shuffle(target_areas)
         self.target_areas = None
@@ -24,6 +24,7 @@ class Simulation:
         self.npersons = None
         #self.movement_data = pd.DataFrame()
         self.hora = None
+        self.hours = hours
         self.entradas = None
         self.salidas = None
         self.floors = None
@@ -187,7 +188,7 @@ class Simulation:
             
             # Time calculations
             minutes = int(frame_num / 10)
-            hours_good = (self.hora + minutes // 60)
+            hours_good = (self.hora + minutes // 60) - len(self.hours) + 1
             minutes = minutes % 60
             time_str = f"Time: {hours_good:02d}:{minutes:02d}"
 
@@ -293,7 +294,7 @@ class Simulation:
                             floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
 
         # Prepare batches
-        BATCH_SIZE = 50  # Process 10 frames at a time
+        BATCH_SIZE = 100 
         total_frames_count = total_frames * len(hours)
         batches = []
         

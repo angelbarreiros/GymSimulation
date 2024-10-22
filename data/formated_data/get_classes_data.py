@@ -58,4 +58,4 @@ def transform_json(input_file):
         print(f"Eventos añadidos al archivo: {filename}")
 
 def getClassData():
-    transform_json("data/excel/new/clases_total.json")
+    transform_json("data/excel/clases_total.json")

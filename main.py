@@ -1,27 +1,25 @@
 import numpy as np
 import subprocess
-import cProfile
+import os
 from classes.Simulation import Simulation
 
 TOTAL_FRAMES = 600
-HOURS = [7,8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-DIA = '2024-09-02'
-def main():
+HOURS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+DAYS = ['2024-09-02', '2024-09-03']  # Add more days as needed
+
+def run_simulation_for_day(day):
     np.random.seed(123)
-    sim = Simulation()
+    sim = Simulation(HOURS)
     
     # sim.load_data('data/sim_states/simulation_7.pkl')
 
-    print('Creating simulation...')
-    sim.simulate(TOTAL_FRAMES, dia=DIA, hours=HOURS, spawn_interval=3, max_spawn=2)
+    print(f'Creating simulation for {day}...')
+    sim.simulate(TOTAL_FRAMES, dia=day, hours=HOURS, spawn_interval=3, max_spawn=2)
     
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=HOURS)
 
-    #output_file = 'multi_person_movement.gif'
-    output_file = 'multi_person_movement.mp4'
-    #subprocess.run(['ffmpeg', '-framerate', '30', '-i', 'data/animation_frames/frame_%04d.png', '-vf', 'scale=800:-1', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', output_file], check=True)
-                
+    output_file = f'outputs/full_{day}.mp4'
     subprocess.run([
         'ffmpeg', '-y', 
         '-framerate', '30', 
@@ -39,11 +37,13 @@ def main():
 
     print(f"Animation saved as '{output_file}'")
 
-    import os
     for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
         os.remove(file_path)
 
+def main():
+    for day in DAYS:
+        run_simulation_for_day(day)
+
 if __name__ == "__main__":
     # cProfile.run('main()')
-    main()    
-    
+    main()
