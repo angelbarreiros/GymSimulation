@@ -17,12 +17,11 @@ def group_events_by_weekday_hour(events):
     grouped = defaultdict(list)
     for event in events:
         modified_event = modify_event(event)
-        # Extraer el día de la semana (como número) y la hora de 'startedAt'
         start_time = datetime.strptime(modified_event['startedAt'], "%Y-%m-%dT%H:%M:%S")
-        weekday = start_time.isoweekday()  # 1 para lunes, 7 para domingo
-        hour = start_time.strftime("%H")
-        key = f"{weekday}_{hour}"
-        grouped[key].append(modified_event)
+        # Formatear como YYYY-MM-DD_HH
+        date_hour = start_time.strftime("%Y-%m-%d_%H")
+        # Usamos la fecha_hora como clave
+        grouped[date_hour].append(modified_event)
     return grouped
 
 def transform_json(input_file):
@@ -44,11 +43,13 @@ def transform_json(input_file):
         try:
             with open(file_path, 'r') as f:
                 existing_data = json.load(f)
+                
         except FileNotFoundError:
             existing_data = {}  # Cambiado de [] a {} ya que parece que quieres un diccionario
         
         # Añadir eventos al diccionario existente
         existing_data["classes"] = events
+       
         
         # Guardar los eventos directamente en el archivo JSON
         with open(file_path, 'w') as f:
@@ -56,5 +57,5 @@ def transform_json(input_file):
             
         print(f"Eventos añadidos al archivo: {filename}")
 
-if __name__ == "__main__":
-    transform_json("data/excel/clases_total.json")
+def getClassData():
+    transform_json("data/excel/new/clases_total.json")

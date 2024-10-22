@@ -47,7 +47,7 @@ class Zones_Data:
             "targetCapacity": self.targetCapacity,
             "totalCapacity": self.totalCapacity
         }
-    
+    1
 def serialize_to_json(obj, filename):
     with open(filename, 'w') as f:
         json.dump(obj.to_dict(), f, indent=4)
@@ -84,36 +84,54 @@ def get_cell_merge_info(sheet,row, column):
         "value": sheet.cell(row=row, column=column).value
     }
 
-def excel_to_json(file_path):
-    
+def excel_to_json(file_path, startDate):
+    from datetime import datetime, timedelta
+
     wb = openpyxl.load_workbook(file_path)
     sheet = wb.active
-    day = 1
-    for col in range(3, 22,3):
-        rowStart=3
-        rowend=31
-        while(rowend<sheet.max_row+1):
-            zones_data=[]
-            hour= sheet.cell(row=rowStart,column=1).value
-            
-            value=get_cell_merge_info(sheet,rowStart,1)
-            sumatorio = value['rows_span']
-            print(sumatorio)
-            for row in range(rowStart,rowend,2):
-                name = sheet.cell(row=row,column=col-1).value
-                cleanName=clean_string(name)
-                total = sheet.cell(row=row+1,column=col).value
-                target = sheet.cell(row=row+1,column=col+1).value
-                data=Zones_Data(cleanName,target,total)
-                zones_data.append(data)
+    day = startDate
+    
+    # Create base date starting from September 1st, 2024
+    base_date = datetime(2024, 9, 2)
+    
 
+    for col in range(3, 22, 3):
+        rowStart = 3
+        rowend = 31
+        current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
+        formatted_date = current_date.strftime('%Y-%m-%d')
+        while(rowStart < sheet.max_row -1):
+            zones_data = []
+            hour = sheet.cell(row=rowStart, column=1).value
+            value = get_cell_merge_info(sheet, rowStart, 1)
+            sumatorio = value['rows_span']
+            
+            # Format current date
+            
+            
+            for row in range(rowStart, rowend, 2):
+                name = sheet.cell(row=row, column=col-1).value
+                cleanName = clean_string(name)
+                total = sheet.cell(row=row+1, column=col).value
+                target = sheet.cell(row=row+1, column=col+1).value
+                data = Zones_Data(cleanName, target, total)
+                zones_data.append(data)
                 
-            rowend+=sumatorio
-            rowStart+=sumatorio
+            rowend += sumatorio
+            rowStart += sumatorio
             value = HourData(zones_data)
-            serialize_to_json(value,"data/formated_data/zones/"+str(day)+"_"+hour[:-3]+".json")
-        day=day+1
+            
+            # Use formatted date in filename
+            serialize_to_json(value, f"data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+        day = day + 1        
         
 
-if __name__ == "__main__":
-    excel_to_json("data/excel/zonas-sept-zgz.xlsx")
+def getZonesData():  
+    startDate = 1
+    paths=["data/excel/new/zones-sept-1-8.xlsx",
+           "data/excel/new/zones-sept-8-15.xlsx",
+           "data/excel/new/zones-sept-15-22.xlsx",
+           "data/excel/new/zones-sept-22-30.xlsx"]
+    for path in paths:
+        excel_to_json(path,startDate= startDate)
+        startDate+=7
