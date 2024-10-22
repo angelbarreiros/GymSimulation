@@ -38,7 +38,7 @@ def transform_json(input_file):
     # Añadir cada grupo al archivo JSON correspondiente
     for key, events in grouped_events.items():
         filename = f"{key}.json"
-        file_path = "data/formated_data/zones/" + filename
+        file_path = "/home/angel/startup/GymSimulation/data/formated_data/zones/" + filename
         
         try:
             with open(file_path, 'r') as f:
@@ -58,4 +58,4 @@ def transform_json(input_file):
         print(f"Eventos añadidos al archivo: {filename}")
 
 def getClassData():
-    transform_json("data/excel/new/clases_total.json")
+    transform_json("/home/angel/startup/GymSimulation/data/excel/new/clases_total.json")

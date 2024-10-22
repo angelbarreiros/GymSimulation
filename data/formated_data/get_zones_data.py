@@ -101,6 +101,7 @@ def excel_to_json(file_path, startDate):
         current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
         formatted_date = current_date.strftime('%Y-%m-%d')
         while(rowStart < sheet.max_row -1):
+            notWorkingHour = False
             zones_data = []
             hour = sheet.cell(row=rowStart, column=1).value
             value = get_cell_merge_info(sheet, rowStart, 1)
@@ -111,6 +112,8 @@ def excel_to_json(file_path, startDate):
             
             for row in range(rowStart, rowend, 2):
                 name = sheet.cell(row=row, column=col-1).value
+                if name == None or name == "":
+                    notWorkingHour = True
                 cleanName = clean_string(name)
                 total = sheet.cell(row=row+1, column=col).value
                 target = sheet.cell(row=row+1, column=col+1).value
@@ -121,17 +124,18 @@ def excel_to_json(file_path, startDate):
             rowStart += sumatorio
             value = HourData(zones_data)
             
-            # Use formatted date in filename
-            serialize_to_json(value, f"data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+            if not notWorkingHour:
+                serialize_to_json(value, f"/home/angel/startup/GymSimulation/data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+            notWorkingHour = False
         day = day + 1        
         
 
 def getZonesData():  
     startDate = 1
-    paths=["data/excel/new/zones-sept-1-8.xlsx",
-           "data/excel/new/zones-sept-8-15.xlsx",
-           "data/excel/new/zones-sept-15-22.xlsx",
-           "data/excel/new/zones-sept-22-30.xlsx"]
+    paths=["/home/angel/startup/GymSimulation/data/excel/new/zones-sept-1-8.xlsx",
+           "/home/angel/startup/GymSimulation/data/excel/new/zones-sept-8-15.xlsx",
+           "/home/angel/startup/GymSimulation/data/excel/new/zones-sept-15-22.xlsx",
+           "/home/angel/startup/GymSimulation/data/excel/new/zones-sept-22-30.xlsx"]
     for path in paths:
         excel_to_json(path,startDate= startDate)
         startDate+=7
