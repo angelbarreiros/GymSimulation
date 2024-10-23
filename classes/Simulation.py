@@ -1,6 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pickle
-import pandas as pd
 import cv2
 import numpy as np
 import os
@@ -16,8 +15,6 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
-def moveWrapper(person):
-    person.move()
 class Simulation:
     def __init__(self, hours):
         self.boundaries = None
@@ -35,7 +32,7 @@ class Simulation:
         self.classes = []
         self.personsDeleted = []
 
-    def getTargetArea(self,person=None):
+    def getTargetArea(self):
         # if random.random() < LOCKER_ROOM_PROB:
         #     locker_room_lst = []
         #     for area in self.target_areas:
@@ -48,13 +45,6 @@ class Simulation:
                 area.actualCapacity += 1
                 print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
-            
-        if person != None:
-            person.state = None
-            person.stay_counter = 0
-            person.wait_time = 0
-            person.target_coords = None
-            person.route = []
             
         return None
 
@@ -81,7 +71,7 @@ class Simulation:
         self.floors = np.unique([area.floor for area in self.target_areas])
         print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}, npersons: {self.npersons}, entradas: {self.entradas}, salidas: {self.salidas}")
 
-    def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.8):
+    def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.3):
         if not available_spawn_points:
             print(f"No available spawn points for person {num_person} in frame {frame}")
             return False
@@ -105,13 +95,6 @@ class Simulation:
         available_spawn_points.remove(spawn_point)
         return True
     
-    def distribute_targets(self):
-        for person in self.persons:
-            if person.state!= 'left' and person.lifetime < person.max_lifetime:
-                if hasattr(person.target_area, 'actualCapacity'):
-                    next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
-                person.target_area = self.getTargetArea(person)
-
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
@@ -146,8 +129,14 @@ class Simulation:
                     #     next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
                     if person.target_area.actualCapacity > person.target_area.targetCapacity:
                         person.target_area.actualCapacity -= 1
-                        person.target_area = self.getTargetArea(person)
-                
+                        person.target_area = self.getTargetArea()
+                        person.state = None
+                        person.stay_counter = 0
+                        person.wait_time = 0
+                        person.target_coords = None
+                        person.route = None
+                        person.locker_room = None
+                            
 
 
             nactual_persons = len(self.persons) - exceeded_lifetime_count
@@ -213,13 +202,30 @@ class Simulation:
                     if state == 'left':
                         left_persons += 1
                     else:
-                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
-                                floor_offset_x:floor_offset_x+width], x, y, COLORS['Black'])
                         current_persons += 1
+                        # if state == 'moving_target':
+                        #     color = COLORS['Green']          # Black for target movement
+                        # elif target == 'PG':
+                        #     color = COLORS['Orange']         # Orange for PG
+                        # elif state == 'moving_stairs':
+                        #     color = COLORS['Blue']           # Blue for stairs movement
+                        # elif state == 'moving_lockers':
+                        #     color = COLORS['Red']            # Red for locker movement
+                        if state == 'reached':
+                            color = COLORS['Black']      
+                        elif state == 'moving_lockers':
+                            color = COLORS['Purple']  
+                        elif target == 'EntradaParking' or target == 'EntradaInicial':
+                            color = COLORS['Red']
+                        else:
+                            color = COLORS['Blue']          # White for default
 
+                        # Draw person as filled circle
+                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
+                                    floor_offset_x:floor_offset_x+width], x, y, color)
 
             person_count_str = f"Persons: {current_persons}"
-            text_size = cv2.getTextSize(person_count_str, font, font_scale-1, font_thickness)[0]
+            text_size = cv2.getTextSize(person_count_str, font, font_scale-1, font_thickness-1)[0]
             text_x = (combined_width - text_size[0]) // 2
             cv2.putText(current_frame, person_count_str, (text_x-75, 320), font, font_scale, (0, 0, 0), font_thickness)
 

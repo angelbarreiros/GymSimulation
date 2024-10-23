@@ -19,7 +19,7 @@ def run_simulation_for_day(day):
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=HOURS, day=day)
 
-    output_file = f'outputs/full_{day}.mp4'
+    output_file = f'outputs/{day}.mp4'
     subprocess.run([
         'ffmpeg', '-y', 
         '-framerate', '30', 
