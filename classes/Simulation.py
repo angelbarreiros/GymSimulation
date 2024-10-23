@@ -175,91 +175,6 @@ class Simulation:
                 #     pool.map(moveWrapper, self.persons)
         self.persons += self.personsDeleted
                 
-                                
-
-    def _process_batch(self, batch_data):
-        """Process a batch of frames and return them as compressed data"""
-        frames_data, batch_start = batch_data
-        results = []
-        
-        for i, frame_data in enumerate(frames_data):
-            frame_num = batch_start + i
-            (base_frame, grid_size, height, width, header_height, 
-             combined_width, total_frames) = frame_data
-            
-            current_frame = base_frame.copy()
-            
-            # Time calculations
-            minutes = int(frame_num / 10)
-            hours_good = (self.hora + minutes // 60)
-            minutes = minutes % 60
-            time_str = f"Time: {hours_good:02d}:{minutes:02d}"
-
-            # Text rendering
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            font_scale = 2.5
-            font_thickness = 3
-            
-            text_size = cv2.getTextSize(time_str, font, font_scale, font_thickness)[0]
-            text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, time_str, (text_x, 100), font, font_scale, (0, 0, 0), font_thickness)
-
-            current_persons = 0
-            left_persons = 0
-            # Draw active persons
-            for person in self.persons:
-                if person.startFrame <= frame_num < person.startFrame + len(person.history):
-                    x, y, floor, state, target = person.history[frame_num - person.startFrame]
-                    floor_offset_y = header_height + (floor // grid_size) * height
-                    floor_offset_x = (floor % grid_size) * width
-                    if state == 'left':
-                        left_persons += 1
-                    else:
-                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
-                                floor_offset_x:floor_offset_x+width], x, y, COLORS['Black'])
-                        current_persons += 1
-
-
-            person_count_str = f"Persons: {current_persons}"
-            text_size = cv2.getTextSize(person_count_str, font, font_scale-0.5, font_thickness)[0]
-            text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, person_count_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
-
-            # Draw walls
-            for wall in self.boundaries:
-                floor_offset_y = header_height + (wall.floor // grid_size) * height
-                floor_offset_x = (wall.floor % grid_size) * width
-                draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, 
-                            floor_offset_x:floor_offset_x+width], wall)
-
-            # Draw areas
-            for area in self.target_areas:
-                floor_offset_y = header_height + (area.floor // grid_size) * height
-                floor_offset_x = (area.floor % grid_size) * width
-                if area.type == 'NOFUNCIONAL':
-                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, 
-                               floor_offset_x:floor_offset_x+width], area, COLORS['Blue'])
-                elif area.type == 'VESTUARIO':
-                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, 
-                               floor_offset_x:floor_offset_x+width], area, COLORS['Purple'])
-                else:
-                    paint_area(current_frame[floor_offset_y:floor_offset_y+height, 
-                              floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
-
-            # Draw classes
-            for classe in self.classes[frame_num//total_frames]:
-                floor_offset_y = header_height + (classe.Area.floor // grid_size) * height
-                floor_offset_x = (classe.Area.floor % grid_size) * width
-                draw_class(current_frame[floor_offset_y:floor_offset_y+height, 
-                          floor_offset_x:floor_offset_x+width], classe, COLORS['Black'])
-
-            # Compress frame using JPEG format
-            encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]  # 90% quality
-            _, compressed = cv2.imencode('.jpg', current_frame, encode_param)
-            results.append((frame_num, compressed))
-
-        return results
-
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""
         frames_data, batch_start = batch_data
@@ -285,7 +200,7 @@ class Simulation:
             
             text_size = cv2.getTextSize(time_str, font, font_scale, font_thickness)[0]
             text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, time_str, (text_x, 100), font, font_scale, (0, 0, 0), font_thickness)
+            cv2.putText(current_frame, time_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
 
             current_persons = 0
             left_persons = 0
@@ -304,9 +219,9 @@ class Simulation:
 
 
             person_count_str = f"Persons: {current_persons}"
-            text_size = cv2.getTextSize(person_count_str, font, font_scale-0.5, font_thickness)[0]
+            text_size = cv2.getTextSize(person_count_str, font, font_scale-1, font_thickness)[0]
             text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, person_count_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
+            cv2.putText(current_frame, person_count_str, (text_x-75, 320), font, font_scale, (0, 0, 0), font_thickness)
 
             # Draw walls
             for wall in self.boundaries:
@@ -343,7 +258,7 @@ class Simulation:
 
         return results
 
-    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8]):
+    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8], day='2024-08-05'):
         os.makedirs(output_folder, exist_ok=True)
         self.hours = hours
         start_time = time.time()
@@ -378,6 +293,15 @@ class Simulation:
             floor_offset_x = col * width
             draw_spawn_point(base_frame[floor_offset_y:floor_offset_y+height, 
                             floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
+
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 2.5
+        font_thickness = 3
+        day_str = f"Day: {day}"
+        day_text_size = cv2.getTextSize(day_str, font, font_scale, font_thickness)[0]
+        day_text_x = (combined_width - day_text_size[0]) // 2
+        cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
         # Prepare batches
         BATCH_SIZE = 100 
