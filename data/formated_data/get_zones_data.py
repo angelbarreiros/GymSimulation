@@ -132,10 +132,10 @@ def excel_to_json(file_path, startDate):
 
 def getZonesData():  
     startDate = 1
-    paths=["data/excel/new/zones-sept-1-8.xlsx",
-           "data/excel/new/zones-sept-8-15.xlsx",
-           "data/excel/new/zones-sept-15-22.xlsx",
-           "data/excel/new/zones-sept-22-30.xlsx"]
+    paths=["data/excel/zones-sept-1-8.xlsx",
+           "data/excel/zones-sept-8-15.xlsx",
+           "data/excel/zones-sept-15-22.xlsx",
+           "data/excel/zones-sept-22-30.xlsx"]
     for path in paths:
         excel_to_json(path,startDate= startDate)
         startDate+=7

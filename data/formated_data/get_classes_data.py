@@ -25,7 +25,7 @@ def group_events_by_weekday_hour(events):
     return grouped
 
 def transform_json(input_file):
-    with open(input_file, 'r') as f:
+    with open(input_file, 'r', encoding='utf8') as f:
         data = json.load(f)
 
     # Asegurarse de que data es una lista
@@ -58,4 +58,4 @@ def transform_json(input_file):
         print(f"Eventos añadidos al archivo: {filename}")
 
 def getClassData():
-    transform_json("data/excel/new/clases_total.json")
+    transform_json("data/excel/clases_total.json")

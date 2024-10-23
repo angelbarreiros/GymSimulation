@@ -438,6 +438,44 @@ def interpolate_path(original_path, step_size):
     interpolated_path.append(original_path[-1])  # Add the final point
     return interpolated_path
 
+def get_easy_route(start, end, step = 10):
+    """
+    Generate a route between two points with a maximum step size.
+    
+    Args:
+        start (tuple): Starting coordinates (x, y)
+        end (tuple): Ending coordinates (x, y)
+        step (float): Maximum distance between consecutive points
+        
+    Returns:
+        list: List of coordinate tuples forming the route
+    """
+    points = []
+    current_x, current_y = start
+    points.append((current_x, current_y))
+    
+    while True:
+        # Calculate distances
+        dx = end[0] - current_x
+        dy = end[1] - current_y
+        distance = math.sqrt(dx * dx + dy * dy)
+        
+        # If we're close enough to the end, add it and break
+        if distance <= step:
+            points.append(end)
+            break
+            
+        # Calculate the ratio to maintain direction but limit step size
+        ratio = step / distance
+        
+        # Calculate next point
+        current_x = current_x + dx * ratio
+        current_y = current_y + dy * ratio
+        
+        points.append((current_x, current_y))
+    
+    return points
+
 if __name__ == "__main__":
     
     start = (510, 862)

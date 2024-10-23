@@ -11,9 +11,13 @@ import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
+from multiprocessing import Pool, Process
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
+def moveWrapper(person):
+    person.move()
 class Simulation:
     def __init__(self):
         self.boundaries = None
@@ -28,8 +32,9 @@ class Simulation:
         self.salidas = None
         self.floors = None
         self.classes = []
+        self.personsDeleted = []
 
-    def getTargetArea(self):
+    def getTargetArea(self,person=None):
         # if random.random() < LOCKER_ROOM_PROB:
         #     locker_room_lst = []
         #     for area in self.target_areas:
@@ -42,6 +47,14 @@ class Simulation:
                 area.actualCapacity += 1
                 print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
+            
+        if person != None:
+            person.state = None
+            person.stay_counter = 0
+            person.wait_time = 0
+            person.target_coords = None
+            person.route = []
+            
         return None
 
     def getStairs(self):
@@ -86,7 +99,7 @@ class Simulation:
         if target==None:
             #print(f"No available target areas for person {num_person} in frame {frame}")
             return False
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime= np.random.choice([1, 2, 3])))
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime=np.random.choice([1, 2, 3])))
         
         available_spawn_points.remove(spawn_point)
         return True
@@ -96,25 +109,29 @@ class Simulation:
             if person.state!= 'left' and person.lifetime < person.max_lifetime:
                 if hasattr(person.target_area, 'actualCapacity'):
                     next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
-                person.target_area = self.getTargetArea()
-                person.state = None
-                person.stay_counter = 0
-                person.wait_time = 0
-                person.target_coords = None
-                person.route = []
+                person.target_area = self.getTargetArea(person)
 
-    def simulate(self, total_frames, dia='2024-09-02', hours=[7,8], spawn_interval=10, max_spawn=1):
+    def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
         for spawn in self.spawn_points:
             print(f"Spawn {spawn.name} at {spawn.coords}")
         for hora in hours:
             i+=1
-            exceeded_lifetime_count = sum(1 for person in self.persons if person.lifetime >= person.max_lifetime)
-            for person in self.persons:
-                if not hasattr(person.target_area, 'actualCapacity'):
+            self.get_data_hour(dia, hora, self.target_areas)
+            exceeded_lifetime_count = 0
+            for idx, person in enumerate(self.persons):
+                
+                person.lifetime+=1
+                
+                # Deleted person
+                if not hasattr(person.target_area, 'actualCapacity') or person.state == 'left':
+                    self.personsDeleted.append(self.persons.pop(idx))
                     continue
-                if person.lifetime >= person.max_lifetime:
+                
+                # Leave the building
+                elif person.lifetime >= person.max_lifetime:
+                    exceeded_lifetime_count += 1
                     person.target_area.actualCapacity -= 1
                     person.target_area = self.spawn_points[0]
                     person.state = None
@@ -122,10 +139,16 @@ class Simulation:
                     person.locker_room = None
                     print(f'Person {person.id} has exceeded, going to {person.target_area.name}')
                     #person.state = 'left'
+                    
+                else:
+                    # if hasattr(person.target_area, 'actualCapacity'):
+                    #     next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
+                    if person.target_area.actualCapacity > person.target_area.targetCapacity:
+                        person.target_area.actualCapacity -= 1
+                        person.target_area = self.getTargetArea(person)
+                
 
 
-            self.get_data_hour(dia, hora, self.target_areas)
-            self.distribute_targets()
             nactual_persons = len(self.persons) - exceeded_lifetime_count
             print(f"Hour {hora}: {exceeded_lifetime_count} persons have exceeded their max lifetime")
             
@@ -139,39 +162,102 @@ class Simulation:
                             nactual_persons = len(self.persons) - exceeded_lifetime_count
                             print(f"Hour {hora}:Frame {frame}: {nactual_persons} persons are currently in the building, npersons:{self.npersons}")
                         else:
-                            break 
+                            break
+                         
                 for person in self.persons :
                     person.move()
 
-                # if frame % spawn_interval == 0: #and frame > (frames / len(hours)) / 2:
-                #     leaving_persons = [person for person in self.persons if person.lifetime > person.max_lifetime]
-                #     for person in leaving_persons:
-                #         spawn_point = np.random.choice(self.spawn_points.copy())
-                #         person.target_area = spawn_point
-                #         person.state = None
-                #         self.salidas -= 1
-                #         print(f'Person {person.id} is leaving the building')
-                        #print(f'Area {person.target_area.name} has {person.target_area.actualCapacity} persons')
-            for person in self.persons:
-                person.lifetime+=1       
+                # with ProcessPoolExecutor(max_workers=4) as executor:
+                #     executor.map(moveWrapper, self.persons)
+                    
+                # with Pool(processes=6) as pool:
+                #     pool.map(moveWrapper, self.persons)
+        self.persons += self.personsDeleted
+                
+                                
+
+    def _process_batch(self, batch_data):
+        """Process a batch of frames and return them as compressed data"""
+        frames_data, batch_start = batch_data
+        results = []
         
-        # hacer que salgan tantas personas como en self.salidas, segun el stay counter que tengan, (>0)
+        for i, frame_data in enumerate(frames_data):
+            frame_num = batch_start + i
+            (base_frame, grid_size, height, width, header_height, 
+             combined_width, total_frames) = frame_data
+            
+            current_frame = base_frame.copy()
+            
+            # Time calculations
+            minutes = int(frame_num / 10)
+            hours_good = (self.hora + minutes // 60)
+            minutes = minutes % 60
+            time_str = f"Time: {hours_good:02d}:{minutes:02d}"
 
-        # Save the state of the simulation
-        # state = {
-        #     'persons': [person for person in self.persons],
-        #     'areas': [area for area in self.target_areas],
-        #     'hora': self.hora
-        # }
-        # with open(f'data/sim_states/simulation_{self.hora}.pkl', 'wb') as f:
-        #     pickle.dump(state, f)
+            # Text rendering
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            font_scale = 2.5
+            font_thickness = 3
+            
+            text_size = cv2.getTextSize(time_str, font, font_scale, font_thickness)[0]
+            text_x = (combined_width - text_size[0]) // 2
+            cv2.putText(current_frame, time_str, (text_x, 100), font, font_scale, (0, 0, 0), font_thickness)
 
-        # Collect all movement data
-        # data = []
-        # for person in self.persons:
-        #     for step, (x, y, floor, state) in enumerate(person.history):
-        #         data.append({'person_id': person.id, 'step': step, 'x': x, 'y': y, 'floor': floor, 'state': state})
-        # self.movement_data = pd.DataFrame(data)
+            current_persons = 0
+            left_persons = 0
+            # Draw active persons
+            for person in self.persons:
+                if person.startFrame <= frame_num < person.startFrame + len(person.history):
+                    x, y, floor, state, target = person.history[frame_num - person.startFrame]
+                    floor_offset_y = header_height + (floor // grid_size) * height
+                    floor_offset_x = (floor % grid_size) * width
+                    if state == 'left':
+                        left_persons += 1
+                    else:
+                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
+                                floor_offset_x:floor_offset_x+width], x, y, COLORS['Black'])
+                        current_persons += 1
+
+
+            person_count_str = f"Persons: {current_persons}"
+            text_size = cv2.getTextSize(person_count_str, font, font_scale-0.5, font_thickness)[0]
+            text_x = (combined_width - text_size[0]) // 2
+            cv2.putText(current_frame, person_count_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
+
+            # Draw walls
+            for wall in self.boundaries:
+                floor_offset_y = header_height + (wall.floor // grid_size) * height
+                floor_offset_x = (wall.floor % grid_size) * width
+                draw_boundary(current_frame[floor_offset_y:floor_offset_y+height, 
+                            floor_offset_x:floor_offset_x+width], wall)
+
+            # Draw areas
+            for area in self.target_areas:
+                floor_offset_y = header_height + (area.floor // grid_size) * height
+                floor_offset_x = (area.floor % grid_size) * width
+                if area.type == 'NOFUNCIONAL':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, 
+                               floor_offset_x:floor_offset_x+width], area, COLORS['Blue'])
+                elif area.type == 'VESTUARIO':
+                    paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, 
+                               floor_offset_x:floor_offset_x+width], area, COLORS['Purple'])
+                else:
+                    paint_area(current_frame[floor_offset_y:floor_offset_y+height, 
+                              floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
+
+            # Draw classes
+            for classe in self.classes[frame_num//total_frames]:
+                floor_offset_y = header_height + (classe.Area.floor // grid_size) * height
+                floor_offset_x = (classe.Area.floor % grid_size) * width
+                draw_class(current_frame[floor_offset_y:floor_offset_y+height, 
+                          floor_offset_x:floor_offset_x+width], classe, COLORS['Black'])
+
+            # Compress frame using JPEG format
+            encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]  # 90% quality
+            _, compressed = cv2.imencode('.jpg', current_frame, encode_param)
+            results.append((frame_num, compressed))
+
+        return results
 
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""

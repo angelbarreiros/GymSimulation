@@ -1,5 +1,5 @@
 import numpy as np
-from utils.shortest_path import create_matrix_from_json, a_star_search_from_grid, variable_a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, get_easy_route, variable_a_star_search_from_grid
 from utils.fixed_route import join_coordinates
 import random
 
@@ -26,7 +26,8 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
-        self.speed = random.randint(10, 20)
+        # self.speed = random.randint(10, 20)
+        self.speed = random.randint(20, 40)
         self.lifetime = 0
         self.max_lifetime = max_lifetime
 
@@ -44,7 +45,6 @@ class Person:
         return route
 
     def move(self):
-        #if np.random.rand() < 0.8: # pasar x los vestuarios
         #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
 
         if self.target_area and self.state!= 'left':
@@ -65,29 +65,11 @@ class Person:
                         # else:
                         #     self.target_coords = self.target_area.getPointInside()
                         self.state = 'moving_target'
-                    # print(self.x, self.y, self.target_coords)
-                    # self.route = self.getEasyRoute((int(self.x), int(self.y)), self.target_coords, step=10)
-                    # self.route = a_star_search((int(self.x), int(self.y)), self.target_coords, f"Planta{self.current_floor}", padding=0, scale_factor=5)
-                                
-                    # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                    #                                      src=(int(self.x), int(self.y)), dest=self.target_coords,
-                    #                                      scale_factor=SCALE_FACTOR,
-                    #                                      debug=True)
                                 
                     self.route = variable_a_star_search_from_grid(MATRIX_FLOOR[self.current_floor], 
                                                          start=(int(self.x), int(self.y)), goal=self.target_coords,
                                                          scale_factor=SCALE_FACTOR,
                                                          debug=False, speed=self.speed, noise_factor=.2)
-                    
-                    # start = (int(self.x//SCALE_FACTOR), int(self.y//SCALE_FACTOR))
-                    # goal = (self.target_coords[0]//SCALE_FACTOR, self.target_coords[1]//SCALE_FACTOR)
-                    # self.route = random_walk_pathfinder(MATRIX_FLOOR[self.current_floor],
-                    #                                     start=start,
-                    #                                     goal=goal,
-                    #                                     max_step=2)
-                    # self.route = [(x * SCALE_FACTOR, y * SCALE_FACTOR) for x, y in self.route]
-                    
-                    # self.route = smooth_path(self.route, MATRIX_FLOOR[self.current_floor], SCALE_FACTOR)
                     if self.route == None:
                         self.state = None
                     else:
@@ -102,6 +84,7 @@ class Person:
                     self.x, self.y = self.stairs[self.current_floor].getPointInside()
                     self.state = None
                 elif self.state == 'moving_lockers':
+                    self.wait_time = random.randint(50, 100)  
                     self.locker_room = None
                     self.state = None
                 elif self.state == 'moving_target': # if target, finish
@@ -120,13 +103,16 @@ class Person:
                         self.wait_time = random.randint(100, 200)                  
                         self.target_coords = self.target_area.getPointInside()
                         # TODO only pass grid of the specific area, or put get easy route
+                        self.route = get_easy_route(start=(int(self.x), int(self.y)),
+                                                       end = self.target_coords,
+                                                       step=self.speed)
                         # self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),
                         #                                end = self.target_coords,
                         #                                step=SCALE_FACTOR)
-                        self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                                                         src=(int(self.x), int(self.y)), dest=self.target_coords,
-                                                         scale_factor=SCALE_FACTOR,
-                                                         debug=False)
+                        # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
+                        #                                  src=(int(self.x), int(self.y)), dest=self.target_coords,
+                        #                                  scale_factor=SCALE_FACTOR,
+                        #                                  debug=False)
                     self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
                     self.stay_counter += 1
             else:
