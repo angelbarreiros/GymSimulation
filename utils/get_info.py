@@ -1,6 +1,7 @@
 import json
 import math
 from classes.Map import Area, Boundary, SpawnPoint, Activity
+from utils.global_variables import DEBUG
 
 def extract_aforo(file_path, hour):
     hour_str = str(hour).zfill(2)  # Ensure hour is a two-digit string

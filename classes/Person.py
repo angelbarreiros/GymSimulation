@@ -74,6 +74,7 @@ class Person:
                         self.state = None
                     else:
                         self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
+                
 
                 elif self.state == 'moving_stairs': # if stairs, go to lockers or destination floor
                     if self.locker_room != None:

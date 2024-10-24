@@ -2,10 +2,12 @@ import numpy as np
 import subprocess
 import os
 from classes.Simulation import Simulation
+import cProfile
+from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-HOURS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-DAYS = ['2024-09-02', '2024-09-03']  # Add more days as needed
+HOURS = [8, 9]#, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+DAYS = ['2024-09-02']#, '2024-09-03']  # Add more days as needed
 
 def run_simulation_for_day(day):
     np.random.seed(123)
@@ -45,5 +47,7 @@ def main():
         run_simulation_for_day(day)
 
 if __name__ == "__main__":
-    # cProfile.run('main()')
-    main()
+    if DEBUG:
+        cProfile.run('main()')
+    else:
+        main()
