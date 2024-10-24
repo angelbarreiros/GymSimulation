@@ -1,0 +1,16 @@
+services:
+  frontend:
+    image: europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymfrontend
+    networks:
+      - server-network
+    ports:
+      - 80:80
+  backend:
+    image: europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymbackend
+    networks:
+      - server-network
+    ports:
+      - 8000:8000
+networks:
+  server-network:
+    driver: bridge
