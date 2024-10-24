@@ -1,0 +1,115 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 2,
+            "totalCapacity": 24
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 11,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 5,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 13,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 3,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 16,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 6,
+            "totalCapacity": 20
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 6,
+            "totalCapacity": 42
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15090749",
+            "studio": "Studio 2",
+            "activity": "BODY PUMP VIRTUAL",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 36,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-28T09:00:00",
+            "endedAt": "2024-09-28T09:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15091169",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Miguel Castro Garcia-Fraile",
+            "attendingLimit": 12,
+            "bookedAttendees": 2,
+            "startedAt": "2024-09-28T09:30:00",
+            "endedAt": "2024-09-28T10:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16375340",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Victor Perez Diaz ",
+            "attendingLimit": 32,
+            "bookedAttendees": 28,
+            "startedAt": "2024-09-28T09:30:00",
+            "endedAt": "2024-09-28T10:15:00"
+        }
+    ]
+}

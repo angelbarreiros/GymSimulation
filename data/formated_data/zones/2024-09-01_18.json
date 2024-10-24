@@ -1,0 +1,43 @@
+{
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15102413",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sara Fernandez Cano",
+            "attendingLimit": 12,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-01T18:00:00",
+            "endedAt": "2024-09-01T18:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15205493",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-01T18:30:00",
+            "endedAt": "2024-09-01T18:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15205617",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-01T18:45:00",
+            "endedAt": "2024-09-01T19:00:00"
+        }
+    ]
+}

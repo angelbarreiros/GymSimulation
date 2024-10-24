@@ -1,0 +1,193 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 12,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 6,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 0,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 30,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 50,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 50,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 8,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15104537",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Laris Lopez Jurado",
+            "attendingLimit": 32,
+            "bookedAttendees": 23,
+            "startedAt": "2024-09-24T20:00:00",
+            "endedAt": "2024-09-24T20:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15106385",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 14,
+            "startedAt": "2024-09-24T20:30:00",
+            "endedAt": "2024-09-24T21:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15107016",
+            "studio": "Studio 4",
+            "activity": "EMBARAZO ACT.",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 15,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:30:00",
+            "endedAt": "2024-09-24T21:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15183665",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:00:00",
+            "endedAt": "2024-09-24T20:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15183770",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:15:00",
+            "endedAt": "2024-09-24T20:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15183867",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:30:00",
+            "endedAt": "2024-09-24T20:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15931564",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:00:00",
+            "endedAt": "2024-09-24T21:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15936039",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (13/15 A\u00d1OS) MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T20:00:00",
+            "endedAt": "2024-09-24T21:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16336639",
+            "studio": "Studio 2",
+            "activity": "BODY BALANCE",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 36,
+            "bookedAttendees": 12,
+            "startedAt": "2024-09-24T20:30:00",
+            "endedAt": "2024-09-24T21:15:00"
+        }
+    ]
+}

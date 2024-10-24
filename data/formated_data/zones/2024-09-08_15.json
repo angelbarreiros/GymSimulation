@@ -1,0 +1,128 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 2,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 4,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 1,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 5,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 0,
+            "totalCapacity": 10
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 0,
+            "totalCapacity": 20
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 1,
+            "totalCapacity": 12
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 5,
+            "totalCapacity": 32
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 12,
+            "totalCapacity": 50
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 0,
+            "totalCapacity": 24
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15204221",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-08T15:00:00",
+            "endedAt": "2024-09-08T15:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15204327",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-08T15:15:00",
+            "endedAt": "2024-09-08T15:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15204437",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-08T15:30:00",
+            "endedAt": "2024-09-08T15:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15204524",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-08T15:45:00",
+            "endedAt": "2024-09-08T16:00:00"
+        }
+    ]
+}

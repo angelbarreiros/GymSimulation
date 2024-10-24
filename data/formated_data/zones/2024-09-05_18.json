@@ -1,0 +1,167 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 7,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 14,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 18,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 25,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 7,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 6,
+            "totalCapacity": 20
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15101983",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 12,
+            "startedAt": "2024-09-05T18:30:00",
+            "endedAt": "2024-09-05T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15103167",
+            "studio": "Studio Kids",
+            "activity": "DEPORTE II (8 -13)",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-05T18:30:00",
+            "endedAt": "2024-09-05T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15195872",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-05T18:00:00",
+            "endedAt": "2024-09-05T18:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15196101",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-05T18:15:00",
+            "endedAt": "2024-09-05T18:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/16369561",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Pedro Ramiro Ramiro",
+            "attendingLimit": 36,
+            "bookedAttendees": 32,
+            "startedAt": "2024-09-05T18:30:00",
+            "endedAt": "2024-09-05T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/16556061",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS INICIACI\u00d3N",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 4,
+            "startedAt": "2024-09-05T18:00:00",
+            "endedAt": "2024-09-05T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16556063",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (10/12 A\u00d1OS) MEDIO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-05T18:00:00",
+            "endedAt": "2024-09-05T19:00:00"
+        }
+    ]
+}

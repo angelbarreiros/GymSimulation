@@ -1,0 +1,154 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 31,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 24,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 7,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 43,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 37,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 31,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 8,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 6,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15103691",
+            "studio": "Studio 2",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Pedro Ramiro Ramiro",
+            "attendingLimit": 36,
+            "bookedAttendees": 18,
+            "startedAt": "2024-09-06T19:00:00",
+            "endedAt": "2024-09-06T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15202326",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-06T19:00:00",
+            "endedAt": "2024-09-06T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15202431",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-06T19:15:00",
+            "endedAt": "2024-09-06T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15202536",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-06T19:30:00",
+            "endedAt": "2024-09-06T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15202641",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-06T19:45:00",
+            "endedAt": "2024-09-06T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16556073",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS INICIACI\u00d3N",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-06T19:00:00",
+            "endedAt": "2024-09-06T20:00:00"
+        }
+    ]
+}

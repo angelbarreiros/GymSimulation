@@ -95,7 +95,7 @@ def excel_to_json(file_path, startDate):
     base_date = datetime(2024, 9, 2)
     
 
-    for col in range(3, 22, 3):
+    for col in range(3, 24, 3):
         rowStart = 3
         rowend = 31
         current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
@@ -105,10 +105,7 @@ def excel_to_json(file_path, startDate):
             zones_data = []
             hour = sheet.cell(row=rowStart, column=1).value
             value = get_cell_merge_info(sheet, rowStart, 1)
-            sumatorio = value['rows_span']
-            
-            # Format current date
-            
+            sumatorio = value['rows_span']            
             
             for row in range(rowStart, rowend, 2):
                 name = sheet.cell(row=row, column=col-1).value

@@ -1,0 +1,180 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 12,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 5,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 25,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 50,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 39,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 10,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 41,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 8,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15101248",
+            "studio": "Studio 2",
+            "activity": "X-TRAINING",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 17,
+            "startedAt": "2024-09-18T18:00:00",
+            "endedAt": "2024-09-18T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15101851",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 12,
+            "bookedAttendees": 5,
+            "startedAt": "2024-09-18T18:30:00",
+            "endedAt": "2024-09-18T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15102627",
+            "studio": "Studio 1",
+            "activity": "BODY COMBAT",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Laris Lopez Jurado",
+            "attendingLimit": 36,
+            "bookedAttendees": 22,
+            "startedAt": "2024-09-18T18:30:00",
+            "endedAt": "2024-09-18T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15102853",
+            "studio": "Studio 4",
+            "activity": "BODY BALANCE",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 15,
+            "bookedAttendees": 15,
+            "startedAt": "2024-09-18T18:30:00",
+            "endedAt": "2024-09-18T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15103273",
+            "studio": "Studio Kids",
+            "activity": "X-TRAINING KIDS",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Pedro Ramiro Ramiro",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T18:30:00",
+            "endedAt": "2024-09-18T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189569",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 1,
+            "startedAt": "2024-09-18T18:00:00",
+            "endedAt": "2024-09-18T18:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15932150",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (7/9 A\u00d1OS) INICIACI\u00d3N",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T18:00:00",
+            "endedAt": "2024-09-18T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15935829",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (7/9 A\u00d1OS) PERFECCIONAMIENTO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T18:00:00",
+            "endedAt": "2024-09-18T19:00:00"
+        }
+    ]
+}

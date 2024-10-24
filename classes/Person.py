@@ -45,82 +45,89 @@ class Person:
         return route
 
     def move(self):
-        #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}")
-
-        if self.target_area and self.state!= 'left':
+        if self.target_area and self.state != 'left':
             if self.wait_time > 0:
                 self.wait_time -= 1
                 self.stay_counter += 1
-            elif not self.route:  # calcular ruta si no tiene
-                if self.state == None:  # primera vez o acaba de llegar al piso destino
-                    if self.locker_room!=None and self.locker_room.floor==self.current_floor:
+            elif not self.route:
+                if self.state == None:
+                    # When initially moving to a new target area, try to occupy a machine
+                    if self.locker_room != None and self.locker_room.floor == self.current_floor:
                         self.target_coords = self.locker_room.getPointInside()
                         self.state = 'moving_lockers'
-                    elif (self.target_area.floor != self.current_floor) or (self.locker_room!=None and self.locker_room.floor!=self.current_floor):  # target is not in this floor -> go to stairs
+                    elif (self.target_area.floor != self.current_floor) or (self.locker_room != None and self.locker_room.floor != self.current_floor):
                         self.target_coords = self.stairs[self.current_floor].getPointInside()
                         self.state = 'moving_stairs'
-                    else:  # target on this floor -> go to it
-                        # if self.target_area == 'PG':
-                        self.target_coords = self.target_area.getPointInside(self.id%6)
-                        # else:
-                        #     self.target_coords = self.target_area.getPointInside()
+                    else:
+                        # Try to occupy a machine when starting to move towards target
+                        if hasattr(self.target_area, 'ocuppiedMachines'):
+                            self.target_coords = self.target_area.getPointInside(self.id % 6)
+                            if self.id not in self.target_area.ocuppiedMachines:
+                                try:
+                                    empty_index = self.target_area.ocuppiedMachines.index(-1)
+                                    self.target_area.ocuppiedMachines[empty_index] = self.id
+                                except ValueError:
+                                    pass  # No empty machines available
+                        else:
+                            self.target_coords = self.target_area.getPointInside(self.id % 6)
                         self.state = 'moving_target'
                                 
                     self.route = variable_a_star_search_from_grid(MATRIX_FLOOR[self.current_floor], 
-                                                         start=(int(self.x), int(self.y)), goal=self.target_coords,
+                                                         start=(int(self.x), int(self.y)), 
+                                                         goal=self.target_coords,
                                                          scale_factor=SCALE_FACTOR,
-                                                         debug=False, speed=self.speed, noise_factor=.2)
+                                                         debug=False, speed=self.speed, 
+                                                         noise_factor=.2)
                     if self.route == None:
+                        # If route finding fails, free up the machine
+                        if hasattr(self.target_area, 'ocuppiedMachines') and self.id in self.target_area.ocuppiedMachines:
+                            self.target_area.ocuppiedMachines[self.target_area.ocuppiedMachines.index(self.id)] = -1
                         self.state = None
                     else:
-                        self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
+                        self.x, self.y = self.route.pop(0)
 
-                elif self.state == 'moving_stairs': # if stairs, go to lockers or destination floor
+                elif self.state == 'moving_stairs':
                     if self.locker_room != None:
                         self.current_floor = self.locker_room.floor
                     else:
                         self.current_floor = self.target_area.floor
-                    # change to spawn on that floor
                     self.x, self.y = self.stairs[self.current_floor].getPointInside()
                     self.state = None
+
                 elif self.state == 'moving_lockers':
                     self.wait_time = random.randint(50, 100)  
                     self.locker_room = None
                     self.state = None
-                elif self.state == 'moving_target': # if target, finish
+
+                elif self.state == 'moving_target':
                     self.state = 'reached'
+
                 elif self.state == 'reached':
                     if self.target_area.type == 'PG':
-                        #self.current_floor == self.target_area.floor
                         self.wait_time = 10
-                        self.route = POOL_LANES[self.id%6].copy()
+                        self.route = POOL_LANES[self.id % 6].copy()
                     elif self.target_area.name == 'EntradaParking' or self.target_area.name == 'EntradaInicial':
+                        # Free up machine when leaving
+                        if hasattr(self.target_area, 'ocuppiedMachines') and self.id in self.target_area.ocuppiedMachines:
+                            self.target_area.ocuppiedMachines[self.target_area.ocuppiedMachines.index(self.id)] = -1
                         self.state = 'left'
                         self.target_area = None
                         self.current_floor = 0
-                        self.x, self.y = 1750, 165 + self.id*10
+                        self.x, self.y = 1750, 165 + self.id * 10
                         return
                     else:
-                        self.wait_time = random.randint(100, 200)                  
-                        self.target_coords = self.target_area.getPointInside()
-                        # TODO only pass grid of the specific area, or put get easy route
+                        self.wait_time = random.randint(100, 200)
+                        # Free up current machine before moving to new position
+                        if hasattr(self.target_area, 'ocuppiedMachines') and self.id in self.target_area.ocuppiedMachines:
+                            self.target_area.ocuppiedMachines[self.target_area.ocuppiedMachines.index(self.id)] = -1
+                        self.target_coords = self.target_area.getPointInside(self.id % 6)
                         self.route = get_easy_route(start=(int(self.x), int(self.y)),
-                                                       end = self.target_coords,
-                                                       step=self.speed)
-                        # self.route = self.getEasyRoute(start=(int(self.x), int(self.y)),
-                        #                                end = self.target_coords,
-                        #                                step=SCALE_FACTOR)
-                        # self.route = a_star_search_from_grid(grid=MATRIX_FLOOR[self.current_floor], 
-                        #                                  src=(int(self.x), int(self.y)), dest=self.target_coords,
-                        #                                  scale_factor=SCALE_FACTOR,
-                        #                                  debug=False)
-                    self.x, self.y = self.route.pop(0)  # move to next cell in route in any case
+                                                  end=self.target_coords,
+                                                  step=self.speed)
+                    self.x, self.y = self.route.pop(0)
                     self.stay_counter += 1
             else:
                 self.x, self.y = self.route.pop(0)
-        # if self.state=='left':
-        #     
-        
-        #print(f"Person {self.id} is ({self.state}, on {self.target_area.name if self.target_area else 'None'}, at {self.x}, {self.y}, floor {self.current_floor})")
+
         self.history.append((self.x, self.y, self.current_floor, self.state, self.target_area.name if self.target_area else None))
 

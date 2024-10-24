@@ -1,0 +1,180 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 4,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 30,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 22,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 8,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 31,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 9,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 2,
+            "totalCapacity": 24
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15091695",
+            "studio": "Studio 2",
+            "activity": "ZUMBA",
+            "colorHex": "#ff4c67",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 36,
+            "bookedAttendees": 9,
+            "startedAt": "2024-09-24T10:00:00",
+            "endedAt": "2024-09-24T11:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15092554",
+            "studio": "Studio 4",
+            "activity": "BODY BALANCE",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Miguel Castro Garcia-Fraile",
+            "attendingLimit": 15,
+            "bookedAttendees": 13,
+            "startedAt": "2024-09-24T10:00:00",
+            "endedAt": "2024-09-24T10:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15180110",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T10:00:00",
+            "endedAt": "2024-09-24T10:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15180212",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T10:15:00",
+            "endedAt": "2024-09-24T10:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15180314",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T10:30:00",
+            "endedAt": "2024-09-24T10:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15180428",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-24T10:45:00",
+            "endedAt": "2024-09-24T11:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16335749",
+            "studio": "Studio 1",
+            "activity": "BODY STEP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 36,
+            "bookedAttendees": 7,
+            "startedAt": "2024-09-24T10:30:00",
+            "endedAt": "2024-09-24T11:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/16430807",
+            "studio": "Hall",
+            "activity": "1a CITA EDUCACION NUTRICIONAL",
+            "colorHex": "#a4dd00",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Victor Perez Diaz ",
+            "attendingLimit": 8,
+            "bookedAttendees": 2,
+            "startedAt": "2024-09-24T10:00:00",
+            "endedAt": "2024-09-24T11:00:00"
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 32,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 8,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 15,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 46,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 9,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 43,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 12,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 64,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 14,
+            "totalCapacity": 20
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15101753",
+            "studio": "FUNCIONAL",
+            "activity": "FUNCIONAL",
+            "colorHex": "#fcc400",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 12,
+            "bookedAttendees": 12,
+            "startedAt": "2024-09-17T18:30:00",
+            "endedAt": "2024-09-17T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15103064",
+            "studio": "Studio Kids",
+            "activity": "DEPORTE II (8 -13)",
+            "colorHex": "#5a53e0",
+            "isBookable": false,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 18,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-17T18:30:00",
+            "endedAt": "2024-09-17T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15182946",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-17T18:00:00",
+            "endedAt": "2024-09-17T18:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15935871",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (10/12 A\u00d1OS) INICIACI\u00d3N",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 5,
+            "startedAt": "2024-09-17T18:00:00",
+            "endedAt": "2024-09-17T19:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16336377",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Pedro Ramiro Ramiro",
+            "attendingLimit": 36,
+            "bookedAttendees": 36,
+            "startedAt": "2024-09-17T18:30:00",
+            "endedAt": "2024-09-17T19:15:00"
+        }
+    ]
+}

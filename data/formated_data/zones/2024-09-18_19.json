@@ -1,0 +1,219 @@
+{
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 31,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 41,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 7,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 41,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 46,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 6,
+            "totalCapacity": 20
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 15,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 3,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        }
+    ],
+    "classes": [
+        {
+            "id": "/enjoy/class_events/15103901",
+            "studio": "Studio 2",
+            "activity": "ZUMBA",
+            "colorHex": "#ff4c67",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Irene Benedicto Ortiz",
+            "attendingLimit": 36,
+            "bookedAttendees": 34,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15104674",
+            "studio": "Studio 1",
+            "activity": "CICLO INDOOR",
+            "colorHex": "#e2703e",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Daniel Llorente Lorenzo",
+            "attendingLimit": 32,
+            "bookedAttendees": 22,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105499",
+            "studio": "Studio 1",
+            "activity": "BODY PUMP",
+            "colorHex": "#ea474a",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Victor Perez Diaz ",
+            "attendingLimit": 36,
+            "bookedAttendees": 24,
+            "startedAt": "2024-09-18T19:30:00",
+            "endedAt": "2024-09-18T20:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15105742",
+            "studio": "Studio 4",
+            "activity": "PILATES",
+            "colorHex": "#3bcfc3",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Nerea Navarro Barroso",
+            "attendingLimit": 15,
+            "bookedAttendees": 13,
+            "startedAt": "2024-09-18T19:30:00",
+            "endedAt": "2024-09-18T20:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189779",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T19:15:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189867",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T19:15:00",
+            "endedAt": "2024-09-18T19:30:00"
+        },
+        {
+            "id": "/enjoy/class_events/15189989",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T19:30:00",
+            "endedAt": "2024-09-18T19:45:00"
+        },
+        {
+            "id": "/enjoy/class_events/15190094",
+            "studio": "Valoraci\u00f3n Inicial",
+            "activity": "CITA ENTRENADOR 1",
+            "colorHex": "#000000",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "",
+            "attendingLimit": 1,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T19:45:00",
+            "endedAt": "2024-09-18T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15931251",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL ADULTOS INICIACI\u00d3N",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 4,
+            "bookedAttendees": 3,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/15935994",
+            "studio": "Pista de padel",
+            "activity": "CURSO P\u00c1DEL NI\u00d1OS (10/12 A\u00d1OS) PERFECCIONAMIENTO",
+            "colorHex": "#68bc00",
+            "isBookable": false,
+            "isViewable": false,
+            "coach": "",
+            "attendingLimit": 6,
+            "bookedAttendees": 0,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T20:00:00"
+        },
+        {
+            "id": "/enjoy/class_events/16431615",
+            "studio": "Hall",
+            "activity": "1a CITA EDUCACION NUTRICIONAL",
+            "colorHex": "#a4dd00",
+            "isBookable": true,
+            "isViewable": true,
+            "coach": "Sofia Barkhioua Alvarez",
+            "attendingLimit": 8,
+            "bookedAttendees": 3,
+            "startedAt": "2024-09-18T19:00:00",
+            "endedAt": "2024-09-18T20:00:00"
+        }
+    ]
+}

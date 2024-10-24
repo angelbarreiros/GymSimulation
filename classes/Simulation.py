@@ -43,7 +43,6 @@ class Simulation:
         for area in self.target_areas:
             if area.actualCapacity<area.targetCapacity and area.type!='NOFUNCIONAL':
                 area.actualCapacity += 1
-                print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
             
         return None
@@ -137,8 +136,6 @@ class Simulation:
                         person.route = None
                         person.locker_room = None
                             
-
-
             nactual_persons = len(self.persons) - exceeded_lifetime_count
             print(f"Hour {hora}: {exceeded_lifetime_count} persons have exceeded their max lifetime")
             
