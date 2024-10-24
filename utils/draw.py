@@ -31,10 +31,10 @@ def draw_target_area(frame, area, color=(255, 0, 0), thickness=2):
     cv2.putText(frame, f"Aforo {area.targetCapacity}", center-10, cv2.FONT_HERSHEY_SIMPLEX, 2, (100, 100, 0), 2)
 
 def draw_spawn_point(frame, spawn_point, color=(0, 255, 0), thickness=10):
-    top_left = (spawn_point.coords[0] - 25, spawn_point.coords[1] - 25)
-    bottom_right = (spawn_point.coords[0] + 25, spawn_point.coords[1] + 25)
-    cv2.rectangle(frame, top_left, bottom_right, color, thickness)
-    cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+    start_point = (spawn_point.coords[0], spawn_point.coords[1])
+    end_point = (spawn_point.coords[0], spawn_point.coords[1] - 50)  # Arrow pointing upwards
+    cv2.arrowedLine(frame, start_point, end_point, color, thickness)
+    cv2.putText(frame, f"Spawn {spawn_point.name}", (spawn_point.coords[0] + 10, spawn_point.coords[1] - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
 def draw_class(frame, area, color):
     pts = area.Area.points.reshape((-1, 1, 2))
@@ -70,6 +70,9 @@ def paint_area(frame, area, persons, frame_num):
     cv2.fillPoly(overlay, [pts], fill_color)
     alpha = 0.3
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
+    # for machine in area.machines:
+    #     print(machine)
+    #     cv2.circle(frame, (machine[0]), 5, (0, 0, 255), -1)
 
 def paint_noarea(frame, area, color):
     mask = np.zeros(frame.shape[:2], dtype=np.uint8)

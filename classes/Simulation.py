@@ -1,6 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pickle
-import pandas as pd
 import cv2
 import numpy as np
 import os
@@ -18,8 +17,6 @@ from utils.global_variables import DEBUG
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
 
-def moveWrapper(person):
-    person.move()
 class Simulation:
     def __init__(self, hours):
         self.boundaries = None
@@ -37,7 +34,7 @@ class Simulation:
         self.classes = []
         self.personsDeleted = []
 
-    def getTargetArea(self,person=None):
+    def getTargetArea(self):
         # if random.random() < LOCKER_ROOM_PROB:
         #     locker_room_lst = []
         #     for area in self.target_areas:
@@ -51,13 +48,6 @@ class Simulation:
                 if DEBUG:
                     print(f'Area {area.name} has {area.actualCapacity} persons')
                 return area
-            
-        if person != None:
-            person.state = None
-            person.stay_counter = 0
-            person.wait_time = 0
-            person.target_coords = None
-            person.route = []
             
         return None
 
@@ -86,7 +76,7 @@ class Simulation:
         if DEBUG:
             print(f"Num areas: {len(self.target_areas)}, Num walls: {len(self.boundaries)}, Num spawns: {len(self.spawn_points)}, Num classes: {len(self.classes)}, npersons: {self.npersons}, entradas: {self.entradas}, salidas: {self.salidas}")
 
-    def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=0):
+    def initialize_person(self, num_person, available_spawn_points, frame, locker_room_prob=.3):
         if not available_spawn_points:
             if DEBUG:
                 print(f"No available spawn points for person {num_person} in frame {frame}")
@@ -111,18 +101,6 @@ class Simulation:
         available_spawn_points.remove(spawn_point)
         return True
     
-    def distribute_targets(self):
-        for person in self.persons:
-            if person.state!= 'left' and person.lifetime < person.max_lifetime:
-                if hasattr(person.target_area, 'actualCapacity'):
-                    next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
-                person.target_area = self.getTargetArea(person)
-                person.state = None
-                person.stay_counter = 0
-                person.wait_time = 0
-                person.target_coords = None
-                person.route = []
-
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
@@ -159,15 +137,14 @@ class Simulation:
                     #     next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
                     if person.target_area.actualCapacity > person.target_area.targetCapacity:
                         person.target_area.actualCapacity -= 1
-                        person.target_area = self.getTargetArea(person)
+                        person.target_area = self.getTargetArea()
                         person.state = None
                         person.stay_counter = 0
                         person.wait_time = 0
                         person.target_coords = None
-                        person.route = []
-                
-
-
+                        person.route = None
+                        person.locker_room = None
+                            
             nactual_persons = len(self.persons) - exceeded_lifetime_count
             if DEBUG:
                 print(f"Hour {hora}: {exceeded_lifetime_count} persons have exceeded their max lifetime")
@@ -205,7 +182,6 @@ class Simulation:
                     
         self.persons += self.personsDeleted
                 
-                                
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""
         frames_data, batch_start = batch_data
@@ -231,7 +207,7 @@ class Simulation:
             
             text_size = cv2.getTextSize(time_str, font, font_scale, font_thickness)[0]
             text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, time_str, (text_x, 100), font, font_scale, (0, 0, 0), font_thickness)
+            cv2.putText(current_frame, time_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
 
             current_persons = 0
             left_persons = 0
@@ -243,21 +219,34 @@ class Simulation:
                     floor_offset_x = (floor % grid_size) * width
                     if state == 'left':
                         left_persons += 1
-                    elif target == 'PG':
-                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
-                                floor_offset_x:floor_offset_x+width], x, y, COLORS['Red'])
-                        current_persons += 1
-                        
                     else:
-                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
-                                floor_offset_x:floor_offset_x+width], x, y, COLORS['Black'])
                         current_persons += 1
+                        # if state == 'moving_target':
+                        #     color = COLORS['Green']          # Black for target movement
+                        # elif target == 'PG':
+                        #     color = COLORS['Orange']         # Orange for PG
+                        # elif state == 'moving_stairs':
+                        #     color = COLORS['Blue']           # Blue for stairs movement
+                        # elif state == 'moving_lockers':
+                        #     color = COLORS['Red']            # Red for locker movement
+                        if state == 'reached':
+                            color = COLORS['Black']      
+                        elif state == 'moving_lockers':
+                            color = COLORS['Purple']  
+                        elif target == 'EntradaParking' or target == 'EntradaInicial':
+                            color = COLORS['Red']
+                        else:
+                            color = COLORS['Blue']          # White for default
+
+                        # Draw person as filled circle
+                        draw_person(current_frame[floor_offset_y:floor_offset_y+height, 
+                                floor_offset_x:floor_offset_x+width], x, y, color)
 
 
             person_count_str = f"Persons: {current_persons}"
-            text_size = cv2.getTextSize(person_count_str, font, font_scale-0.5, font_thickness)[0]
+            text_size = cv2.getTextSize(person_count_str, font, font_scale-1, font_thickness-1)[0]
             text_x = (combined_width - text_size[0]) // 2
-            cv2.putText(current_frame, person_count_str, (text_x, 200), font, font_scale, (0, 0, 0), font_thickness)
+            cv2.putText(current_frame, person_count_str, (text_x-75, 320), font, font_scale, (0, 0, 0), font_thickness)
 
             # Draw walls
             for wall in self.boundaries:
@@ -294,7 +283,7 @@ class Simulation:
 
         return results
 
-    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8]):
+    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8], day='2024-08-05'):
         os.makedirs(output_folder, exist_ok=True)
         self.hours = hours
         start_time = time.time()
@@ -329,6 +318,15 @@ class Simulation:
             floor_offset_x = col * width
             draw_spawn_point(base_frame[floor_offset_y:floor_offset_y+height, 
                             floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
+
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 2.5
+        font_thickness = 3
+        day_str = f"Day: {day}"
+        day_text_size = cv2.getTextSize(day_str, font, font_scale, font_thickness)[0]
+        day_text_x = (combined_width - day_text_size[0]) // 2
+        cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
         # Prepare batches
         BATCH_SIZE = 100 

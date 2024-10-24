@@ -11,19 +11,20 @@ class Area:
         self.floor = floor
         self.type = type
         self.machines = machines
-        self.ocuppiedMachines = [False] * len(machines)
+        self.ocuppiedMachines = [-1] * len(machines)
 
     def getPointInside(self, id=None):
         if self.machines:  # If area has machines, choose a random machine that isn't occupied
-            if self.type == 'PG': # If not on the pool yet, choose 1 of the 6 lanes.
-                return self.machines[id%6][0]
+            if self.type == 'PG':  # If not on the pool yet, choose 1 of the 6 lanes.
+                chosen_machine = self.machines[id % 6][0]
+                return chosen_machine
             else:
-                available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if not occupied]
+                available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if occupied == -1]
                 if available_machines:
                     chosen_machine = np.random.choice(available_machines)
-                    self.ocuppiedMachines[chosen_machine] = True
-                    #print(f"Area {self.name} has {self.machines[chosen_machine]}")
-                    return tuple(self.machines[chosen_machine][0]) 
+                    self.ocuppiedMachines[chosen_machine] = id
+                    print(f"Chosen machine: {self.machines[chosen_machine][0]} in {self.name}")
+                    return tuple(self.machines[chosen_machine][0])
 
         x, y, w, h = cv2.boundingRect(self.points)
         while True:

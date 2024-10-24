@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="spinner" id="spinner" style="display: none;"></div>
+        
+        <div class="switch-container">
+            <span>Modo Diario</span>
+            <label class="switch" for="modeSwitch">
+                <input type="checkbox" id="modeSwitch">
+                <span class="slider round"></span>
+            </label>
+            <span>Comparación Semanal</span>
+        </div>
+
+        <div id="dailyMode">
+            
+            <div class="date-time-container">
+                <div class="input-container">
+                    <label for="startDate">Fecha:</label>
+                    <input type="date" id="startDate" min="2024-09-01" max="2024-09-30">
+                </div>
+                <div class="input-container">
+                    <label for="startTime">Hora de inicio:</label>
+                    <input type="time" id="startTime" step="3600">
+                </div>
+                <div class="input-container">
+                    <label for="endTime">Hora de fin:</label>
+                    <input type="time" id="endTime" step="3600">
+                </div>
+            </div>
+            <button id="dailySubmitButton">Calcular Diferencia</button>
+            <div class="daily-video-container" id="daily-video-container">
+                <video id="dailyVideoPlayer" class="video-player" controls>
+                    <source src="/home/angel/startup/GymSimulation/frontend/static/video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </div>
+
+        <div id="weeklyMode" style="display: none;">
+            
+            <div class="date-time-container">
+
+            
+            <div class="input-container">
+                <label for="tvWeekDay">Día de la semana:</label>
+                <select id="weekDay">
+                    <option value="1">Lunes</option>
+                    <option value="2">Martes</option>
+                    <option value="3">Miércoles</option>
+                    <option value="4">Jueves</option>
+                    <option value="5">Viernes</option>
+                    <option value="6">Sábado</option>
+                    <option value="7">Domingo</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="tvTime">Hora:</label>
+                <input type="time" id="weeklyTime" step="3600">
+            </div>
+            
+                <button id="weeklySubmitButton">Calcular Comparación Semanal</button>
+            </div>
+            <div class="video-grid" id="video-grid">
+                <video id="video-player-1" class="video-player" controls>
+                    <source src="/home/angel/startup/GymSimulation/frontend/static/video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <video id="video-player-2" class="video-player" controls>
+                    <source src="/home/angel/startup/GymSimulation/frontend/static/video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <video id="video-player-3" class="video-player" controls>
+                    <source src="/home/angel/startup/GymSimulation/frontend/static/video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <video id="video-player-4" class="video-player" controls>
+                    <source src="/home/angel/startup/GymSimulation/frontend/static/video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+            
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
