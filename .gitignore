@@ -7,6 +7,7 @@ __pycache__/
 *$py.class
 old.py
 multi_person_movement.mp4
+outputs/
 
 # C extensions
 *.so

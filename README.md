@@ -20,3 +20,5 @@ señalizar cuando empiezan clases, also no duran 1 hora exacto
 entradas/salidas json no entrar..
 
 optimizar, rutas y pintar...
+
+clases bo tienen porque empezar a en punto y puden acabar en la hora siguiente

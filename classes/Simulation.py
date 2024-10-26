@@ -10,9 +10,6 @@ import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
-from multiprocessing import Pool, Process
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-import multiprocessing as mp
 from utils.global_variables import DEBUG
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
@@ -329,7 +326,7 @@ class Simulation:
         cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
         # Prepare batches
-        BATCH_SIZE = 100 
+        BATCH_SIZE = 100
         total_frames_count = total_frames * len(hours)
         batches = []
         
@@ -339,11 +336,11 @@ class Simulation:
                 (base_frame, grid_size, height, width, header_height, 
                  combined_width, total_frames)
                 for _ in range(batch_start, batch_end)
-            ]
+            ] 
             batches.append((batch_frames, batch_start))
 
         # Process batches with ThreadPoolExecutor
-        num_workers = min(os.cpu_count() or 4, 8)
+        num_workers = os.cpu_count()-2
         with ThreadPoolExecutor(max_workers=num_workers) as executor:
             futures = []
             for batch_data in batches:

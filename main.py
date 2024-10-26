@@ -7,7 +7,7 @@ import cProfile
 from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-WEEKDAY_HOURS  = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+WEEKDAY_HOURS  = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 WEEKEND_HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 START_DAY = '2024-09-03'
 NDAYS = 14
@@ -20,7 +20,7 @@ def run_simulation_for_day(day):
     # sim.load_data('data/sim_states/simulation_7.pkl')
 
     print(f'Creating simulation for {day} and hours {hours}...')
-    sim.simulate(TOTAL_FRAMES, dia=day, hours=hours, spawn_interval=3, max_spawn=2)
+    sim.simulate(TOTAL_FRAMES, dia=day, hours=hours, spawn_interval=2, max_spawn=2)
     
     print('Creating animation...')
     anim = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=hours, day=day)
@@ -51,12 +51,8 @@ def main():
     
     DAYS = utils.date_utils.generate_days(START_DAY, NDAYS)
     for day in DAYS:
-        try:
-            run_simulation_for_day(day)
-        except Exception as e:
-            print(f"Error processing day {day}: {str(e)}")
-            continue
-        
+        run_simulation_for_day(day)
+
         # Force garbage collection after each simulation
         import gc
         gc.collect()
