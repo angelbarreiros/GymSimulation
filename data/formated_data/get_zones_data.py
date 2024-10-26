@@ -1,9 +1,27 @@
 import math
+import os
 import openpyxl
 import json
 
 import unidecode
-
+class Zones_Data:
+    def __init__(self, name, targetCapacity, totalCapacity):
+        self.name = name
+        self.targetCapacity = targetCapacity
+        self.totalCapacity = totalCapacity
+        
+    
+    def __str__(self):
+        return f"Zones Data:\nName: {self.name}\nTarget Capacity: {self.targetCapacity}\nTotal Capacity: {self.totalCapacity} "
+    def to_dict(self):
+        return {
+            "name": self.name,
+            
+            "targetCapacity": self.targetCapacity,
+            "totalCapacity": self.totalCapacity,
+            
+            
+        }
 
 class Day_Data:
     def __init__(self, name, hours_array):
@@ -25,13 +43,30 @@ class HourData:
     
     def __str__(self):
         return f"Hour Data:\nZones: {self.zones_array}"
+    
     def to_dict(self):
          
              array = [zone.to_dict() for zone in self.zones_array]
              return {
                  "aforo_zonas": array
              }
+def serialize_to_json(obj, filename):
+        if os.path.exists(filename):
+            with open(filename, 'r') as f:
+                try:
+                    existing_data = json.load(f)
+                    existing_data['aforo_zonas'] = obj.to_dict()["aforo_zonas"]
+                    with open(filename, 'w') as f:
+                        json.dump(existing_data, f, indent=4)
+                except json.JSONDecodeError:
+                    existing_data = {}
+        else:
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            with open(filename, 'w') as f:
+                json.dump(obj.to_dict(), f, indent=4)
         
+        
+       
 
 class Zones_Data:
     def __init__(self, name, targetCapacity, totalCapacity):
@@ -47,10 +82,7 @@ class Zones_Data:
             "targetCapacity": self.targetCapacity,
             "totalCapacity": self.totalCapacity
         }
-    1
-def serialize_to_json(obj, filename):
-    with open(filename, 'w') as f:
-        json.dump(obj.to_dict(), f, indent=4)
+    
 
 def clean_string(text):
     if(text!=None):
@@ -136,3 +168,4 @@ def getZonesData():
     for path in paths:
         excel_to_json(path,startDate= startDate)
         startDate+=7
+        
