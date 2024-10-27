@@ -1,0 +1,90 @@
+{
+    "aforo_clases": [
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 25,
+            "totalCapacity": 45,
+            "hour": "12:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 25,
+            "totalCapacity": 55,
+            "hour": "12:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 26,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 22,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 13,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 4,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 6,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 21,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 4,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 27,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 5,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 3,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        }
+    ]
+}

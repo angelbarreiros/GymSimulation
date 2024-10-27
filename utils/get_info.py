@@ -115,20 +115,20 @@ def get_data(dia, hora, areas):
                         print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type} and {matching_area.targetCapacity} target capacity")
                         npersons += matching_area.targetCapacity
 
-        if 'classes' in data:
-            for clase in data['classes']:
-                zone_name = clase['studio']
-                matching_area = next((area for area in areas if area.name == zone_name), None)
-                if matching_area and clase['bookedAttendees']>1: # if matching_area.type == 'CLASE':
-                    newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=matching_area)  
-                    classes.append(newClass)
-                    npersons -= matching_area.targetCapacity
-                    matching_area.targetCapacity = clase['bookedAttendees']
-                    matching_area.totalCapacity = clase['attendingLimit']
-                    npersons += clase['bookedAttendees']
-                    print(f"Matching area {matching_area.name} with class {clase['activity']} with {clase['bookedAttendees']} attendees")
+        if 'aforo_clases' in data:
+            for clase in data['aforo_clases']:
+                zone = clase['zone']
+                matching_area = next((area for area in areas if area.name == zone), None)
+                if matching_area and clase['targetCapacity']>1:
+                    act = Activity(name=clase['name'],startDate=clase['hour'],Area=matching_area)  #,endDate= clase['hour']
+                    classes.append(act)
+                    # npersons -= matching_area.targetCapacity
+                    matching_area.targetCapacity = clase['targetCapacity']
+                    matching_area.totalCapacity = clase['totalCapacity']
+                    # npersons += clase['bookedAttendees']
+                    print(f"Matching area {act.Area.name} with class {act.name} with {act.Area.targetCapacity} attendees")
 
-        if 'entradas' in data:  # NOT WORKING
+        if 'entradas' in data:  # NOT in json
             for dt in data['entradas']:
                 entradas = dt['total_entrada']
                 salidas = dt['total_salida']

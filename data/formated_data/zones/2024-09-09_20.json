@@ -1,0 +1,97 @@
+{
+    "aforo_clases": [
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 32,
+            "totalCapacity": 60,
+            "hour": "20:00"
+        },
+        {
+            "name": "AQUAFIT",
+            "zone": null,
+            "targetCapacity": 21,
+            "totalCapacity": 55,
+            "hour": "20:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 32,
+            "totalCapacity": 45,
+            "hour": "20:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 13,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 9,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 34,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 33,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 46,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 19,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 15,
+            "totalCapacity": 24
+        }
+    ]
+}

@@ -1,0 +1,104 @@
+{
+    "aforo_clases": [
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 31,
+            "totalCapacity": 60,
+            "hour": "11:00"
+        },
+        {
+            "name": "X-TRAINING",
+            "zone": null,
+            "targetCapacity": 4,
+            "totalCapacity": 24,
+            "hour": "11:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 13,
+            "totalCapacity": 45,
+            "hour": "11:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 15,
+            "totalCapacity": 55,
+            "hour": "11:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 27,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 8,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 6,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 5,
+            "totalCapacity": 24
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 16,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 4,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 25,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 24,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 7,
+            "totalCapacity": 20
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 22,
+            "totalCapacity": 60,
+            "hour": "18:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 8,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 3,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 17,
+            "totalCapacity": 50
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 1,
+            "totalCapacity": 24
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 7,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 3,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 13,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 26,
+            "totalCapacity": 50
+        }
+    ]
+}

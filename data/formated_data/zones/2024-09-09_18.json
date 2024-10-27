@@ -1,0 +1,111 @@
+{
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 12,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 38,
+            "totalCapacity": 60,
+            "hour": "18:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "18:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 33,
+            "totalCapacity": 45,
+            "hour": "18:30"
+        },
+        {
+            "name": "X-TRAINING KIDS",
+            "zone": null,
+            "targetCapacity": 16,
+            "totalCapacity": 24,
+            "hour": "18:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 23,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 13,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 10,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 4,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 55,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 8,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 43,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 56,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 13,
+            "totalCapacity": 20
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "aforo_clases": [
+        {
+            "name": "ZUMBA KIDS",
+            "zone": null,
+            "targetCapacity": 16,
+            "totalCapacity": 24,
+            "hour": "17:30"
+        },
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "17:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 7,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 2,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 30,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 31,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 29,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 28,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 4,
+            "totalCapacity": 20
+        }
+    ]
+}

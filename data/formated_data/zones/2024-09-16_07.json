@@ -1,0 +1,83 @@
+{
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 6,
+            "totalCapacity": 60,
+            "hour": "07:10"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 0,
+            "totalCapacity": 24
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 14,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 1,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 13,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 2,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 24,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 3,
+            "totalCapacity": 20
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 8,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 1,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 0,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        }
+    ]
+}

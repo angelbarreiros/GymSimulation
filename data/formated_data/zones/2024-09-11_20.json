@@ -1,0 +1,97 @@
+{
+    "aforo_clases": [
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 22,
+            "totalCapacity": 60,
+            "hour": "20:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 38,
+            "totalCapacity": 45,
+            "hour": "20:30"
+        },
+        {
+            "name": "AQUAFIT",
+            "zone": null,
+            "targetCapacity": 19,
+            "totalCapacity": 55,
+            "hour": "20:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 4,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 9,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 5,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 5,
+            "totalCapacity": 25
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 17,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 24,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 22,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 46,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 6,
+            "totalCapacity": 20
+        }
+    ]
+}

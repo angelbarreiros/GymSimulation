@@ -99,6 +99,7 @@ class Simulation:
         return True
     
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+        start_time = time.time()
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
         for spawn in self.spawn_points:
@@ -178,6 +179,8 @@ class Simulation:
                 #         pass
                     
         self.persons += self.personsDeleted
+        end_time = time.time()
+        return end_time - start_time
                 
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""
@@ -358,4 +361,4 @@ class Simulation:
                             f.write(compressed_frame)
                         pbar.update(1)
         end_time = time.time()
-        print(f"\nAnimation frames saved to {output_folder} in {end_time - start_time:.2f} seconds with {num_workers} workers on a batch size of {BATCH_SIZE}")
+        return end_time - start_time

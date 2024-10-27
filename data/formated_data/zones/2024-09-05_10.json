@@ -1,0 +1,104 @@
+{
+    "aforo_clases": [
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 20,
+            "totalCapacity": 60,
+            "hour": "10:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 14,
+            "totalCapacity": 45,
+            "hour": "10:00"
+        },
+        {
+            "name": "BODY STEP",
+            "zone": "Studio 1",
+            "targetCapacity": 11,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 24,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "PP",
+            "targetCapacity": 1,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 4,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 2,
+            "totalCapacity": 15
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 1,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 26,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 6,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 22,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 1,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 33,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 0,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 5,
+            "totalCapacity": 24
+        },
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 7,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        }
+    ]
+}

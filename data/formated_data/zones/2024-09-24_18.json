@@ -1,0 +1,104 @@
+{
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 11,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "EMBARAZO ACT.",
+            "zone": null,
+            "targetCapacity": 3,
+            "totalCapacity": 14,
+            "hour": "18:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 50,
+            "totalCapacity": 55,
+            "hour": "18:30"
+        },
+        {
+            "name": "DEPORTE II (8 -13)",
+            "zone": null,
+            "targetCapacity": 8,
+            "totalCapacity": 24,
+            "hour": "18:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 26,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 37,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 7,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 44,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 8,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 54,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 12,
+            "totalCapacity": 20
+        },
+        {
+            "name": "X-TRAINING",
+            "targetCapacity": 15,
+            "totalCapacity": 24
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 7,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 13,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 7,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 4,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 0,
+            "totalCapacity": 30
+        }
+    ]
+}

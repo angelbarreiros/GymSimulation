@@ -1,0 +1,118 @@
+{
+    "aforo_clases": [
+        {
+            "name": "DANCE",
+            "zone": null,
+            "targetCapacity": 31,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 15,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 20,
+            "totalCapacity": 20,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 30,
+            "totalCapacity": 45,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 49,
+            "totalCapacity": 55,
+            "hour": "19:30"
+        },
+        {
+            "name": "X-TRAINING",
+            "zone": null,
+            "targetCapacity": 22,
+            "totalCapacity": 24,
+            "hour": "19:30"
+        }
+    ],
+    "aforo_zonas": [
+        {
+            "name": "LUDOTECA",
+            "targetCapacity": 32,
+            "totalCapacity": 50
+        },
+        {
+            "name": "PP",
+            "targetCapacity": 4,
+            "totalCapacity": 25
+        },
+        {
+            "name": "PG",
+            "targetCapacity": 8,
+            "totalCapacity": 42
+        },
+        {
+            "name": "SAUNA",
+            "targetCapacity": 6,
+            "totalCapacity": 15
+        },
+        {
+            "name": "BANO VAPOR",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "PP EXT.",
+            "targetCapacity": 0,
+            "totalCapacity": 15
+        },
+        {
+            "name": "SOLARIUM",
+            "targetCapacity": 1,
+            "totalCapacity": 30
+        },
+        {
+            "name": "DESCANSO",
+            "targetCapacity": 3,
+            "totalCapacity": 25
+        },
+        {
+            "name": "CARDIO",
+            "targetCapacity": 48,
+            "totalCapacity": 70
+        },
+        {
+            "name": "CIRCUIT",
+            "targetCapacity": 7,
+            "totalCapacity": 10
+        },
+        {
+            "name": "ISOTONICO",
+            "targetCapacity": 49,
+            "totalCapacity": 32
+        },
+        {
+            "name": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12
+        },
+        {
+            "name": "PESO LIBRE",
+            "targetCapacity": 55,
+            "totalCapacity": 50
+        },
+        {
+            "name": "CORE",
+            "targetCapacity": 11,
+            "totalCapacity": 20
+        }
+    ]
+}
