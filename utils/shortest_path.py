@@ -6,7 +6,7 @@ import os
 import random
 import math
 # Define the size of the grid
-SCALE_FACTOR = 10
+SCALE_FACTOR = 20
 # ROW = 1080 // SCALE_FACTOR
 # max_col = 1920 // SCALE_FACTOR
 COL = 1080 // SCALE_FACTOR
@@ -90,219 +90,32 @@ def create_matrix_from_json(floor_num, scale_factor, padding=0, save_matrix_imag
 
     return matrix.transpose()
 
-# def fill_rectangle_with_zeros(matrix, top_left, bottom_right):
-#     """
-#     Fill a rectangular area in a NumPy matrix with zeros.
+def fill_rectangle_with_zeros(matrix, top_left, bottom_right):
+    """
+    Fill a rectangular area in a NumPy matrix with zeros.
     
-#     Args:
-#     matrix (np.array): The input NumPy matrix
-#     top_left (tuple): (row, col) of the top-left corner of the rectangle
-#     bottom_right (tuple): (row, col) of the bottom-right corner of the rectangle
+    Args:
+    matrix (np.array): The input NumPy matrix
+    top_left (tuple): (row, col) of the top-left corner of the rectangle
+    bottom_right (tuple): (row, col) of the bottom-right corner of the rectangle
     
-#     Returns:
-#     np.array: The modified matrix
-#     """
-#     row1, col1 = top_left
-#     row2, col2 = bottom_right
+    Returns:
+    np.array: The modified matrix
+    """
+    row1, col1 = top_left
+    row2, col2 = bottom_right
     
-#     # Ensure row1 <= row2 and col1 <= col2
-#     row1, row2 = min(row1, row2), max(row1, row2)
-#     col1, col2 = min(col1, col2), max(col1, col2)
+    # Ensure row1 <= row2 and col1 <= col2
+    row1, row2 = min(row1, row2), max(row1, row2)
+    col1, col2 = min(col1, col2), max(col1, col2)
     
-#     # Fill the rectangular area with zeros
-#     matrix[row1:row2+1, col1:col2+1] = 0
+    # Fill the rectangular area with zeros
+    matrix[row1:row2+1, col1:col2+1] = 0
     
-#     return matrix
+    return matrix
 
-# Check if a cell is valid (within the grid)
-def is_valid(row, col, max_row, max_col):
-    return (row >= 0) and (row < max_row) and (col >= 0) and (col < max_col)
-
-# Check if a cell is unblocked
-def is_unblocked(grid, row, col):
-    return grid[row, col] == 1
-
-# Check if a cell is the destination
-def is_destination(row, col, dest):
-    return row == dest[0] and col == dest[1]
-
-# Calculate the heuristic value of a cell (Euclidean distance to destination)
-def calculate_h_value(row, col, dest):
-    return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
-
-# Trace the path from source to destination
-def trace_path(cell_details, dest, show=False):
-    path = []
-    row = dest[0]
-    col = dest[1]
-
-    # Trace the path from destination to source using parent cells
-    while not (cell_details[row][col].parent_i == row and cell_details[row][col].parent_j == col):
-        path.append((row, col))
-        temp_row = cell_details[row][col].parent_i
-        temp_col = cell_details[row][col].parent_j
-        row = temp_row
-        col = temp_col
-
-    # Add the source cell to the path
-    path.append((row, col))
-    # Reverse the path to get the path from source to destination
-    path.reverse()
-
-    if show:
-        # Print the path
-        print("The Path is ")
-        for i in path:
-            print("->", i, end=" ")
-        print()
+def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, precalculated_routes_df=None, debug=False, noise_factor=0.1, heuristic_type='euclidean', max_step_size=3, speed=5):
     
-    return path
-
-# Implement the A* search algorithm
-def a_star_search_from_grid(grid, src, dest, scale_factor, debug=False):
-    
-    # Scale points
-    src_scaled = (src[0]//scale_factor, src[1]//scale_factor)
-    dest_scaled = (dest[0]//scale_factor, dest[1]//scale_factor)
-    
-    # if banned_areas_corners:
-    #     for points in banned_areas_corners:
-    #         top_left, bottom_right = points[0], points[2]
-    #         grid = fill_rectangle_with_zeros(grid, top_left, bottom_right)
-            
-    # size = (size[0]//scale_factor, size[1]//scale_factor)
-    # if path_reduced != None:
-    #     path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
-    # else:
-    #     path = [src]
-    # return path
-    max_row, max_col = grid.shape
-    # Check if the source and destination are valid
-    if not is_valid(src_scaled[0], src_scaled[1], max_row, max_col):
-        if debug:
-            print(f"Source is invalid: {src}->{dest}, {src_scaled}->{dest_scaled}")
-        return [src]
-    
-    if not is_valid(dest_scaled[0], dest_scaled[1], max_row, max_col):
-        if debug:
-            print(f"Destination is invalid: {src}->{dest}, {src_scaled}->{dest_scaled}")
-        return [src]
-    
-    # Check if the source and destination are blocked
-    if not is_unblocked(grid, src_scaled[0], src_scaled[1]):
-        if debug:
-            print(f"Source is blocked: {src}->{dest}, {src_scaled}->{dest_scaled}")
-        return [src]
-    
-    if not is_unblocked(grid, dest_scaled[0], dest_scaled[1]):
-        if debug:
-            print(f"Destination is blocked: {src}->{dest}, {src_scaled}->{dest_scaled}")
-        return [src]
-
-    # Check if we are already at the destination
-    if is_destination(src_scaled[0], src_scaled[1], dest_scaled):
-        if debug:
-            print("We are already at the destination")
-        return [src]
-
-    # Initialize the closed list (visited cells)
-    closed_list = [[False for _ in range(max_col)] for _ in range(max_row)]
-    # Initialize the details of each cell
-    cell_details = [[Cell() for _ in range(max_col)] for _ in range(max_row)]
-
-    # Initialize the start cell details
-    i = src_scaled[0]
-    j = src_scaled[1]
-    cell_details[i][j].f = 0
-    cell_details[i][j].g = 0
-    cell_details[i][j].h = 0
-    cell_details[i][j].parent_i = i
-    cell_details[i][j].parent_j = j
-
-    # Initialize the open list (cells to be visited) with the start cell
-    open_list = []
-    heapq.heappush(open_list, (0.0, i, j))
-
-    # Initialize the flag for whether destination is found
-    found_dest = False
-
-    # Main loop of A* search algorithm
-    while len(open_list) > 0:
-        # Pop the cell with the smallest f value from the open list
-        p = heapq.heappop(open_list)
-
-        # Mark the cell as visited
-        i = p[1]
-        j = p[2]
-        closed_list[i][j] = True
-
-        # For each direction, check the successors
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0),
-                      (1, 1), (1, -1), (-1, 1), (-1, -1)]
-        for dir in directions:
-            new_i = i + dir[0]
-            new_j = j + dir[1]
-
-            # If the successor is valid, unblocked, and not visited
-            if is_valid(new_i, new_j, max_row, max_col) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
-                # If the successor is the destination
-                if is_destination(new_i, new_j, dest_scaled):
-                    # Set the parent of the destination cell
-                    cell_details[new_i][new_j].parent_i = i
-                    cell_details[new_i][new_j].parent_j = j
-                    # if debug:
-                    #     print("The destination cell is found")
-                    # Trace and print the path from source to destination
-                    found_dest = True
-                    path_reduced = trace_path(cell_details, dest_scaled)
-                    path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
-                    return path
-                else:
-                    # Calculate the new f, g, and h values
-                    g_new = cell_details[i][j].g + 1.0
-                    h_new = calculate_h_value(new_i, new_j, dest_scaled)
-                    f_new = g_new + h_new
-
-                    # If the cell is not in the open list or the new f value is smaller
-                    if cell_details[new_i][new_j].f == float('inf') or cell_details[new_i][new_j].f > f_new:
-                        # Add the cell to the open list
-                        heapq.heappush(open_list, (f_new, new_i, new_j))
-                        # Update the cell details
-                        cell_details[new_i][new_j].f = f_new
-                        cell_details[new_i][new_j].g = g_new
-                        cell_details[new_i][new_j].h = h_new
-                        cell_details[new_i][new_j].parent_i = i
-                        cell_details[new_i][new_j].parent_j = j
-
-    # If the destination is not found after visiting all cells
-    if not found_dest:
-        if debug:
-            print(f"Failed to find the destination cell: {src, dest}, {src_scaled, dest_scaled}")
-        return [src] 
-
-def a_star_search(src, dest, floor, json_path='data/zones.json', padding=0, scale_factor=SCALE_FACTOR, save_matrix_image=False, debug=False):
-
-    # Create the matrix with padded walls
-    matrix = create_matrix_from_json(json_path, floor=floor, padding=padding, scale_factor=scale_factor)
-
-    # Save the matrix as an image for visualization
-    if save_matrix_image:
-        image_name = "floor_plan_matrix_padded.png"
-        if os.path.exists(image_name):
-            os.remove(image_name)
-        Image.fromarray(matrix.transpose() * 255).save(image_name)
-
-    # Run the A* search algorithm
-    path_reduced = a_star_search_from_grid(matrix, src, dest, scale_factor, debug)
-    # print(path_reduced)
-    if path_reduced != None:
-        path = [(x * scale_factor, y * scale_factor) for x, y in path_reduced]
-    else:
-        path = [src]
-    return path
-    # return a_star_search_from_grid(matrix, src, dest)
-
-def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=False, noise_factor=0.1, heuristic_type='euclidean', max_step_size=3, speed=5):
     start_scaled = (start[0] // scale_factor, start[1] // scale_factor)
     goal_scaled = (goal[0] // scale_factor, goal[1] // scale_factor)
 
@@ -334,22 +147,22 @@ def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=Fa
         ]
         random.shuffle(base_directions)
         result = []
-        if debug:
-            print(f"Checking neighbors for node {node}")
+        # if debug:
+        #     print(f"Checking neighbors for node {node}")
         for dx, dy in base_directions:
             for step in range(max_step_size, 0, -1):
                 nx, ny = node[0] + dx * step, node[1] + dy * step
                 if is_valid(nx, ny):
                     # Check if the path to this neighbor is clear
                     if all(is_valid(node[0] + i * dx, node[1] + i * dy) for i in range(1, step + 1)):
-                        if debug:
-                            print(f"  Neighbor ({nx}, {ny}): valid (step size: {step})")
+                        # if debug:
+                        #     print(f"  Neighbor ({nx}, {ny}): valid (step size: {step})")
                         result.append((nx, ny))
                         break  # Found a valid step size, move to next direction
-                elif debug:
-                    print(f"  Neighbor ({nx}, {ny}): invalid (step size: {step})")
-        if debug:
-            print(f"Valid neighbors: {result}")
+                # elif debug:
+                #     print(f"  Neighbor ({nx}, {ny}): invalid (step size: {step})")
+        # if debug:
+        #     print(f"Valid neighbors: {result}")
         return result
 
     def add_noise(value):
@@ -361,10 +174,10 @@ def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=Fa
     g_score = {start_scaled: 0}
     f_score = {start_scaled: add_noise(heuristic(start_scaled, goal_scaled))}
 
-    if debug:
-        print(f"Start: {start} (scaled: {start_scaled})")
-        print(f"Goal: {goal} (scaled: {goal_scaled})")
-        print(f"Matrix shape: {len(matrix)}x{len(matrix[0])}")
+    # if debug:
+    #     print(f"Start: {start} (scaled: {start_scaled})")
+    #     print(f"Goal: {goal} (scaled: {goal_scaled})")
+    #     print(f"Matrix shape: {len(matrix)}x{len(matrix[0])}")
 
     iterations = 0
     max_iterations = len(matrix) * len(matrix[0]) * 2  # Increased max iterations
@@ -383,7 +196,7 @@ def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=Fa
                 current = came_from[current]
             path.append(start_scaled)
             if debug:
-                print(f"Path found in {iterations} iterations")
+                print(f"Path found in {iterations} iterations. {start} -> {goal}")
             path = [(x * scale_factor, y * scale_factor) for x, y in reversed(path)]
             return interpolate_path(path, speed)
             
@@ -404,7 +217,7 @@ def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=Fa
         print(f"No path found after {iterations} iterations")
     return None
 
-def interpolate_path(original_path, step_size):
+def interpolate_path(original_path, step_size=10):
     """
     Interpolate additional points between each pair of points in the original path,
     using a fixed step size.
@@ -476,24 +289,115 @@ def get_easy_route(start, end, step = 10):
     
     return points
 
+def find_route(df, floor_num, start, goal, input_type='names'):
+    """
+    Find a precalculated route between two points on a specific floor.
+    
+    Parameters:
+    df (pandas.DataFrame): DataFrame containing the precalculated routes
+    floor_num (int): Floor number (0 for Planta0, 1 for Planta1, etc.)
+    start: Either a tuple of (x, y) coordinates or a string with the zone/point name
+    goal: Either a tuple of (x, y) coordinates or a string with the zone/point name
+    input_type (str): Either 'coordinates' or 'names' to specify input format
+    
+    Returns:
+    list: Route coordinates if found, None if no route exists
+    """
+    # Convert floor number to floor name format
+    floor_name = f"Planta{floor_num}"
+    
+    # Filter by floor first
+    floor_df = df[df['floor'] == floor_name]
+    
+    if floor_df.empty:
+        return None
+    
+    if input_type == 'coordinates':
+        start_x, start_y = start
+        goal_x, goal_y = goal
+        
+        # Try direct match
+        direct_match = floor_df[
+            (floor_df['start_x'] == start_x) &
+            (floor_df['start_y'] == start_y) &
+            (floor_df['goal_x'] == goal_x) &
+            (floor_df['goal_y'] == goal_y)
+        ]
+        
+        if not direct_match.empty:
+            return direct_match.iloc[0]['route']
+            
+        # Try reverse match
+        reverse_match = floor_df[
+            (floor_df['start_x'] == goal_x) &
+            (floor_df['start_y'] == goal_y) &
+            (floor_df['goal_x'] == start_x) &
+            (floor_df['goal_y'] == start_y)
+        ]
+        
+        if not reverse_match.empty:
+            return reverse_match.iloc[0]['route'][::-1]
+            
+    elif input_type == 'names':
+        # Try direct match by names
+        direct_match = floor_df[
+            (floor_df['start_name'] == start) &
+            (floor_df['goal_name'] == goal)
+        ]
+        
+        if not direct_match.empty:
+            return direct_match.iloc[0]['route']
+            
+        # Try reverse match
+        reverse_match = floor_df[
+            (floor_df['start_name'] == goal) &
+            (floor_df['goal_name'] == start)
+        ]
+        
+        if not reverse_match.empty:
+            return reverse_match.iloc[0]['route'][::-1]
+    
+    else:
+        raise ValueError("input_type must be either 'coordinates' or 'names'")
+    
+    return None
+
+# def main():
+#     start = (510, 862)
+#     goal = (1500, 660)
+    
+#     for _ in range(50):
+#         matrix = create_matrix_from_json(1, 10, 1, False)
+#     for _ in range(50):
+#         path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
+#     for _ in range(50):
+#         path2 = interpolate_path(path)
+    
 if __name__ == "__main__":
     
-    start = (510, 862)
-    goal = (1500, 660)
-    scale_factor = SCALE_FACTOR
+    # import cProfile
+    # cProfile.run('main()')
     
-    # start_scaled = (start[0] // scale_factor, start[1] // scale_factor)
-    # goal_scaled = (goal[0] // scale_factor, goal[1] // scale_factor)
-    
-    matrix = create_matrix_from_json(1, 10, 1, False)
-    # path = random_walk_pathfinder(matrix, start_scaled, goal_scaled, 2, 10000)
-    path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
-    # path = a_star_search(src, dest, floor='Planta0', padding=0, scale_factor=10, save_matrix_image=True)
-    # print(path)
-    print(path)
-    # path = smooth_path(path, matrix, 10)
-    # print(path)
-    # print_matrix_neighborhood(matrix, src)
+    # start = (510, 862)
+    # goal = (1500, 660)
 
-    # for floor in range(4):
-    #     create_matrix_from_json(floor, 10, 1, True)
+    # matrix = create_matrix_from_json(1, 10, 1, False)
+    # path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
+    # print(path)
+
+    # # for floor in range(4):
+    # #     create_matrix_from_json(floor, 10, 1, True)
+    
+    # Load the DataFrame
+    import pandas as pd
+    df = pd.read_csv('precalculated_routes.csv')
+    df['route'] = df['route'].apply(eval)
+    # Using names
+    route = find_route(
+        df,
+        floor_num=0,
+        start="EscaleraIzq",
+        goal="PP",
+        input_type='names'
+    )
+    print(route)

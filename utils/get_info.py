@@ -112,7 +112,8 @@ def get_data(dia, hora, areas):
                             matching_area.targetCapacity += 1
                         if i < remainder_total_capacity:
                             matching_area.totalCapacity += 1
-                        print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type} and {matching_area.targetCapacity} target capacity")
+                        if DEBUG:
+                            print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type} and {matching_area.targetCapacity} target capacity")
                         npersons += matching_area.targetCapacity
 
         if 'classes' in data:
@@ -126,7 +127,8 @@ def get_data(dia, hora, areas):
                     matching_area.targetCapacity = clase['bookedAttendees']
                     matching_area.totalCapacity = clase['attendingLimit']
                     npersons += clase['bookedAttendees']
-                    print(f"Matching area {matching_area.name} with class {clase['activity']} with {clase['bookedAttendees']} attendees")
+                    if DEBUG:
+                        print(f"Matching area {matching_area.name} with class {clase['activity']} with {clase['bookedAttendees']} attendees")
 
         if 'entradas' in data:  # NOT WORKING
             for dt in data['entradas']:

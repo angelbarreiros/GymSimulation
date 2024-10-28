@@ -10,9 +10,9 @@ import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
-from multiprocessing import Pool, Process
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-import multiprocessing as mp
+# from multiprocessing import Pool, Process
+# from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+# import multiprocessing as mp
 from utils.global_variables import DEBUG
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
@@ -70,6 +70,7 @@ class Simulation:
 
     def get_data_hour(self, dia, hora, areas):
         self.npersons, self.entradas, self.salidas, self.target_areas, classes = get_data(dia, hora, areas)
+        # self.npersons = 500
         self.classes.append(classes)
         self.hora = hora
         self.floors = np.unique([area.floor for area in self.target_areas])
@@ -111,8 +112,8 @@ class Simulation:
             i+=1
             self.get_data_hour(dia, hora, self.target_areas)
             exceeded_lifetime_count = 0
-            for idx, person in enumerate(self.persons):
-                
+            idx = 0
+            for person in self.persons:
                 person.lifetime+=1
                 
                 # Deleted person
@@ -144,6 +145,8 @@ class Simulation:
                         person.target_coords = None
                         person.route = None
                         person.locker_room = None
+                        
+                idx += 1
                             
             nactual_persons = len(self.persons) - exceeded_lifetime_count
             if DEBUG:

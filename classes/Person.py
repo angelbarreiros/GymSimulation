@@ -1,10 +1,13 @@
 import numpy as np
-from utils.shortest_path import create_matrix_from_json, get_easy_route, variable_a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, get_easy_route, variable_a_star_search_from_grid, find_route
 from utils.fixed_route import join_coordinates
 import random
+import pandas as pd
 
-SCALE_FACTOR = 10
-MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 1) for floor in range(4)]
+SCALE_FACTOR = 20
+MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 0) for floor in range(4)]
+ROUTES_DF = pd.read_csv('precalculated_routes0.csv')
+ROUTES_DF['route'] = ROUTES_DF['route'].apply(eval)
 
 LANE_POINTS = [[[1386,440],[753, 440],[753,470],[1386,470]],[[1386,388],[753, 388],[753,418],[1386,418]],[[1386,336],[753, 336],[753,366],[1386,366]],[[1386,284],[753, 284],[753,314],[1386,314]],[[1386,232],[753, 232],[753,262],[1386,262]], [[1386,180],[753, 180],[753,210],[1386,210]]]
 POOL_LANES = [join_coordinates(LANE_POINTS[i], max_step=(i)*3+1) for i in range(len(LANE_POINTS))]
@@ -26,23 +29,9 @@ class Person:
         self.route = []
         self.stairs = stairs
         self.state = None # 'moving_target', 'reached', 'moving_stairs', "leaving"
-        # self.speed = random.randint(10, 20)
         self.speed = random.randint(20, 40)
         self.lifetime = 0
         self.max_lifetime = max_lifetime
-
-    def getEasyRoute(self, start, end, step=10):
-        x0, y0 = start
-        x1, y1 = end
-        dx = x1 - x0
-        dy = y1 - y0
-        distance = np.sqrt(dx**2 + dy**2)
-        n_steps = int(distance/step)
-        x_step = dx/n_steps
-        y_step = dy/n_steps
-        route = [(int(x0 + i*x_step), int(y0 + i*y_step)) for i in range(1, n_steps)]
-        route.append((x1, y1))  # Ensure the final step reaches the exact end point
-        return route
 
     def move(self):
         if self.target_area and self.state != 'left':
@@ -72,12 +61,15 @@ class Person:
                             self.target_coords = self.target_area.getPointInside(self.id % 6)
                         self.state = 'moving_target'
                                 
+                    # self.route = find_route(ROUTES_DF, self.current_floor,
+                    #                         start= )
                     self.route = variable_a_star_search_from_grid(MATRIX_FLOOR[self.current_floor], 
                                                          start=(int(self.x), int(self.y)), 
                                                          goal=self.target_coords,
                                                          scale_factor=SCALE_FACTOR,
-                                                         debug=False, speed=self.speed, 
-                                                         noise_factor=.2)
+                                                         debug=True, speed=self.speed, 
+                                                         noise_factor=0,
+                                                         max_step_size=1)
                     if self.route == None:
                         # If route finding fails, free up the machine
                         if hasattr(self.target_area, 'ocuppiedMachines') and self.id in self.target_area.ocuppiedMachines:

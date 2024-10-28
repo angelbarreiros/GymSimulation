@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+from utils.global_variables import DEBUG
 
 class Area:
     def __init__(self, name, points, totalCapacity, targetCapacity, floor, type, machines):
@@ -23,7 +24,8 @@ class Area:
                 if available_machines:
                     chosen_machine = np.random.choice(available_machines)
                     self.ocuppiedMachines[chosen_machine] = id
-                    print(f"Chosen machine: {self.machines[chosen_machine][0]} in {self.name}")
+                    if DEBUG:
+                        print(f"Chosen machine: {self.machines[chosen_machine][0]} in {self.name}")
                     return tuple(self.machines[chosen_machine][0])
 
         x, y, w, h = cv2.boundingRect(self.points)

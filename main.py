@@ -62,7 +62,7 @@ def main():
         gc.collect()
 
 if __name__ == "__main__":
-    if DEBUG:
+    if not DEBUG:
         cProfile.run('main()')
     else:
         main()
