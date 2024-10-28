@@ -3,13 +3,14 @@ from datetime import datetime, timedelta
 def generate_days(start_day, ndays, average=False):
     days = []
     current_day = datetime.strptime(start_day, '%Y-%m-%d')
-    for _ in range(ndays):
-        if average:
-            if 2 <= current_day.day <= 8:
-                days.append(current_day.strftime('%Y-%m-%d'))
-        else:
+    if average:
+        for _ in range(7):
             days.append(current_day.strftime('%Y-%m-%d'))
-        current_day += timedelta(days=1)
+            current_day += timedelta(days=1)
+    else:
+        for _ in range(ndays):
+            days.append(current_day.strftime('%Y-%m-%d'))
+            current_day += timedelta(days=1)
     return days
   
 def is_weekend(day_str):

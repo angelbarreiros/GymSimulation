@@ -6,7 +6,7 @@ import pandas as pd
 
 SCALE_FACTOR = 20
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 0) for floor in range(4)]
-ROUTES_DF = pd.read_csv('spawn_to_nonfunctional_routes.csv')
+ROUTES_DF = pd.read_csv('data/routes/spawn_to_nonfunctional_routes.csv')
 ROUTES_DF['route'] = ROUTES_DF['route'].apply(eval)
 from typing import Tuple, List, Optional, Any
 

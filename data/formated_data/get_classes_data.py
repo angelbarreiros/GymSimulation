@@ -105,7 +105,7 @@ def modify_event(string):
         "X-TRAINING KIDS":"X-TRAINING",
         "GAP":"Studio 2",
         "X-TRAINING":"X-TRAINING",
-        "BODY PUMP":"Studio 4",
+        "BODY PUMP":"Studio 1",
         "AQUAFIT":"PP",
         "EMBARAZO ACT.":"Studio 2",
         "SUELO PÉLVICO":"Studio 2",

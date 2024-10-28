@@ -42,6 +42,8 @@ def draw_class(frame, area, color):
     center = area.Area.points.mean(axis=0).astype(int)
     center[0] -= 100  # Move 100 px to the left
     cv2.putText(frame, f"Class: {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+    cv2.putText(frame, f"Class: {area.Area.targetCapacity}", center+25, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+
 
 def paint_area(frame, area, persons, frame_num):
     pts = area.points.reshape((-1, 1, 2))

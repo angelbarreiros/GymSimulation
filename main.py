@@ -9,11 +9,11 @@ import gc
 from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-WEEKDAY_HOURS  = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+WEEKDAY_HOURS  = [7]#, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 WEEKEND_HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 START_DAY = '2024-09-02'
-NDAYS = 2
-AVERAGE = True
+NDAYS = 27
+AVERAGE = False
 
 def run_simulation_for_day(day):
     np.random.seed(123)

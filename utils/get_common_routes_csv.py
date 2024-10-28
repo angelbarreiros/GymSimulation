@@ -110,7 +110,7 @@ def main():
     )
     
     # Save to CSV
-    routes_df.to_csv('spawn_to_nonfunctional_routes.csv', index=False)
+    routes_df.to_csv('data/routes/spawn_to_nonfunctional_routes.csv', index=False)
     
     return routes_df
 

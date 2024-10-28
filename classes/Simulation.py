@@ -12,7 +12,7 @@ import math
 from utils.get_info import get_data, get_data_initial
 from utils.global_variables import DEBUG
 
-TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
+TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorInterior"]
 
 class Simulation:
     def __init__(self, hours):
@@ -94,7 +94,12 @@ class Simulation:
         if target==None:
             #print(f"No available target areas for person {num_person} in frame {frame}")
             return False
-        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime=np.random.choice([1, 2, 3])))
+        if target.floor == 3:
+            max_time=1
+        else:
+            probabilities = [0.3, 0.5, 0.15, 0.05]
+            max_time = np.random.choice([1, 2, 3, 4], p=probabilities)
+        self.persons.append(Person(num_person, spawn_point.coords[0], spawn_point.coords[1], frame,stairs=self.getStairs(),target_area=target, max_step=15, floor=spawn_point.floor, locker_room=locker_room, max_lifetime=max_time))
         
         available_spawn_points.remove(spawn_point)
         return True
@@ -215,14 +220,6 @@ class Simulation:
                         left_persons += 1
                     else:
                         current_persons += 1
-                        # if state == 'moving_target':
-                        #     color = COLORS['Green']          # Black for target movement
-                        # elif target == 'PG':
-                        #     color = COLORS['Orange']         # Orange for PG
-                        # elif state == 'moving_stairs':
-                        #     color = COLORS['Blue']           # Blue for stairs movement
-                        # elif state == 'moving_lockers':
-                        #     color = COLORS['Red']            # Red for locker movement
                         if state == 'reached':
                             color = COLORS['Black']      
                         elif state == 'moving_lockers':

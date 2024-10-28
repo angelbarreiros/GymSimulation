@@ -397,7 +397,7 @@ if __name__ == "__main__":
     
     # Load the DataFrame
     import pandas as pd
-    df = pd.read_csv('spawn_to_nonfunctional_routes.csv')
+    df = pd.read_csv('data/routes/spawn_to_nonfunctional_routes.csv')
     df['route'] = df['route'].apply(eval)
     # Using names
     route = find_route(
