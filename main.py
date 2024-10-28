@@ -7,7 +7,7 @@ import cProfile
 from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-WEEKDAY_HOURS  = [7, 8]#, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+WEEKDAY_HOURS  = [7]#, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 WEEKEND_HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 START_DAY = '2024-09-02'
 NDAYS = 1
@@ -69,7 +69,7 @@ def main():
     print(f"Total time for all iterations: {total_end_time - total_start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    if not DEBUG:
-        cProfile.run('main()')
-    else:
+    # if not DEBUG:
+    #     cProfile.run('main()')
+    # else:
         main()

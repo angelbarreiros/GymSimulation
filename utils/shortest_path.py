@@ -114,7 +114,7 @@ def fill_rectangle_with_zeros(matrix, top_left, bottom_right):
     
     return matrix
 
-def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, precalculated_routes_df=None, debug=False, noise_factor=0.1, heuristic_type='euclidean', max_step_size=3, speed=5):
+def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, debug=False, noise_factor=0.1, heuristic_type='euclidean', max_step_size=3, speed=5):
     
     start_scaled = (start[0] // scale_factor, start[1] // scale_factor)
     goal_scaled = (goal[0] // scale_factor, goal[1] // scale_factor)
@@ -198,7 +198,10 @@ def variable_a_star_search_from_grid(matrix, start, goal, scale_factor, precalcu
             if debug:
                 print(f"Path found in {iterations} iterations. {start} -> {goal}")
             path = [(x * scale_factor, y * scale_factor) for x, y in reversed(path)]
-            return interpolate_path(path, speed)
+            if speed is None:
+                return path
+            else:
+                return interpolate_path(path, speed)
             
         neighbors = get_neighbors(current)
         if debug and not neighbors:
@@ -289,7 +292,7 @@ def get_easy_route(start, end, step = 10):
     
     return points
 
-def find_route(df, floor_num, start, goal, input_type='names'):
+def find_route(df, floor_num, start, goal, speed, input_type='coordinates'):
     """
     Find a precalculated route between two points on a specific floor.
     
@@ -325,7 +328,8 @@ def find_route(df, floor_num, start, goal, input_type='names'):
         ]
         
         if not direct_match.empty:
-            return direct_match.iloc[0]['route']
+            path = direct_match.iloc[0]['route']
+            return interpolate_path(path, speed)
             
         # Try reverse match
         reverse_match = floor_df[
@@ -336,7 +340,8 @@ def find_route(df, floor_num, start, goal, input_type='names'):
         ]
         
         if not reverse_match.empty:
-            return reverse_match.iloc[0]['route'][::-1]
+            path = reverse_match.iloc[0]['route'][::-1]
+            return interpolate_path(path, speed)
             
     elif input_type == 'names':
         # Try direct match by names
@@ -346,7 +351,8 @@ def find_route(df, floor_num, start, goal, input_type='names'):
         ]
         
         if not direct_match.empty:
-            return direct_match.iloc[0]['route']
+            path = direct_match.iloc[0]['route']
+            return interpolate_path(path, speed)
             
         # Try reverse match
         reverse_match = floor_df[
@@ -355,7 +361,8 @@ def find_route(df, floor_num, start, goal, input_type='names'):
         ]
         
         if not reverse_match.empty:
-            return reverse_match.iloc[0]['route'][::-1]
+            path = reverse_match.iloc[0]['route'][::-1]
+            return interpolate_path(path, speed)
     
     else:
         raise ValueError("input_type must be either 'coordinates' or 'names'")
@@ -390,14 +397,14 @@ if __name__ == "__main__":
     
     # Load the DataFrame
     import pandas as pd
-    df = pd.read_csv('precalculated_routes.csv')
+    df = pd.read_csv('spawn_to_nonfunctional_routes.csv')
     df['route'] = df['route'].apply(eval)
     # Using names
     route = find_route(
         df,
-        floor_num=0,
-        start="EscaleraIzq",
-        goal="PP",
-        input_type='names'
+        floor_num=1,
+        goal=(973,1051),
+        start=(1351,731),
+        input_type='coordinates'
     )
     print(route)

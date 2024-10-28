@@ -6,7 +6,7 @@ import pandas as pd
 
 SCALE_FACTOR = 20
 MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 0) for floor in range(4)]
-ROUTES_DF = pd.read_csv('precalculated_routes0.csv')
+ROUTES_DF = pd.read_csv('spawn_to_nonfunctional_routes.csv')
 ROUTES_DF['route'] = ROUTES_DF['route'].apply(eval)
 from typing import Tuple, List, Optional, Any
 
@@ -55,27 +55,6 @@ class Person:
         self.max_lifetime = max_lifetime
         self._lane_index = person_id % 6  # Cache lane index calculation
         
-    @staticmethod
-    def _calculate_route(start: Tuple[int, int], end: Tuple[int, int], 
-                        step: int) -> List[Tuple[int, int]]:
-        """Optimized route calculation using numpy operations."""
-        x0, y0 = start
-        x1, y1 = end
-        dx = x1 - x0
-        dy = y1 - y0
-        distance = np.hypot(dx, dy)  # Faster than sqrt(dx**2 + dy**2)
-        n_steps = int(distance / step)
-        
-        if n_steps == 0:
-            return [(x1, y1)]
-            
-        # Vectorized calculation instead of list comprehension
-        steps = np.arange(1, n_steps + 1)
-        x_coords = x0 + (dx * steps / n_steps)
-        y_coords = y0 + (dy * steps / n_steps)
-        
-        return list(zip(x_coords.astype(int), y_coords.astype(int)))
-
     def _handle_initial_state(self) -> None:
         """Handle initial state logic."""
         if self.locker_room is not None and self.locker_room.floor == self.current_floor:
@@ -89,15 +68,28 @@ class Person:
             self.target_coords = self.target_area.getPointInside(self._lane_index)
             self.state = 'moving_target'
 
-        self.route = variable_a_star_search_from_grid(
-            MATRIX_FLOOR[self.current_floor],
-            start=(int(self.x), int(self.y)),
-            goal=self.target_coords,
-            scale_factor=SCALE_FACTOR,
-            debug=False,
-            speed=self.speed,
-            noise_factor=0.2
-        )
+        self.route = None
+        
+        if self.current_floor == 1: # Floor where the spawns are. Precalculated routes for Spawn to NON-FUNTIONAL
+            self.route = find_route(
+                ROUTES_DF,
+                floor_num=1,
+                start=(int(self.x), int(self.y)),
+                goal=self.target_coords,
+                speed=self.speed
+            )
+            # print(self.route)
+            
+        if self.route is None:
+            self.route = variable_a_star_search_from_grid(
+                MATRIX_FLOOR[self.current_floor],
+                start=(int(self.x), int(self.y)),
+                goal=self.target_coords,
+                scale_factor=SCALE_FACTOR,
+                debug=False,
+                speed=self.speed,
+                noise_factor=0.2
+            )
         
         if self.route is None:
             self.state = None
