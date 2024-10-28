@@ -89,7 +89,7 @@ def paint_noarea(frame, area, color):
     return frame
 
 def draw_person(frame, x, y, color):
-    cv2.circle(frame, (int(x), int(y)), 12, color, -1) # black
+    cv2.circle(frame, (int(x), int(y)), 7, color, -1) # black
 
 def draw_colorLegend(frame):
     height, width, _ = frame.shape
@@ -121,6 +121,3 @@ def draw_legend(frame, areas, persons, frame_num):
 
         y = start_y + 50 * i
         cv2.putText(frame, f"{area.name}: {n}/{area.totalCapacity} ", (start_x + 40, y + 35), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-
-
-# reasmania, provisport, esnova...

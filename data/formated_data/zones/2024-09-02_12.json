@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 19,
-            "totalCapacity": 60,
-            "hour": "12:00"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 1,
-            "totalCapacity": 12,
-            "hour": "12:00"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 19,
             "totalCapacity": 60,

@@ -16,41 +16,6 @@
         },
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 55,
-            "totalCapacity": 60,
-            "hour": "19:30"
-        },
-        {
-            "name": "BODY COMBAT",
-            "zone": "Studio 2",
-            "targetCapacity": 48,
-            "totalCapacity": 55,
-            "hour": "19:30"
-        },
-        {
-            "name": "AQUAFIT",
-            "zone": null,
-            "targetCapacity": 41,
-            "totalCapacity": 55,
-            "hour": "19:30"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 33,
-            "totalCapacity": 60,
-            "hour": "19:00"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 36,
-            "totalCapacity": 45,
-            "hour": "19:00"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 55,
             "totalCapacity": 60,

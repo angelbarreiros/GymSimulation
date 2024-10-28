@@ -13,20 +13,6 @@
             "targetCapacity": 44,
             "totalCapacity": 55,
             "hour": "09:30"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 8,
-            "totalCapacity": 12,
-            "hour": "09:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 44,
-            "totalCapacity": 55,
-            "hour": "09:30"
         }
     ],
     "aforo_zonas": [

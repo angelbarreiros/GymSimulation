@@ -9,27 +9,6 @@
         },
         {
             "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 11,
-            "totalCapacity": 45,
-            "hour": "11:00"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 21,
-            "totalCapacity": 55,
-            "hour": "11:30"
-        },
-        {
-            "name": "BODY COMBAT",
-            "zone": "Studio 2",
-            "targetCapacity": 25,
-            "totalCapacity": 55,
-            "hour": "11:00"
-        },
-        {
-            "name": "BODY BALANCE",
             "zone": "Studio 4",
             "targetCapacity": 11,
             "totalCapacity": 45,

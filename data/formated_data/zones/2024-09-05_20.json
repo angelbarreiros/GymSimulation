@@ -9,34 +9,6 @@
         },
         {
             "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 23,
-            "totalCapacity": 55,
-            "hour": "20:30"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 15,
-            "totalCapacity": 45,
-            "hour": "20:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 10,
-            "totalCapacity": 55,
-            "hour": "20:30"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 18,
-            "totalCapacity": 60,
-            "hour": "20:00"
-        },
-        {
-            "name": "BODY PUMP",
             "zone": "Studio 4",
             "targetCapacity": 23,
             "totalCapacity": 55,

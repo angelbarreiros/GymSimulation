@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "ZUMBA KIDS",
-            "zone": null,
-            "targetCapacity": 16,
-            "totalCapacity": 24,
-            "hour": "17:30"
-        },
-        {
-            "name": "GAP",
-            "zone": null,
-            "targetCapacity": 30,
-            "totalCapacity": 60,
-            "hour": "17:30"
-        },
-        {
-            "name": "ZUMBA KIDS",
             "zone": "X-TRAINING",
             "targetCapacity": 16,
             "totalCapacity": 24,

@@ -2,34 +2,6 @@
     "aforo_clases": [
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 43,
-            "totalCapacity": 60,
-            "hour": "18:00"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 6,
-            "totalCapacity": 12,
-            "hour": "18:00"
-        },
-        {
-            "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 45,
-            "totalCapacity": 55,
-            "hour": "18:30"
-        },
-        {
-            "name": "YOGA KIDS",
-            "zone": null,
-            "targetCapacity": 7,
-            "totalCapacity": 24,
-            "hour": "18:30"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 43,
             "totalCapacity": 60,

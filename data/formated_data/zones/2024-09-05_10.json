@@ -2,34 +2,6 @@
     "aforo_clases": [
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 20,
-            "totalCapacity": 60,
-            "hour": "10:00"
-        },
-        {
-            "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 14,
-            "totalCapacity": 45,
-            "hour": "10:00"
-        },
-        {
-            "name": "BODY STEP",
-            "zone": "Studio 1",
-            "targetCapacity": 11,
-            "totalCapacity": 55,
-            "hour": "10:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 24,
-            "totalCapacity": 55,
-            "hour": "10:30"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 20,
             "totalCapacity": 60,

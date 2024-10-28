@@ -2,34 +2,6 @@
     "aforo_clases": [
         {
             "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 18,
-            "totalCapacity": 45,
-            "hour": "18:00"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 11,
-            "totalCapacity": 12,
-            "hour": "18:00"
-        },
-        {
-            "name": "DEPORTE II (8 -13)",
-            "zone": null,
-            "targetCapacity": 10,
-            "totalCapacity": 24,
-            "hour": "18:30"
-        },
-        {
-            "name": "EMBARAZO ACT.",
-            "zone": null,
-            "targetCapacity": 3,
-            "totalCapacity": 14,
-            "hour": "18:30"
-        },
-        {
-            "name": "BODY BALANCE",
             "zone": "Studio 4",
             "targetCapacity": 18,
             "totalCapacity": 45,

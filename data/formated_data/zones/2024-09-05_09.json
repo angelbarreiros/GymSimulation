@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "GAP",
-            "zone": null,
-            "targetCapacity": 22,
-            "totalCapacity": 60,
-            "hour": "09:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 32,
-            "totalCapacity": 55,
-            "hour": "09:30"
-        },
-        {
-            "name": "GAP",
             "zone": "Studio 2",
             "targetCapacity": 22,
             "totalCapacity": 60,

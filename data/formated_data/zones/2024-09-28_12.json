@@ -2,13 +2,6 @@
     "aforo_clases": [
         {
             "name": "EN FAMILIA",
-            "zone": null,
-            "targetCapacity": 38,
-            "totalCapacity": 45,
-            "hour": "12:00"
-        },
-        {
-            "name": "EN FAMILIA",
             "zone": "Studio 1",
             "targetCapacity": 38,
             "totalCapacity": 45,

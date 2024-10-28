@@ -33,8 +33,11 @@ def get_data_initial(path):
                     
         return all_areas, all_walls, all_spawns
 
-def get_data(dia, hora, areas):
-    path = f'data/formated_data/zones/{dia}_{str(hora).zfill(2)}.json'
+def get_data(dia, hora, areas, average):
+    if average:
+        path = f'data/formated_data/averageZones/{dia}_{str(hora).zfill(2)}.json'
+    else:
+        path = f'data/formated_data/zones/{dia}_{str(hora).zfill(2)}.json'
     print(f"Processing data from {path}")
     
     with open(path, 'r') as file:

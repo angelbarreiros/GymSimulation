@@ -2,34 +2,6 @@
     "aforo_clases": [
         {
             "name": "DANCE",
-            "zone": null,
-            "targetCapacity": 15,
-            "totalCapacity": 60,
-            "hour": "10:00"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 45,
-            "totalCapacity": 45,
-            "hour": "10:00"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 5,
-            "totalCapacity": 60,
-            "hour": "10:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 25,
-            "totalCapacity": 55,
-            "hour": "10:30"
-        },
-        {
-            "name": "DANCE",
             "zone": "Studio 4",
             "targetCapacity": 15,
             "totalCapacity": 60,

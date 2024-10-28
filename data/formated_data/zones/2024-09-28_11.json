@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "X-TRAINING",
-            "zone": null,
-            "targetCapacity": 17,
-            "totalCapacity": 24,
-            "hour": "11:00"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 15,
-            "totalCapacity": 60,
-            "hour": "11:30"
-        },
-        {
-            "name": "X-TRAINING",
             "zone": "X-TRAINING",
             "targetCapacity": 17,
             "totalCapacity": 24,

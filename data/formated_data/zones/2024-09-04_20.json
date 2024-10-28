@@ -2,27 +2,6 @@
     "aforo_clases": [
         {
             "name": "GAP",
-            "zone": null,
-            "targetCapacity": 32,
-            "totalCapacity": 60,
-            "hour": "20:00"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 24,
-            "totalCapacity": 45,
-            "hour": "20:30"
-        },
-        {
-            "name": "AQUAFIT",
-            "zone": null,
-            "targetCapacity": 11,
-            "totalCapacity": 55,
-            "hour": "20:30"
-        },
-        {
-            "name": "GAP",
             "zone": "Studio 2",
             "targetCapacity": 32,
             "totalCapacity": 60,

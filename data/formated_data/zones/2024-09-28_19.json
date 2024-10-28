@@ -6,13 +6,6 @@
             "targetCapacity": 1,
             "totalCapacity": 12,
             "hour": "19:30"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 1,
-            "totalCapacity": 12,
-            "hour": "19:30"
         }
     ],
     "aforo_zonas": [

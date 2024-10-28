@@ -9,34 +9,6 @@
         },
         {
             "name": "DANCE",
-            "zone": null,
-            "targetCapacity": 17,
-            "totalCapacity": 60,
-            "hour": "19:00"
-        },
-        {
-            "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 29,
-            "totalCapacity": 45,
-            "hour": "19:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 17,
-            "totalCapacity": 20,
-            "hour": "19:30"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 26,
-            "totalCapacity": 60,
-            "hour": "19:00"
-        },
-        {
-            "name": "DANCE",
             "zone": "Studio 4",
             "targetCapacity": 17,
             "totalCapacity": 60,

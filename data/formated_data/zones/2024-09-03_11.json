@@ -9,34 +9,6 @@
         },
         {
             "name": "SUELO PELVICO",
-            "zone": null,
-            "targetCapacity": 17,
-            "totalCapacity": 45,
-            "hour": "11:00"
-        },
-        {
-            "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 16,
-            "totalCapacity": 55,
-            "hour": "11:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 20,
-            "totalCapacity": 55,
-            "hour": "11:30"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 40,
-            "totalCapacity": 45,
-            "hour": "11:00"
-        },
-        {
-            "name": "SUELO PELVICO",
             "zone": "Studio 1",
             "targetCapacity": 17,
             "totalCapacity": 45,

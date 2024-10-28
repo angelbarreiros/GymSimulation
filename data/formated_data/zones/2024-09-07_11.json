@@ -6,13 +6,6 @@
             "targetCapacity": 42,
             "totalCapacity": 60,
             "hour": "11:30"
-        },
-        {
-            "name": "BODY COMBAT",
-            "zone": "Studio 2",
-            "targetCapacity": 42,
-            "totalCapacity": 60,
-            "hour": "11:30"
         }
     ],
     "aforo_zonas": [

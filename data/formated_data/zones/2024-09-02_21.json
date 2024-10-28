@@ -8,11 +8,11 @@
             "hour": "21:00"
         },
         {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 1,
-            "totalCapacity": 12,
-            "hour": "21:00"
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 10,
+            "totalCapacity": 55,
+            "hour": "21:30"
         }
     ],
     "aforo_zonas": [

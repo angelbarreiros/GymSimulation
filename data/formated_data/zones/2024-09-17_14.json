@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 17,
-            "totalCapacity": 55,
-            "hour": "14:30"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 13,
-            "totalCapacity": 55,
-            "hour": "14:30"
-        },
-        {
-            "name": "BODY PUMP",
             "zone": "Studio 4",
             "targetCapacity": 17,
             "totalCapacity": 55,

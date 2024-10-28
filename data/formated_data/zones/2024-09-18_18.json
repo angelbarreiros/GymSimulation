@@ -9,41 +9,6 @@
         },
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 44,
-            "totalCapacity": 60,
-            "hour": "18:00"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 7,
-            "totalCapacity": 12,
-            "hour": "18:00"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 45,
-            "totalCapacity": 45,
-            "hour": "18:30"
-        },
-        {
-            "name": "X-TRAINING KIDS",
-            "zone": null,
-            "targetCapacity": 11,
-            "totalCapacity": 24,
-            "hour": "18:30"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 16,
-            "totalCapacity": 60,
-            "hour": "18:00"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 44,
             "totalCapacity": 60,

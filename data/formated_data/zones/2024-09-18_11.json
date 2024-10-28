@@ -2,27 +2,6 @@
     "aforo_clases": [
         {
             "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 17,
-            "totalCapacity": 45,
-            "hour": "11:00"
-        },
-        {
-            "name": "X-TRAINING",
-            "zone": null,
-            "targetCapacity": 6,
-            "totalCapacity": 24,
-            "hour": "11:00"
-        },
-        {
-            "name": "AQUAGYM",
-            "zone": "PP",
-            "targetCapacity": 25,
-            "totalCapacity": 55,
-            "hour": "11:30"
-        },
-        {
-            "name": "BODY BALANCE",
             "zone": "Studio 4",
             "targetCapacity": 17,
             "totalCapacity": 45,

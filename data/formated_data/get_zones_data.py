@@ -132,7 +132,7 @@ def excel_to_json(file_path, startDate,output_file):
         rowend = 31
         current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
         formatted_date = current_date.strftime('%Y-%m-%d')
-        while(rowStart < sheet.max_row -1):
+        while(rowStart < sheet.max_row):
             notWorkingHour = False
             zones_data = []
             hour = sheet.cell(row=rowStart, column=1).value
@@ -170,5 +170,6 @@ def getZonesData():
         excel_to_json(path,startDate,output_file)
         startDate+=7
     output_file = "data/formated_data/averageZones/"
-    excel_to_json("data/excel/avg-clases-sept.xlsx",startDate,output_file)
+    startDate = 1
+    excel_to_json("data/excel/avg-zones-sept.xlsx",startDate,output_file)
         

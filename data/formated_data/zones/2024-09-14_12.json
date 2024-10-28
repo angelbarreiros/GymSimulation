@@ -2,27 +2,6 @@
     "aforo_clases": [
         {
             "name": "EN FAMILIA",
-            "zone": null,
-            "targetCapacity": 7,
-            "totalCapacity": 45,
-            "hour": "12:00"
-        },
-        {
-            "name": "BODY BALANCE",
-            "zone": null,
-            "targetCapacity": 20,
-            "totalCapacity": 60,
-            "hour": "12:30"
-        },
-        {
-            "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 19,
-            "totalCapacity": 55,
-            "hour": "12:30"
-        },
-        {
-            "name": "EN FAMILIA",
             "zone": "Studio 1",
             "targetCapacity": 7,
             "totalCapacity": 45,

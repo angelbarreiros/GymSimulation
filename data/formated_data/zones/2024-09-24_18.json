@@ -9,34 +9,6 @@
         },
         {
             "name": "EMBARAZO ACT.",
-            "zone": null,
-            "targetCapacity": 3,
-            "totalCapacity": 14,
-            "hour": "18:30"
-        },
-        {
-            "name": "BODY PUMP",
-            "zone": null,
-            "targetCapacity": 50,
-            "totalCapacity": 55,
-            "hour": "18:30"
-        },
-        {
-            "name": "DEPORTE II (8 -13)",
-            "zone": null,
-            "targetCapacity": 8,
-            "totalCapacity": 24,
-            "hour": "18:30"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 11,
-            "totalCapacity": 12,
-            "hour": "18:00"
-        },
-        {
-            "name": "EMBARAZO ACT.",
             "zone": "Studio 2",
             "targetCapacity": 3,
             "totalCapacity": 14,

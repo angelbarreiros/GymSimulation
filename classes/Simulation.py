@@ -65,8 +65,8 @@ class Simulation:
         if DEBUG:
             print(f"Loaded {len(self.persons)} persons and {len(self.target_areas)} areas")
 
-    def get_data_hour(self, dia, hora, areas):
-        self.npersons, self.entradas, self.salidas, self.target_areas, classes = get_data(dia, hora, areas)
+    def get_data_hour(self, dia, hora, areas, average):
+        self.npersons, self.entradas, self.salidas, self.target_areas, classes = get_data(dia, hora, areas, average)
         # self.npersons = 500
         self.classes.append(classes)
         self.hora = hora
@@ -99,7 +99,7 @@ class Simulation:
         available_spawn_points.remove(spawn_point)
         return True
     
-    def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+    def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1, average=False):
         start_time = time.time()
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
@@ -110,7 +110,7 @@ class Simulation:
         for hora in hours:
             start_time_hour = time.time()
             i+=1
-            self.get_data_hour(dia, hora, self.target_areas)
+            self.get_data_hour(dia, hora, self.target_areas, average)
             exceeded_lifetime_count = 0
             idx = 0
             for person in self.persons:
@@ -126,6 +126,7 @@ class Simulation:
                     exceeded_lifetime_count += 1
                     person.target_area.actualCapacity -= 1
                     person.target_area = self.spawn_points[0]
+                    # person.wait_time = 0
                     person.state = None
                     person.route = None
                     person.locker_room = None

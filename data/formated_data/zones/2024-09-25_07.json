@@ -6,13 +6,6 @@
             "targetCapacity": 8,
             "totalCapacity": 60,
             "hour": "07:10"
-        },
-        {
-            "name": "CICLO INDOOR",
-            "zone": "Studio 3",
-            "targetCapacity": 8,
-            "totalCapacity": 60,
-            "hour": "07:10"
         }
     ],
     "aforo_zonas": [

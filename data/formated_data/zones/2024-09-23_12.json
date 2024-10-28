@@ -9,20 +9,6 @@
         },
         {
             "name": "ZUMBA",
-            "zone": "Studio 2",
-            "targetCapacity": 21,
-            "totalCapacity": 60,
-            "hour": "12:00"
-        },
-        {
-            "name": "FUNCIONAL 360",
-            "zone": "FUNCIONAL",
-            "targetCapacity": 9,
-            "totalCapacity": 12,
-            "hour": "12:00"
-        },
-        {
-            "name": "ZUMBA",
             "zone": "Studio 4",
             "targetCapacity": 21,
             "totalCapacity": 60,

@@ -2,20 +2,6 @@
     "aforo_clases": [
         {
             "name": "YOGA KIDS",
-            "zone": null,
-            "targetCapacity": 13,
-            "totalCapacity": 24,
-            "hour": "17:30"
-        },
-        {
-            "name": "GAP",
-            "zone": null,
-            "targetCapacity": 37,
-            "totalCapacity": 60,
-            "hour": "17:30"
-        },
-        {
-            "name": "YOGA KIDS",
             "zone": "Studio 1",
             "targetCapacity": 13,
             "totalCapacity": 24,

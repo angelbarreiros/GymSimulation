@@ -13,20 +13,6 @@
             "targetCapacity": 7,
             "totalCapacity": 24,
             "hour": "17:30"
-        },
-        {
-            "name": "PILATES",
-            "zone": "Studio 1",
-            "targetCapacity": 31,
-            "totalCapacity": 45,
-            "hour": "17:00"
-        },
-        {
-            "name": "DEPORTE I (3-7)",
-            "zone": "Studio 2",
-            "targetCapacity": 7,
-            "totalCapacity": 24,
-            "hour": "17:30"
         }
     ],
     "aforo_zonas": [

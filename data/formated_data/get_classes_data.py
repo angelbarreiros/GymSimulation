@@ -94,7 +94,7 @@ def modify_event(string):
     activity_map = {
         "CICLO INDOOR": "Studio 3",
         "FUNCIONAL 360": "FUNCIONAL",
-        "PILATES": "Studio 1",
+        "PILATES": "Studio 2",
         "BODY COMBAT": "Studio 2",
         "AQUAGYM": "PP",
         "ZUMBA": "Studio 4",
@@ -144,7 +144,7 @@ def generar_json_por_hora(file_path,startDate,output_file):
         rowStart = 3
         current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
         formatted_date = current_date.strftime('%Y-%m-%d')
-        while(rowStart < sheet.max_row -1):
+        while(rowStart < 94-1):
             notWorkingHour = False
             zones_data = []
             hour = sheet.cell(row=rowStart, column=1).value
@@ -187,5 +187,6 @@ def generate():
         generar_json_por_hora(path,startDate,output_file)
         startDate+=7
     output_file = "data/formated_data/averageZones/"
+    startDate = 1
     generar_json_por_hora("data/excel/avg-clases-sept.xlsx",startDate,output_file)
 
