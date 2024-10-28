@@ -153,7 +153,7 @@ document.getElementById('weeklySubmitButton').addEventListener('click', async ()
     formData.append('start_time', startSeconds);
     formData.append('end_time', endSeconds);
     formData.append('weekday',weekDay)
-    const response = await fetch('http://localhost/api/comparison', {
+    const response = await fetch('http://localhost/api/average', {
         method: 'POST',
         body: formData
     });
@@ -161,61 +161,18 @@ document.getElementById('weeklySubmitButton').addEventListener('click', async ()
         const errorData = await response.json();
         throw new Error(`Error: ${errorData.error}`);
     }
-    let data = await response.json()
-    
-    for(file of data.results){
-        const formData = new FormData();
-        formData.append('filename', file.outFile);
-        const responseVideo = await fetch('http://localhost/api/videos', {
-            method: 'POST',
-            body: formData
-        });
-        if (!responseVideo.ok) {
-            const errorData = await responseVideo.json();
-            throw new Error(`Error: ${errorData.error}`);
-        }
-        const videoBlob = await responseVideo.blob();
-        const videoUrl = URL.createObjectURL(videoBlob);
-        
-        videos.forEach(video=>{
-            video.src=videoUrl
-        })
+    const videoBlob = await response.blob();
+    const videoUrl = URL.createObjectURL(videoBlob);
+    console.log('Video URL:', videoUrl); // Imprimir la URL
 
-    }  
+    const videoPlayer = document.getElementById('video-player-1');
+    videoPlayer.src = videoUrl;
+    videoPlayer.play();
+    
+    
+    
+      
     spinner.style.display = 'none';
-    xd.style.display = 'grid'
+    xd.style.display = 'block'
 
 })
-
-videos.forEach(video => {
-    video.addEventListener('play', function() {
-        const time = this.currentTime;
-        videos.forEach(otherVideo => {
-            if(otherVideo !== this) {
-                otherVideo.currentTime = time;
-                const playPromise = otherVideo.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
-                }
-            }
-        });
-    });
-    
-    video.addEventListener('pause', function() {
-        videos.forEach(otherVideo => {
-            if(otherVideo !== this) {
-                otherVideo.pause();
-            }
-        });
-    });
-    
-    video.addEventListener('timeupdate', function() {
-        videos.forEach(otherVideo => {
-            if(otherVideo !== this && !otherVideo.paused) {
-                if(Math.abs(otherVideo.currentTime - this.currentTime) > 0.5) {
-                    otherVideo.currentTime = this.currentTime;
-                }
-            }
-        });
-    });
-});

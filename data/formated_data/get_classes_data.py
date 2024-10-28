@@ -128,7 +128,7 @@ def redondear_hora(hora_str):
         hora = hora.replace(minute=0)
     return hora.strftime("%H")
 
-def generar_json_por_hora(file_path,startDate):
+def generar_json_por_hora(file_path,startDate,output_file):
     from datetime import datetime, timedelta
 
     wb = openpyxl.load_workbook(file_path)
@@ -170,21 +170,22 @@ def generar_json_por_hora(file_path,startDate):
             value = HourData(zones_data)
             if(len(value.zones_array)!=0):
 
-                serialize_to_json(value, f"data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+                serialize_to_json(value, f"{output_file}{formatted_date}_{hour[:-3]}.json")
 
         day = day + 1        
         
 
 
-def main():
+def generate():
     startDate = 1
+    output_file = "data/formated_data/zones/"
     paths=["data/excel/clases_sept_2-8.xlsx",
            "data/excel/clases_sept_9-15.xlsx",
            "data/excel/clases_sept_16-22.xlsx",
            "data/excel/clases_sept_23-29.xlsx"]
     for path in paths:
-        generar_json_por_hora(path,startDate= startDate)
+        generar_json_por_hora(path,startDate,output_file)
         startDate+=7
+    output_file = "data/formated_data/averageZones/"
+    generar_json_por_hora("data/excel/avg-clases-sept.xlsx",startDate,output_file)
 
-if __name__ == "__main__":
-    main()
