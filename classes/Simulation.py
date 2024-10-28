@@ -102,10 +102,12 @@ class Simulation:
         start_time = time.time()
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
+        durations = []
         for spawn in self.spawn_points:
             if DEBUG:
                 print(f"Spawn {spawn.name} at {spawn.coords}")
         for hora in hours:
+            start_time_hour = time.time()
             i+=1
             self.get_data_hour(dia, hora, self.target_areas)
             exceeded_lifetime_count = 0
@@ -162,25 +164,13 @@ class Simulation:
                          
                 for person in self.persons :
                     person.move()
+            end_time_hour = time.time()
+            durations.append(end_time_hour - start_time_hour)
 
-                # Process batches with ThreadPoolExecutor
-                # num_workers = min(os.cpu_count() or 4, 8)
-                # with ThreadPoolExecutor(max_workers=num_workers) as executor:
-                #     executor.submit(moveWrapper, self.persons)
-                    
-                # with ProcessPoolExecutor(max_workers=num_workers) as executor:
-                #     executor.imap_unordered(moveWrapper, self.persons)
-                    
-                # Create pool and process objects
-                # with mp.Pool(processes=num_workers) as pool:
-                #     # Use imap_unordered since order doesn't matter
-                #     # Ignore the results since function doesn't return anything
-                #     for _ in pool.imap_unordered(moveWrapper, self.persons):
-                #         pass
                     
         self.persons += self.personsDeleted
         end_time = time.time()
-        return end_time - start_time
+        return end_time - start_time, durations
                 
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""

@@ -7,7 +7,7 @@ import cProfile
 from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-WEEKDAY_HOURS  = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+WEEKDAY_HOURS  = [7, 8]#, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 WEEKEND_HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 START_DAY = '2024-09-02'
 NDAYS = 1
@@ -20,7 +20,7 @@ def run_simulation_for_day(day):
     # sim.load_data('data/sim_states/simulation_7.pkl')
 
     print(f'Creating simulation for {day} and hours {hours}...')
-    sim_time = sim.simulate(TOTAL_FRAMES, dia=day, hours=hours, spawn_interval=2, max_spawn=2)
+    sim_time, durations = sim.simulate(TOTAL_FRAMES, dia=day, hours=hours, spawn_interval=2, max_spawn=2)
     
     print('Creating animation...')
     anim_time = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=hours, day=day)
@@ -46,7 +46,7 @@ def run_simulation_for_day(day):
     for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
         os.remove(file_path)
     del sim
-    return sim_time, anim_time
+    return sim_time, anim_time, durations
 
 def main():
     import time
@@ -56,9 +56,9 @@ def main():
     
     for day in DAYS:
         iter_start_time = time.time()
-        sim_time, anim_time = run_simulation_for_day(day)
+        sim_time, anim_time, durations = run_simulation_for_day(day)
         iter_end_time = time.time()
-        
+        print(f"Simulation durations: {durations}, Total: {sum(durations)}, Mean: {np.mean(durations):.2f}, Std: {np.std(durations):.2f}")
         print(f"Iteration for {day} took {iter_end_time - iter_start_time:.2f} seconds (Simulation: {sim_time:.2f} seconds, Animation: {anim_time:.2f} seconds)")
 
         # Force garbage collection after each simulation
