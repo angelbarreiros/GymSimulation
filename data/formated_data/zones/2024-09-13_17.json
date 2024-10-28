@@ -6,6 +6,13 @@
             "targetCapacity": 20,
             "totalCapacity": 24,
             "hour": "17:30"
+        },
+        {
+            "name": "ZUMBA KIDS",
+            "zone": "X-TRAINING",
+            "targetCapacity": 20,
+            "totalCapacity": 24,
+            "hour": "17:30"
         }
     ],
     "aforo_zonas": [

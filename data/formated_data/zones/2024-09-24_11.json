@@ -27,6 +27,34 @@
             "targetCapacity": 25,
             "totalCapacity": 55,
             "hour": "11:30"
+        },
+        {
+            "name": "SUELO PELVICO",
+            "zone": "Studio 1",
+            "targetCapacity": 23,
+            "totalCapacity": 60,
+            "hour": "11:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 39,
+            "totalCapacity": 45,
+            "hour": "11:00"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 17,
+            "totalCapacity": 55,
+            "hour": "11:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 25,
+            "totalCapacity": 55,
+            "hour": "11:30"
         }
     ],
     "aforo_zonas": [

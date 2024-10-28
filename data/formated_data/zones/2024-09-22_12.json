@@ -6,6 +6,13 @@
             "targetCapacity": 42,
             "totalCapacity": 60,
             "hour": "12:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 42,
+            "totalCapacity": 60,
+            "hour": "12:30"
         }
     ],
     "aforo_zonas": [

@@ -336,7 +336,7 @@ class Simulation:
             batches.append((batch_frames, batch_start))
 
         # Process batches with ThreadPoolExecutor
-        num_workers = os.cpu_count()-2
+        num_workers = os.cpu_count()-1
         with ThreadPoolExecutor(max_workers=num_workers) as executor:
             futures = []
             for batch_data in batches:
@@ -348,7 +348,6 @@ class Simulation:
                 for future in as_completed(futures):
                     batch_results = future.result()
                     for frame_num, compressed_frame in batch_results:
-                        # Write compressed JPEG directly
                         frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.jpg')
                         with open(frame_filename, 'wb') as f:
                             f.write(compressed_frame)

@@ -6,6 +6,13 @@
             "targetCapacity": 43,
             "totalCapacity": 55,
             "hour": "09:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 43,
+            "totalCapacity": 55,
+            "hour": "09:30"
         }
     ],
     "aforo_zonas": [

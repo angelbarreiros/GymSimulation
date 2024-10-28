@@ -20,6 +20,27 @@
             "targetCapacity": 19,
             "totalCapacity": 24,
             "hour": "17:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 26,
+            "totalCapacity": 45,
+            "hour": "17:00"
+        },
+        {
+            "name": "BODY STEP",
+            "zone": "Studio 1",
+            "targetCapacity": 31,
+            "totalCapacity": 55,
+            "hour": "17:30"
+        },
+        {
+            "name": "DEPORTE I (3-7)",
+            "zone": "Studio 2",
+            "targetCapacity": 19,
+            "totalCapacity": 24,
+            "hour": "17:30"
         }
     ],
     "aforo_zonas": [

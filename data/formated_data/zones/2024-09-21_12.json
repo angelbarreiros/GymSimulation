@@ -20,6 +20,27 @@
             "targetCapacity": 27,
             "totalCapacity": 55,
             "hour": "12:30"
+        },
+        {
+            "name": "EN FAMILIA",
+            "zone": "Studio 1",
+            "targetCapacity": 5,
+            "totalCapacity": 45,
+            "hour": "12:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 20,
+            "totalCapacity": 60,
+            "hour": "12:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 27,
+            "totalCapacity": 55,
+            "hour": "12:30"
         }
     ],
     "aforo_zonas": [

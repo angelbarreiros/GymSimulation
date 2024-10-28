@@ -12,13 +12,15 @@ zigbee sensors, hardware...
 
 JIT?
 
-detect los q se quedan pillaos
+el area de ciclo indoorr...
+
+detect los q se quedan pillaos...
 
 señalizar cuando empiezan clases, also no duran 1 hora exacto
     tambien el lifetime, que no sea por horass...(info incorrecta¿) -> cuando vayas no disminuye hasta reset?
 
-entradas/salidas json no entrar..
+entradas/salidas json no están... tmpc hacen falta
 
 optimizar, rutas y pintar...
 
-clases bo tienen porque empezar a en punto y puden acabar en la hora siguiente
+clases no tienen porque empezar a en punto y puden acabar en la hora siguiente

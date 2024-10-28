@@ -116,7 +116,7 @@ def get_cell_merge_info(sheet,row, column):
         "value": sheet.cell(row=row, column=column).value
     }
 
-def excel_to_json(file_path, startDate):
+def excel_to_json(file_path, startDate,output_file):
     from datetime import datetime, timedelta
 
     wb = openpyxl.load_workbook(file_path)
@@ -154,18 +154,21 @@ def excel_to_json(file_path, startDate):
             value = HourData(zones_data)
             
             if not notWorkingHour:
-                serialize_to_json(value, f"data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+                serialize_to_json(value, f"{output_file}{formatted_date}_{hour[:-3]}.json")
             notWorkingHour = False
         day = day + 1        
         
 
 def getZonesData():  
     startDate = 1
+    output_file = "data/formated_data/zones/"
     paths=["data/excel/zones-sept-1-8.xlsx",
            "data/excel/zones-sept-8-15.xlsx",
            "data/excel/zones-sept-15-22.xlsx",
            "data/excel/zones-sept-22-30.xlsx"]
     for path in paths:
-        excel_to_json(path,startDate= startDate)
+        excel_to_json(path,startDate,output_file)
         startDate+=7
+    output_file = "data/formated_data/averageZones/"
+    excel_to_json("data/excel/avg-clases-sept.xlsx",startDate,output_file)
         

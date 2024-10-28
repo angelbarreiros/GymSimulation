@@ -13,6 +13,20 @@
             "targetCapacity": 12,
             "totalCapacity": 55,
             "hour": "20:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 34,
+            "totalCapacity": 45,
+            "hour": "20:30"
+        },
+        {
+            "name": "AQUAFIT",
+            "zone": "PP",
+            "targetCapacity": 12,
+            "totalCapacity": 55,
+            "hour": "20:30"
         }
     ],
     "aforo_zonas": [

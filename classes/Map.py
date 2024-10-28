@@ -19,7 +19,9 @@ class Area:
             if self.type == 'PG':  # If not on the pool yet, choose 1 of the 6 lanes.
                return self.machines[id % 6][0]
             else:
-                return self.machines[np.random.randint(0, len(self.machines))][0]
+                machine_coords = self.machines[np.random.randint(0, len(self.machines))][0]
+                jitter = np.random.randint(-4, 4, size=2)  # Add a small random jitter to the coordinates
+                return tuple(machine_coords + jitter)
             # elif self.actualCapacity < len(self.machines):
             #     # available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if occupied == -1]
             #     # if available_machines:

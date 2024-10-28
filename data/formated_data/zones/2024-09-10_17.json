@@ -20,6 +20,27 @@
             "targetCapacity": 18,
             "totalCapacity": 24,
             "hour": "17:30"
+        },
+        {
+            "name": "GAP",
+            "zone": "Studio 2",
+            "targetCapacity": 50,
+            "totalCapacity": 60,
+            "hour": "17:30"
+        },
+        {
+            "name": "DANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 20,
+            "totalCapacity": 60,
+            "hour": "17:30"
+        },
+        {
+            "name": "ZUMBA KIDS",
+            "zone": "X-TRAINING",
+            "targetCapacity": 18,
+            "totalCapacity": 24,
+            "hour": "17:30"
         }
     ],
     "aforo_zonas": [

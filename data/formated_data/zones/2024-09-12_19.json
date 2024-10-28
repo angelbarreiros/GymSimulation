@@ -27,6 +27,34 @@
             "targetCapacity": 52,
             "totalCapacity": 60,
             "hour": "19:30"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 35,
+            "totalCapacity": 45,
+            "hour": "19:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 4",
+            "targetCapacity": 50,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 52,
+            "totalCapacity": 60,
+            "hour": "19:30"
         }
     ],
     "aforo_zonas": [

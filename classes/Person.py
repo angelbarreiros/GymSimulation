@@ -108,7 +108,7 @@ class Person:
             self.x = 1750
             self.y = 165 + self.id * 10
             return
-        else:
+        elif self.target_area.floor !=3:
             self.wait_time = random.randint(100, 200)
             self.target_coords = self.target_area.getPointInside(self._lane_index)
             self.route = get_easy_route(
@@ -116,6 +116,9 @@ class Person:
                 end=self.target_coords,
                 step=self.speed
             )
+        else:
+            return
+
         self.x, self.y = self.route.pop(0)
         self.stay_counter += 1
 

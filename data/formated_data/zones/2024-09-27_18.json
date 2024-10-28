@@ -20,6 +20,27 @@
             "targetCapacity": 5,
             "totalCapacity": 24,
             "hour": "18:30"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 11,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 31,
+            "totalCapacity": 55,
+            "hour": "18:30"
+        },
+        {
+            "name": "YOGA KIDS",
+            "zone": "Studio 1",
+            "targetCapacity": 5,
+            "totalCapacity": 24,
+            "hour": "18:30"
         }
     ],
     "aforo_zonas": [
