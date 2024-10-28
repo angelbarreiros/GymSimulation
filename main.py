@@ -70,13 +70,7 @@ def main():
     print(f"Total time for all iterations: {total_end_time - total_start_time:.2f} seconds")
 
 if __name__ == "__main__":
-<<<<<<< Updated upstream
-    # if not DEBUG:
-    #     cProfile.run('main()')
-    # else:
-=======
     if DEBUG:
         cProfile.run('main()')
     else:
->>>>>>> Stashed changes
         main()
