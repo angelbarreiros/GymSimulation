@@ -1,7 +1,13 @@
 import numpy as np
-from utils.shortest_path import create_matrix_from_json, get_easy_route, variable_a_star_search_from_grid
+from utils.shortest_path import create_matrix_from_json, get_easy_route, variable_a_star_search_from_grid, find_route
 from utils.fixed_route import join_coordinates
 import random
+import pandas as pd
+
+SCALE_FACTOR = 20
+MATRIX_FLOOR = [create_matrix_from_json(floor, SCALE_FACTOR, 0) for floor in range(4)]
+ROUTES_DF = pd.read_csv('precalculated_routes0.csv')
+ROUTES_DF['route'] = ROUTES_DF['route'].apply(eval)
 from typing import Tuple, List, Optional, Any
 
 # Pre-calculate constants

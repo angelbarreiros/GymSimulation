@@ -69,7 +69,7 @@ def main():
     print(f"Total time for all iterations: {total_end_time - total_start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    if DEBUG:
+    if not DEBUG:
         cProfile.run('main()')
     else:
         main()

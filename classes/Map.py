@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+from utils.global_variables import DEBUG
 
 class Area:
     def __init__(self, name, points, totalCapacity, targetCapacity, floor, type, machines):

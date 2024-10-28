@@ -97,11 +97,22 @@ def modify_event(string):
         "PILATES": "Studio 1",
         "BODY COMBAT": "Studio 2",
         "AQUAGYM": "PP",
-        "ZUMBA": "Studio 2",
+        "ZUMBA": "Studio 4",
         "BODY STEP": "Studio 1",
-        "DEPORTE I (3-7)": "Studio 2"
+        "DEPORTE I (3-7)": "Studio 2",
+        "BODY BALANCE":"Studio 4",
+        "BODY STEP":"Studio 1",
+        "X-TRAINING KIDS":"X-TRAINING",
+        "GAP":"Studio 2",
+        "X-TRAINING":"X-TRAINING",
+        "BODY PUMP":"Studio 4",
+        "AQUAFIT":"PP",
+        "EMBARAZO ACT.":"Studio 2",
+        "SUELO PÉLVICO":"Studio 2",
+        "DANCE":"Studio 4",
+        "ZUMBA KIDS":"X-TRAINING",
     }
-    return  activity_map.get(string, None)
+    return  activity_map.get(string, "Studio 1")
     
 
 def redondear_hora(hora_str):
