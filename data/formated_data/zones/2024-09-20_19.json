@@ -20,6 +20,27 @@
             "targetCapacity": 19,
             "totalCapacity": 20,
             "hour": "19:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 35,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 17,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 19,
+            "totalCapacity": 20,
+            "hour": "19:30"
         }
     ],
     "aforo_zonas": [

@@ -34,6 +34,41 @@
             "targetCapacity": 19,
             "totalCapacity": 24,
             "hour": "18:30"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 11,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 35,
+            "totalCapacity": 60,
+            "hour": "18:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 42,
+            "totalCapacity": 45,
+            "hour": "18:30"
+        },
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 57,
+            "totalCapacity": 60,
+            "hour": "18:30"
+        },
+        {
+            "name": "X-TRAINING KIDS",
+            "zone": "X-TRAINING",
+            "targetCapacity": 19,
+            "totalCapacity": 24,
+            "hour": "18:30"
         }
     ],
     "aforo_zonas": [

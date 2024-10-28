@@ -27,6 +27,34 @@
             "targetCapacity": 11,
             "totalCapacity": 60,
             "hour": "10:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 41,
+            "totalCapacity": 45,
+            "hour": "10:00"
+        },
+        {
+            "name": "DANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "10:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 33,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 11,
+            "totalCapacity": 60,
+            "hour": "10:30"
         }
     ],
     "aforo_zonas": [

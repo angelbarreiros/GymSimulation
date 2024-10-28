@@ -20,6 +20,27 @@
             "targetCapacity": 11,
             "totalCapacity": 45,
             "hour": "12:00"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 2,
+            "totalCapacity": 12,
+            "hour": "12:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 6,
+            "totalCapacity": 60,
+            "hour": "12:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 11,
+            "totalCapacity": 45,
+            "hour": "12:00"
         }
     ],
     "aforo_zonas": [

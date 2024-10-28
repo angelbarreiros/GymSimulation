@@ -6,6 +6,13 @@
             "targetCapacity": 36,
             "totalCapacity": 55,
             "hour": "10:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 36,
+            "totalCapacity": 55,
+            "hour": "10:30"
         }
     ],
     "aforo_zonas": [

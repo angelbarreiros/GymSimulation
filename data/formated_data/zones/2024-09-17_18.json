@@ -34,6 +34,41 @@
             "targetCapacity": 17,
             "totalCapacity": 24,
             "hour": "18:30"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 32,
+            "totalCapacity": 45,
+            "hour": "18:00"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 12,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "EMBARAZO ACT.",
+            "zone": "Studio 2",
+            "targetCapacity": 5,
+            "totalCapacity": 14,
+            "hour": "18:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 50,
+            "totalCapacity": 55,
+            "hour": "18:30"
+        },
+        {
+            "name": "DEPORTE II (8 -13)",
+            "zone": "Studio 1",
+            "targetCapacity": 17,
+            "totalCapacity": 24,
+            "hour": "18:30"
         }
     ],
     "aforo_zonas": [

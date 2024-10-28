@@ -27,6 +27,34 @@
             "targetCapacity": 18,
             "totalCapacity": 55,
             "hour": "10:30"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 4",
+            "targetCapacity": 24,
+            "totalCapacity": 60,
+            "hour": "10:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 24,
+            "totalCapacity": 45,
+            "hour": "10:00"
+        },
+        {
+            "name": "BODY STEP",
+            "zone": "Studio 1",
+            "targetCapacity": 11,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 18,
+            "totalCapacity": 55,
+            "hour": "10:30"
         }
     ],
     "aforo_zonas": [

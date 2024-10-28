@@ -41,6 +41,48 @@
             "targetCapacity": 20,
             "totalCapacity": 24,
             "hour": "19:30"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 34,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "DANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 37,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": "Studio 4",
+            "targetCapacity": 49,
+            "totalCapacity": 55,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": "Studio 4",
+            "targetCapacity": 30,
+            "totalCapacity": 45,
+            "hour": "19:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 55,
+            "totalCapacity": 55,
+            "hour": "19:30"
+        },
+        {
+            "name": "X-TRAINING",
+            "zone": "X-TRAINING",
+            "targetCapacity": 20,
+            "totalCapacity": 24,
+            "hour": "19:30"
         }
     ],
     "aforo_zonas": [
