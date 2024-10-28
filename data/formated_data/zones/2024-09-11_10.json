@@ -1,4 +1,34 @@
 {
+    "aforo_clases": [
+        {
+            "name": "DANCE",
+            "zone": null,
+            "targetCapacity": 21,
+            "totalCapacity": 60,
+            "hour": "10:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 39,
+            "totalCapacity": 45,
+            "hour": "10:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 9,
+            "totalCapacity": 60,
+            "hour": "10:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 34,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,99 +99,6 @@
             "name": "DESCANSO",
             "targetCapacity": 1,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15091378",
-            "studio": "Studio 2",
-            "activity": "PILATES",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sofia Barkhioua Alvarez",
-            "attendingLimit": 36,
-            "bookedAttendees": 17,
-            "startedAt": "2024-09-11T10:00:00",
-            "endedAt": "2024-09-11T11:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15092131",
-            "studio": "Studio 4",
-            "activity": "DANCE",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 15,
-            "bookedAttendees": 3,
-            "startedAt": "2024-09-11T10:00:00",
-            "endedAt": "2024-09-11T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15092331",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Victor Perez Diaz ",
-            "attendingLimit": 32,
-            "bookedAttendees": 12,
-            "startedAt": "2024-09-11T10:30:00",
-            "endedAt": "2024-09-11T11:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15186088",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-11T10:00:00",
-            "endedAt": "2024-09-11T10:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15186193",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-11T10:15:00",
-            "endedAt": "2024-09-11T10:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15186299",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-11T10:30:00",
-            "endedAt": "2024-09-11T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15186375",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-11T10:45:00",
-            "endedAt": "2024-09-11T11:00:00"
         }
     ]
 }

@@ -70,46 +70,5 @@
             "targetCapacity": 1,
             "totalCapacity": 30
         }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15097599",
-            "studio": "Studio 2",
-            "activity": "BODY COMBAT VIRTUAL",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T14:30:00",
-            "endedAt": "2024-09-22T15:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15204010",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T14:30:00",
-            "endedAt": "2024-09-22T14:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15204115",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T14:45:00",
-            "endedAt": "2024-09-22T15:00:00"
-        }
     ]
 }

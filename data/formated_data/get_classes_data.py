@@ -1,61 +1,179 @@
+import openpyxl
+import pandas as pd
 import json
-from datetime import datetime
-from collections import defaultdict
+from datetime import datetime, timedelta
+import os
 
-def modify_event(event):
-    # Cambiar "FUNCIONAL 360" a "FUNCIONAL"
-    if event['activity'] == "FUNCIONAL 360":
-        event['activity'] = "FUNCIONAL"
-    if event['studio'] == "Sala Fitness":
-        event['studio'] = "FUNCIONAL"
-    # Cambiar "Studio Ciclo" a "Studio 1"
-    if event['studio'] == "Studio Ciclo":
-        event['studio'] = "Studio 1"
-    return event
+import unidecode
 
-def group_events_by_weekday_hour(events):
-    grouped = defaultdict(list)
-    for event in events:
-        modified_event = modify_event(event)
-        start_time = datetime.strptime(modified_event['startedAt'], "%Y-%m-%dT%H:%M:%S")
-        # Formatear como YYYY-MM-DD_HH
-        date_hour = start_time.strftime("%Y-%m-%d_%H")
-        # Usamos la fecha_hora como clave
-        grouped[date_hour].append(modified_event)
-    return grouped
+class HourData:
+    def __init__(self, zones_array):
+        self.zones_array = zones_array
+    
+    def __str__(self):
+        return f"Hour Data:\nZones: {self.zones_array}"
+    def to_dict(self):
+         
+             array = [zone.to_dict() for zone in self.zones_array]
+             return {
+                 "aforo_clases": array
+             }
 
-def transform_json(input_file):
-    with open(input_file, 'r', encoding='utf8') as f:
-        data = json.load(f)
-
-    # Asegurarse de que data es una lista
-    if isinstance(data, dict):
-        data = list(data.values())
-
-    # Agrupar los eventos por día de la semana (número) y hora
-    grouped_events = group_events_by_weekday_hour(data)
-
-    # Añadir cada grupo al archivo JSON correspondiente
-    for key, events in grouped_events.items():
-        filename = f"{key}.json"
-        file_path = "data/formated_data/zones/" + filename
-        
-        try:
-            with open(file_path, 'r') as f:
-                existing_data = json.load(f)
-                
-        except FileNotFoundError:
-            existing_data = {}  # Cambiado de [] a {} ya que parece que quieres un diccionario
-        
-        # Añadir eventos al diccionario existente
-        existing_data["classes"] = events
-       
-        
-        # Guardar los eventos directamente en el archivo JSON
-        with open(file_path, 'w') as f:
-            json.dump(existing_data, f, indent=4)
+class Zones_Data:
+    def __init__(self, name, targetCapacity, totalCapacity,zone,hour):
+        self.name = name
+        self.targetCapacity = targetCapacity
+        self.totalCapacity = totalCapacity
+        self.zone = zone
+        self.hour = hour
+    
+    def __str__(self):
+        return f"Zones Data:\nName: {self.name}\nTarget Capacity: {self.targetCapacity}\nTotal Capacity: {self.totalCapacity} \nZone : {self.zone}"
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "zone":self.zone,
+            "targetCapacity": self.targetCapacity,
+            "totalCapacity": self.totalCapacity,
+            "hour":self.hour
             
-        print(f"Eventos añadidos al archivo: {filename}")
+        }
+def serialize_to_json(obj, filename):
+    # Initialize data from the new object
+    new_data = obj.to_dict()
+    
+    # If file exists, read and append to existing data
+    if os.path.exists(filename):
+        with open(filename, 'r') as f:
+            
+                existing_data = json.load(f)
+                # Assuming the existing data has "aforo_clases" key
+                existing_data["aforo_clases"].extend(new_data["aforo_clases"])
+                final_data = existing_data
+            
+    else:
+        # If file doesn't exist, use new data directly
+        final_data = new_data
+    
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w') as f:
+        json.dump(final_data, f, indent=4)
+def clean_string(text):
+    if(text!=None):
+        text_without_accents = unidecode.unidecode(text)
+        cleaned_text = ''.join(char for char in text_without_accents if ord(char) < 128)
+        return cleaned_text
+    return None
+def get_cell_merge_info(sheet,row, column):
+    # Convertir la columna a número si se proporciona como letra
+    if isinstance(column, str):
+        column = openpyxl.utils.column_index_from_string(column)
 
-def getClassData():
-    transform_json("data/excel/clases_total.json")
+    # Verificar si la celda está en un rango fusionado
+    for merged_range in sheet.merged_cells.ranges:
+        min_col, min_row, max_col, max_row = merged_range.bounds
+        if min_row <= row <= max_row and min_col <= column <= max_col:
+            num_cols = max_col - min_col + 1
+            num_rows = max_row - min_row + 1
+            return {
+                "is_merged": True,
+                "columns_span": num_cols,
+                "rows_span": num_rows,
+                "value": sheet.cell(row=min_row, column=min_col).value
+            }
+
+    # Si la celda no está fusionada
+    return {
+        "is_merged": False,
+        "columns_span": 1,
+        "rows_span": 1,
+        "value": sheet.cell(row=row, column=column).value
+    }
+def modify_event(string):
+    # Map the activities to their new names
+    activity_map = {
+        "CICLO INDOOR": "Studio 3",
+        "FUNCIONAL 360": "FUNCIONAL",
+        "PILATES": "Studio 1",
+        "BODY COMBAT": "Studio 2",
+        "AQUAGYM": "PP",
+        "ZUMBA": "Studio 2",
+        "BODY STEP": "Studio 1",
+        "DEPORTE I (3-7)": "Studio 2"
+    }
+    return  activity_map.get(string, None)
+    
+
+def redondear_hora(hora_str):
+    # Round the time to the nearest half hour
+    hora = datetime.strptime(hora_str, "%H:%M")
+    minuto = hora.minute
+    if minuto >= 45:
+        hora += timedelta(hours=1)
+        hora = hora.replace(minute=0)
+    elif minuto >= 15:
+        hora = hora.replace(minute=30)
+    else:
+        hora = hora.replace(minute=0)
+    return hora.strftime("%H")
+
+def generar_json_por_hora(file_path,startDate):
+    from datetime import datetime, timedelta
+
+    wb = openpyxl.load_workbook(file_path)
+    sheet = wb.active
+    day = startDate
+    
+    
+    # Create base date starting from September 1st, 2024
+    base_date = datetime(2024, 9, 2)
+    
+
+    for col in range(3, 28, 4):
+        rowStart = 3
+        current_date = base_date + timedelta(days=day-1)  # subtract 1 since startDate begins at 1
+        formatted_date = current_date.strftime('%Y-%m-%d')
+        while(rowStart < sheet.max_row -1):
+            notWorkingHour = False
+            zones_data = []
+            hour = sheet.cell(row=rowStart, column=1).value
+            
+            value = get_cell_merge_info(sheet, rowStart, 1)
+            sumatorio = value['rows_span']            
+            rowend = rowStart + sumatorio
+            for row in range(rowStart, rowend, 2):
+                name = sheet.cell(row=row, column=col-1).value
+                
+                if name == None or name == "":
+                    break;
+                cleanName = clean_string(name)
+                total = sheet.cell(row=row+1, column=col).value
+                target = sheet.cell(row=row+1, column=col+1).value
+                
+                data = Zones_Data(cleanName, target, total,modify_event(cleanName),hour)
+                
+                zones_data.append(data)
+                
+            
+            rowStart += sumatorio
+            value = HourData(zones_data)
+            if(len(value.zones_array)!=0):
+
+                serialize_to_json(value, f"data/formated_data/zones/{formatted_date}_{hour[:-3]}.json")
+
+        day = day + 1        
+        
+
+
+def main():
+    startDate = 1
+    paths=["data/excel/clases_sept_2-8.xlsx",
+           "data/excel/clases_sept_9-15.xlsx",
+           "data/excel/clases_sept_16-22.xlsx",
+           "data/excel/clases_sept_23-29.xlsx"]
+    for path in paths:
+        generar_json_por_hora(path,startDate= startDate)
+        startDate+=7
+
+if __name__ == "__main__":
+    main()

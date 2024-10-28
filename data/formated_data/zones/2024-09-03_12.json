@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 1,
+            "totalCapacity": 12,
+            "hour": "12:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 16,
+            "totalCapacity": 45,
+            "hour": "12:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,47 +85,6 @@
             "name": "X-TRAINING",
             "targetCapacity": 7,
             "totalCapacity": 24
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15094778",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-03T12:00:00",
-            "endedAt": "2024-09-03T12:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180952",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-03T12:30:00",
-            "endedAt": "2024-09-03T12:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15181064",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-03T12:45:00",
-            "endedAt": "2024-09-03T13:00:00"
         }
     ]
 }

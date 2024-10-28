@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 6,
+            "totalCapacity": 12,
+            "hour": "15:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",

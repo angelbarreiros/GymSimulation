@@ -81,6 +81,7 @@ document.getElementById('dailySubmitButton').addEventListener('click', async () 
         }
         const startSeconds = ((startHour - openingHour) * 20) + (startMinutes * 0.3333333333333333);
         const endSeconds = ((endHour - openingHour) * 20) + (endMinutes * 0.3333333333333333);
+        
     
         return {
             startSecond: Number(startSeconds.toFixed(2)),

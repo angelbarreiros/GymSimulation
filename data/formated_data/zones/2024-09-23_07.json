@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 6,
+            "totalCapacity": 60,
+            "hour": "07:10"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,34 +78,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15088398",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sofia Barkhioua Alvarez",
-            "attendingLimit": 12,
-            "bookedAttendees": 3,
-            "startedAt": "2024-09-23T07:00:00",
-            "endedAt": "2024-09-23T07:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15089067",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-23T07:15:00",
-            "endedAt": "2024-09-23T08:00:00"
         }
     ]
 }

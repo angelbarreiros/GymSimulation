@@ -12,25 +12,27 @@ class Area:
         self.floor = floor
         self.type = type
         self.machines = machines
-        self.ocuppiedMachines = [-1] * len(machines)
+        # self.ocuppiedMachines = [-1] * len(machines)
 
     def getPointInside(self, id=None):
         if self.machines:  # If area has machines, choose a random machine that isn't occupied
             if self.type == 'PG':  # If not on the pool yet, choose 1 of the 6 lanes.
-                chosen_machine = self.machines[id % 6][0]
-                return chosen_machine
+               return self.machines[id % 6][0]
             else:
-                available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if occupied == -1]
-                if available_machines:
-                    chosen_machine = np.random.choice(available_machines)
-                    self.ocuppiedMachines[chosen_machine] = id
-                    if DEBUG:
-                        print(f"Chosen machine: {self.machines[chosen_machine][0]} in {self.name}")
-                    return tuple(self.machines[chosen_machine][0])
+                return self.machines[np.random.randint(0, len(self.machines))][0]
+            # elif self.actualCapacity < len(self.machines):
+            #     # available_machines = [i for i, occupied in enumerate(self.ocuppiedMachines) if occupied == -1]
+            #     # if available_machines:
+            #     #     chosen_machine = np.random.choice(available_machines)
+            #     #     self.ocuppiedMachines[chosen_machine] = id
+            #     #     print(f"Chosen machine: {self.machines[chosen_machine][0]} in {self.name}")
+            #     #     return tuple(self.machines[chosen_machine][0])
+            #     return self.machines[self.actualCapacity][0]
 
         x, y, w, h = cv2.boundingRect(self.points)
+        margin = 5
         while True:
-            random_point = (np.random.randint(x, x + w), np.random.randint(y, y + h))
+            random_point = (np.random.randint(x+margin, x + w-margin), np.random.randint(y+margin, y + h-margin))
             if cv2.pointPolygonTest(self.points, random_point, False) >= 0:
                 return random_point
 
@@ -57,8 +59,8 @@ class SpawnPoint:
         return self.coords
 
 class Activity:
-    def __init__(self,name,startDate,endDate,Area):
+    def __init__(self,name,startDate,Area):
         self.name = name
         self.startDate = startDate
-        self.endDate = endDate
+        # self.endDate = endDate
         self.Area = Area

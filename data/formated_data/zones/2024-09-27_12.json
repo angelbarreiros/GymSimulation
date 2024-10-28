@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 18,
+            "totalCapacity": 45,
+            "hour": "12:00"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12,
+            "hour": "12:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,60 +85,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15095103",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T12:00:00",
-            "endedAt": "2024-09-27T12:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15095208",
-            "studio": "Studio 2",
-            "activity": "BODY BALANCE VIRTUAL",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T12:00:00",
-            "endedAt": "2024-09-27T13:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15199999",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T12:30:00",
-            "endedAt": "2024-09-27T12:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15200106",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T12:45:00",
-            "endedAt": "2024-09-27T13:00:00"
         }
     ]
 }

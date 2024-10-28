@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 12,
+            "totalCapacity": 60,
+            "hour": "09:30"
+        },
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 22,
+            "totalCapacity": 55,
+            "hour": "09:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 31,
+            "totalCapacity": 55,
+            "hour": "09:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,60 +92,6 @@
             "name": "DESCANSO",
             "targetCapacity": 1,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15090217",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Antonio Moran Fernandez",
-            "attendingLimit": 12,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-10T09:00:00",
-            "endedAt": "2024-09-10T09:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15090852",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sofia Barkhioua Alvarez",
-            "attendingLimit": 32,
-            "bookedAttendees": 25,
-            "startedAt": "2024-09-10T09:30:00",
-            "endedAt": "2024-09-10T10:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15179898",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-10T09:30:00",
-            "endedAt": "2024-09-10T09:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180003",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-10T09:45:00",
-            "endedAt": "2024-09-10T10:00:00"
         }
     ]
 }

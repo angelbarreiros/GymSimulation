@@ -10,9 +10,6 @@ import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
-# from multiprocessing import Pool, Process
-# from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-# import multiprocessing as mp
 from utils.global_variables import DEBUG
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorEsquinaDrch", "AscensorInterior"]
@@ -103,12 +100,15 @@ class Simulation:
         return True
     
     def simulate(self, total_frames, dia='2024-08-05', hours=[7,8], spawn_interval=10, max_spawn=1):
+        start_time = time.time()
         self.target_areas, self.boundaries, self.spawn_points = get_data_initial('data/zones.json')
         i=-1
+        durations = []
         for spawn in self.spawn_points:
             if DEBUG:
                 print(f"Spawn {spawn.name} at {spawn.coords}")
         for hora in hours:
+            start_time_hour = time.time()
             i+=1
             self.get_data_hour(dia, hora, self.target_areas)
             exceeded_lifetime_count = 0
@@ -167,23 +167,13 @@ class Simulation:
                          
                 for person in self.persons :
                     person.move()
+            end_time_hour = time.time()
+            durations.append(end_time_hour - start_time_hour)
 
-                # Process batches with ThreadPoolExecutor
-                # num_workers = min(os.cpu_count() or 4, 8)
-                # with ThreadPoolExecutor(max_workers=num_workers) as executor:
-                #     executor.submit(moveWrapper, self.persons)
-                    
-                # with ProcessPoolExecutor(max_workers=num_workers) as executor:
-                #     executor.imap_unordered(moveWrapper, self.persons)
-                    
-                # Create pool and process objects
-                # with mp.Pool(processes=num_workers) as pool:
-                #     # Use imap_unordered since order doesn't matter
-                #     # Ignore the results since function doesn't return anything
-                #     for _ in pool.imap_unordered(moveWrapper, self.persons):
-                #         pass
                     
         self.persons += self.personsDeleted
+        end_time = time.time()
+        return end_time - start_time, durations
                 
     def _process_batch(self, batch_data):
         """Process a batch of frames and return them as compressed data"""
@@ -332,7 +322,7 @@ class Simulation:
         cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
         # Prepare batches
-        BATCH_SIZE = 100 
+        BATCH_SIZE = 100
         total_frames_count = total_frames * len(hours)
         batches = []
         
@@ -342,11 +332,11 @@ class Simulation:
                 (base_frame, grid_size, height, width, header_height, 
                  combined_width, total_frames)
                 for _ in range(batch_start, batch_end)
-            ]
+            ] 
             batches.append((batch_frames, batch_start))
 
         # Process batches with ThreadPoolExecutor
-        num_workers = min(os.cpu_count() or 4, 8)
+        num_workers = os.cpu_count()-2
         with ThreadPoolExecutor(max_workers=num_workers) as executor:
             futures = []
             for batch_data in batches:
@@ -364,4 +354,4 @@ class Simulation:
                             f.write(compressed_frame)
                         pbar.update(1)
         end_time = time.time()
-        print(f"\nAnimation frames saved to {output_folder} in {end_time - start_time:.2f} seconds with {num_workers} workers on a batch size of {BATCH_SIZE}")
+        return end_time - start_time

@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "ZUMBA KIDS",
+            "zone": null,
+            "targetCapacity": 9,
+            "totalCapacity": 24,
+            "hour": "17:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,99 +78,6 @@
             "name": "CORE",
             "targetCapacity": 8,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15099886",
-            "studio": "Studio 2",
-            "activity": "ZUMBA",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 36,
-            "bookedAttendees": 22,
-            "startedAt": "2024-09-27T17:30:00",
-            "endedAt": "2024-09-27T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15100716",
-            "studio": "Studio Kids",
-            "activity": "ZUMBA KIDS",
-            "colorHex": "#5a53e0",
-            "isBookable": false,
-            "isViewable": true,
-            "coach": "Ana Dominguez Roncero",
-            "attendingLimit": 18,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T17:30:00",
-            "endedAt": "2024-09-27T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15201660",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T17:00:00",
-            "endedAt": "2024-09-27T17:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15201765",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T17:15:00",
-            "endedAt": "2024-09-27T17:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15201899",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T17:30:00",
-            "endedAt": "2024-09-27T17:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15202016",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-27T17:45:00",
-            "endedAt": "2024-09-27T18:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15932233",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (7/9 A\u00d1OS) MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-27T17:00:00",
-            "endedAt": "2024-09-27T18:00:00"
         }
     ]
 }

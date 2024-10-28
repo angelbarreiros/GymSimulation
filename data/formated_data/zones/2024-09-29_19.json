@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12,
+            "hour": "19:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,73 +78,6 @@
             "name": "PP EXT.",
             "targetCapacity": 0,
             "totalCapacity": 15
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15104010",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-29T19:30:00",
-            "endedAt": "2024-09-29T20:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15205736",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T19:15:00",
-            "endedAt": "2024-09-29T19:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15205789",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T19:00:00",
-            "endedAt": "2024-09-29T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15205905",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T19:30:00",
-            "endedAt": "2024-09-29T19:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15206059",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T19:45:00",
-            "endedAt": "2024-09-29T20:00:00"
         }
     ]
 }

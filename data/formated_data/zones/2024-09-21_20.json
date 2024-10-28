@@ -70,20 +70,5 @@
             "targetCapacity": 0,
             "totalCapacity": 24
         }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15105859",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Fatima Moreno Hernando",
-            "attendingLimit": 12,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-21T20:00:00",
-            "endedAt": "2024-09-21T20:30:00"
-        }
     ]
 }

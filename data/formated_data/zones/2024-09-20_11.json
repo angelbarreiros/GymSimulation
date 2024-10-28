@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 17,
+            "totalCapacity": 60,
+            "hour": "11:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 13,
+            "totalCapacity": 45,
+            "hour": "11:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 27,
+            "totalCapacity": 55,
+            "hour": "11:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PESO LIBRE",
@@ -69,73 +92,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15093281",
-            "studio": "Studio 2",
-            "activity": "ZUMBA",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 36,
-            "bookedAttendees": 10,
-            "startedAt": "2024-09-20T11:00:00",
-            "endedAt": "2024-09-20T12:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15199575",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-20T11:00:00",
-            "endedAt": "2024-09-20T11:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15199671",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T11:15:00",
-            "endedAt": "2024-09-20T11:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15199786",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T11:30:00",
-            "endedAt": "2024-09-20T11:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15199894",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T11:45:00",
-            "endedAt": "2024-09-20T12:00:00"
         }
     ]
 }

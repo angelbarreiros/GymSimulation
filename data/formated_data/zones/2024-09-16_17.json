@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 31,
+            "totalCapacity": 45,
+            "hour": "17:00"
+        },
+        {
+            "name": "DEPORTE I (3-7)",
+            "zone": "Studio 2",
+            "targetCapacity": 7,
+            "totalCapacity": 24,
+            "hour": "17:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,99 +85,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 2,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15100413",
-            "studio": "Studio Kids",
-            "activity": "DEPORTE I (3-7)",
-            "colorHex": "#5a53e0",
-            "isBookable": false,
-            "isViewable": true,
-            "coach": "Ana Dominguez Roncero",
-            "attendingLimit": 18,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-16T17:30:00",
-            "endedAt": "2024-09-16T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177268",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-16T17:00:00",
-            "endedAt": "2024-09-16T17:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177373",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-16T17:15:00",
-            "endedAt": "2024-09-16T17:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177478",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-16T17:30:00",
-            "endedAt": "2024-09-16T17:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177584",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-16T17:45:00",
-            "endedAt": "2024-09-16T18:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15931982",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (4/6 A\u00d1OS) INICIACI\u00d3N",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-16T17:00:00",
-            "endedAt": "2024-09-16T18:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16335161",
-            "studio": "Studio 1",
-            "activity": "GAP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 36,
-            "bookedAttendees": 35,
-            "startedAt": "2024-09-16T17:30:00",
-            "endedAt": "2024-09-16T18:30:00"
         }
     ]
 }

@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 3,
+            "totalCapacity": 12,
+            "hour": "08:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,60 +78,6 @@
             "name": "DESCANSO",
             "targetCapacity": 0,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15191397",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T08:00:00",
-            "endedAt": "2024-09-19T08:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15191501",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T08:15:00",
-            "endedAt": "2024-09-19T08:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15191578",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T08:30:00",
-            "endedAt": "2024-09-19T08:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15191709",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T08:45:00",
-            "endedAt": "2024-09-19T09:00:00"
         }
     ]
 }

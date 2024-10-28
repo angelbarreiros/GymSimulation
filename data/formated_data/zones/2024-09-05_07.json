@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 26,
+            "totalCapacity": 55,
+            "hour": "07:10"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,47 +78,6 @@
             "name": "DESCANSO",
             "targetCapacity": 1,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15088832",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Antonio Moran Fernandez",
-            "attendingLimit": 32,
-            "bookedAttendees": 4,
-            "startedAt": "2024-09-05T07:10:00",
-            "endedAt": "2024-09-05T07:55:00"
-        },
-        {
-            "id": "/enjoy/class_events/15191187",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T07:30:00",
-            "endedAt": "2024-09-05T07:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15191291",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T07:45:00",
-            "endedAt": "2024-09-05T08:00:00"
         }
     ]
 }

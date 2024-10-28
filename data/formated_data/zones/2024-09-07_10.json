@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 39,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "X-TRAINING",
@@ -69,99 +78,6 @@
             "name": "CORE",
             "targetCapacity": 8,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15092980",
-            "studio": "Studio 4",
-            "activity": "EMBARAZO ACT.",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 15,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-07T10:30:00",
-            "endedAt": "2024-09-07T11:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15093085",
-            "studio": "Studio 2",
-            "activity": "BODY COMBAT VIRTUAL",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-07T10:00:00",
-            "endedAt": "2024-09-07T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15206161",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-07T10:00:00",
-            "endedAt": "2024-09-07T10:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15206274",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-07T10:15:00",
-            "endedAt": "2024-09-07T10:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15206379",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-07T10:30:00",
-            "endedAt": "2024-09-07T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15206484",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-07T10:45:00",
-            "endedAt": "2024-09-07T11:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16375442",
-            "studio": "Studio 1",
-            "activity": "BODY PUMP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Victor Perez Diaz ",
-            "attendingLimit": 36,
-            "bookedAttendees": 21,
-            "startedAt": "2024-09-07T10:30:00",
-            "endedAt": "2024-09-07T11:15:00"
         }
     ]
 }

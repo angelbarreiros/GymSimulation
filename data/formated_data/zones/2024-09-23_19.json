@@ -1,4 +1,48 @@
 {
+    "aforo_clases": [
+        {
+            "name": "DANCE",
+            "zone": null,
+            "targetCapacity": 31,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 15,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 20,
+            "totalCapacity": 20,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 30,
+            "totalCapacity": 45,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 49,
+            "totalCapacity": 55,
+            "hour": "19:30"
+        },
+        {
+            "name": "X-TRAINING",
+            "zone": null,
+            "targetCapacity": 22,
+            "totalCapacity": 24,
+            "hour": "19:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,138 +113,6 @@
             "name": "CORE",
             "targetCapacity": 11,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15103800",
-            "studio": "Studio 2",
-            "activity": "ZUMBA",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 33,
-            "startedAt": "2024-09-23T19:00:00",
-            "endedAt": "2024-09-23T20:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15104219",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 32,
-            "bookedAttendees": 30,
-            "startedAt": "2024-09-23T19:00:00",
-            "endedAt": "2024-09-23T19:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15105214",
-            "studio": "Studio 1",
-            "activity": "BODY PUMP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 36,
-            "bookedAttendees": 31,
-            "startedAt": "2024-09-23T19:30:00",
-            "endedAt": "2024-09-23T20:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15105649",
-            "studio": "Studio 4",
-            "activity": "PILATES",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 15,
-            "bookedAttendees": 14,
-            "startedAt": "2024-09-23T19:30:00",
-            "endedAt": "2024-09-23T20:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177902",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T19:00:00",
-            "endedAt": "2024-09-23T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15178007",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-23T19:15:00",
-            "endedAt": "2024-09-23T19:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15178112",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-23T19:30:00",
-            "endedAt": "2024-09-23T19:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15178217",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T19:45:00",
-            "endedAt": "2024-09-23T20:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15931205",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS INICIACI\u00d3N",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T19:00:00",
-            "endedAt": "2024-09-23T20:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15935913",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (10/12 A\u00d1OS) MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 3,
-            "startedAt": "2024-09-23T19:00:00",
-            "endedAt": "2024-09-23T20:00:00"
         }
     ]
 }

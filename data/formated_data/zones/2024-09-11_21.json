@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 7,
+            "totalCapacity": 12,
+            "hour": "21:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,73 +78,6 @@
             "name": "CORE",
             "targetCapacity": 4,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15107543",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 12,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-11T21:00:00",
-            "endedAt": "2024-09-11T21:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15190645",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-11T21:30:00",
-            "endedAt": "2024-09-11T21:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15190759",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-11T21:45:00",
-            "endedAt": "2024-09-11T22:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16337289",
-            "studio": "Studio 2",
-            "activity": "GAP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 36,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-11T21:00:00",
-            "endedAt": "2024-09-11T22:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16556056",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 3,
-            "startedAt": "2024-09-11T21:00:00",
-            "endedAt": "2024-09-11T22:00:00"
         }
     ]
 }

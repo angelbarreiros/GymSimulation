@@ -153,19 +153,20 @@ button:hover {
 }
 
 .video-grid {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
 .video-player {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    
+    
 }
 
 .daily-video-container {
-    margin-top: 20px;
+    display: none;
+    padding: 50%;
 }
 
 @media (max-width: 768px) {

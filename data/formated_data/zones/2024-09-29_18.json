@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 9,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,47 +78,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15102417",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sara Fernandez Cano",
-            "attendingLimit": 12,
-            "bookedAttendees": 4,
-            "startedAt": "2024-09-29T18:00:00",
-            "endedAt": "2024-09-29T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15205497",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T18:30:00",
-            "endedAt": "2024-09-29T18:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15205621",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-29T18:45:00",
-            "endedAt": "2024-09-29T19:00:00"
         }
     ]
 }

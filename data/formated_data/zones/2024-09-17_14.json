@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 17,
+            "totalCapacity": 55,
+            "hour": "14:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 13,
+            "totalCapacity": 55,
+            "hour": "14:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,60 +85,6 @@
             "name": "DESCANSO",
             "targetCapacity": 1,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15181400",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T14:00:00",
-            "endedAt": "2024-09-17T14:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15181516",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T14:15:00",
-            "endedAt": "2024-09-17T14:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15181621",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T14:30:00",
-            "endedAt": "2024-09-17T14:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/16888840",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T14:30:00",
-            "endedAt": "2024-09-17T15:15:00"
         }
     ]
 }

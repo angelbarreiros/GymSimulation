@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 1,
+            "totalCapacity": 12,
+            "hour": "21:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,47 +78,6 @@
             "name": "CORE",
             "targetCapacity": 9,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15107649",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Irene Benedicto Ortiz",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T21:00:00",
-            "endedAt": "2024-09-19T21:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15197212",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T21:30:00",
-            "endedAt": "2024-09-19T21:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15197295",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T21:45:00",
-            "endedAt": "2024-09-19T22:00:00"
         }
     ]
 }

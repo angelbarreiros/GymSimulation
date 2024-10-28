@@ -70,59 +70,5 @@
             "targetCapacity": 0,
             "totalCapacity": 30
         }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15089233",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T07:15:00",
-            "endedAt": "2024-09-20T08:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15198058",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T07:15:00",
-            "endedAt": "2024-09-20T07:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15198127",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T07:30:00",
-            "endedAt": "2024-09-20T07:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15198305",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-20T07:45:00",
-            "endedAt": "2024-09-20T08:00:00"
-        }
     ]
 }

@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 28,
+            "totalCapacity": 60,
+            "hour": "10:00"
+        },
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 30,
+            "totalCapacity": 45,
+            "hour": "10:00"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 22,
+            "totalCapacity": 55,
+            "hour": "10:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,112 +92,6 @@
             "name": "X-TRAINING",
             "targetCapacity": 5,
             "totalCapacity": 24
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15091693",
-            "studio": "Studio 2",
-            "activity": "ZUMBA",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Irene Benedicto Ortiz",
-            "attendingLimit": 36,
-            "bookedAttendees": 11,
-            "startedAt": "2024-09-10T10:00:00",
-            "endedAt": "2024-09-10T11:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15092552",
-            "studio": "Studio 4",
-            "activity": "BODY BALANCE",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 15,
-            "bookedAttendees": 14,
-            "startedAt": "2024-09-10T10:00:00",
-            "endedAt": "2024-09-10T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180108",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-10T10:00:00",
-            "endedAt": "2024-09-10T10:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180208",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-10T10:15:00",
-            "endedAt": "2024-09-10T10:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180310",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-10T10:30:00",
-            "endedAt": "2024-09-10T10:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15180426",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-10T10:45:00",
-            "endedAt": "2024-09-10T11:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16335747",
-            "studio": "Studio 1",
-            "activity": "BODY STEP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 36,
-            "bookedAttendees": 5,
-            "startedAt": "2024-09-10T10:30:00",
-            "endedAt": "2024-09-10T11:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/16430805",
-            "studio": "Hall",
-            "activity": "1a CITA EDUCACION NUTRICIONAL",
-            "colorHex": "#a4dd00",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Victor Perez Diaz ",
-            "attendingLimit": 6,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-10T10:00:00",
-            "endedAt": "2024-09-10T11:00:00"
         }
     ]
 }

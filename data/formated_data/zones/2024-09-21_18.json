@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 5,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 22,
+            "totalCapacity": 60,
+            "hour": "18:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,47 +85,6 @@
             "name": "PESO LIBRE",
             "targetCapacity": 26,
             "totalCapacity": 50
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15102194",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Fatima Moreno Hernando",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-21T18:00:00",
-            "endedAt": "2024-09-21T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15209365",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-21T18:30:00",
-            "endedAt": "2024-09-21T18:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15209467",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-21T18:45:00",
-            "endedAt": "2024-09-21T19:00:00"
         }
     ]
 }

@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 51,
+            "totalCapacity": 55,
+            "hour": "09:30"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 10,
+            "totalCapacity": 12,
+            "hour": "09:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,47 +85,6 @@
             "name": "CORE",
             "targetCapacity": 0,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15090746",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-07T09:00:00",
-            "endedAt": "2024-09-07T09:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15091166",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 12,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-07T09:30:00",
-            "endedAt": "2024-09-07T10:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16375337",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Victor Perez Diaz ",
-            "attendingLimit": 32,
-            "bookedAttendees": 25,
-            "startedAt": "2024-09-07T09:30:00",
-            "endedAt": "2024-09-07T10:15:00"
         }
     ]
 }

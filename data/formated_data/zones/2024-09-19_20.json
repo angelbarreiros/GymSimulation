@@ -1,4 +1,34 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 13,
+            "totalCapacity": 60,
+            "hour": "20:00"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 31,
+            "totalCapacity": 55,
+            "hour": "20:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 23,
+            "totalCapacity": 45,
+            "hour": "20:30"
+        },
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 34,
+            "totalCapacity": 55,
+            "hour": "20:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "X-TRAINING",
@@ -69,112 +99,6 @@
             "name": "CORE",
             "targetCapacity": 6,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15104970",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Victor Perez Diaz ",
-            "attendingLimit": 32,
-            "bookedAttendees": 17,
-            "startedAt": "2024-09-19T20:00:00",
-            "endedAt": "2024-09-19T20:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15106472",
-            "studio": "Studio 1",
-            "activity": "BODY PUMP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 36,
-            "bookedAttendees": 18,
-            "startedAt": "2024-09-19T20:30:00",
-            "endedAt": "2024-09-19T21:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15196658",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T20:00:00",
-            "endedAt": "2024-09-19T20:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15196763",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T20:15:00",
-            "endedAt": "2024-09-19T20:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15196868",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T20:30:00",
-            "endedAt": "2024-09-19T20:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15931549",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-19T20:00:00",
-            "endedAt": "2024-09-19T21:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16369826",
-            "studio": "Studio 2",
-            "activity": "BODY BALANCE",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Miguel Castro Garcia-Fraile",
-            "attendingLimit": 36,
-            "bookedAttendees": 5,
-            "startedAt": "2024-09-19T20:30:00",
-            "endedAt": "2024-09-19T21:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/16369983",
-            "studio": "Studio 4",
-            "activity": "EMBARAZO ACT.",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 15,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-19T20:30:00",
-            "endedAt": "2024-09-19T21:30:00"
         }
     ]
 }

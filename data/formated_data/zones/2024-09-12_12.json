@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 6,
+            "totalCapacity": 60,
+            "hour": "12:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 9,
+            "totalCapacity": 45,
+            "hour": "12:00"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 4,
+            "totalCapacity": 12,
+            "hour": "12:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,60 +92,6 @@
             "name": "X-TRAINING",
             "targetCapacity": 5,
             "totalCapacity": 24
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/16746570",
-            "studio": "FUNCIONAL",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Antonio Moran Fernandez",
-            "attendingLimit": 3,
-            "bookedAttendees": 3,
-            "startedAt": "2024-09-12T12:30:00",
-            "endedAt": "2024-09-12T12:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/16746588",
-            "studio": "FUNCIONAL",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sara Fernandez Cano",
-            "attendingLimit": 3,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-12T12:45:00",
-            "endedAt": "2024-09-12T13:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16749197",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sara Fernandez Cano",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-12T12:00:00",
-            "endedAt": "2024-09-12T12:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/16774117",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-12T12:00:00",
-            "endedAt": "2024-09-12T13:00:00"
         }
     ]
 }

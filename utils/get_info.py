@@ -3,52 +3,6 @@ import math
 from classes.Map import Area, Boundary, SpawnPoint, Activity
 from utils.global_variables import DEBUG
 
-def extract_aforo(file_path, hour):
-    hour_str = str(hour).zfill(2)  # Ensure hour is a two-digit string
-    with open(file_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    
-    for record in data:
-        if record['hora'] == hour_str:
-            entrada = record['entrada']
-            salida = record['salida']
-            return entrada, salida
-    return entrada, salida 
-
-def extract_aforo_zonas(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    
-    aforo_zonas = {}
-    
-    for zona in data:
-        name = zona['zona']
-        aforo_zonas[name] = {'aforo': zona['aforo'],'ocupancy': zona['oc.prom']}
-        
-        
-    result = {}
-    for k, v in aforo_zonas.items():
-        result[k]={'targetCapacity':v['ocupancy'],'totalCapacity':v['aforo']}
-    result['NOFUNCIONAL']={'targetCapacity':0,'totalCapacity':0}
-    result['VESTUARIO']={'targetCapacity':0,'totalCapacity':0}
-    result['CLASE']={'targetCapacity':0,'totalCapacity':0}
-    result['CLASE']={'targetCapacity':0,'totalCapacity':0}
-    
-    return result
-
-
-def extract_clases(aforo_clases_path,zone,hora):
-    with open(aforo_clases_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    
-    for clase in data:
-        if clase['studio']==zone.name:
-
-            targetClassArea=Area(zone.name,zone.points,clase['attendingLimit'],clase['bookedAttendees'],3,zone.type,zone.machines)
-            newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=targetClassArea)  
-            return newClass
-
-
 def get_data_initial(path):
     with open(path, 'r') as file:
         data = json.load(file)
@@ -115,22 +69,27 @@ def get_data(dia, hora, areas):
                         if DEBUG:
                             print(f"Matching area {matching_area.name} with {nareas} areas of type {matching_area.type} and {matching_area.targetCapacity} target capacity")
                         npersons += matching_area.targetCapacity
+                    for studio in ['Studio 4', 'Studio 1', 'Studio 2', 'Studio 3']:
+                        matching_studio = next((area for area in areas if area.name == studio), None)
+                        if matching_studio:
+                            matching_studio.targetCapacity = 0
+                            matching_studio.totalCapacity = 0
 
-        if 'classes' in data:
-            for clase in data['classes']:
-                zone_name = clase['studio']
-                matching_area = next((area for area in areas if area.name == zone_name), None)
-                if matching_area and clase['bookedAttendees']>1: # if matching_area.type == 'CLASE':
-                    newClass = Activity(name=clase['activity'],startDate=clase['startedAt'],endDate=clase['endedAt'],Area=matching_area)  
-                    classes.append(newClass)
+        if 'aforo_clases' in data:
+            for clase in data['aforo_clases']:
+                zone = clase['zone']
+                matching_area = next((area for area in areas if area.name == zone), None)
+                if matching_area and clase['targetCapacity']>1:
+                    act = Activity(name=clase['name'],startDate=clase['hour'],Area=matching_area)  #,endDate= clase['hour']
+                    classes.append(act)
                     npersons -= matching_area.targetCapacity
-                    matching_area.targetCapacity = clase['bookedAttendees']
-                    matching_area.totalCapacity = clase['attendingLimit']
-                    npersons += clase['bookedAttendees']
+                    matching_area.targetCapacity = clase['targetCapacity']
+                    matching_area.totalCapacity = clase['totalCapacity']
+                    npersons += clase['targetCapacity']
                     if DEBUG:
-                        print(f"Matching area {matching_area.name} with class {clase['activity']} with {clase['bookedAttendees']} attendees")
+                        print(f"Matching area {act.Area.name} with class {act.name} with {matching_area.targetCapacity} attendees")
 
-        if 'entradas' in data:  # NOT WORKING
+        if 'entradas' in data:  # NOT in json
             for dt in data['entradas']:
                 entradas = dt['total_entrada']
                 salidas = dt['total_salida']

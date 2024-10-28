@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 32,
+            "totalCapacity": 60,
+            "hour": "20:00"
+        },
+        {
+            "name": "AQUAFIT",
+            "zone": null,
+            "targetCapacity": 32,
+            "totalCapacity": 55,
+            "hour": "20:30"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 36,
+            "totalCapacity": 45,
+            "hour": "20:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,86 +92,6 @@
             "name": "DESCANSO",
             "targetCapacity": 2,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15104325",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 32,
-            "bookedAttendees": 29,
-            "startedAt": "2024-09-23T20:00:00",
-            "endedAt": "2024-09-23T20:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15106595",
-            "studio": "Studio 1",
-            "activity": "BODY STEP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 36,
-            "bookedAttendees": 8,
-            "startedAt": "2024-09-23T20:30:00",
-            "endedAt": "2024-09-23T21:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15117143",
-            "studio": "Studio 2",
-            "activity": "DANCE",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Irene Benedicto Ortiz",
-            "attendingLimit": 36,
-            "bookedAttendees": 7,
-            "startedAt": "2024-09-23T20:00:00",
-            "endedAt": "2024-09-23T20:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15178322",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T20:00:00",
-            "endedAt": "2024-09-23T20:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15178427",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T20:15:00",
-            "endedAt": "2024-09-23T20:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15931942",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS PERFECCIONAMIENTO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-23T20:00:00",
-            "endedAt": "2024-09-23T21:00:00"
         }
     ]
 }

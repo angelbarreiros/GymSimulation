@@ -1,4 +1,41 @@
 {
+    "aforo_clases": [
+        {
+            "name": "BODY BALANCE",
+            "zone": null,
+            "targetCapacity": 36,
+            "totalCapacity": 45,
+            "hour": "18:00"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 7,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "BODY PUMP",
+            "zone": null,
+            "targetCapacity": 40,
+            "totalCapacity": 55,
+            "hour": "18:30"
+        },
+        {
+            "name": "DEPORTE II (8 -13)",
+            "zone": null,
+            "targetCapacity": 14,
+            "totalCapacity": 24,
+            "hour": "18:30"
+        },
+        {
+            "name": "EMBARAZO ACT.",
+            "zone": null,
+            "targetCapacity": 4,
+            "totalCapacity": 14,
+            "hour": "18:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,99 +106,6 @@
             "name": "LUDOTECA",
             "targetCapacity": 33,
             "totalCapacity": 50
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15101983",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 12,
-            "bookedAttendees": 12,
-            "startedAt": "2024-09-05T18:30:00",
-            "endedAt": "2024-09-05T19:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15103167",
-            "studio": "Studio Kids",
-            "activity": "DEPORTE II (8 -13)",
-            "colorHex": "#5a53e0",
-            "isBookable": false,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 18,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T18:30:00",
-            "endedAt": "2024-09-05T19:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15195872",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T18:00:00",
-            "endedAt": "2024-09-05T18:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15196101",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T18:15:00",
-            "endedAt": "2024-09-05T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/16369561",
-            "studio": "Studio 1",
-            "activity": "BODY PUMP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Pedro Ramiro Ramiro",
-            "attendingLimit": 36,
-            "bookedAttendees": 32,
-            "startedAt": "2024-09-05T18:30:00",
-            "endedAt": "2024-09-05T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/16556061",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS INICIACI\u00d3N",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 4,
-            "startedAt": "2024-09-05T18:00:00",
-            "endedAt": "2024-09-05T19:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16556063",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (10/12 A\u00d1OS) MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-05T18:00:00",
-            "endedAt": "2024-09-05T19:00:00"
         }
     ]
 }

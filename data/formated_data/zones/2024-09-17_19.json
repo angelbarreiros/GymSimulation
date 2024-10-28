@@ -1,4 +1,41 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 39,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 31,
+            "totalCapacity": 45,
+            "hour": "19:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 60,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 52,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        },
+        {
+            "name": "AQUAFIT",
+            "zone": null,
+            "targetCapacity": 16,
+            "totalCapacity": 20,
+            "hour": "19:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,112 +106,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15103482",
-            "studio": "Studio 2",
-            "activity": "PILATES",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Nerea Navarro Barroso",
-            "attendingLimit": 36,
-            "bookedAttendees": 36,
-            "startedAt": "2024-09-17T19:00:00",
-            "endedAt": "2024-09-17T20:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15104408",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 32,
-            "bookedAttendees": 25,
-            "startedAt": "2024-09-17T19:00:00",
-            "endedAt": "2024-09-17T19:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15105334",
-            "studio": "Studio 1",
-            "activity": "BODY COMBAT",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 36,
-            "bookedAttendees": 26,
-            "startedAt": "2024-09-17T19:30:00",
-            "endedAt": "2024-09-17T20:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15183229",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-17T19:00:00",
-            "endedAt": "2024-09-17T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15183339",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T19:15:00",
-            "endedAt": "2024-09-17T19:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15183444",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T19:30:00",
-            "endedAt": "2024-09-17T19:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15183559",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T19:45:00",
-            "endedAt": "2024-09-17T20:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15931478",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL ADULTOS MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 4,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-17T19:00:00",
-            "endedAt": "2024-09-17T20:00:00"
         }
     ]
 }

@@ -1,4 +1,20 @@
 {
+    "aforo_clases": [
+        {
+            "name": "AQUAGYM",
+            "zone": "PP",
+            "targetCapacity": 48,
+            "totalCapacity": 55,
+            "hour": "09:30"
+        },
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 10,
+            "totalCapacity": 12,
+            "hour": "09:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,47 +85,6 @@
             "name": "DESCANSO",
             "targetCapacity": 0,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15184687",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T09:15:00",
-            "endedAt": "2024-09-22T09:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15184796",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T09:30:00",
-            "endedAt": "2024-09-22T09:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15184911",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-22T09:45:00",
-            "endedAt": "2024-09-22T10:00:00"
         }
     ]
 }

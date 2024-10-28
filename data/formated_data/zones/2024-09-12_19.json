@@ -1,4 +1,34 @@
 {
+    "aforo_clases": [
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "19:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 35,
+            "totalCapacity": 45,
+            "hour": "19:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 50,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        },
+        {
+            "name": "BODY COMBAT",
+            "zone": "Studio 2",
+            "targetCapacity": 52,
+            "totalCapacity": 60,
+            "hour": "19:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "X-TRAINING",
@@ -69,21 +99,6 @@
             "name": "SOLARIUM",
             "targetCapacity": 0,
             "totalCapacity": 30
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/17310463",
-            "studio": "Studio 1",
-            "activity": "CICLO INDOOR",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Pedro Ramiro Ramiro",
-            "attendingLimit": 32,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-12T19:00:00",
-            "endedAt": "2024-09-12T19:45:00"
         }
     ]
 }

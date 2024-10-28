@@ -1,4 +1,27 @@
 {
+    "aforo_clases": [
+        {
+            "name": "GAP",
+            "zone": null,
+            "targetCapacity": 38,
+            "totalCapacity": 60,
+            "hour": "17:30"
+        },
+        {
+            "name": "DANCE",
+            "zone": null,
+            "targetCapacity": 28,
+            "totalCapacity": 60,
+            "hour": "17:30"
+        },
+        {
+            "name": "ZUMBA KIDS",
+            "zone": null,
+            "targetCapacity": 15,
+            "totalCapacity": 24,
+            "hour": "17:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,99 +92,6 @@
             "name": "CORE",
             "targetCapacity": 10,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15100498",
-            "studio": "Studio Kids",
-            "activity": "ZUMBA KIDS",
-            "colorHex": "#5a53e0",
-            "isBookable": false,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 18,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T17:30:00",
-            "endedAt": "2024-09-17T18:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15182506",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T17:00:00",
-            "endedAt": "2024-09-17T17:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15182618",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T17:15:00",
-            "endedAt": "2024-09-17T17:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15182719",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T17:30:00",
-            "endedAt": "2024-09-17T17:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15182821",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-17T17:45:00",
-            "endedAt": "2024-09-17T18:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15932066",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (4/6 A\u00d1OS) MEDIO",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-17T17:00:00",
-            "endedAt": "2024-09-17T18:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16336181",
-            "studio": "Studio 2",
-            "activity": "ZUMBA",
-            "colorHex": "#ff4c67",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 36,
-            "bookedAttendees": 14,
-            "startedAt": "2024-09-17T17:30:00",
-            "endedAt": "2024-09-17T18:30:00"
         }
     ]
 }

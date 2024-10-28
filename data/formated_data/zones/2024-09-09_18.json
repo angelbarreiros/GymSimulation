@@ -1,4 +1,41 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 12,
+            "totalCapacity": 12,
+            "hour": "18:00"
+        },
+        {
+            "name": "ZUMBA",
+            "zone": "Studio 2",
+            "targetCapacity": 38,
+            "totalCapacity": 60,
+            "hour": "18:00"
+        },
+        {
+            "name": "CICLO INDOOR",
+            "zone": "Studio 3",
+            "targetCapacity": 30,
+            "totalCapacity": 60,
+            "hour": "18:00"
+        },
+        {
+            "name": "PILATES",
+            "zone": "Studio 1",
+            "targetCapacity": 33,
+            "totalCapacity": 45,
+            "hour": "18:30"
+        },
+        {
+            "name": "X-TRAINING KIDS",
+            "zone": null,
+            "targetCapacity": 16,
+            "totalCapacity": 24,
+            "hour": "18:30"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "LUDOTECA",
@@ -69,99 +106,6 @@
             "name": "CORE",
             "targetCapacity": 13,
             "totalCapacity": 20
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15101142",
-            "studio": "Studio 2",
-            "activity": "X-TRAINING",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 13,
-            "startedAt": "2024-09-09T18:00:00",
-            "endedAt": "2024-09-09T19:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15101668",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Irene Benedicto Ortiz",
-            "attendingLimit": 12,
-            "bookedAttendees": 5,
-            "startedAt": "2024-09-09T18:30:00",
-            "endedAt": "2024-09-09T19:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/15102519",
-            "studio": "Studio 1",
-            "activity": "BODY COMBAT",
-            "colorHex": "#e2703e",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Laris Lopez Jurado",
-            "attendingLimit": 36,
-            "bookedAttendees": 30,
-            "startedAt": "2024-09-09T18:30:00",
-            "endedAt": "2024-09-09T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15102747",
-            "studio": "Studio 4",
-            "activity": "BODY BALANCE",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 15,
-            "bookedAttendees": 15,
-            "startedAt": "2024-09-09T18:30:00",
-            "endedAt": "2024-09-09T19:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/15102958",
-            "studio": "Studio Kids",
-            "activity": "X-TRAINING KIDS",
-            "colorHex": "#5a53e0",
-            "isBookable": false,
-            "isViewable": true,
-            "coach": "Ana Dominguez Roncero",
-            "attendingLimit": 18,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-09T18:30:00",
-            "endedAt": "2024-09-09T19:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15177673",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-09T18:00:00",
-            "endedAt": "2024-09-09T18:15:00"
-        },
-        {
-            "id": "/enjoy/class_events/16556024",
-            "studio": "Pista de padel",
-            "activity": "CURSO P\u00c1DEL NI\u00d1OS (7/9 A\u00d1OS) INICIACI\u00d3N",
-            "colorHex": "#68bc00",
-            "isBookable": false,
-            "isViewable": false,
-            "coach": "",
-            "attendingLimit": 6,
-            "bookedAttendees": 2,
-            "startedAt": "2024-09-09T18:00:00",
-            "endedAt": "2024-09-09T19:00:00"
         }
     ]
 }

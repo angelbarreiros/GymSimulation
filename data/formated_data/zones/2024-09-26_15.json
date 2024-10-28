@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 7,
+            "totalCapacity": 12,
+            "hour": "15:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "CARDIO",
@@ -69,73 +78,6 @@
             "name": "DESCANSO",
             "targetCapacity": 0,
             "totalCapacity": 25
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15098101",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Sofia Barkhioua Alvarez",
-            "attendingLimit": 12,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-26T15:00:00",
-            "endedAt": "2024-09-26T15:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15098645",
-            "studio": "Studio 2",
-            "activity": "BODY BALANCE VIRTUAL",
-            "colorHex": "#3bcfc3",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-26T15:30:00",
-            "endedAt": "2024-09-26T16:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15194700",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-26T15:30:00",
-            "endedAt": "2024-09-26T15:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15194790",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-26T15:45:00",
-            "endedAt": "2024-09-26T16:00:00"
-        },
-        {
-            "id": "/enjoy/class_events/16369354",
-            "studio": "Studio 1",
-            "activity": "BODY PUMP",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Pedro Ramiro Ramiro",
-            "attendingLimit": 36,
-            "bookedAttendees": 4,
-            "startedAt": "2024-09-26T15:00:00",
-            "endedAt": "2024-09-26T15:45:00"
         }
     ]
 }

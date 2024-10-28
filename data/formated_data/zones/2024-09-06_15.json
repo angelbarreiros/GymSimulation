@@ -1,4 +1,13 @@
 {
+    "aforo_clases": [
+        {
+            "name": "FUNCIONAL 360",
+            "zone": "FUNCIONAL",
+            "targetCapacity": 1,
+            "totalCapacity": 12,
+            "hour": "15:00"
+        }
+    ],
     "aforo_zonas": [
         {
             "name": "PP",
@@ -69,60 +78,6 @@
             "name": "X-TRAINING",
             "targetCapacity": 3,
             "totalCapacity": 24
-        }
-    ],
-    "classes": [
-        {
-            "id": "/enjoy/class_events/15098224",
-            "studio": "FUNCIONAL",
-            "activity": "FUNCIONAL",
-            "colorHex": "#fcc400",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "Daniel Llorente Lorenzo",
-            "attendingLimit": 12,
-            "bookedAttendees": 1,
-            "startedAt": "2024-09-06T15:00:00",
-            "endedAt": "2024-09-06T15:30:00"
-        },
-        {
-            "id": "/enjoy/class_events/15098752",
-            "studio": "Studio 2",
-            "activity": "BODY PUMP VIRTUAL",
-            "colorHex": "#ea474a",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 36,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-06T15:00:00",
-            "endedAt": "2024-09-06T15:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15201021",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-06T15:30:00",
-            "endedAt": "2024-09-06T15:45:00"
-        },
-        {
-            "id": "/enjoy/class_events/15201126",
-            "studio": "Valoraci\u00f3n Inicial",
-            "activity": "CITA ENTRENADOR 1",
-            "colorHex": "#000000",
-            "isBookable": true,
-            "isViewable": true,
-            "coach": "",
-            "attendingLimit": 1,
-            "bookedAttendees": 0,
-            "startedAt": "2024-09-06T15:45:00",
-            "endedAt": "2024-09-06T16:00:00"
         }
     ]
 }
