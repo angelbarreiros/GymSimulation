@@ -319,36 +319,55 @@ class Simulation:
         day_text_x = (combined_width - day_text_size[0]) // 2
         cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
-        # Prepare batches
-        BATCH_SIZE = 100
-        total_frames_count = total_frames * len(hours)
-        batches = []
-        
-        for batch_start in range(0, total_frames_count, BATCH_SIZE):
-            batch_end = min(batch_start + BATCH_SIZE, total_frames_count)
-            batch_frames = [
-                (base_frame, grid_size, height, width, header_height, 
-                 combined_width, total_frames)
-                for _ in range(batch_start, batch_end)
-            ] 
-            batches.append((batch_frames, batch_start))
+        # single threaded or multi-threaded processing
+        if False:
+            total_frames_count = total_frames * len(hours)
+            frames_data = [
+            (base_frame, grid_size, height, width, header_height, 
+             combined_width, total_frames)
+            for _ in range(total_frames_count)
+            ]
 
-        # Process batches with ThreadPoolExecutor
-        num_workers = os.cpu_count()-1
-        with ThreadPoolExecutor(max_workers=num_workers) as executor:
-            futures = []
-            for batch_data in batches:
-                future = executor.submit(self._process_batch, batch_data)
-                futures.append(future)
-            
-            # Process and write results as they complete
             with tqdm.tqdm(total=total_frames_count, desc="Generating frames", unit="frame") as pbar:
-                for future in as_completed(futures):
-                    batch_results = future.result()
-                    for frame_num, compressed_frame in batch_results:
+                for frame_num, frame_data in enumerate(frames_data):
+                    batch_results = self._process_batch(([frame_data], frame_num))
+                    for _, compressed_frame in batch_results:
                         frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.jpg')
                         with open(frame_filename, 'wb') as f:
                             f.write(compressed_frame)
                         pbar.update(1)
+        else:
+            # Prepare batches
+            BATCH_SIZE = 100
+            total_frames_count = total_frames * len(hours)
+            batches = []
+            
+            for batch_start in range(0, total_frames_count, BATCH_SIZE):
+                batch_end = min(batch_start + BATCH_SIZE, total_frames_count)
+                batch_frames = [
+                    (base_frame, grid_size, height, width, header_height, 
+                    combined_width, total_frames)
+                    for _ in range(batch_start, batch_end)
+                ] 
+                batches.append((batch_frames, batch_start))
+
+            # Process batches with ThreadPoolExecutor
+            num_workers = os.cpu_count()-1
+            with ThreadPoolExecutor(max_workers=num_workers) as executor:
+                futures = []
+                for batch_data in batches:
+                    future = executor.submit(self._process_batch, batch_data)
+                    futures.append(future)
+                
+                # Process and write results as they complete
+                with tqdm.tqdm(total=total_frames_count, desc="Generating frames", unit="frame") as pbar:
+                    for future in as_completed(futures):
+                        batch_results = future.result()
+                        for frame_num, compressed_frame in batch_results:
+                            frame_filename = os.path.join(output_folder, f'frame_{frame_num:04d}.jpg')
+                            with open(frame_filename, 'wb') as f:
+                                f.write(compressed_frame)
+                            pbar.update(1)
+        
         end_time = time.time()
         return end_time - start_time

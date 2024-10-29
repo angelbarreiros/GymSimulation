@@ -34,8 +34,7 @@ class Day_Data:
         return {
             "name": self.name,
             "hours_array": [hour.to_dict() for hour in self.hours_array]
-        }
-   
+        }  
 
 class HourData:
     def __init__(self, zones_array):
@@ -50,6 +49,7 @@ class HourData:
              return {
                  "aforo_zonas": array
              }
+
 def serialize_to_json(obj, filename):
         if os.path.exists(filename):
             with open(filename, 'r') as f:
@@ -65,9 +65,6 @@ def serialize_to_json(obj, filename):
             with open(filename, 'w') as f:
                 json.dump(obj.to_dict(), f, indent=4)
         
-        
-       
-
 class Zones_Data:
     def __init__(self, name, targetCapacity, totalCapacity):
         self.name = name
@@ -141,13 +138,15 @@ def excel_to_json(file_path, startDate,output_file):
             
             for row in range(rowStart, rowend, 2):
                 name = sheet.cell(row=row, column=col-1).value
-                if name == None or name == "":
-                    notWorkingHour = True
-                cleanName = clean_string(name)
-                total = sheet.cell(row=row+1, column=col).value
-                target = sheet.cell(row=row+1, column=col+1).value
-                data = Zones_Data(cleanName, target, total)
-                zones_data.append(data)
+                if name is not None and name != "":  # Only process non-empty zones
+                    cleanName = clean_string(name)
+                    total = sheet.cell(row=row+1, column=col).value
+                    target = sheet.cell(row=row+1, column=col+1).value
+                    data = Zones_Data(cleanName, target, total)
+                    zones_data.append(data)
+
+            # After the loop, only mark as notWorkingHour if no valid zones were found
+            notWorkingHour = len(zones_data) == 0
                 
             rowend += sumatorio
             rowStart += sumatorio

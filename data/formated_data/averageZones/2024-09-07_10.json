@@ -2,7 +2,7 @@
     "aforo_clases": [
         {
             "name": "BODY PUMP",
-            "zone": "Studio 4",
+            "zone": "Studio 1",
             "targetCapacity": 36,
             "totalCapacity": 55,
             "hour": "10:30"

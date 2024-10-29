@@ -9,7 +9,7 @@
         },
         {
             "name": "PILATES",
-            "zone": "Studio 1",
+            "zone": "Studio 2",
             "targetCapacity": 12,
             "totalCapacity": 45,
             "hour": "12:00"

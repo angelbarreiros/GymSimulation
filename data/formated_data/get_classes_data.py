@@ -45,15 +45,24 @@ def serialize_to_json(obj, filename):
     # If file exists, read and append to existing data
     if os.path.exists(filename):
         with open(filename, 'r') as f:
+            existing_data = json.load(f)
             
-                existing_data = json.load(f)
-                # Assuming the existing data has "aforo_clases" key
-                existing_data["aforo_clases"].extend(new_data["aforo_clases"])
-                final_data = existing_data
+            # Create a set of existing class names to check for duplicates
+            existing_names = {item['name'] for item in existing_data["aforo_clases"]}
             
+            # Only append classes that aren't already in the file
+            new_classes = [cls for cls in new_data["aforo_clases"] 
+                         if cls['name'] not in existing_names]
+            
+            existing_data["aforo_clases"].extend(new_classes)
+            final_data = existing_data
     else:
         # If file doesn't exist, use new data directly
         final_data = new_data
+    
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    with open(filename, 'w') as f:
+        json.dump(final_data, f, indent=4)
     
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w') as f:
@@ -111,6 +120,7 @@ def modify_event(string):
         "SUELO PÉLVICO":"Studio 2",
         "DANCE":"Studio 4",
         "ZUMBA KIDS":"X-TRAINING",
+        "EN FAMILIA":"Studio 2",
     }
     return  activity_map.get(string, "Studio 1")
     
@@ -176,7 +186,7 @@ def generar_json_por_hora(file_path,startDate,output_file):
         
 
 
-def generate():
+def generate_clases():
     startDate = 1
     output_file = "data/formated_data/zones/"
     paths=["data/excel/clases_sept_2-8.xlsx",

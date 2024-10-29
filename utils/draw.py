@@ -42,8 +42,7 @@ def draw_class(frame, area, color):
     center = area.Area.points.mean(axis=0).astype(int)
     center[0] -= 100  # Move 100 px to the left
     cv2.putText(frame, f"Class: {area.name}", center, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-    cv2.putText(frame, f"Class: {area.Area.targetCapacity}", center+25, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-
+    # cv2.putText(frame, f"Class: {area.Area.targetCapacity}", center+25, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
 def paint_area(frame, area, persons, frame_num):
     pts = area.points.reshape((-1, 1, 2))
@@ -72,8 +71,8 @@ def paint_area(frame, area, persons, frame_num):
     cv2.fillPoly(overlay, [pts], fill_color)
     alpha = 0.3
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
+    # cv2.putText(frame, area.name, (pts[0][0][0], pts[0][0][1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
     # for machine in area.machines:
-    #     print(machine)
     #     cv2.circle(frame, (machine[0]), 5, (0, 0, 255), -1)
 
 def paint_noarea(frame, area, color):

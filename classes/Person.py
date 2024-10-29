@@ -109,7 +109,7 @@ class Person:
             self.y = 165 + self.id * 10
             return
         elif self.target_area.floor !=3:
-            self.wait_time = random.randint(100, 200)
+            self.wait_time = random.randint(25, 150)
             self.target_coords = self.target_area.getPointInside(self._lane_index)
             self.route = get_easy_route(
                 start=(int(self.x), int(self.y)),
@@ -141,7 +141,7 @@ class Person:
                 self.x, self.y = self.stairs[self.current_floor].getPointInside()
                 self.state = None
             elif self.state == 'moving_lockers':
-                self.wait_time = random.randint(50, 100)
+                self.wait_time = random.randint(10, 50)
                 self.locker_room = None
                 self.state = None
             elif self.state == 'moving_target':

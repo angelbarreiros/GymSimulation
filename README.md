@@ -1,30 +1,21 @@
 # GymSimulation
 
+## Demo
+
+![demo](output.gif)
+
 ## TODO
 
-zigbee sensors, hardware...
-    sensores puertas
-    para areas:
-        de presion
-        camara
-        <https://flameanalytics.com/en/hypersensor/>
-        ...
+- hardware... zigbee sensors:
+  - sensores puertas
+  - para areas camaras
+    - <https://flameanalytics.com/en/hypersensor/>
 
-JIT?
+- Optimizations
+  - JIT?
+  - rutas bien
+  - detect los q se quedan pillaos...
 
-horas coger bien para medias
+- Cambio para clases entre horas
 
-clases ocupacion pintar...
-
-detect los q se quedan pillaos...
-
-señalizar cuando empiezan clases, also no duran 1 hora exacto
-    tambien el lifetime, que no sea por horass...(info incorrecta¿) -> cuando vayas no disminuye hasta reset?
-
-entradas/salidas json no están... tmpc hacen falta
-
-optimizar, rutas y pintar...
-
-clases no tienen porque empezar a en punto y puden acabar en la hora siguiente
-
-reasmania, provisport, esnova...
+- entradas/salidas json no están... tmpc hacen falta

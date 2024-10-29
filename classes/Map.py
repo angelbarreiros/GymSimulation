@@ -32,7 +32,7 @@ class Area:
             #     return self.machines[self.actualCapacity][0]
 
         x, y, w, h = cv2.boundingRect(self.points)
-        margin = 5
+        margin = 15
         while True:
             random_point = (np.random.randint(x+margin, x + w-margin), np.random.randint(y+margin, y + h-margin))
             if cv2.pointPolygonTest(self.points, random_point, False) >= 0:

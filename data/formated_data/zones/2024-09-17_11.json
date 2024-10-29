@@ -9,14 +9,14 @@
         },
         {
             "name": "PILATES",
-            "zone": "Studio 1",
+            "zone": "Studio 2",
             "targetCapacity": 45,
             "totalCapacity": 45,
             "hour": "11:00"
         },
         {
             "name": "BODY PUMP",
-            "zone": "Studio 4",
+            "zone": "Studio 1",
             "targetCapacity": 30,
             "totalCapacity": 55,
             "hour": "11:30"

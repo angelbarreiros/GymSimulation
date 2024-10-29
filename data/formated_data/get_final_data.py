@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     if not os.path.exists('data/formated_data/averageZones/'):
         os.mkdir('data/formated_data/averageZones/')
-    gc.generate()
+    gc.generate_clases()
     gz.getZonesData()
     
 

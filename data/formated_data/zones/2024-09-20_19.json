@@ -2,7 +2,7 @@
     "aforo_clases": [
         {
             "name": "PILATES",
-            "zone": "Studio 1",
+            "zone": "Studio 2",
             "targetCapacity": 35,
             "totalCapacity": 60,
             "hour": "19:00"
