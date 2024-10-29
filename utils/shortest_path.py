@@ -385,15 +385,15 @@ if __name__ == "__main__":
     # import cProfile
     # cProfile.run('main()')
     
-    # start = (510, 862)
-    # goal = (1500, 660)
+    start = (510, 862)
+    goal = (1500, 660)
 
-    # matrix = create_matrix_from_json(1, 10, 1, False)
-    # path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
-    # print(path)
+    matrix = create_matrix_from_json(1, 10, 1, False)
+    path = variable_a_star_search_from_grid(matrix, start, goal, scale_factor=10, debug=False)
+    print(path)
 
-    # # for floor in range(4):
-    # #     create_matrix_from_json(floor, 10, 1, True)
+    for floor in range(4):
+        create_matrix_from_json(floor, 10, 1, True)
     
     # Load the DataFrame
     import pandas as pd
@@ -402,9 +402,10 @@ if __name__ == "__main__":
     # Using names
     route = find_route(
         df,
-        floor_num=1,
+        floor_num=2,
         goal=(973,1051),
         start=(1351,731),
-        input_type='coordinates'
+        input_type='coordinates',
+        speed=20
     )
     print(route)
