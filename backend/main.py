@@ -19,14 +19,24 @@ app.add_middleware(
 
 
 # Directorio donde está el video estático y donde se guardarán los videos recortados
-STATIC_VIDEO_PATH = "./static/video.mp4"  # Ruta del video estático
+STATIC_VIDEO_PATH = "./static/"  # Ruta del video estático
 OUTPUT_DIR = "./trimmed_videos"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+start_date = datetime(2024, 9, 2)
+def get_date_by_weekday(target_weekday) -> datetime:
+    # Convert datetime weekday (0-6, Monday is 0) to match Form weekday (1-7, Monday is 1)
+    current_weekday = start_date.weekday() + 1
+    
+    # Calculate days to add
+    days_to_add = (target_weekday - current_weekday) % 7
+    
+    return start_date + timedelta(days=days_to_add)
+
 
 def trim_video_with_ffmpeg(input_file: str, start_time: float, end_time: float, output_file: str):
     # Ejecutar el comando ffmpeg para recortar el video, ajustar la resolución y calidad
     print("procesando video...")
-    ffmpeg_cmd = [
+    ffmpeg_cmd = [  
         "ffmpeg",
         "-i", input_file,              # Archivo de entrada (el video estático)
         "-ss", str(start_time),        # Tiempo de inicio
@@ -52,17 +62,18 @@ async def compare_weekday_hours(
     start_time: int = Form(...)
 ):
     try:
-        print("entro antes de los files")
-        output_filename = f"{weekday}_{start_time}:{end_time}.mp4"
+        print("entro antes de los average")
+        fileName = get_date_by_weekday(weekday).strftime('%Y-%m-%d')
+        output_filename = f"{fileName}_{start_time}:{end_time}.mp4"
         output_file_path = os.path.join(OUTPUT_DIR, output_filename)
         if os.path.exists(output_file_path):
             print("devuelvo el fichero")
             print(f"Devolviendo el archivo: {output_file_path} con nombre: {output_filename}")
             return FileResponse(output_file_path, media_type="video/mp4", filename=output_filename)
 
-        # Recortar el video usando ffmpeg (bloqueante)
+        
         loop = asyncio.get_running_loop()
-        await loop.run_in_executor(None, trim_video_with_ffmpeg, STATIC_VIDEO_PATH, start_time, end_time, output_file_path)
+        await loop.run_in_executor(None, trim_video_with_ffmpeg,  f"./static/{fileName}_average.mp4", start_time, end_time, output_file_path)
 
         print("devuelvo el fichero")
         print(f"Devolviendo el archivo: {output_file_path} con nombre: {output_filename}")
@@ -80,22 +91,21 @@ async def compare_weekday_hours(
 async def trim_video(
     start_time: float = Form(...),  # Tiempo de inicio en segundos
     end_time: float = Form(...),
-    september_date: int = Form(...)
+    september_date: datetime = Form(...)
               # Tiempo de fin en segundos
 ):
     try:
-        # Generar un nombre único para el archivo de salida
+        fileName=september_date.strftime('%Y-%m-%d')
         print("entro antes de los files")
-        output_filename = f"{september_date}_{start_time}:{end_time}.mp4"
+        output_filename = f"{fileName}_{start_time}:{end_time}.mp4"
         output_file_path = os.path.join(OUTPUT_DIR, output_filename)
         if os.path.exists(output_file_path):
-            print("devuelvo el fichero")
-            print(f"Devolviendo el archivo: {output_file_path} con nombre: {output_filename}")
+            
             return FileResponse(output_file_path, media_type="video/mp4", filename=output_filename)
 
-        # Recortar el video usando ffmpeg (bloqueante)
+        
         loop = asyncio.get_running_loop()
-        await loop.run_in_executor(None, trim_video_with_ffmpeg, STATIC_VIDEO_PATH, start_time, end_time, output_file_path)
+        await loop.run_in_executor(None, trim_video_with_ffmpeg, f"./static/{fileName}.mp4", start_time, end_time, output_file_path)
 
 
         print("devuelvo el fichero")

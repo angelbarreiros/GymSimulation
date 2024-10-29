@@ -10,8 +10,10 @@ multi_person_movement.mp4
 outputs/
 ./data/formated_data/zones
 ./data/formated_data/averageZones
+backend/static/*.mp4
 # C extensions
 *.so
+
 
 # Distribution / packaging
 .Python

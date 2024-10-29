@@ -158,16 +158,9 @@ button:hover {
     gap: 20px;
 }
 
-.video-player {
-    width: 100%;
-    
-    
-}
 
-.daily-video-container {
-    display: none;
-    padding: 50%;
-}
+
+
 
 @media (max-width: 768px) {
     .video-grid {
@@ -181,4 +174,20 @@ button:hover {
     .input-container {
         flex: 1 1 100%;
     }
+}
+.video-player {
+    width: 100%;
+    max-width: 800px; /* or whatever maximum width you prefer */
+    margin: 0 auto;
+    display: block;
+}
+
+.daily-video-container {
+    margin-top: 20px;
+}
+
+
+.daily-video-container {
+    position: relative;
+    min-height: 300px; /* Adjust based on your needs */
 }

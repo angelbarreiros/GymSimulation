@@ -4,8 +4,8 @@ echo "Starting Docker operations..."
 
 
 echo "Building images..."
-sudo docker buildx build -t europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymbackend -f ./backend.dockerfile ..
-sudo docker buildx build -t europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymfrontend -f ./frontend.dockerfile ..
+sudo docker buildx build -t europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymbackend -f ./backend.dockerfile .. 
+sudo docker buildx build -t europe-west9-docker.pkg.dev/aproxyz/aproxyz/gymfrontend -f ./frontend.dockerfile --no-cache ..
 
 
 
