@@ -50,12 +50,20 @@ def paint_area(frame, area, persons, frame_num):
     if area.totalCapacity == 0:
         fill_color = (0, 0, 255)  # Red
     else:
-        n = sum(1 for person in persons 
-                if person.startFrame <= frame_num
-                and frame_num < person.startFrame + len(person.history)
-                and person.history[frame_num - person.startFrame][3] == 'reached'
-                and person.history[frame_num - person.startFrame][4] == area.name)
-        # print(f"Area {area.name} has {n} persons, actually has {area.actualCapacity}")
+        n = 0
+        for person in persons:
+            if person.startFrame <= frame_num and frame_num < person.startFrame + len(person.history):
+                if person.history[frame_num - person.startFrame][3] == 'reached' and person.history[frame_num - person.startFrame][4] == area.name:
+                    n += 1
+
+        # n = sum(1 for person in persons 
+        #         if (
+        #         person.startFrame <= frame_num
+        #         and frame_num < person.startFrame + len(person.history)
+        #         and person.history[frame_num - person.startFrame][3] == 'reached'
+        #         and person.history[frame_num - person.startFrame][4] == area.name)
+        #         )
+
         occupancy_percent = (n / area.totalCapacity) * 100
         if 0 <= occupancy_percent < 20:
             fill_color = COLORS['Red']
@@ -67,6 +75,10 @@ def paint_area(frame, area, persons, frame_num):
             fill_color = COLORS['Green']
         else:
             fill_color = COLORS['Black']
+                
+        if area.type == "CLASE":
+            print(f"frame {frame_num}, Area {area.name} has {n} persons, occupancy_percent {occupancy_percent}")
+
     overlay = frame.copy()
     cv2.fillPoly(overlay, [pts], fill_color)
     alpha = 0.3

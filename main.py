@@ -9,11 +9,11 @@ import gc
 from utils.global_variables import DEBUG
 
 TOTAL_FRAMES = 600
-WEEKDAY_HOURS  = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
-WEEKEND_HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-START_DAY = '2024-09-02'
-NDAYS = 27
-AVERAGE = True
+WEEKDAY_HOURS = list(range(7, 23))
+WEEKEND_HOURS = list(range(9, 21))
+START_DAY = '2024-09-2'
+NDAYS = 1
+AVERAGE = False
 
 def run_simulation_for_day(day):
     np.random.seed(123)
@@ -25,7 +25,7 @@ def run_simulation_for_day(day):
     sim_time, durations = sim.simulate(TOTAL_FRAMES, dia=day, hours=hours, spawn_interval=2, max_spawn=2, average=AVERAGE)
     
     print('Creating animation...')
-    anim_time = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=hours, day=day)
+    anim_time = sim.animate_cv2(output_folder='data/animation_frames', total_frames=TOTAL_FRAMES, hours=hours, day=day, average=AVERAGE)
 
     if not os.path.exists('outputs'):
         os.makedirs('outputs')
@@ -73,4 +73,6 @@ if __name__ == "__main__":
     if DEBUG:
         cProfile.run('main()')
     else:
+        main()
+        AVERAGE = True
         main()

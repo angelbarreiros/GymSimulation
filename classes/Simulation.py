@@ -274,7 +274,7 @@ class Simulation:
 
         return results
 
-    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8], day='2024-08-05'):
+    def animate_cv2(self, output_folder='data/animation_frames', total_frames=600, hours=[7, 8], day='2024-08-05', average=False):
         os.makedirs(output_folder, exist_ok=True)
         self.hours = hours
         start_time = time.time()
@@ -310,14 +310,6 @@ class Simulation:
             draw_spawn_point(base_frame[floor_offset_y:floor_offset_y+height, 
                             floor_offset_x:floor_offset_x+width], spawn, COLORS['Green'])
 
-
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        font_scale = 2.5
-        font_thickness = 3
-        day_str = f"Day: {day}"
-        day_text_size = cv2.getTextSize(day_str, font, font_scale, font_thickness)[0]
-        day_text_x = (combined_width - day_text_size[0]) // 2
-        cv2.putText(base_frame, day_str, (day_text_x, 75), font, font_scale, (0, 0, 0), font_thickness)
 
         # single threaded or multi-threaded processing
         if False:

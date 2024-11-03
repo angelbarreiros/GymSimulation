@@ -117,6 +117,7 @@ class Person:
                 step=self.speed
             )
         else:
+            self.x, self.y = self.target_coords
             return
 
         self.x, self.y = self.route.pop(0)
