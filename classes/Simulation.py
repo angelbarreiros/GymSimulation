@@ -10,7 +10,7 @@ import time
 from utils.draw import *
 import math
 from utils.get_info import get_data, get_data_initial
-from utils.global_variables import DEBUG
+from utils.global_variables import DEBUG, SKIP
 
 TPLIST = ["EscaleraIzq", "EscaleraDrch", "EscaleraCentroSubida", "EscaleraCentroBajada", "AscensorInterior"]
 
@@ -119,15 +119,14 @@ class Simulation:
             exceeded_lifetime_count = 0
             idx = 0
             for person in self.persons:
-                person.lifetime+=1
+
                 
                 # Deleted person
                 if not hasattr(person.target_area, 'actualCapacity') or person.state == 'left':
                     self.personsDeleted.append(self.persons.pop(idx))
                     continue
-                
                 # Leave the building
-                elif person.lifetime >= person.max_lifetime:
+                if person.lifetime >= person.max_lifetime or person.current_floor == 3 or person.target_area.floor == 3:
                     exceeded_lifetime_count += 1
                     person.target_area.actualCapacity -= 1
                     person.target_area = self.spawn_points[0]
@@ -138,13 +137,17 @@ class Simulation:
                     if DEBUG:
                         print(f'Person {person.id} has exceeded, going to {person.target_area.name}')
                     #person.state = 'left'
-                    
                 else:
                     # if hasattr(person.target_area, 'actualCapacity'):
                     #     next(area for area in self.target_areas if area.name == person.target_area.name).actualCapacity -= 1
                     if person.target_area.actualCapacity > person.target_area.targetCapacity:
                         person.target_area.actualCapacity -= 1
                         person.target_area = self.getTargetArea()
+                        # if person.target_area == None:
+                        #     exceeded_lifetime_count += 1
+                        #     person.target_area = self.spawn_points[0]
+                        #     if DEBUG:
+                        #         print(f'Person {person.id} has exceeded, going to {person.target_area.name}')
                         person.state = None
                         person.stay_counter = 0
                         person.wait_time = 0
@@ -188,6 +191,8 @@ class Simulation:
         
         for i, frame_data in enumerate(frames_data):
             frame_num = batch_start + i
+            if frame_num % SKIP != 0:
+                continue
             (base_frame, grid_size, height, width, header_height, 
              combined_width, total_frames) = frame_data
             
@@ -256,9 +261,19 @@ class Simulation:
                 elif area.type == 'VESTUARIO':
                     paint_noarea(current_frame[floor_offset_y:floor_offset_y+height, 
                                floor_offset_x:floor_offset_x+width], area, COLORS['Purple'])
+                elif area.type == 'CLASE':
+                    for clase in self.classes[frame_num//total_frames]:
+                        if clase.Area.name == area.name:
+                            area.totalCapacity = clase.totalCapacity
+                            break
+                    paint_area(current_frame[floor_offset_y:floor_offset_y+height, 
+                                floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
                 else:
                     paint_area(current_frame[floor_offset_y:floor_offset_y+height, 
-                              floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
+                                floor_offset_x:floor_offset_x+width], area, self.persons, frame_num)
+                    
+
+                    
 
             # Draw classes
             for classe in self.classes[frame_num//total_frames]:

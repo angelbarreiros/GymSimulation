@@ -1,4 +1,5 @@
 import cv2
+from utils.global_variables import DEBUG
 import numpy as np
 
 COLORS = {
@@ -47,45 +48,51 @@ def draw_class(frame, area, color):
 def paint_area(frame, area, persons, frame_num):
     pts = area.points.reshape((-1, 1, 2))
 
-    if area.totalCapacity == 0:
+    if area.totalCapacity == 0 and area.floor != 3:
         fill_color = (0, 0, 255)  # Red
     else:
         n = 0
+        frames_per_hour = 600  # This should match your TOTAL_FRAMES constant
+        current_hour = frame_num // frames_per_hour
+        frame_within_hour = frame_num % frames_per_hour
+        
+        # if area.floor == 3:
+        #     print(f"frame {frame_num}, Area {area.name}, targetCapacity {area.targetCapacity}, totalCapacity {area.totalCapacity}")
+        #     fill_color = COLORS['Red']
+
         for person in persons:
-            if person.startFrame <= frame_num and frame_num < person.startFrame + len(person.history):
-                if person.history[frame_num - person.startFrame][3] == 'reached' and person.history[frame_num - person.startFrame][4] == area.name:
-                    n += 1
+            # Adjust frame comparison for multi-hour simulations
+            person_hour = person.startFrame // frames_per_hour
+            if person_hour <= current_hour:
+                adjusted_frame = frame_within_hour + (current_hour * frames_per_hour)
+                if (person.startFrame <= adjusted_frame < person.startFrame + len(person.history)):
+                    history_idx = adjusted_frame - person.startFrame
+                    if history_idx < len(person.history):
+                        if (person.history[history_idx][3] == 'reached' and 
+                            person.history[history_idx][4] == area.name):
+                            n += 1
 
-        # n = sum(1 for person in persons 
-        #         if (
-        #         person.startFrame <= frame_num
-        #         and frame_num < person.startFrame + len(person.history)
-        #         and person.history[frame_num - person.startFrame][3] == 'reached'
-        #         and person.history[frame_num - person.startFrame][4] == area.name)
-        #         )
 
-        occupancy_percent = (n / area.totalCapacity) * 100
-        if 0 <= occupancy_percent < 20:
+        if area.totalCapacity == 0:
             fill_color = COLORS['Red']
-        elif 20 <= occupancy_percent < 40:
-            fill_color = COLORS['Orange']
-        elif 40 <= occupancy_percent < 60:
-            fill_color = COLORS['Yellow']
-        elif 60 <= occupancy_percent < 80:
-            fill_color = COLORS['Green']
         else:
-            fill_color = COLORS['Black']
-                
-        if area.type == "CLASE":
-            print(f"frame {frame_num}, Area {area.name} has {n} persons, occupancy_percent {occupancy_percent}")
+            occupancy_percent = (n / area.totalCapacity) * 100
+        
+            if 0 <= occupancy_percent < 20:
+                fill_color = COLORS['Red']
+            elif 20 <= occupancy_percent < 40:
+                fill_color = COLORS['Orange']
+            elif 40 <= occupancy_percent < 60:
+                fill_color = COLORS['Yellow']
+            elif 60 <= occupancy_percent < 80:
+                fill_color = COLORS['Green']
+            else:
+                fill_color = COLORS['Black']
 
     overlay = frame.copy()
     cv2.fillPoly(overlay, [pts], fill_color)
     alpha = 0.3
     cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
-    # cv2.putText(frame, area.name, (pts[0][0][0], pts[0][0][1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-    # for machine in area.machines:
-    #     cv2.circle(frame, (machine[0]), 5, (0, 0, 255), -1)
 
 def paint_noarea(frame, area, color):
     mask = np.zeros(frame.shape[:2], dtype=np.uint8)

@@ -82,19 +82,24 @@ def get_data(dia, hora, areas, average):
             for clase in data['aforo_clases']:
                 zone = clase['zone']
                 matching_area = next((area for area in areas if area.name == zone), None)
-                if matching_area and clase['targetCapacity']>1:
-                    act = Activity(name=clase['name'],startDate=clase['hour'],Area=matching_area)  #,endDate= clase['hour']
-                    classes.append(act)
+                if matching_area:
                     npersons -= matching_area.targetCapacity
                     matching_area.targetCapacity = clase['targetCapacity']
                     matching_area.totalCapacity = clase['totalCapacity']
                     npersons += clase['targetCapacity']
+                    act = Activity(name=clase['name'],startDate=clase['hour'],totalCapacity=clase['totalCapacity'], Area=matching_area)  #,endDate= clase['hour']
+                    classes.append(act)
                     if DEBUG:
-                        print(f"Matching area {act.Area.name} with class {act.name} with {matching_area.targetCapacity} attendees")
+                        print(f"Matching area {act.Area.name} with class {act.name} with {matching_area.targetCapacity} and {matching_area.totalCapacity} capacity")
 
         if 'entradas' in data:  # NOT in json
             for dt in data['entradas']:
                 entradas = dt['total_entrada']
                 salidas = dt['total_salida']
+
+        # for studio in ['Studio 4', 'Studio 1', 'Studio 2', 'Studio 3']:
+        #     matching_studio = next((area for area in areas if area.name == studio), None)
+        #     if matching_studio:
+        #         print(f"Studio {matching_studio.name} has target capacity {matching_studio.targetCapacity} and total capacity {matching_studio.totalCapacity}")
 
     return npersons, entradas, salidas, areas, classes

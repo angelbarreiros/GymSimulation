@@ -6,13 +6,13 @@ from classes.Simulation import Simulation
 import cProfile
 import time
 import gc
-from utils.global_variables import DEBUG
+from utils.global_variables import DEBUG, SKIP
 
 TOTAL_FRAMES = 600
 WEEKDAY_HOURS = list(range(7, 23))
 WEEKEND_HOURS = list(range(9, 21))
 START_DAY = '2024-09-2'
-NDAYS = 1
+NDAYS = 7
 AVERAGE = False
 
 def run_simulation_for_day(day):
@@ -33,10 +33,18 @@ def run_simulation_for_day(day):
         output_file = f'outputs/{day}_average.mp4'
     else:
         output_file = f'outputs/{day}.mp4'
+
+
+    with open('data/animation_frames/frames.txt', 'w') as f:
+        frame_files = sorted([frame_file for frame_file in os.listdir('data/animation_frames') if frame_file.endswith('.jpg')])
+        for frame_file in frame_files:
+                f.write(f"file '{os.path.abspath(os.path.join('data/animation_frames', frame_file))}'\n")
+
     subprocess.run([
         'ffmpeg', '-y', 
-        '-framerate', '30', 
-        '-i', 'data/animation_frames/frame_%04d.jpg',
+        '-f', 'concat', 
+        '-safe', '0', 
+        '-i', 'data/animation_frames/frames.txt',
         '-c:v', 'libx264',
         '-preset', 'medium',
         '-crf', '23',
@@ -47,7 +55,7 @@ def run_simulation_for_day(day):
         '-loglevel', 'info',
         output_file
     ], check=True)
-
+    
     print(f"Animation saved as '{output_file}'")
     for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
         os.remove(file_path)

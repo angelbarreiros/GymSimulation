@@ -61,8 +61,9 @@ class SpawnPoint:
         return self.coords
 
 class Activity:
-    def __init__(self,name,startDate,Area):
+    def __init__(self,name,startDate, totalCapacity,Area):
         self.name = name
         self.startDate = startDate
+        self.totalCapacity = totalCapacity
         # self.endDate = endDate
         self.Area = Area
