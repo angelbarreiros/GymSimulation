@@ -12,7 +12,7 @@ TOTAL_FRAMES = 600
 WEEKDAY_HOURS = list(range(7, 23))
 WEEKEND_HOURS = list(range(9, 21))
 START_DAY = '2024-09-2'
-NDAYS = 7
+NDAYS = 27
 AVERAGE = False
 
 def run_simulation_for_day(day):

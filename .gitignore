@@ -8,6 +8,7 @@ __pycache__/
 old.py
 multi_person_movement.mp4
 outputs/
+outputs.zip
 ./data/formated_data/zones
 ./data/formated_data/averageZones
 backend/static/*.mp4

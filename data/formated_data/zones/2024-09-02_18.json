@@ -23,7 +23,7 @@
         },
         {
             "name": "BODY COMBAT",
-            "zone": "Studio 2",
+            "zone": "Studio 1",
             "targetCapacity": 50,
             "totalCapacity": 60,
             "hour": "18:30"

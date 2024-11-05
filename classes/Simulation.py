@@ -118,9 +118,7 @@ class Simulation:
             self.get_data_hour(dia, hora, self.target_areas, average)
             exceeded_lifetime_count = 0
             idx = 0
-            for person in self.persons:
-
-                
+            for person in self.persons:              
                 # Deleted person
                 if not hasattr(person.target_area, 'actualCapacity') or person.state == 'left':
                     self.personsDeleted.append(self.persons.pop(idx))
@@ -130,7 +128,7 @@ class Simulation:
                     exceeded_lifetime_count += 1
                     person.target_area.actualCapacity -= 1
                     person.target_area = self.spawn_points[0]
-                    # person.wait_time = 0
+                    person.wait_time = 0
                     person.state = None
                     person.route = None
                     person.locker_room = None
@@ -143,9 +141,9 @@ class Simulation:
                     if person.target_area.actualCapacity > person.target_area.targetCapacity:
                         person.target_area.actualCapacity -= 1
                         person.target_area = self.getTargetArea()
-                        # if person.target_area == None:
-                        #     exceeded_lifetime_count += 1
-                        #     person.target_area = self.spawn_points[0]
+                        if person.target_area == None:
+                            exceeded_lifetime_count += 1
+                            person.target_area = self.spawn_points[0]
                         #     if DEBUG:
                         #         print(f'Person {person.id} has exceeded, going to {person.target_area.name}')
                         person.state = None

@@ -86,6 +86,7 @@ def get_data(dia, hora, areas, average):
                     npersons -= matching_area.targetCapacity
                     matching_area.targetCapacity = clase['targetCapacity']
                     matching_area.totalCapacity = clase['totalCapacity']
+                    # matching_area.type = 'CLASE'
                     npersons += clase['targetCapacity']
                     act = Activity(name=clase['name'],startDate=clase['hour'],totalCapacity=clase['totalCapacity'], Area=matching_area)  #,endDate= clase['hour']
                     classes.append(act)
