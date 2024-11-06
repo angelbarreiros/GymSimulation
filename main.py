@@ -10,8 +10,8 @@ from utils.global_variables import DEBUG, SKIP
 
 TOTAL_FRAMES = 600
 WEEKDAY_HOURS = list(range(7, 23))
-WEEKEND_HOURS = list(range(9, 21))
-START_DAY = '2024-09-2'
+WEEKEND_HOURS = list(range(9, 11))
+START_DAY = '2024-09-1'
 NDAYS = 27
 AVERAGE = False
 
@@ -41,14 +41,15 @@ def run_simulation_for_day(day):
                 f.write(f"file '{os.path.abspath(os.path.join('data/animation_frames', frame_file))}'\n")
 
     subprocess.run([
-        'ffmpeg', '-y', 
-        '-f', 'concat', 
-        '-safe', '0', 
+        'ffmpeg', '-y',
+        '-f', 'concat',
+        '-safe', '0',
+        '-r', '30',
         '-i', 'data/animation_frames/frames.txt',
+        '-vf', f'fps=30,format=yuv420p,scale=1920:-2:flags=lanczos',  # Force exact 30 fps
         '-c:v', 'libx264',
         '-preset', 'medium',
         '-crf', '23',
-        '-vf', 'format=yuv420p,scale=1920:-2:flags=lanczos',
         '-movflags', '+faststart',
         '-profile:v', 'high',
         '-level', '4.2',
@@ -57,8 +58,8 @@ def run_simulation_for_day(day):
     ], check=True)
     
     print(f"Animation saved as '{output_file}'")
-    for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
-        os.remove(file_path)
+    # for file_path in (os.path.join('data/animation_frames', f) for f in os.listdir('data/animation_frames')):
+    #     os.remove(file_path)
     del sim
     return sim_time, anim_time, durations
 
